@@ -1,0 +1,3 @@
+[submodule "yhge"]
+	path = yhge
+	url = git@github.com:trarck/CCGE.git
