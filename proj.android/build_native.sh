@@ -1,4 +1,4 @@
-APPNAME="yhge"
+APPNAME="CCGE"
 
 # options
 

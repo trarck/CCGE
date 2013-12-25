@@ -1,4 +1,4 @@
-EXECUTABLE = yhge
+EXECUTABLE = CCGE
 
 INCLUDES = -I.. -I../Classes
 
