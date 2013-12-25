@@ -4,7 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCGE", "CCGE.vcxproj", "{76A39BB2-9B84-4C65-98A5-654D86B86F2A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{21B2C324-891F-48EA-AD1A-5AE13DE12E28} = {21B2C324-891F-48EA-AD1A-5AE13DE12E28}
-		{51EC1159-5E48-4D92-95D9-00295679FE9A} = {51EC1159-5E48-4D92-95D9-00295679FE9A}
 		{98A51BA8-FC3A-415B-AC8F-8C7BD464E93E} = {98A51BA8-FC3A-415B-AC8F-8C7BD464E93E}
 		{207BC7A9-CCF1-4F2F-A04D-45F72242AE25} = {207BC7A9-CCF1-4F2F-A04D-45F72242AE25}
 		{929480E7-23C0-4DF6-8456-096D71547116} = {929480E7-23C0-4DF6-8456-096D71547116}
@@ -29,8 +28,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libBox2D", "..\..\..\external\Box2D\proj.win32\Box2D.vcxproj", "{929480E7-23C0-4DF6-8456-096D71547116}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libchipmunk", "..\..\..\external\chipmunk\proj.win32\chipmunk.vcxproj", "{207BC7A9-CCF1-4F2F-A04D-45F72242AE25}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libyhge", "..\..\yhge\proj.win32\yhge.vcxproj", "{51EC1159-5E48-4D92-95D9-00295679FE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,10 +59,6 @@ Global
 		{207BC7A9-CCF1-4F2F-A04D-45F72242AE25}.Debug|Win32.Build.0 = Debug|Win32
 		{207BC7A9-CCF1-4F2F-A04D-45F72242AE25}.Release|Win32.ActiveCfg = Release|Win32
 		{207BC7A9-CCF1-4F2F-A04D-45F72242AE25}.Release|Win32.Build.0 = Release|Win32
-		{51EC1159-5E48-4D92-95D9-00295679FE9A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{51EC1159-5E48-4D92-95D9-00295679FE9A}.Debug|Win32.Build.0 = Debug|Win32
-		{51EC1159-5E48-4D92-95D9-00295679FE9A}.Release|Win32.ActiveCfg = Release|Win32
-		{51EC1159-5E48-4D92-95D9-00295679FE9A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

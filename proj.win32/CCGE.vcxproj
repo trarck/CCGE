@@ -65,7 +65,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;$(ProjectDir)..\..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;$(ProjectDir)..\..\yhge;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;$(ProjectDir)..\..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;$(ProjectDir)..\yhge;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -127,11 +127,144 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\yhge\yhge\Arithmetic\Search\AStar\Astar.cpp" />
+    <ClCompile Include="..\yhge\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
+    <ClCompile Include="..\yhge\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
+    <ClCompile Include="..\yhge\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\Actions\CCParabolaMove.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\CCCallFuncNO.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\CCGeometryValue.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\CCScopePtr.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\CCSelectorWrap.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\Support\base64.cpp" />
+    <ClCompile Include="..\yhge\yhge\CocosExt\Support\ccCArray.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\AnimationComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\AttackComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\AutoAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\Component.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\ManualAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Components\SimpleMoveComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\Event.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\EventHandle.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\EventHandleD.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\EventHandleWrap.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\EventListenerManager.cpp" />
+    <ClCompile Include="..\yhge\yhge\Event\UIEvent.cpp" />
+    <ClCompile Include="..\yhge\yhge\FSM\Common\FSMMachine.cpp" />
+    <ClCompile Include="..\yhge\yhge\FSM\Common\FSMState.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\Coordinate.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOBatchDynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOBatchDynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOBatchTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOComponentNode.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISODynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISODynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOGroundTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOObject.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOObjectGroup.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOOptimizedTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTile.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTileLayer.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTileLayerDynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTileMap.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTileMapBuilder.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTileset.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOTilesetGroup.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ISOXMLReader.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOLayerInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOMapInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOObjectGroupInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOObjectInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOTileInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOTilesetInfo.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\parser\ISOXMLParser.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ZIndex.cpp" />
+    <ClCompile Include="..\yhge\yhge\Isometric\ZIndexNode.cpp" />
+    <ClCompile Include="..\yhge\yhge\Math\MersenneTwister.cpp" />
+    <ClCompile Include="..\yhge\yhge\Math\RandomMT.cpp" />
+    <ClCompile Include="..\yhge\yhge\Message\Message.cpp" />
+    <ClCompile Include="..\yhge\yhge\Message\MessageHandler.cpp" />
+    <ClCompile Include="..\yhge\yhge\Message\MessageManager.cpp" />
+    <ClCompile Include="..\yhge\yhge\Message\MessageTarget.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\yhge\yhge\Arithmetic\Search\AStar\Astar.h" />
+    <ClInclude Include="..\yhge\yhge\Arithmetic\Search\AStar\AstarFlexible.h" />
+    <ClInclude Include="..\yhge\yhge\Arithmetic\Search\AStar\AstarNode.h" />
+    <ClInclude Include="..\yhge\yhge\Arithmetic\Search\AStar\CallbackAstar.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\Actions\CCParabolaMove.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\CCCallFuncNO.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\CCGeometryValue.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\CCScopePtr.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\CCSelectorWrap.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\Support\base64.h" />
+    <ClInclude Include="..\yhge\yhge\CocosExt\Support\ccCArray.h" />
+    <ClInclude Include="..\yhge\yhge\Components\AnimationComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Components\AttackComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Components\AutoAttackComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Components\Component.h" />
+    <ClInclude Include="..\yhge\yhge\Components\ComponentEntityInterface.h" />
+    <ClInclude Include="..\yhge\yhge\Components\ComponentInterface.h" />
+    <ClInclude Include="..\yhge\yhge\Components\ManualAttackComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Components\SimpleMoveComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Event\Event.h" />
+    <ClInclude Include="..\yhge\yhge\Event\EventHandle.h" />
+    <ClInclude Include="..\yhge\yhge\Event\EventHandleD.h" />
+    <ClInclude Include="..\yhge\yhge\Event\EventHandleWrap.h" />
+    <ClInclude Include="..\yhge\yhge\Event\EventListenerManager.h" />
+    <ClInclude Include="..\yhge\yhge\Event\EventTarget.h" />
+    <ClInclude Include="..\yhge\yhge\Event\IEventTarget.h" />
+    <ClInclude Include="..\yhge\yhge\Event\UIEvent.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMDelegateState.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMMachine.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMMachineInterface.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMParameterState.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMState.h" />
+    <ClInclude Include="..\yhge\yhge\FSM\Common\FSMStateInterface.h" />
+    <ClInclude Include="..\yhge\yhge\isometric.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\Coordinate.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\interface\ISOReaderInterface.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOBatchDynamicComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOBatchDynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOBatchTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOComponentNode.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOCoordinate.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISODynamicComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISODynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOGroundTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOInfos.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOObject.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOObjectGroup.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOOptimizedTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTile.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTileLayer.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTileLayerDynamicComponent.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTileMap.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTileMapBuilder.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTileset.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOTilesetGroup.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ISOXMLReader.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOLayerInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOMapInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOObjectGroupInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOObjectInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOTileInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOTilesetInfo.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\parser\ISOXMLParser.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ZIndex.h" />
+    <ClInclude Include="..\yhge\yhge\Isometric\ZIndexNode.h" />
+    <ClInclude Include="..\yhge\yhge\Math\MersenneTwister.h" />
+    <ClInclude Include="..\yhge\yhge\Math\RandomMT.h" />
+    <ClInclude Include="..\yhge\yhge\message.h" />
+    <ClInclude Include="..\yhge\yhge\Message\Message.h" />
+    <ClInclude Include="..\yhge\yhge\Message\MessageHandler.h" />
+    <ClInclude Include="..\yhge\yhge\Message\MessageManager.h" />
+    <ClInclude Include="..\yhge\yhge\Message\MessageTarget.h" />
+    <ClInclude Include="..\yhge\yhge\yhge.h" />
+    <ClInclude Include="..\yhge\yhge\YHGEMacros.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="main.h" />
@@ -156,9 +289,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ProjectReference Include="..\..\..\external\chipmunk\proj.win32\chipmunk.vcxproj">
       <Project>{207bc7a9-ccf1-4f2f-a04d-45f72242ae25}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\yhge\proj.win32\yhge.vcxproj">
-      <Project>{51ec1159-5e48-4d92-95d9-00295679fe9a}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
