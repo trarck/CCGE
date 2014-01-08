@@ -1,7 +1,10 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "Game.h"
+#include "Scenes/GameSceneDirector.h"
 
 USING_NS_CC;
+USING_NS_CC_YHMVC;
+USING_NS_CC_GE;
 
 AppDelegate::AppDelegate() {
 
@@ -25,10 +28,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
-
-    // run
-    pDirector->runWithScene(pScene);
+    Game::getInstance()->setupSceneDirector();
+    
+    GameSceneDirector::getInstance()->runWithScene(kMainScene);
 
     return true;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="10" height="10" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="Untitled" tilewidth="64" tileheight="32">
+  <image source="iso.png" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="4" name="test" tilewidth="64" tileheight="115" spacing="2" margin="2">
+  <image source="iso-test.png" width="512" height="256"/>
+ </tileset>
+ <layer name="Layer 0" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NkYGBgHGCMDqiljpFIdYTMoycGAI7OoLWQAQAA
+  </data>
+ </layer>
+ <layer name="Layer 1" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NmwARMOOjhAJhwsJlxqMPmd2YkmgmHGmS1yOqwqWdGwgDg7sqJkAEAAA==
+  </data>
+ </layer>
+ <layer name="Layer 2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGFqAGYqppW6wAQDMTJpEkAEAAA==
+  </data>
+ </layer>
+ <layer name="layer 4" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgoB5gIVGeA0qzEqkfl1kcOFURB9gp1E9NAABoeFZFkAEAAA==
+  </data>
+ </layer>
+</map>
