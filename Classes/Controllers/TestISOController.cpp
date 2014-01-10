@@ -31,6 +31,7 @@ void TestISOController::layerDidLoad()
     
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
+    isoXmlParser->setTranslateObjectCoord(true);
     isoXmlParser->initWithTMXFile("map/iso-test.tmx");
     
     ISOMapInfo* mapInfo=isoXmlParser->getMapInfo();
