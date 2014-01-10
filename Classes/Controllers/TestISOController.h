@@ -23,6 +23,8 @@ public:
 	~TestISOController(void);
 
 	void layerDidLoad();
+    
+    void onLayerExit();
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

@@ -23,7 +23,7 @@ public:
 
 protected:
 
-	void createTestMenuItem(const std::string& name,const std::string& gotoSceneName);
+	void createTestMenuItem(const std::string& name,const std::string& gotoSceneName,CCObject* param=NULL);
 
 private:
 

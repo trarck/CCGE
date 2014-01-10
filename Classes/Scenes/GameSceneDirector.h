@@ -21,36 +21,36 @@ public:
     
     static GameSceneDirector* getInstance();
 
-	//======================³¡¾°²Ù×÷ Í¬Ê±¼ÓÉÏmessage=====================//
+	//======================åœºæ™¯æ“ä½œ åŒæ—¶åŠ ä¸Šmessage=====================//
 	/**
-     * ¿ªÊ¼ÔËĞĞÒ»¸öScene,Ê¹ÓÃ×¢²áµÄÃû×Ó
+     * å¼€å§‹è¿è¡Œä¸€ä¸ªScene,ä½¿ç”¨æ³¨å†Œçš„åå­
      */
     void runWithScene(const std::string& name);
     
     /**
-     * µş¼ÓÒ»¸öScene¡£
-     * Õâ¸öScene,Ê¹ÓÃname´´½¨Ò»¸öĞÂµÄScene£¬²¢ÏÔÊ¾ÔÚ×îÉÏ·½
+     * å åŠ ä¸€ä¸ªSceneã€‚
+     * è¿™ä¸ªScene,ä½¿ç”¨nameåˆ›å»ºä¸€ä¸ªæ–°çš„Sceneï¼Œå¹¶æ˜¾ç¤ºåœ¨æœ€ä¸Šæ–¹
      */
     void pushScene(const std::string& name);
     
     /**
-     * Ìæ»»Ò»¸öScene¡£
-     * Õâ¸öScene,Ê¹ÓÃname´´½¨Ò»¸öĞÂµÄScene£¬²¢Ìæ»»µ±Ç°ÔËĞĞµÄScene
+     * æ›¿æ¢ä¸€ä¸ªSceneã€‚
+     * è¿™ä¸ªScene,ä½¿ç”¨nameåˆ›å»ºä¸€ä¸ªæ–°çš„Sceneï¼Œå¹¶æ›¿æ¢å½“å‰è¿è¡Œçš„Scene
      */
     void replaceScene(const std::string& name);
     
     /**
-     * ÍË³öµ±Ç°SceneÕ»ÉÏµÄ×îÉÏÃæµÄScene,²¢°ÑÏÂÃæµÄÏÔÊ¾³öÀ´
+     * é€€å‡ºå½“å‰Sceneæ ˆä¸Šçš„æœ€ä¸Šé¢çš„Scene,å¹¶æŠŠä¸‹é¢çš„æ˜¾ç¤ºå‡ºæ¥
      */
     void popScene();
     
     /**
-     * ÍË³öµ½Õ»µ×,²¢°ÑÕ»µ×µÄSceneÏÔÊ¾³öÀ´
+     * é€€å‡ºåˆ°æ ˆåº•,å¹¶æŠŠæ ˆåº•çš„Sceneæ˜¾ç¤ºå‡ºæ¥
      */
     void popToRootScene();
     
     /**
-     * µ¯³öÕ»ÔªËØ£¬Ö±µ½Õ»»¹ÓĞlevel¸öÔªËØ,²¢°ÑÕ»¶¥µÄSceneÏÔÊ¾³öÀ´
+     * å¼¹å‡ºæ ˆå…ƒç´ ï¼Œç›´åˆ°æ ˆè¿˜æœ‰levelä¸ªå…ƒç´ ,å¹¶æŠŠæ ˆé¡¶çš„Sceneæ˜¾ç¤ºå‡ºæ¥
      */
 	void popToSceneStackLevel(int level);
 };

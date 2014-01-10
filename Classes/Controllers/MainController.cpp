@@ -1,12 +1,25 @@
 #include "MainController.h"
-#include "yhmvc/Core/Layer.h"
+#include <yhmvc/Core/Layer.h>
+#include <yhge/isometric.h>
+#include "Game.h"
 #include "Scenes/GameSceneDirector.h"
 #include "Tests/MenuItemUtil.h"
 
 USING_NS_CC;
+USING_NS_CC_YHGE;
 USING_NS_CC_YHMVC;
 
 NS_CC_GE_BEGIN
+
+class MyGotoSceneProxy:public GotoSceneProxy
+{
+    void menuItemCallback(CCObject* pSender)
+    {
+        Game::getInstance()->setSceneContext(this->getParam());
+        GotoSceneProxy::menuItemCallback(pSender);
+    }
+};
+
 
 MainController::MainController(void)
 	:m_menuItems(NULL)
@@ -31,7 +44,10 @@ void MainController::layerDidLoad()
 	m_proxys=new CCArray();
 	m_proxys->init();
 
-	createTestMenuItem("test iso",kTestISOScene);
+	createTestMenuItem("test iso normal",kTestISOScene,CCInteger::create(ISOTileMapBuilder::NormalLayerType));
+    createTestMenuItem("test iso dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::DynamicLayerType));
+    createTestMenuItem("test iso batch",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
+    createTestMenuItem("test iso batch dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchDynamicLayerType));
 
 	CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
 
@@ -43,10 +59,22 @@ void MainController::layerDidLoad()
     
 }
 
-void MainController::createTestMenuItem(const std::string& name,const std::string& gotoSceneName)
+void MainController::createTestMenuItem(const std::string& name,const std::string& gotoSceneName,CCObject* param)
 {
 
-	CCMenuItemLabel *pItem=MenuItemUtil::createTestMenuItemLabel(name,gotoSceneName);
+    MyGotoSceneProxy* proxy=new MyGotoSceneProxy();
+	proxy->init(gotoSceneName,param);
+    
+	CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create(name.c_str(), "Arial", 20),
+                                                   proxy,
+                                                   menu_selector(GotoSceneProxy::menuItemCallback));
+	pItem->setUserObject(proxy);
+    
+	proxy->release();
+    
+//	return pItem;
+    
+//	CCMenuItemLabel *pItem=MenuItemUtil::createTestMenuItemLabel(name,gotoSceneName,param);
 	m_menuItems->addObject(pItem);
 }
 

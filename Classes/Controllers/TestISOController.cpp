@@ -1,5 +1,6 @@
 #include "TestISOController.h"
 #include <yhge/isometric.h>
+#include "Game.h"
 #include "Scenes/GameSceneDirector.h"
 
 USING_NS_CC;
@@ -40,14 +41,24 @@ void TestISOController::layerDidLoad()
     
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
+    m_isoMap->setScale(2);
+    
     m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
     m_isoMap->release();
 
+    int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
+    
+    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
+    
+    if (mapLyaerTypeValue) {
+        mapLyaerType=mapLyaerTypeValue->getValue();
+    }
+    
     struct timeval now;
     gettimeofday(&now,NULL);
     ISOTileMapBuilder* mapBuilder=new ISOTileMapBuilder();
     mapBuilder->init(m_isoMap);
-	mapBuilder->setMapLayerType(ISOTileMapBuilder::BatchLayerType);
+	mapBuilder->setMapLayerType(mapLyaerType);
     mapBuilder->buildWithMapInfo(mapInfo);
     
 
@@ -57,6 +68,12 @@ void TestISOController::layerDidLoad()
     CCLOG("use:%ld,%d", end.tv_sec-now.tv_sec,end.tv_usec-now.tv_usec);
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-100,false);
+}
+
+void TestISOController::onLayerExit()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    LayerController::onLayerExit();
 }
 
 bool TestISOController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

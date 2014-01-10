@@ -19,10 +19,10 @@ void GotoSceneProxy::menuItemCallback(CCObject* pSender)
 	GameSceneDirector::getInstance()->pushScene(m_gotoSceneName);
 }
 
-CCMenuItemLabel* MenuItemUtil::createTestMenuItemLabel(const std::string& name,const std::string& gotoSceneName)
+CCMenuItemLabel* MenuItemUtil::createTestMenuItemLabel(const std::string& name,const std::string& gotoSceneName,CCObject* param)
 {
 	GotoSceneProxy* proxy=new GotoSceneProxy();
-	proxy->init(gotoSceneName);
+	proxy->init(gotoSceneName,param);
 
 	CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create(name.c_str(), "Arial", 20),
                                                       proxy, 
