@@ -47,7 +47,7 @@ void TestISOController::layerDidLoad()
     gettimeofday(&now,NULL);
     ISOTileMapBuilder* mapBuilder=new ISOTileMapBuilder();
     mapBuilder->init(m_isoMap);
-	mapBuilder->setMapLayerType(ISOTileMapBuilder::DynamicLayerType);
+	mapBuilder->setMapLayerType(ISOTileMapBuilder::BatchLayerType);
     mapBuilder->buildWithMapInfo(mapInfo);
     
 
@@ -69,15 +69,21 @@ bool TestISOController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 void TestISOController::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
 	CCPoint pos=pTouch->getLocation();
-	pos=ccpSub(m_touchStartPosition,pos);
+	pos=ccpSub(pos,m_touchStartPosition);
 
-	m_isoMap->setPosition(ccpAdd(m_isoMapStartPosition,pos));
-	m_isoMap->scrollLayer(m_isoMap->getPosition());
+    CCPoint mapPos=ccpAdd(m_isoMapStartPosition,pos);
+    
+//    CCLOG("diff:%f,%f b:%f,%f",pos.x,pos.y,mapPos.x,mapPos.y);
+    
+	m_isoMap->setPosition(mapPos);
+	m_isoMap->scrollLayer(ccpNeg(mapPos));
 }
 
 void TestISOController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-
+    CCPoint pos=pTouch->getLocation();
+    pos=ccpSub(m_touchStartPosition,pos);
+    m_isoMapStartPosition=ccpAdd(m_isoMapStartPosition, pos);
 }
 
 
