@@ -1448,11 +1448,11 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				15AA9C4015B7EC450033D6C2 /* Classes */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				575AD861187BC3CB00AA0477 /* yhge.xcodeproj */,
 				575D151B187CEFB2004E9958 /* yhgui.xcodeproj */,
 				575D150C187C08AC004E9958 /* yhmvc.xcodeproj */,
-				15AA9C4015B7EC450033D6C2 /* Classes */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
 				15A3D93A1682F7F9002FB0C5 /* chipmunk */,
 				15A3DA6B1682F8A6002FB0C5 /* CocosDenshion */,
