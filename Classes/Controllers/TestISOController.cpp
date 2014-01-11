@@ -27,7 +27,7 @@ TestISOController::~TestISOController(void)
 
 void TestISOController::layerDidLoad()
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCSize visibleSize = this->getPreferredContentSize();
     
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
@@ -43,6 +43,7 @@ void TestISOController::layerDidLoad()
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
     m_isoMap->setScale(2);
+	m_isoMap->setVisibleSize(visibleSize);
     
     m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
     m_isoMap->release();
@@ -67,6 +68,8 @@ void TestISOController::layerDidLoad()
     gettimeofday(&end,NULL);
     
     CCLOG("use:%ld,%d", end.tv_sec-now.tv_sec,end.tv_usec-now.tv_usec);
+
+	m_isoMap->showCoordLine();
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-100,false);
 }
@@ -101,7 +104,7 @@ void TestISOController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint pos=pTouch->getLocation();
     pos=ccpSub(m_touchStartPosition,pos);
-    m_isoMapStartPosition=ccpAdd(m_isoMapStartPosition, pos);
+    
 }
 
 

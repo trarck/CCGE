@@ -18,6 +18,8 @@ class Game:public CCObject
 {
 public:
     
+	Game();
+	~Game();
     
     static Game* getInstance();
 

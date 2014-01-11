@@ -27,6 +27,17 @@ Game* Game::getInstance()
     return s_gameInstance;
 }
 
+Game::Game()
+:m_sceneContext(NULL)
+{
+
+}
+
+Game::~Game()
+{
+	CC_SAFE_RELEASE_NULL(m_sceneContext);
+}
+
 void Game::setupSceneDirector()
 {
     GameSceneDirector* sceneDirector=GameSceneDirector::getInstance();

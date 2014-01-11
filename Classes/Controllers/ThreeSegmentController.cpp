@@ -27,8 +27,13 @@ void ThreeSegmentController::layerDidLoad()
     
     float headerHeight=60.0f,footerHeight=64.0f;
     
-    float bodyHeight=screenSize.height-headerHeight-footerHeight;
+    float bodyHeight=screenSize.height;//-headerHeight-footerHeight;
     
+	m_bodyLayer=yhmvc::Layer::create();
+    m_bodyLayer->setContentSize(CCSizeMake(screenSize.width, bodyHeight));
+    m_bodyLayer->setPosition(ccp(0.0f, 0));
+    m_layer->addChild(m_bodyLayer);
+
     //create three layer
     m_headerLayer=yhmvc::Layer::create();
     m_headerLayer->setContentSize(CCSizeMake(screenSize.width, headerHeight));
@@ -39,10 +44,7 @@ void ThreeSegmentController::layerDidLoad()
     m_footerLayer->setContentSize(CCSizeMake(screenSize.width,footerHeight));
     m_layer->addChild(m_footerLayer);
     
-    m_bodyLayer=yhmvc::Layer::create();
-    m_bodyLayer->setContentSize(CCSizeMake(screenSize.width, bodyHeight));
-    m_bodyLayer->setPosition(ccp(0.0f, footerHeight));
-    m_layer->addChild(m_bodyLayer);
+
 }
 
 NS_CC_GE_END

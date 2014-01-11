@@ -15,7 +15,8 @@ void TestISOScene::loadContents()
 
 	TestISOController* testISOController=new TestISOController();
 	testISOController->init();
-    
+    testISOController->setPreferredContentSize(threeSegmentController->getBodyLayer()->getContentSize());
+
 	threeSegmentController->getBodyLayer()->addChild(testISOController->getLayer());
     addLayerController(testISOController);
     testISOController->release();
