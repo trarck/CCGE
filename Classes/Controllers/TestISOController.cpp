@@ -27,8 +27,18 @@ TestISOController::~TestISOController(void)
 
 void TestISOController::layerDidLoad()
 {
-    CCSize visibleSize = this->getPreferredContentSize();
+    CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
+    //取得要使用的layer渲染类型
+    int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
+    
+    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
+    
+    if (mapLyaerTypeValue) {
+        mapLyaerType=mapLyaerTypeValue->getValue();
+    }
+
+    //解析地图数据
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
     isoXmlParser->setTranslateObjectCoord(true);
@@ -40,36 +50,29 @@ void TestISOController::layerDidLoad()
     ISOTilesetInfo* tilesetInfo=(ISOTilesetInfo*)mapInfo->getTilesets()->objectAtIndex(0);
     CCLOG("tiles count:%d,%s\n%f,%f",tilesetInfo->getTiles()->count(),tilesetInfo->getImageSource(),tilesetInfo->getImageSize().width,tilesetInfo->getImageSize().height);
     
+    //构建地图
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
     m_isoMap->setScale(2);
 	m_isoMap->setVisibleSize(visibleSize);
-    
-    m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
-    m_isoMap->release();
-
-    int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
-    
-    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
-    
-    if (mapLyaerTypeValue) {
-        mapLyaerType=mapLyaerTypeValue->getValue();
-    }
-    
+    m_isoMap->setUseDynamicGroup(false);
+      
     struct timeval now;
     gettimeofday(&now,NULL);
     ISOTileMapBuilder* mapBuilder=new ISOTileMapBuilder();
     mapBuilder->init(m_isoMap);
 	mapBuilder->setMapLayerType(mapLyaerType);
     mapBuilder->buildWithMapInfo(mapInfo);
-    
 
     struct timeval end;
     gettimeofday(&end,NULL);
     
-    CCLOG("use:%ld,%d", end.tv_sec-now.tv_sec,end.tv_usec-now.tv_usec);
+    CCLOG("use:%ld", (end.tv_sec-now.tv_sec)*1000000+end.tv_usec-now.tv_usec);
+ 
+    m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
+    m_isoMap->release();
 
-	m_isoMap->showCoordLine();
+	//m_isoMap->showCoordLine();
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-100,false);
 }

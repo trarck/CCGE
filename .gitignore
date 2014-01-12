@@ -77,3 +77,6 @@ Device-Release/
 
 # Ignore vim swaps
 *.swp
+/proj.win32/*.vsp
+
+/proj.win32/*.psess
