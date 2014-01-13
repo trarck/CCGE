@@ -5,6 +5,7 @@
 #include <yhmvc/yhmvc.h>
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
+#include "GameWorldController.h"
 #include "Layers/GameWorld.h"
 
 NS_CC_GE_BEGIN

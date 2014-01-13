@@ -16,6 +16,9 @@
     <Filter Include="Classes\Tests">
       <UniqueIdentifier>{04bd3629-98ab-46d5-8a29-db2a7496c603}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Layers">
+      <UniqueIdentifier>{b91665ff-14b1-4e7f-a2d2-d4cc7196e906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +62,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Layers\GameWorld.cpp">
+      <Filter>Classes\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\GameWorldController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\MissionController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\MissionScene.cpp">
+      <Filter>Classes\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Messages.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Layers\GameWorld.h">
+      <Filter>Classes\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\GameWorldController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\MissionController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\MissionScene.h">
+      <Filter>Classes\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

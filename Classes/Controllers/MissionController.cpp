@@ -19,6 +19,7 @@ MissionController::MissionController(void)
 MissionController::~MissionController(void)
 {
     CCLOG("MissionController destroy");
+    //CC_SAFE_RELEASE_NULL(m_gameWorld);
 }
 
 void MissionController::layerDidLoad()
@@ -28,9 +29,9 @@ void MissionController::layerDidLoad()
     m_gameWorld=new GameWorld();
     m_gameWorld->init(1000, 1);
     m_gameWorld->setContentSize(visibleSize);
-    
+   
     m_gameWorld->setup();
-    
+
     m_layer->addChild(m_gameWorld);
     
     m_gameWorld->release();
