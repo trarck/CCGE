@@ -44,6 +44,7 @@ void MainController::layerDidLoad()
 	m_proxys=new CCArray();
 	m_proxys->init();
 
+    createTestMenuItem("mission",kMissioncene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
 	createTestMenuItem("test iso normal",kTestISOScene,CCInteger::create(ISOTileMapBuilder::NormalLayerType));
     createTestMenuItem("test iso dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::DynamicLayerType));
     createTestMenuItem("test iso batch",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));

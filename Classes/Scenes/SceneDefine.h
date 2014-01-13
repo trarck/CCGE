@@ -13,6 +13,7 @@
 
 static const char* kMainScene="main";
 static const char* kTestISOScene="TestISO";
+static const char* kMissioncene="Misson";
 
 #pragma unused(kMainScene)
 

@@ -248,6 +248,9 @@
 		575D1513187C08F5004E9958 /* libyhmvc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1511187C08AC004E9958 /* libyhmvc.a */; };
 		575D1523187CEFD2004E9958 /* libyhgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1521187CEFB2004E9958 /* libyhgui.a */; };
 		576E3FD9187D617500745A0A /* map in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FD8187D617500745A0A /* map */; };
+		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
+		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
+		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -794,6 +797,12 @@
 		575D150C187C08AC004E9958 /* yhmvc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhmvc.xcodeproj; path = ../../yhmvc/proj.ios/yhmvc.xcodeproj; sourceTree = "<group>"; };
 		575D151B187CEFB2004E9958 /* yhgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhgui.xcodeproj; path = ../../yhgui/proj.ios/yhgui.xcodeproj; sourceTree = "<group>"; };
 		576E3FD8187D617500745A0A /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
+		577105741883DF8900FA1446 /* MissionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionController.cpp; sourceTree = "<group>"; };
+		577105751883DF8900FA1446 /* MissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
+		577105781883DFED00FA1446 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorld.cpp; sourceTree = "<group>"; };
+		577105791883DFED00FA1446 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorld.h; sourceTree = "<group>"; };
+		5771057B1883E1B800FA1446 /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
+		5771057C1883E1B800FA1446 /* MissionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionScene.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1331,14 +1340,15 @@
 			isa = PBXGroup;
 			children = (
 				575AD871187BC54B00AA0477 /* Controllers */,
+				577105771883DFED00FA1446 /* Layers */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
 				575D1505187C0827004E9958 /* Tests */,
+				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
+				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
+				575AD870187BC54B00AA0477 /* CCGEMacros.h */,
 				575AD87C187BC54B00AA0477 /* Game.cpp */,
 				575AD87D187BC54B00AA0477 /* Game.h */,
 				575AD87E187BC54B00AA0477 /* Messages.h */,
-				575AD870187BC54B00AA0477 /* CCGEMacros.h */,
-				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
-				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1800,6 +1810,8 @@
 				575AD875187BC54B00AA0477 /* HeaderController.h */,
 				575AD876187BC54B00AA0477 /* MainController.cpp */,
 				575AD877187BC54B00AA0477 /* MainController.h */,
+				577105741883DF8900FA1446 /* MissionController.cpp */,
+				577105751883DF8900FA1446 /* MissionController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
 				575AD879187BC54B00AA0477 /* TestISOController.h */,
 				575AD87A187BC54B00AA0477 /* ThreeSegmentController.cpp */,
@@ -1818,6 +1830,8 @@
 				575AD883187BC54B00AA0477 /* GameSceneDirector.h */,
 				575AD884187BC54B00AA0477 /* MainScene.cpp */,
 				575AD885187BC54B00AA0477 /* MainScene.h */,
+				5771057B1883E1B800FA1446 /* MissionScene.cpp */,
+				5771057C1883E1B800FA1446 /* MissionScene.h */,
 				575AD886187BC54B00AA0477 /* SceneDefine.h */,
 				575AD887187BC54B00AA0477 /* SceneRegisterData.h */,
 				575AD888187BC54B00AA0477 /* TestISOScene.cpp */,
@@ -1853,6 +1867,16 @@
 				575D1521187CEFB2004E9958 /* libyhgui.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		577105771883DFED00FA1446 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				577105781883DFED00FA1446 /* GameWorld.cpp */,
+				577105791883DFED00FA1446 /* GameWorld.h */,
+			);
+			name = Layers;
+			path = ../Classes/Layers;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -2075,6 +2099,7 @@
 				15A3D9AD1682F7F9002FB0C5 /* cpSpaceHash.c in Sources */,
 				15A3D9AE1682F7F9002FB0C5 /* cpSpaceQuery.c in Sources */,
 				15A3D9AF1682F7F9002FB0C5 /* cpSpaceStep.c in Sources */,
+				577105761883DF8900FA1446 /* MissionController.cpp in Sources */,
 				15A3D9B01682F7F9002FB0C5 /* cpSpatialIndex.c in Sources */,
 				15A3D9B11682F7F9002FB0C5 /* cpSweep1D.c in Sources */,
 				15A3D9B21682F7F9002FB0C5 /* cpVect.c in Sources */,
@@ -2108,6 +2133,7 @@
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
 				15A3DA4C1682F826002FB0C5 /* CCControlHuePicker.cpp in Sources */,
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
+				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
 				15A3DA501682F826002FB0C5 /* CCControlStepper.cpp in Sources */,
@@ -2138,6 +2164,7 @@
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,
+				5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */,
 				1A8F3B6E175E05DA00049216 /* Animation.cpp in Sources */,
 				1A8F3B6F175E05DA00049216 /* AnimationState.cpp in Sources */,
 				1A8F3B70175E05DA00049216 /* AnimationStateData.cpp in Sources */,

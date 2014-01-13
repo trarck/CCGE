@@ -22,6 +22,7 @@ typedef struct SceneRegisterItem
 #include "SceneDefine.h"
 #include "Scenes/MainScene.h"
 #include "Scenes/TestISOScene.h"
+#include "Scenes/MissionScene.h"
 
 NS_CC_GE_BEGIN
 
@@ -29,6 +30,7 @@ static SceneRegisterItem kSceneRegisterData[]=
 {
     {kMainScene,SCENE_CREATE_SELECTOR(MainScene::create)},
 	{kTestISOScene,SCENE_CREATE_SELECTOR(TestISOScene::create)},
+    {kMissioncene,SCENE_CREATE_SELECTOR(MissionScene::create)},
 };
 
 NS_CC_GE_END
