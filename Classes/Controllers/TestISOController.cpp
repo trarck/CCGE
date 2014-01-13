@@ -29,7 +29,7 @@ void TestISOController::layerDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
-    //取得要使用的layer渲染类型
+    //鍙栧緱瑕佷娇鐢ㄧ殑layer娓叉煋绫诲瀷
     int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
     
     CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
@@ -38,7 +38,7 @@ void TestISOController::layerDidLoad()
         mapLyaerType=mapLyaerTypeValue->getValue();
     }
 
-    //解析地图数据
+    //瑙ｆ瀽鍦板浘鏁版嵁
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
     isoXmlParser->setTranslateObjectCoord(true);
@@ -50,12 +50,12 @@ void TestISOController::layerDidLoad()
     ISOTilesetInfo* tilesetInfo=(ISOTilesetInfo*)mapInfo->getTilesets()->objectAtIndex(0);
     CCLOG("tiles count:%d,%s\n%f,%f",tilesetInfo->getTiles()->count(),tilesetInfo->getImageSource(),tilesetInfo->getImageSize().width,tilesetInfo->getImageSize().height);
     
-    //构建地图
+    //鏋勫缓鍦板浘
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
     m_isoMap->setScale(2);
 	m_isoMap->setVisibleSize(visibleSize);
-    m_isoMap->setUseDynamicGroup(false);
+    m_isoMap->setUseDynamicGroup(true);
       
     struct timeval now;
     gettimeofday(&now,NULL);
@@ -69,6 +69,9 @@ void TestISOController::layerDidLoad()
     
     CCLOG("use:%ld", (end.tv_sec-now.tv_sec)*1000000+end.tv_usec-now.tv_usec);
  
+    //鏋勫缓dynamic group
+    m_isoMap->setupDynamicGroup();
+    
     m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
     m_isoMap->release();
 
