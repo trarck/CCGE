@@ -34,7 +34,8 @@ private:
 	yhge::ISOTileMap* m_isoMap;
 	CCPoint m_isoMapStartPosition;
     
-    GameWorld* m_gameWorld;
+    GameWorldController* m_gameWorld;
+//    GameWorld* m_gameWorld;
     
 };
 NS_CC_GE_END

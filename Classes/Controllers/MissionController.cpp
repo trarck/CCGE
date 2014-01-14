@@ -19,23 +19,36 @@ MissionController::MissionController(void)
 MissionController::~MissionController(void)
 {
     CCLOG("MissionController destroy");
-    //CC_SAFE_RELEASE_NULL(m_gameWorld);
+    CC_SAFE_RELEASE_NULL(m_gameWorld);
 }
 
 void MissionController::layerDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
-    m_gameWorld=new GameWorld();
+    m_gameWorld=new GameWorldController();
     m_gameWorld->init(1000, 1);
-    m_gameWorld->setContentSize(visibleSize);
-   
-    m_gameWorld->setup();
-
-    m_layer->addChild(m_gameWorld);
+    m_gameWorld->setPreferredContentSize(visibleSize);
+    
+    m_layer->addChild(m_gameWorld->getLayer());
     
     m_gameWorld->release();
 }
+
+//void MissionController::layerDidLoad()
+//{
+//    CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
+//    
+//    m_gameWorld=new GameWorld();
+//    m_gameWorld->init(1000, 1);
+//    m_gameWorld->setContentSize(visibleSize);
+//   
+//    m_gameWorld->setup();
+//
+//    m_layer->addChild(m_gameWorld);
+//    
+//    m_gameWorld->release();
+//}
 
 void MissionController::onLayerExit()
 {

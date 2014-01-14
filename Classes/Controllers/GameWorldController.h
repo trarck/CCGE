@@ -46,6 +46,11 @@ public:
      */
     yhge::ISOMapInfo* loadMapData();
     
+    /**
+     * 创建测试按钮
+     */
+    void createTestMenu();
+    
 //	void loadBackground();
 //    
 //	void loadInterMediate();
@@ -121,6 +126,11 @@ public:
     void onCameraMove(const CCPoint& worldPosition);
     
     /**
+     * 相机缩放
+     */
+    void onCameraScale(float scaleX,float scaleY);
+    
+    /**
      * 更新地图位置
      * 这里的位置和相机的移动方向一致
      */
@@ -136,7 +146,10 @@ public:
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent); 
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent); 
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent); 
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    
+    void menuBigCallback(CCObject* pSender);
+    void menuSmallCallback(CCObject* pSender);
 	   
 	//get set
     inline void setZoneId(int zoneId)

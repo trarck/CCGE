@@ -235,7 +235,7 @@ void GameWorld::createGameMap()
     CCSize visibleSize =this->getContentSize();//CCSizeMake(480,240);//
     
     //取得要使用的layer渲染类型
-    int mapLyaerType=ISOTileMapBuilder::BatchLayerType;
+    int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
     
     CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
     
@@ -520,8 +520,8 @@ void  GameWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
  */
 void GameWorld::onCameraMove(const CCPoint& worldPosition)
 {
-    m_isoMap->setPosition(worldPosition);
-    m_isoMap->scrollLayer(ccpNeg(worldPosition));
+    m_isoMap->setPosition(ccpNeg(worldPosition));
+    m_isoMap->scrollLayer(worldPosition);
 }
 
 void GameWorld::updateMapPosition(const CCPoint& position)

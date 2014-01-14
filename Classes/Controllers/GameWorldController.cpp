@@ -89,14 +89,19 @@ void GameWorldController::setup()
 
     setupUtil();
     
+    
+    
     //base
 	this->createGameMap();
 	//objects
 //	loadBackground();
 //	loadInterMediate();
 	
+    m_pGameCamera->scaleTo(2);
 	//setupNetWork();
     m_pGameCamera->moveTo(-contentSize.width/2, 0);
+    
+    createTestMenu();
 }
 
 /**
@@ -147,7 +152,7 @@ void GameWorldController::createGameMap()
     //构建地图
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
-    m_isoMap->setScale(4);
+//    m_isoMap->setScale(4);
 	m_isoMap->setVisibleSize(visibleSize);
     //    m_isoMap->setUseDynamicGroup(true);
     
@@ -198,6 +203,26 @@ ISOMapInfo* GameWorldController::loadMapData()
     
 }
 
+/**
+ * 创建测试按钮
+ */
+void GameWorldController::createTestMenu()
+{
+    CCSize visibleSize =this->getPreferredContentSize();
+    
+    CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create("big", "Arial", 26),
+                                                   this,
+                                                   menu_selector(GameWorldController::menuBigCallback));
+    
+    CCMenuItemLabel *pItem2=CCMenuItemLabel::create(CCLabelTTF::create("small", "Arial", 26),
+                                                    this,
+                                                    menu_selector(GameWorldController::menuSmallCallback));
+    
+    CCMenu* pMenu = CCMenu::create(pItem,pItem2, NULL);
+	pMenu->setPosition( ccp(visibleSize.width/2,30) );
+	pMenu->alignItemsHorizontallyWithPadding(20);
+    m_layer->addChild(pMenu, 1);
+}
 
 //void GameWorldController::setupNetWork()
 //{
@@ -418,8 +443,18 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
  */
 void GameWorldController::onCameraMove(const CCPoint& worldPosition)
 {
-    m_isoMap->setPosition(worldPosition);
-    m_isoMap->scrollLayer(ccpNeg(worldPosition));
+    m_isoMap->setPosition(ccpNeg(worldPosition));
+    m_isoMap->scrollLayer(worldPosition);
+}
+
+/**
+ * 相机缩放
+ */
+void GameWorldController::onCameraScale(float scaleX,float scaleY)
+{
+    if (scaleX==scaleY) {
+        m_isoMap->setScale(scaleX);
+    }
 }
 
 void GameWorldController::updateMapPosition(const CCPoint& position)
@@ -430,6 +465,16 @@ void GameWorldController::updateMapPosition(const CCPoint& position)
 void GameWorldController::updateMapPosition(float x,float y)
 {
     updateMapPosition(ccp(x,y));
+}
+
+void GameWorldController::menuBigCallback(CCObject* pSender)
+{
+    m_pGameCamera->scaleBy(0.5f);
+}
+
+void GameWorldController::menuSmallCallback(CCObject* pSender)
+{
+    m_pGameCamera->scaleBy(-0.5f);
 }
 
 CCPoint GameWorldController::toGameCoordinate(const CCPoint& position)
