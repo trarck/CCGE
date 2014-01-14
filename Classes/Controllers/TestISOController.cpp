@@ -53,7 +53,7 @@ void TestISOController::layerDidLoad()
     //构建地图
     m_isoMap=new ISOTileMap();
     m_isoMap->init();
-    m_isoMap->setScale(2);
+    m_isoMap->setScale(1);
 	m_isoMap->setVisibleSize(visibleSize);
     m_isoMap->setUseDynamicGroup(true);
       
@@ -75,9 +75,26 @@ void TestISOController::layerDidLoad()
     m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
     m_isoMap->release();
 
-	//m_isoMap->showCoordLine();
+	m_isoMap->showCoordLine();
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-100,false);
+    
+    CCPoint offset=ccp(32,0);
+    m_isoMap->setPosition(offset);
+    m_isoMap->scrollLayer(ccpNeg(offset));
+    
+    CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create("big", "Arial", 26),
+                                                   this,
+                                                   menu_selector(TestISOController::menuBigCallback));
+    
+    CCMenuItemLabel *pItem2=CCMenuItemLabel::create(CCLabelTTF::create("small", "Arial", 26),
+                                                   this,
+                                                   menu_selector(TestISOController::menuSmallCallback));
+    
+    CCMenu* pMenu = CCMenu::create(pItem,pItem2, NULL);
+	pMenu->setPosition( ccp(visibleSize.width/2,30) );
+	pMenu->alignItemsHorizontallyWithPadding(20);
+    m_layer->addChild(pMenu, 1);
 }
 
 void TestISOController::onLayerExit()
@@ -113,5 +130,48 @@ void TestISOController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
 }
 
+void TestISOController::menuBigCallback(CCObject* pSender)
+{
+    float scale=m_isoMap->getScale();
+    
+    CCPoint offset=m_isoMap->getPosition();
+    
+    offset.x/=scale;
+    offset.y/=scale;
+    
+    scale+=0.5;
+    
+    m_isoMap->setScale(scale);
+    
+    offset.x*=scale;
+    offset.y*=scale;
+  
+    CCLOG("%f,%f",offset.x,offset.y);
+    
+    m_isoMap->setPosition(offset);
+    m_isoMap->scrollLayer(ccpNeg(offset));
+}
+
+void TestISOController::menuSmallCallback(CCObject* pSender)
+{
+    float scale=m_isoMap->getScale();
+    
+    CCPoint offset=m_isoMap->getPosition();
+    
+    offset.x/=scale;
+    offset.y/=scale;
+    
+    scale-=0.5;
+    
+    m_isoMap->setScale(scale);
+    
+    offset.x*=scale;
+    offset.y*=scale;
+    
+    CCLOG("%f,%f",offset.x,offset.y);
+    
+    m_isoMap->setPosition(offset);
+    m_isoMap->scrollLayer(ccpNeg(offset));
+}
 
 NS_CC_GE_END

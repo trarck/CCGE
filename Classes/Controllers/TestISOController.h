@@ -30,6 +30,9 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
 
+    void menuBigCallback(CCObject* pSender);
+    void menuSmallCallback(CCObject* pSender);
+    
 private:
 
 	CCPoint m_touchStartPosition;

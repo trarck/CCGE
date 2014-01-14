@@ -15,7 +15,7 @@ HeaderController::HeaderController(void)
 
 HeaderController::~HeaderController(void)
 {
-    
+    CCLOG("HeaderController destroy");
 }
 
 void HeaderController::layerDidLoad()

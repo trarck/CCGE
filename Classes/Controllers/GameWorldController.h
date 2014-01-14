@@ -9,7 +9,7 @@
 NS_CC_GE_BEGIN
 
 class GameWorldController: public yhmvc::LayerController,
-    public yhge::ISOCameraMoveDelegate,
+    public yhge::ISOCameraDelegate,
     public CCTouchDelegate
 {
 public:

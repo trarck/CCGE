@@ -18,7 +18,7 @@ ThreeSegmentController::ThreeSegmentController(void)
 
 ThreeSegmentController::~ThreeSegmentController(void)
 {
-    
+    CCLOG("ThreeSegmentController destroy");
 }
 
 void ThreeSegmentController::layerDidLoad()

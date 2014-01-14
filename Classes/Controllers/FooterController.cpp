@@ -15,7 +15,7 @@ FooterController::FooterController(void)
 
 FooterController::~FooterController(void)
 {
-    
+    CCLOG("FooterController destroy");
 }
 
 void FooterController::layerDidLoad()
