@@ -32,7 +32,7 @@ void MissionController::layerDidLoad()
     
     m_layer->addChild(m_gameWorld->getLayer());
     
-    m_gameWorld->release();
+//    m_gameWorld->release();
 }
 
 //void MissionController::layerDidLoad()

@@ -20,6 +20,7 @@ GameWorldController::GameWorldController()
 ,m_pUnits(NULL)
 ,m_pGameCamera(NULL)
 ,m_isoMap(NULL)
+,m_astar(NULL)
 {
 	CCLOG("GameWorldController create");
 }
@@ -38,6 +39,7 @@ GameWorldController::~GameWorldController()
 	CC_SAFE_RELEASE(m_pUnits);
 
     CC_SAFE_RELEASE_NULL(m_isoMap);
+    CC_SAFE_RELEASE_NULL(m_astar);
     
 	CCLOG("GameWorldController destroy end");
 }
@@ -86,13 +88,12 @@ void GameWorldController::setup()
 	m_pGameCamera=new ISOCamera();
 	m_pGameCamera->init();
 	m_pGameCamera->setMoveDelegate(this);
-
-    setupUtil();
-    
-    
     
     //base
 	this->createGameMap();
+    
+    setupUtil();
+    
 	//objects
 //	loadBackground();
 //	loadInterMediate();
@@ -111,11 +112,11 @@ void GameWorldController::setup()
 void GameWorldController::setupUtil()
 {
 	//astar search
-//	CC_SAFE_RELEASE(m_pAstar);
-//	m_pAstar=new CCAstar();
-//	m_pAstar->init();
-//	m_pAstar->setBounding(0,0,m_iMapColumn,m_iMapRow);
-//	m_pAstar->setCheckBarrierHandle(check_barrier_selector(GameWorldController::isWorkable),this);
+//	CC_SAFE_RELEASE(m_astar);
+	m_astar=new CallbackAstar();
+	m_astar->init();
+	m_astar->setBounding(0,0,m_iMapColumn,m_iMapRow);
+	m_astar->setCheckBarrierHandle(check_workable_selector(GameWorldController::isWorkable),this);
 	
 	//CC_SAFE_RELEASE(m_pZIndex);
 	//m_pZIndex=new CCZIndex();
@@ -174,6 +175,11 @@ void GameWorldController::createGameMap()
     m_isoMap->showCoordLine();
     
     m_layer->addChild(m_isoMap,kGameMapZOrder);
+    
+    //设置地图的格子行列
+    CCSize mapSize=m_isoMap->getMapSize();
+    m_iMapColumn=(int)mapSize.width;
+    m_iMapRow=(int)mapSize.height;
     
     //m_isoMap->release();
     
@@ -291,12 +297,11 @@ void GameWorldController::movePlayerToViewLocation(CCPoint location)
  */
 CCArray* GameWorldController::searchPathsFrom(int fromX ,int fromY ,int toX ,int toY)
 {
-//	m_pAstar->reset();
-//	m_pAstar->setStart(fromX ,fromY);
-//	m_pAstar->setEnd(toX ,toY);
-//	
-//	return m_pAstar->search()?m_pAstar->getPathWithEnd():NULL;
-    return NULL;
+	m_astar->reset();
+	m_astar->setStart(fromX ,fromY);
+	m_astar->setEnd(toX ,toY);
+	
+	return m_astar->search()?m_astar->getPathWithEnd():NULL;
 }
 
 /**
@@ -305,12 +310,18 @@ CCArray* GameWorldController::searchPathsFrom(int fromX ,int fromY ,int toX ,int
  */
 CCArray* GameWorldController::searchPathsFrom(CCPoint from ,CCPoint to )
 {
-//	m_pAstar->reset();
-//	m_pAstar->setStart((int)from.x ,(int) from.y);
-//	m_pAstar->setEnd((int)to.x ,(int) to.y);
-//	bool result=m_pAstar->search();
-//	return result?m_pAstar->getPathWithEnd():NULL;
-    return NULL;
+	m_astar->reset();
+	m_astar->setStart((int)from.x ,(int) from.y);
+	m_astar->setEnd((int)to.x ,(int) to.y);
+    
+    struct timeval start,end;
+    gettimeofday(&start,NULL);
+    
+	bool result=m_astar->search();
+    gettimeofday(&end,NULL);
+    CCLOG("use:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+    
+	return result?m_astar->getPathWithEnd():NULL;
 }
 
 /**
@@ -339,55 +350,31 @@ CCArray* GameWorldController::mapPathsToViewPaths(CCArray* paths)
 	}
 }
 
-void GameWorldController::menuCloseCallback(CCObject* pSender)
-{
-    CCDirector::sharedDirector()->end();
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+bool GameWorldController::isWorkable(int x ,int y)
+{
+    return true;
 }
 
-void GameWorldController::menuRunCallback(CCObject* pSender)
+CCPoint GameWorldController::toGameCoordinate(const CCPoint& position)
 {
-//    CCDictionary* data=new CCDictionary();
-//    data->setObject(CCString::create("move"), "name");
-//    data->setObject(CCInteger::create(3), "direction");
-//    
-//    CCLOG("set begin action");
-//    CCMessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_pPlayer,data);
-//    CCLOG("set begin action after");
-    CCPoint p=ccp(1,1);
-    
-//    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_DIRECTION, NULL, m_pPlayer,&p);
-
+    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position));
 }
 
-void GameWorldController::menuStopCallback(CCObject* pSender)
+CCPoint GameWorldController::toGameCoordinate(float x,float y)
 {
-//    CCDictionary* data=new CCDictionary();
-//    data->setObject(CCString::create("idle"), "name");
-//    data->setObject(CCInteger::create(0), "direction");
-//    
-//    CCLOG("set begin action");
-//    CCMessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_pPlayer,data);
-//    CCLOG("set begin action after");
-
-    
-//    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_DIRECTION_STOP, NULL, m_pPlayer);
+    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y)));
 }
 
-void GameWorldController::menuMoveToCallback(CCObject* pSender)
+void GameWorldController::updateMapPosition(const CCPoint& position)
 {
-   
-    
-//    CCSize screenSize= CCDirector::sharedDirector()->getWinSize();
-//    CCPoint to=isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50);
-//	CCPoint from=m_pPlayer->getCoordinate();
-//    
-//	CCArray* paths=searchPathsFrom(from,to);
-//    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_PATH, NULL, m_pPlayer,paths);
-//	paths->release();
+    m_isoMap->setPosition(ccpNeg(position));
+    m_isoMap->scrollLayer(position);
+}
+
+void GameWorldController::updateMapPosition(float x,float y)
+{
+    updateMapPosition(ccp(x,y));
 }
 
 bool  GameWorldController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
@@ -428,11 +415,19 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 		 //如果player正在移动，则此时取到的坐标和最终停下来的不一致。
 //		 CCPoint from=m_pPlayer->getCoordinate();
 //    
-//		 CCArray* paths=searchPathsFrom(from,to);
-//		 if(paths){
+		 CCArray* paths=searchPathsFrom(ccp(0,0),to);
+		 if(paths){
+             CCObject* pObj=NULL;
+             CCPoint pos;
+             std::string pathStr="";
+             CCARRAY_FOREACH(paths, pObj){
+                 pos=static_cast<CCPointValue*>(pObj)->getPoint();
+                 pathStr+=CCString::createWithFormat("%d,%d:",(int)pos.x,(int)pos.y)->getCString();
+             }
+             CCLOG("path:%s",pathStr.c_str());
 //			 CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_PATH, NULL, m_pPlayer,paths);
 //			 paths->release();
-//		 }
+		 }
 	}
 }
 
@@ -443,8 +438,7 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
  */
 void GameWorldController::onCameraMove(const CCPoint& worldPosition)
 {
-    m_isoMap->setPosition(ccpNeg(worldPosition));
-    m_isoMap->scrollLayer(worldPosition);
+    updateMapPosition(worldPosition);
 }
 
 /**
@@ -457,16 +451,6 @@ void GameWorldController::onCameraScale(float scaleX,float scaleY)
     }
 }
 
-void GameWorldController::updateMapPosition(const CCPoint& position)
-{
-    m_isoMap->scrollLayer(position);
-}
-
-void GameWorldController::updateMapPosition(float x,float y)
-{
-    updateMapPosition(ccp(x,y));
-}
-
 void GameWorldController::menuBigCallback(CCObject* pSender)
 {
     m_pGameCamera->scaleBy(0.5f);
@@ -477,20 +461,59 @@ void GameWorldController::menuSmallCallback(CCObject* pSender)
     m_pGameCamera->scaleBy(-0.5f);
 }
 
-CCPoint GameWorldController::toGameCoordinate(const CCPoint& position)
-{
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position));
-}
-
-CCPoint GameWorldController::toGameCoordinate(float x,float y)
-{
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y)));
-}
 
 
-bool GameWorldController::isWorkable(int x ,int y)
+void GameWorldController::menuCloseCallback(CCObject* pSender)
 {
-    return true;
+    CCDirector::sharedDirector()->end();
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
 }
+
+
+void GameWorldController::menuRunCallback(CCObject* pSender)
+{
+    //    CCDictionary* data=new CCDictionary();
+    //    data->setObject(CCString::create("move"), "name");
+    //    data->setObject(CCInteger::create(3), "direction");
+    //
+    //    CCLOG("set begin action");
+    //    CCMessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_pPlayer,data);
+    //    CCLOG("set begin action after");
+    CCPoint p=ccp(1,1);
+    
+    //    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_DIRECTION, NULL, m_pPlayer,&p);
+    
+}
+
+void GameWorldController::menuStopCallback(CCObject* pSender)
+{
+    //    CCDictionary* data=new CCDictionary();
+    //    data->setObject(CCString::create("idle"), "name");
+    //    data->setObject(CCInteger::create(0), "direction");
+    //
+    //    CCLOG("set begin action");
+    //    CCMessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_pPlayer,data);
+    //    CCLOG("set begin action after");
+    
+    
+    //    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_DIRECTION_STOP, NULL, m_pPlayer);
+}
+
+void GameWorldController::menuMoveToCallback(CCObject* pSender)
+{
+    
+    
+    //    CCSize screenSize= CCDirector::sharedDirector()->getWinSize();
+    //    CCPoint to=isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50);
+    //	CCPoint from=m_pPlayer->getCoordinate();
+    //
+    //	CCArray* paths=searchPathsFrom(from,to);
+    //    CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_PATH, NULL, m_pPlayer,paths);
+    //	paths->release();
+}
+
 
 NS_CC_GE_END

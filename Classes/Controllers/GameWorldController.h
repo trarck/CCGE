@@ -120,6 +120,18 @@ public:
     CCPoint toGameCoordinate(float x,float y);
     
     /**
+     * 更新地图位置
+     * 这里的位置和相机的移动方向一致
+     */
+    void updateMapPosition(const CCPoint& position);
+    void updateMapPosition(float x,float y);
+    
+    //touch事件
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    
+    /**
      * 相机移动
      * 参数为相机所在的地图位置
      */
@@ -130,23 +142,12 @@ public:
      */
     void onCameraScale(float scaleX,float scaleY);
     
-    /**
-     * 更新地图位置
-     * 这里的位置和相机的移动方向一致
-     */
-    void updateMapPosition(const CCPoint& position);
-    void updateMapPosition(float x,float y);
-   
 	 // a selector callback
     void menuCloseCallback(CCObject* pSender);
     
     void menuRunCallback(CCObject* pSender);
     void menuStopCallback(CCObject* pSender);
     void menuMoveToCallback(CCObject* pSender);
-
-	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent); 
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent); 
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     
     void menuBigCallback(CCObject* pSender);
     void menuSmallCallback(CCObject* pSender);
@@ -191,6 +192,18 @@ public:
     {
         return m_iMapRow;
     }
+    
+    inline void setAstar(yhge::CallbackAstar* astar)
+    {
+        CC_SAFE_RETAIN(astar);
+        CC_SAFE_RELEASE(m_astar);
+        m_astar = astar;
+    }
+    
+    inline yhge::CallbackAstar* getAstar()
+    {
+        return m_astar;
+    }
 
 private:
     
@@ -209,7 +222,7 @@ private:
 //	CCLayer* m_pForeground;//前景层,背景层某些物体的遮挡元素。通常为空。
 
 	//寻路
-//	CCAstar* m_pAstar;
+    yhge::CallbackAstar* m_astar;
 	//处理遮挡
 //	CCZIndex* m_pZIndex;
     yhge::ISOCamera* m_pGameCamera;
