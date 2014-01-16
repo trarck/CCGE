@@ -1342,6 +1342,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5755C71D1885438000213F7C /* Components */,
 				575AD871187BC54B00AA0477 /* Controllers */,
 				577105771883DFED00FA1446 /* Layers */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
@@ -1794,6 +1795,14 @@
 				379BB99017F03F3700829B88 /* Reader */,
 			);
 			path = CocoStudio;
+			sourceTree = "<group>";
+		};
+		5755C71D1885438000213F7C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Components;
+			path = ../Classes/Components;
 			sourceTree = "<group>";
 		};
 		575AD862187BC3CB00AA0477 /* Products */ = {
