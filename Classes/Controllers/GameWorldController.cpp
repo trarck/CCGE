@@ -1,5 +1,6 @@
 #include "GameWorldController.h"
 #include "Game.h"
+#include "EntityComponent/EntityFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -21,6 +22,7 @@ GameWorldController::GameWorldController()
 ,m_pGameCamera(NULL)
 ,m_isoMap(NULL)
 ,m_astar(NULL)
+,m_player(NULL)
 {
 	CCLOG("GameWorldController create");
 }
@@ -103,6 +105,8 @@ void GameWorldController::setup()
     m_pGameCamera->moveTo(-contentSize.width/2, 0);
     
     createTestMenu();
+    
+    addPlayerAtCoord(ccp(0,0));
 }
 
 /**
@@ -183,6 +187,11 @@ void GameWorldController::createGameMap()
     
     //m_isoMap->release();
     
+    //add active layer
+    
+    m_pIntermediate=CCLayer::create();
+    m_isoMap->addChild(m_pIntermediate);
+    
 }
 
 ISOMapInfo* GameWorldController::loadMapData()
@@ -251,13 +260,16 @@ void GameWorldController::createTestMenu()
  */
 void GameWorldController::addPlayerAtCoord(CCPoint coord)
 {
-//	m_pPlayer=new Player();
-//	m_pPlayer->init(2);
-//	m_pPlayer->setCoordinateAndTranslate(coord);
-//	m_pPlayer->setGameWorld(this);
-//	m_pPlayer->setupComponents();
-//	addInterMediateDynamicEntity(m_pPlayer);
-//	CCLOG("m_pPlayer count:%d",m_pPlayer->retainCount());
+	m_player=EntityFactory::getInstance()->createPlayer(NULL);
+    
+    RendererComponent* rendererComponent=static_cast<RendererComponent*>(m_player->getComponent("RendererComponent"));
+    
+    ISOPositionComponent* iosPositionComponent=static_cast<ISOPositionComponent*>(m_player->getComponent("ISOPositionComponent"));
+    iosPositionComponent->setCoordinate(coord);
+    iosPositionComponent->updateRendererPosition();
+    
+    m_pIntermediate->addChild(rendererComponent->getRenderer());
+    
 }
 
 

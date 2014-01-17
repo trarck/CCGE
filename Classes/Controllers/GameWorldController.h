@@ -5,6 +5,7 @@
 #include <yhge/yhge.h>
 #include <yhmvc/yhmvc.h>
 #include "CCGEMacros.h"
+#include "EntityComponent/GameEntity.h"
 
 NS_CC_GE_BEGIN
 
@@ -204,6 +205,18 @@ public:
     {
         return m_astar;
     }
+    
+    inline void setPlayer(GameEntity* player)
+    {
+        CC_SAFE_RETAIN(player);
+        CC_SAFE_RELEASE(m_player);
+        m_player = player;
+    }
+    
+    inline GameEntity* getPlayer()
+    {
+        return m_player;
+    }
 
 private:
     
@@ -218,7 +231,7 @@ private:
     
 	
 //	CCLayer* m_pBackground;//背景层，加载地形资源
-//	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
+	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
 //	CCLayer* m_pForeground;//前景层,背景层某些物体的遮挡元素。通常为空。
 
 	//寻路
@@ -228,7 +241,8 @@ private:
     yhge::ISOCamera* m_pGameCamera;
 
     yhge::ISOTileMap* m_isoMap;
-//	Player* m_pPlayer;
+    
+	GameEntity* m_player;
 
 	//touch
 	CCPoint m_startTouchLocation;

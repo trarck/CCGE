@@ -248,6 +248,8 @@
 		575D1512187C08F1004E9958 /* libyhge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575AD866187BC3CC00AA0477 /* libyhge.a */; };
 		575D1513187C08F5004E9958 /* libyhmvc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1511187C08AC004E9958 /* libyhmvc.a */; };
 		575D1523187CEFD2004E9958 /* libyhgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1521187CEFB2004E9958 /* libyhgui.a */; };
+		575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9C18892DC100E37B69 /* GameEntity.cpp */; };
+		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
 		576E3FD9187D617500745A0A /* map in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FD8187D617500745A0A /* map */; };
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
@@ -799,6 +801,10 @@
 		575D1509187C0827004E9958 /* MenuItemUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemUtil.h; sourceTree = "<group>"; };
 		575D150C187C08AC004E9958 /* yhmvc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhmvc.xcodeproj; path = ../../yhmvc/proj.ios/yhmvc.xcodeproj; sourceTree = "<group>"; };
 		575D151B187CEFB2004E9958 /* yhgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhgui.xcodeproj; path = ../../yhgui/proj.ios/yhgui.xcodeproj; sourceTree = "<group>"; };
+		575E3F9C18892DC100E37B69 /* GameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEntity.cpp; sourceTree = "<group>"; };
+		575E3F9D18892DC100E37B69 /* GameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEntity.h; sourceTree = "<group>"; };
+		575E3F9F1889344600E37B69 /* EntityFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityFactory.cpp; sourceTree = "<group>"; };
+		575E3FA01889344600E37B69 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
 		576E3FD8187D617500745A0A /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
 		577105741883DF8900FA1446 /* MissionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionController.cpp; sourceTree = "<group>"; };
 		577105751883DF8900FA1446 /* MissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
@@ -1342,8 +1348,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5755C71D1885438000213F7C /* Components */,
 				575AD871187BC54B00AA0477 /* Controllers */,
+				575E3F9B18892DC100E37B69 /* EntityComponent */,
 				577105771883DFED00FA1446 /* Layers */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
 				575D1505187C0827004E9958 /* Tests */,
@@ -1797,14 +1803,6 @@
 			path = CocoStudio;
 			sourceTree = "<group>";
 		};
-		5755C71D1885438000213F7C /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Components;
-			path = ../Classes/Components;
-			sourceTree = "<group>";
-		};
 		575AD862187BC3CB00AA0477 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1881,6 +1879,18 @@
 				575D1521187CEFB2004E9958 /* libyhgui.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		575E3F9B18892DC100E37B69 /* EntityComponent */ = {
+			isa = PBXGroup;
+			children = (
+				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
+				575E3FA01889344600E37B69 /* EntityFactory.h */,
+				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
+				575E3F9D18892DC100E37B69 /* GameEntity.h */,
+			);
+			name = EntityComponent;
+			path = ../Classes/EntityComponent;
 			sourceTree = "<group>";
 		};
 		577105771883DFED00FA1446 /* Layers */ = {
@@ -2127,6 +2137,7 @@
 				15A3DA381682F826002FB0C5 /* CCControlButtonLoader.cpp in Sources */,
 				575AD88F187BC54B00AA0477 /* TestISOController.cpp in Sources */,
 				15A3DA391682F826002FB0C5 /* CCControlLoader.cpp in Sources */,
+				575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */,
 				15A3DA3A1682F826002FB0C5 /* CCData.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
@@ -2163,6 +2174,7 @@
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
 				15A3DA5C1682F826002FB0C5 /* CCTableViewCell.cpp in Sources */,
 				15A3DA5D1682F826002FB0C5 /* HttpClient.cpp in Sources */,
+				575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */,
 				15A3DA5E1682F826002FB0C5 /* CCPhysicsDebugNode.cpp in Sources */,
 				575AD894187BC54B00AA0477 /* MainScene.cpp in Sources */,
 				15A3DA5F1682F826002FB0C5 /* CCPhysicsSprite.cpp in Sources */,
