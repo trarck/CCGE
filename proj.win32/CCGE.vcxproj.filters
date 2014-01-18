@@ -19,6 +19,9 @@
     <Filter Include="Classes\Layers">
       <UniqueIdentifier>{b91665ff-14b1-4e7f-a2d2-d4cc7196e906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\EntityComponent">
+      <UniqueIdentifier>{7821bb7f-f25a-4bec-bc8f-8b20664c12bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Scenes\MissionScene.cpp">
       <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\EntityFactory.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp">
+      <Filter>Classes\EntityComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\MissionScene.h">
       <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\EntityFactory.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\GameEntity.h">
+      <Filter>Classes\EntityComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
