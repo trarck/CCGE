@@ -106,7 +106,7 @@ void GameWorldController::setup()
     
     createTestMenu();
     
-    addPlayerAtCoord(ccp(0,0));
+    addPlayerAtCoord(ccp(10,10));
 }
 
 /**
@@ -190,7 +190,7 @@ void GameWorldController::createGameMap()
     //add active layer
     
     m_pIntermediate=CCLayer::create();
-    m_isoMap->addChild(m_pIntermediate);
+    m_isoMap->addChild(m_pIntermediate,999);
     
 }
 
@@ -260,7 +260,8 @@ void GameWorldController::createTestMenu()
  */
 void GameWorldController::addPlayerAtCoord(CCPoint coord)
 {
-	m_player=EntityFactory::getInstance()->createPlayer(NULL);
+    GameEntity* player=EntityFactory::getInstance()->createPlayer(NULL);
+    setPlayer(player);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(m_player->getComponent("RendererComponent"));
     
@@ -268,6 +269,11 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     iosPositionComponent->setCoordinate(coord);
     iosPositionComponent->updateRendererPosition();
     
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create("idle"), "name");
+    data->setObject(CCInteger::create(0), "direction");
+    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_player,data);
+
     m_pIntermediate->addChild(rendererComponent->getRenderer());
     
 }
@@ -427,7 +433,9 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 		 //如果player正在移动，则此时取到的坐标和最终停下来的不一致。
 //		 CCPoint from=m_pPlayer->getCoordinate();
 //    
-		 CCArray* paths=searchPathsFrom(ccp(0,0),to);
+         ISOPositionComponent* isoPosition=m_player->getISOPositionComponent();
+
+		 CCArray* paths=searchPathsFrom(ccp(isoPosition->getX(),isoPosition->getY()),to);
 		 if(paths){
              CCObject* pObj=NULL;
              CCPoint pos;
@@ -437,7 +445,7 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                  pathStr+=CCString::createWithFormat("%d,%d:",(int)pos.x,(int)pos.y)->getCString();
              }
              CCLOG("path:%s",pathStr.c_str());
-//			 CCMessageManager::defaultManager()->dispatchMessageWithType(MOVE_PATH, NULL, m_pPlayer,paths);
+			 MessageManager::defaultManager()->dispatchMessage(MSG_MOVE_PATH, NULL, m_player,paths);
 //			 paths->release();
 		 }
 	}

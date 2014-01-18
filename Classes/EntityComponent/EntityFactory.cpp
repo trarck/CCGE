@@ -54,7 +54,15 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     renderer->init();
     player->addComponent(renderer);
     renderer->release();
-    
+    player->setRendererComponent(renderer);
+
+    //位置组件
+    ISOPositionComponent* isoPosition=new ISOPositionComponent();
+    isoPosition->init();
+    player->addComponent(isoPosition);
+    isoPosition->release();
+    player->setISOPositionComponent(isoPosition);
+
     //动画组件
     AnimationComponent* animation=new AnimationComponent();
     animation->init();

@@ -17,9 +17,31 @@ public:
 	~GameEntity();
     
     CREATE_FUNC(GameEntity);
-    
-    
-    
+
+    inline void setRendererComponent(yhge::RendererComponent* rendererComponent)
+    {
+        m_rendererComponent = rendererComponent;
+    }
+
+    inline yhge::RendererComponent* getRendererComponent()
+    {
+        return m_rendererComponent;
+    }
+
+    void setISOPositionComponent(yhge::ISOPositionComponent* isoPositionComponent)
+    {
+        m_isoPositionComponent = isoPositionComponent;
+    }
+
+    yhge::ISOPositionComponent* getISOPositionComponent()
+    {
+        return m_isoPositionComponent;
+    }
+private:
+
+    yhge::RendererComponent* m_rendererComponent;
+
+    yhge::ISOPositionComponent* m_isoPositionComponent;
 };
 
 NS_CC_GE_END
