@@ -48,6 +48,11 @@ public:
     yhge::ISOMapInfo* loadMapData();
     
     /**
+     * 设置相机的可视
+     */
+    void setCameraMoveRange();
+
+    /**
      * 创建测试按钮
      */
     void createTestMenu();

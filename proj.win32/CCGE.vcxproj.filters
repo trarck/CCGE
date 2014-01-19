@@ -22,6 +22,9 @@
     <Filter Include="Classes\EntityComponent">
       <UniqueIdentifier>{7821bb7f-f25a-4bec-bc8f-8b20664c12bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\EntityComponent\Components">
+      <UniqueIdentifier>{63a1396e-5110-4f24-a471-201a122fe5af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp">
       <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\PlayerGridMoveComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h">
       <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\PlayerGridMoveComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

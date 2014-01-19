@@ -1,6 +1,7 @@
 #include "GameWorldController.h"
 #include "Game.h"
 #include "EntityComponent/EntityFactory.h"
+#include "EntityComponent/Components/PlayerGridMoveComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -103,6 +104,8 @@ void GameWorldController::setup()
     m_pGameCamera->scaleTo(2);
 	//setupNetWork();
     m_pGameCamera->moveTo(-contentSize.width/2, 0);
+
+    this->setCameraMoveRange();
     
     createTestMenu();
     
@@ -219,6 +222,24 @@ ISOMapInfo* GameWorldController::loadMapData()
 }
 
 /**
+ * 设置相机的可视
+ */
+void GameWorldController::setCameraMoveRange()
+{
+    //计算相机可移动范围
+    CCSize mapSize=m_isoMap->getMapSize();
+    float scale=m_pGameCamera->getScale();
+
+    float minX=-mapSize.height*TileWidth*0.5*scale;
+    float minY=0;
+    float maxX=mapSize.width*TileWidth*0.5*scale;
+    float maxY=(mapSize.height+mapSize.height)*TileHeight*0.5*scale;
+ 
+    m_pGameCamera->setNeedCheckPositionRane(true);
+    m_pGameCamera->setMoveRange(minX,minY,maxX,maxY);
+}
+
+/**
  * 创建测试按钮
  */
 void GameWorldController::createTestMenu()
@@ -273,6 +294,9 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     data->setObject(CCString::create("idle"), "name");
     data->setObject(CCInteger::create(0), "direction");
     MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_player,data);
+
+    PlayerGridMoveComponent* playerGridMoveComponent=static_cast<PlayerGridMoveComponent*>(m_player->getComponent("GridMoveComponent"));
+    playerGridMoveComponent->setCamera(m_pGameCamera);
 
     m_pIntermediate->addChild(rendererComponent->getRenderer());
     

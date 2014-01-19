@@ -1,5 +1,6 @@
 #include "EntityFactory.h"
 #include <yhge/yhge.h>
+#include "Components/PlayerGridMoveComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -80,7 +81,7 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     
     float speed=2.0f;
     
-    GridMoveComponent* gridMove=new GridMoveComponent();
+    PlayerGridMoveComponent* gridMove=new PlayerGridMoveComponent();
     gridMove->init(speed);
     player->addComponent(gridMove);
     gridMove->release();
