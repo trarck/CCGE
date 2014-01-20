@@ -1,7 +1,6 @@
 #include "GameWorldController.h"
 #include "Game.h"
 #include "EntityComponent/EntityFactory.h"
-#include "EntityComponent/Components/PlayerGridMoveComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -286,6 +285,10 @@ void GameWorldController::createTestMenu()
  */
 void GameWorldController::addPlayerAtCoord(CCPoint coord)
 {
+    CCSize visibleSize=this->getPreferredContentSize();
+    CCPoint pos=ccp(visibleSize.width/2,visibleSize.height/2);
+    pos=m_layer->convertToWorldSpace(pos);
+    
     GameEntity* player=EntityFactory::getInstance()->createPlayer(NULL);
     setPlayer(player);
     
@@ -300,8 +303,9 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     data->setObject(CCInteger::create(0), "direction");
     MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_player,data);
 
-    PlayerGridMoveComponent* playerGridMoveComponent=static_cast<PlayerGridMoveComponent*>(m_player->getComponent("GridMoveComponent"));
-    playerGridMoveComponent->setCamera(m_pGameCamera);
+    CameraFlowGridMoveComponent* gridMoveComponent=static_cast<CameraFlowGridMoveComponent*>(m_player->getComponent("GridMoveComponent"));
+    gridMoveComponent->setCamera(m_pGameCamera);
+    gridMoveComponent->setInnerOrigin(pos);
 
     m_pIntermediate->addChild(rendererComponent->getRenderer());
     
