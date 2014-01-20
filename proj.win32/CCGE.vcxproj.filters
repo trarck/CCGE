@@ -87,9 +87,6 @@
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp">
       <Filter>Classes\EntityComponent</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\EntityComponent\Components\PlayerGridMoveComponent.cpp">
-      <Filter>Classes\EntityComponent\Components</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -163,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h">
       <Filter>Classes\EntityComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\EntityComponent\Components\PlayerGridMoveComponent.h">
-      <Filter>Classes\EntityComponent\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
