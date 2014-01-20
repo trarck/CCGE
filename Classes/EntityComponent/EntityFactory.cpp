@@ -6,7 +6,7 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-static const CCSize kDefaultInnerOffsetSize=CCSizeMake(118.0f, 54.0f);
+static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
 
 EntityFactory::EntityFactory()
 {
@@ -84,7 +84,7 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     
     CameraFlowGridMoveComponent* gridMove=new CameraFlowGridMoveComponent();
     gridMove->init(speed);
-    gridMove->setInnerOffsetSize(kDefaultInnerOffsetSize);
+    gridMove->setInnerOffset(kDefaultInnerOffset);
     
     //相机的引用和中心点在外面设置。有可能地图不是全屏的
     
