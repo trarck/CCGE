@@ -28,7 +28,7 @@ public:
      * 移动动画步骤
      * 通过路径移动的动画步骤
      */
-    void PlayerGridMoveComponent::updatePath2(float delta);
+    void updatePath2(float delta);
 
     void setCamera(yhge::ISOCamera* camera)
     {
@@ -50,12 +50,18 @@ protected:
     virtual SEL_SCHEDULE getUpdateDirectionHandle();
     virtual SEL_SCHEDULE getUpdatePathHandle();
 
+    bool checkNeedMoveCamera();
+    
+protected:
+    
     yhge::ISOCamera* m_camera;
 
     CCPoint m_lastCameraPosition;
 
     CCRect m_innerRect;
     CCSize m_innerOffsetSize;
+    
+    bool m_needMoveCamera;
 };
 
 NS_CC_GE_END

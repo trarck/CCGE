@@ -254,6 +254,8 @@
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
+		57F74DBC188CB794003E830F /* PlayerGridMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F74DBA188CB794003E830F /* PlayerGridMoveComponent.cpp */; };
+		57F74DC1188CB890003E830F /* characters in Resources */ = {isa = PBXBuildFile; fileRef = 57F74DC0188CB890003E830F /* characters */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -812,6 +814,9 @@
 		577105791883DFED00FA1446 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorld.h; sourceTree = "<group>"; };
 		5771057B1883E1B800FA1446 /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
 		5771057C1883E1B800FA1446 /* MissionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionScene.h; sourceTree = "<group>"; };
+		57F74DBA188CB794003E830F /* PlayerGridMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerGridMoveComponent.cpp; sourceTree = "<group>"; };
+		57F74DBB188CB794003E830F /* PlayerGridMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerGridMoveComponent.h; sourceTree = "<group>"; };
+		57F74DC0188CB890003E830F /* characters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = characters; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1884,6 +1889,7 @@
 		575E3F9B18892DC100E37B69 /* EntityComponent */ = {
 			isa = PBXGroup;
 			children = (
+				57F74DB9188CB794003E830F /* Components */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
@@ -1903,9 +1909,19 @@
 			path = ../Classes/Layers;
 			sourceTree = "<group>";
 		};
+		57F74DB9188CB794003E830F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				57F74DBA188CB794003E830F /* PlayerGridMoveComponent.cpp */,
+				57F74DBB188CB794003E830F /* PlayerGridMoveComponent.h */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57F74DC0188CB890003E830F /* characters */,
 				576E3FD8187D617500745A0A /* map */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
@@ -2031,6 +2047,7 @@
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
+				57F74DC1188CB890003E830F /* characters in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				576E3FD9187D617500745A0A /* map in Resources */,
@@ -2091,6 +2108,7 @@
 				15A3D9241682F7D5002FB0C5 /* b2MouseJoint.cpp in Sources */,
 				15A3D9251682F7D5002FB0C5 /* b2PrismaticJoint.cpp in Sources */,
 				15A3D9261682F7D5002FB0C5 /* b2PulleyJoint.cpp in Sources */,
+				57F74DBC188CB794003E830F /* PlayerGridMoveComponent.cpp in Sources */,
 				15A3D9271682F7D5002FB0C5 /* b2RevoluteJoint.cpp in Sources */,
 				15A3D9281682F7D5002FB0C5 /* b2RopeJoint.cpp in Sources */,
 				15A3D9291682F7D5002FB0C5 /* b2WeldJoint.cpp in Sources */,

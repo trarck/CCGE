@@ -44,55 +44,31 @@ void PlayerGridMoveComponent::updateDirection( float delta)
  */
 void PlayerGridMoveComponent::updatePath2(float delta)
 {
-    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
+//    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
     //CCLOG("scene:%f,%f",scenePos.x,scenePos.y);
 
-    if (true || m_innerRect.containsPoint(scenePos))
+//    CCLOG("dd %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
+    
+    if (m_needMoveCamera)
     {
-        bool needMoveCamera=false;
+        //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
 
-        float offsetX=scenePos.x-m_innerRect.getMidX();
+        float duration=m_movingDuration;
+        float movingDelta=m_movingDeltaTime+delta;
 
-        if (m_fViewSpeedX>0){
-            needMoveCamera=offsetX>=m_innerOffsetSize.width;
-        }else if (m_fViewSpeedX<0){
-            needMoveCamera=offsetX<=-m_innerOffsetSize.width;
+        if(movingDelta<duration){
+            float scale=m_camera->getScale();
+            m_camera->move(scale*delta*m_fViewSpeedX,scale*delta*m_fViewSpeedY);
+//            CCLOG("aa %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
+        }else{
+            float scale=m_camera->getScale();
+            float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
+            float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
+            m_lastCameraPosition.x=endX;
+            m_lastCameraPosition.y=endY;
+            m_camera->moveTo(endX,endY);
+            CCLOG("bb %f,%f",endX,endY);
         }
-
-        if (!needMoveCamera)
-        {
-            float offsetY=scenePos.y-m_innerRect.getMidY();
-
-            if (m_fViewSpeedY>0){
-                needMoveCamera=offsetY>=m_innerOffsetSize.height;
-            }else if (m_fViewSpeedY<0){
-                needMoveCamera=offsetY<=-m_innerOffsetSize.height;
-            }
-        }
-
-        if (needMoveCamera)
-        {
-
-            //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
-
-            float duration=m_movingDuration;
-            float movingDelta=m_movingDeltaTime+delta;
-
-            if(movingDelta<duration){
-                float scale=m_camera->getScale();
-                m_camera->move(scale*delta*m_fViewSpeedX,scale*delta*m_fViewSpeedY);
-                CCLOG("aa %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
-            }else{
-                float scale=m_camera->getScale();
-                float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
-                float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
-                m_lastCameraPosition.x=endX;
-                m_lastCameraPosition.y=endY;
-                m_camera->moveTo(endX,endY);
-                CCLOG("bb %f,%f",endX,endY);
-            }
-        }
-        
     }
 
     //update 放在后面，否则一些状态会改变如m_movingDeltaTime，m_movingDeltaTime，m_fViewSpeedX
@@ -102,7 +78,10 @@ void PlayerGridMoveComponent::updatePath2(float delta)
 void PlayerGridMoveComponent::prepareMove()
 {
     GridMoveComponent::prepareMove();
-    m_lastCameraPosition=m_camera->getWorldPosition();
+    if(this->checkNeedMoveCamera()){
+        m_lastCameraPosition=m_camera->getWorldPosition();
+        CCLOG("cc %f,%f",m_lastCameraPosition.x,m_lastCameraPosition.y);
+    }
 }
 
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数
@@ -136,6 +115,36 @@ SEL_SCHEDULE PlayerGridMoveComponent::getUpdateDirectionHandle()
 SEL_SCHEDULE PlayerGridMoveComponent::getUpdatePathHandle()
 {
     return schedule_selector(PlayerGridMoveComponent::updatePath);
+}
+
+bool PlayerGridMoveComponent::checkNeedMoveCamera()
+{
+    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
+    
+    bool needMoveCamera=false;
+    
+    float offsetX=scenePos.x-m_innerRect.getMidX();
+    
+    if (m_fViewSpeedX>0){
+        needMoveCamera=offsetX>=m_innerOffsetSize.width;
+    }else if (m_fViewSpeedX<0){
+        needMoveCamera=offsetX<=-m_innerOffsetSize.width;
+    }
+    
+    if (!needMoveCamera)
+    {
+        float offsetY=scenePos.y-m_innerRect.getMidY();
+        
+        if (m_fViewSpeedY>0){
+            needMoveCamera=offsetY>=m_innerOffsetSize.height;
+        }else if (m_fViewSpeedY<0){
+            needMoveCamera=offsetY<=-m_innerOffsetSize.height;
+        }
+    }
+    
+    m_needMoveCamera=needMoveCamera;
+
+    return needMoveCamera;
 }
 
 NS_CC_GE_END

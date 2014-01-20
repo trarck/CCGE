@@ -228,12 +228,17 @@ void GameWorldController::setCameraMoveRange()
 {
     //计算相机可移动范围
     CCSize mapSize=m_isoMap->getMapSize();
+    CCSize visibleSize=m_isoMap->getOrignalVisibleSize();
+    
     float scale=m_pGameCamera->getScale();
 
     float minX=-mapSize.height*TileWidth*0.5*scale;
     float minY=0;
     float maxX=mapSize.width*TileWidth*0.5*scale;
     float maxY=(mapSize.height+mapSize.height)*TileHeight*0.5*scale;
+    //由于坐标原点在屏幕左下角，所以要对maxX,maxY进行修正，它们的大小要减去可视区域大小
+    maxX-=visibleSize.width;
+    maxY-=visibleSize.height;
  
     m_pGameCamera->setNeedCheckPositionRane(true);
     m_pGameCamera->setMoveRange(minX,minY,maxX,maxY);
