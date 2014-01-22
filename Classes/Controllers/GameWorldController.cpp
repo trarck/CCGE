@@ -37,8 +37,9 @@ GameWorldController::~GameWorldController()
 	//CC_SAFE_RELEASE(m_pIntermediate);
 	//CC_SAFE_RELEASE(m_pForeground);
 	//CCLOG("player retain:%d",m_pPlayer->retainCount());
-//	CC_SAFE_RELEASE(m_pPlayer);
-	CC_SAFE_RELEASE(m_pUnits);
+    m_player->cleanupComponents();
+	CC_SAFE_RELEASE_NULL(m_player);
+	CC_SAFE_RELEASE_NULL(m_pUnits);
 
     CC_SAFE_RELEASE_NULL(m_isoMap);
     CC_SAFE_RELEASE_NULL(m_astar);
