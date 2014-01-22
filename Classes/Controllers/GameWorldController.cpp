@@ -23,6 +23,7 @@ GameWorldController::GameWorldController()
 ,m_isoMap(NULL)
 ,m_astar(NULL)
 ,m_player(NULL)
+,m_activeLayer(NULL)
 {
 	CCLOG("GameWorldController create");
 }
@@ -170,6 +171,8 @@ void GameWorldController::createGameMap()
     ISOTileMapBuilder* mapBuilder=new ISOTileMapBuilder();
     mapBuilder->init(m_isoMap);
 	mapBuilder->setMapLayerType(mapLyaerType);
+    mapBuilder->setActiveLayerName("top");
+    
     mapBuilder->buildWithMapInfo(mapInfo);
     
     struct timeval end;
@@ -192,8 +195,9 @@ void GameWorldController::createGameMap()
     
     //add active layer
     
-    m_pIntermediate=CCLayer::create();
-    m_isoMap->addChild(m_pIntermediate,999);
+    m_activeLayer=static_cast<ISOActiveLayer*>(m_isoMap->getActiveLayer());
+//    m_pIntermediate=CCLayer::create();
+//    m_isoMap->addChild(m_pIntermediate,999);
     
 }
 
@@ -308,7 +312,7 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     gridMoveComponent->setCamera(m_pGameCamera);
     gridMoveComponent->setInnerOrigin(pos);
 
-    m_pIntermediate->addChild(rendererComponent->getRenderer());
+    m_activeLayer->addChild(rendererComponent->getRenderer());
     
 }
 

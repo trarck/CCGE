@@ -234,9 +234,10 @@ private:
 	int m_iMapColumn;
 	int m_iMapRow;
     
-	
+    yhge::ISOActiveLayer* m_activeLayer;
+    
 //	CCLayer* m_pBackground;//背景层，加载地形资源
-	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
+//	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
 //	CCLayer* m_pForeground;//前景层,背景层某些物体的遮挡元素。通常为空。
 
 	//寻路
