@@ -22,6 +22,7 @@ GameWorldController::GameWorldController()
 ,m_pGameCamera(NULL)
 ,m_isoMap(NULL)
 ,m_astar(NULL)
+,m_occlusion(NULL)
 ,m_player(NULL)
 ,m_activeLayer(NULL)
 {
@@ -44,6 +45,7 @@ GameWorldController::~GameWorldController()
 
     CC_SAFE_RELEASE_NULL(m_isoMap);
     CC_SAFE_RELEASE_NULL(m_astar);
+    CC_SAFE_RELEASE_NULL(m_occlusion);
     
 	CCLOG("GameWorldController destroy end");
 }
@@ -126,11 +128,31 @@ void GameWorldController::setupUtil()
 	m_astar->setBounding(0,0,m_iMapColumn,m_iMapRow);
 	m_astar->setCheckBarrierHandle(check_workable_selector(GameWorldController::isWorkable),this);
 	
-	//CC_SAFE_RELEASE(m_pZIndex);
-	//m_pZIndex=new CCZIndex();
-	//m_pZIndex->init(m_pIntermediate);
-	//m_pZIndex->start();
-	//m_pZIndex->release();
+    //深度排序
+    m_occlusion=new SortZIndex();
+    m_occlusion->init();
+
+    
+    //test zindex
+    
+    
+    SortZIndexNode* node1=new SortZIndexNode();
+    node1->setRect(CCRectMake(10,10, 3, 1));
+    m_occlusion->insert(node1);
+    node1->release();
+
+    SortZIndexNode* node2=new SortZIndexNode();
+    node2->setRect(CCRectMake(8,12, 1, 1));
+    m_occlusion->insert(node2);
+    node2->release();
+    
+    SortZIndexNode* node3=new SortZIndexNode();
+    node3->setRect(CCRectMake(11,9, 1, 1));
+    m_occlusion->insert(node3);
+    node3->release();
+    
+    m_occlusion->updateZOrder();
+    
 }
 
 

@@ -211,6 +211,18 @@ public:
         return m_astar;
     }
     
+    inline void setOcclusion(yhge::SortZIndex* occlusion)
+    {
+        CC_SAFE_RETAIN(occlusion);
+        CC_SAFE_RELEASE(m_occlusion);
+        m_occlusion = occlusion;
+    }
+    
+    inline yhge::SortZIndex* getOcclusion()
+    {
+        return m_occlusion;
+    }
+    
     inline void setPlayer(GameEntity* player)
     {
         CC_SAFE_RETAIN(player);
@@ -243,7 +255,8 @@ private:
 	//寻路
     yhge::CallbackAstar* m_astar;
 	//处理遮挡
-//	CCZIndex* m_pZIndex;
+    yhge::SortZIndex* m_occlusion;
+    
     yhge::ISOCamera* m_pGameCamera;
 
     yhge::ISOTileMap* m_isoMap;
