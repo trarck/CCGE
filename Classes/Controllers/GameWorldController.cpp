@@ -1,6 +1,7 @@
 #include "GameWorldController.h"
 #include "Game.h"
 #include "EntityComponent/EntityFactory.h"
+#include "Layers/GameActiveSortLayer.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -128,30 +129,30 @@ void GameWorldController::setupUtil()
 	m_astar->setBounding(0,0,m_iMapColumn,m_iMapRow);
 	m_astar->setCheckBarrierHandle(check_workable_selector(GameWorldController::isWorkable),this);
 	
-    //深度排序
-    m_occlusion=new SortZIndex();
-    m_occlusion->init();
-
-    
-    //test zindex
-    
-    
-    SortZIndexNode* node1=new SortZIndexNode();
-    node1->setRect(CCRectMake(10,10, 3, 1));
-    m_occlusion->insert(node1);
-    node1->release();
-
-    SortZIndexNode* node2=new SortZIndexNode();
-    node2->setRect(CCRectMake(8,12, 1, 1));
-    m_occlusion->insert(node2);
-    node2->release();
-    
-    SortZIndexNode* node3=new SortZIndexNode();
-    node3->setRect(CCRectMake(11,9, 1, 1));
-    m_occlusion->insert(node3);
-    node3->release();
-    
-    m_occlusion->updateZOrder();
+//    //深度排序
+//    m_occlusion=new SortZIndex();
+//    m_occlusion->init();
+//
+//    
+//    //test zindex
+//    
+//    
+//    SortZIndexNode* node1=new SortZIndexNode();
+//    node1->setRect(CCRectMake(10,10, 3, 1));
+//    m_occlusion->insert(node1);
+//    node1->release();
+//
+//    SortZIndexNode* node2=new SortZIndexNode();
+//    node2->setRect(CCRectMake(8,12, 1, 1));
+//    m_occlusion->insert(node2);
+//    node2->release();
+//    
+//    SortZIndexNode* node3=new SortZIndexNode();
+//    node3->setRect(CCRectMake(11,9, 1, 1));
+//    m_occlusion->insert(node3);
+//    node3->release();
+//    
+//    m_occlusion->updateZOrder();
     
 }
 
@@ -195,6 +196,9 @@ void GameWorldController::createGameMap()
 	mapBuilder->setMapLayerType(mapLyaerType);
     mapBuilder->setActiveLayerName("top");
     
+    //不要创建活动层，由游戏自己创建
+    mapBuilder->setBuildActiveLayer(false);
+    
     mapBuilder->buildWithMapInfo(mapInfo);
     
     struct timeval end;
@@ -205,6 +209,12 @@ void GameWorldController::createGameMap()
     //构建dynamic group
     //    m_isoMap->setupDynamicGroup();
     m_isoMap->showCoordLine();
+    
+    
+    ISOActiveLayerInfo* activeLayerInfo=mapBuilder->getActiveLayerInfo(mapInfo);
+    
+    this->createActiveLayer(activeLayerInfo);
+    
     
     m_layer->addChild(m_isoMap,kGameMapZOrder);
     
@@ -217,10 +227,31 @@ void GameWorldController::createGameMap()
     
     //add active layer
     
-    m_activeLayer=static_cast<ISOActiveLayer*>(m_isoMap->getActiveLayer());
 //    m_pIntermediate=CCLayer::create();
 //    m_isoMap->addChild(m_pIntermediate,999);
     
+}
+
+/*
+ * 创建活动层
+ */
+void GameWorldController::createActiveLayer(yhge::ISOActiveLayerInfo* activeLayerInfo)
+{
+    m_activeLayer=new GameActiveSortLayer();
+    m_activeLayer->init();
+    m_activeLayer->setMap(m_isoMap);
+    m_activeLayer->setLayerName(activeLayerInfo->getName());
+    m_activeLayer->setLayerOrientation(m_isoMap->getMapOrientation());
+    if (activeLayerInfo->getProperties()) {
+        m_activeLayer->setProperties(activeLayerInfo->getProperties());
+    }
+    m_activeLayer->setObjects(activeLayerInfo->getObjects());
+    m_activeLayer->setupLayer();
+    
+    m_isoMap->addChild(m_activeLayer,activeLayerInfo->getRenderIndex());
+    m_isoMap->setActiveLayer(m_activeLayer);
+    
+    m_activeLayer->release();
 }
 
 ISOMapInfo* GameWorldController::loadMapData()

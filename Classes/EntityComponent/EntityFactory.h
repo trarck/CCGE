@@ -26,6 +26,11 @@ public:
     GameEntity* createEntity(CCDictionary* data);
     
     /**
+     * 根据id创建游戏实体
+     */
+    GameEntity* createEntityById(int entityId);
+    
+    /**
      * 创建一个人物
      */
     GameEntity* createPlayer(CCDictionary* param);

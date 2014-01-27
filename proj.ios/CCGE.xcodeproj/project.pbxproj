@@ -254,6 +254,7 @@
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
+		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
 		57F74DC1188CB890003E830F /* characters in Resources */ = {isa = PBXBuildFile; fileRef = 57F74DC0188CB890003E830F /* characters */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -813,6 +814,8 @@
 		577105791883DFED00FA1446 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorld.h; sourceTree = "<group>"; };
 		5771057B1883E1B800FA1446 /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
 		5771057C1883E1B800FA1446 /* MissionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionScene.h; sourceTree = "<group>"; };
+		57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameActiveSortLayer.cpp; sourceTree = "<group>"; };
+		57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActiveSortLayer.h; sourceTree = "<group>"; };
 		57F74DC0188CB890003E830F /* characters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = characters; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1899,6 +1902,8 @@
 		577105771883DFED00FA1446 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */,
+				57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */,
 				577105781883DFED00FA1446 /* GameWorld.cpp */,
 				577105791883DFED00FA1446 /* GameWorld.h */,
 			);
@@ -2087,6 +2092,7 @@
 				15A3D9141682F7D5002FB0C5 /* b2Island.cpp in Sources */,
 				15A3D9151682F7D5002FB0C5 /* b2World.cpp in Sources */,
 				15A3D9161682F7D5002FB0C5 /* b2WorldCallbacks.cpp in Sources */,
+				57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */,
 				15A3D9171682F7D5002FB0C5 /* b2ChainAndCircleContact.cpp in Sources */,
 				15A3D9181682F7D5002FB0C5 /* b2ChainAndPolygonContact.cpp in Sources */,
 				15A3D9191682F7D5002FB0C5 /* b2CircleContact.cpp in Sources */,

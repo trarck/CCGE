@@ -9,6 +9,8 @@
 
 NS_CC_GE_BEGIN
 
+class GameActiveSortLayer;
+
 class GameWorldController: public yhmvc::LayerController,
     public yhge::ISOCameraDelegate,
     public CCTouchDelegate
@@ -235,6 +237,13 @@ public:
         return m_player;
     }
 
+protected:
+    
+    /*
+     * 创建活动层
+     */
+    void createActiveLayer(yhge::ISOActiveLayerInfo* activeLayerInfo);
+
 private:
     
     //区域id
@@ -246,7 +255,7 @@ private:
 	int m_iMapColumn;
 	int m_iMapRow;
     
-    yhge::ISOActiveLayer* m_activeLayer;
+    GameActiveSortLayer* m_activeLayer;
     
 //	CCLayer* m_pBackground;//背景层，加载地形资源
 //	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
