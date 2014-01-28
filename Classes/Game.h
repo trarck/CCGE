@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
+#include <yhge/Message/MessageManager.h>
 
 NS_CC_GE_BEGIN
 
@@ -28,6 +29,10 @@ public:
 	 */
     void setupSceneDirector();
     
+    inline static yhge::MessageManager* getMessageManager()
+    {
+        return yhge::MessageManager::defaultManager();
+    }
     
     inline void setSceneContext(CCObject* sceneContext)
     {
