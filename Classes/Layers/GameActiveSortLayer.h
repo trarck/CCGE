@@ -11,7 +11,7 @@ NS_CC_GE_BEGIN
 /**
  * 活动层。
  * 提供场景活动元素的层
- * 使用遮挡排序来管理，活动元素。
+ * 使用遮挡排序来管理，活动元素。经测试性能还可以。
  * 游戏中的活动物体是GameEntity
  */
 class GameActiveSortLayer : public yhge::ISOActiveLayer {
@@ -60,6 +60,11 @@ public:
      * 移除一个动态组件
      */
     void removeDynamicObject(GameEntity* obj);
+    
+    /**
+     * 动态物体的位置改变
+     */
+    void onDynamicObjectPositionChange(yhge::Message* message);
     
 public:
     
@@ -111,14 +116,14 @@ public:
         return m_staticRootNode;
     }
     
-    inline void setDynamicNodes(CCArray* dynamicNodes)
+    inline void setDynamicNodes(CCDictionary* dynamicNodes)
     {
         CC_SAFE_RETAIN(dynamicNodes);
         CC_SAFE_RELEASE(m_dynamicNodes);
         m_dynamicNodes = dynamicNodes;
     }
     
-    inline CCArray* getDynamicNodes()
+    inline CCDictionary* getDynamicNodes()
     {
         return m_dynamicNodes;
     }
@@ -152,6 +157,9 @@ protected:
     //创建动态对象
     GameEntity* createDynamicObject(int gid,const CCPoint& coord);
     
+    //更新对象的排序结点
+    void updateDynamicObjectZIndexNode(GameEntity* obj);
+    
 protected:
 
     //遮挡处理
@@ -167,7 +175,7 @@ protected:
 //    CCArray* m_dynamicObjects;
     
     //动态元素结点
-    CCArray* m_dynamicNodes;
+    CCDictionary* m_dynamicNodes;
     
     bool m_occlusionDirty;
 };

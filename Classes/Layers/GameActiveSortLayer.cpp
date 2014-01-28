@@ -1,4 +1,5 @@
 #include "GameActiveSortLayer.h"
+#include "Game.h"
 #include "EntityComponent/EntityFactory.h"
 
 USING_NS_CC;
@@ -48,7 +49,7 @@ bool GameActiveSortLayer::init()
         
         m_staticObjects=new CCArray();
         
-        m_dynamicNodes=new CCArray();
+        m_dynamicNodes=new CCDictionary();
         
         return true;
     }
@@ -119,7 +120,7 @@ void GameActiveSortLayer::setupObjects()
                         
                         //创建动态对象对应的排序结点
                         RendererComponent* renderer=mapObj->getRendererComponent();
-                        m_dynamicNodes->addObject(createSortZIndexNode(renderer->getRenderer(), objInfo));
+                        m_dynamicNodes->setObject(createSortZIndexNode(renderer->getRenderer(), objInfo),mapObj->m_uID);
                         
                         break;
                     }
@@ -147,7 +148,15 @@ void GameActiveSortLayer::sortAllChildren()
     //在画之前检查遮挡关系
     if (m_occlusionDirty) {
         m_occlusionDirty=false;
+        
+//        timeval start,end;
+//        
+//        gettimeofday(&start, NULL);
+        
         update();
+        
+//        gettimeofday(&end, NULL);
+//        CCLOG("udate use:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
     }
     
     ISOActiveLayer::sortAllChildren();
@@ -185,8 +194,12 @@ void GameActiveSortLayer::addDynamicObject(GameEntity* obj)
     
     CCRect rect=CCRectMake(positionComponent->getX(),positionComponent->getY(), 1, 1);
     
-    m_dynamicNodes->addObject(createSortZIndexNodeWithRect(renderer->getRenderer(), rect));
+    m_dynamicNodes->setObject(createSortZIndexNodeWithRect(renderer->getRenderer(), rect),obj->m_uID);
     m_occlusionDirty=true;
+    
+    //监听对象位置改变事件
+    Game::getMessageManager()->registerReceiver(obj, MSG_POSITION_CHANGE, NULL,
+                                                message_selector(GameActiveSortLayer::onDynamicObjectPositionChange), this);
 }
 
 /**
@@ -194,21 +207,20 @@ void GameActiveSortLayer::addDynamicObject(GameEntity* obj)
  */
 void GameActiveSortLayer::removeDynamicObject(GameEntity* obj)
 {
-    int i=0;
+    //移除事件
+    Game::getMessageManager()->removeReceiver(obj, MSG_POSITION_CHANGE, NULL,
+                                              message_selector(GameActiveSortLayer::onDynamicObjectPositionChange), this);
     
-    CCObject* pObj=NULL;
-    SortZIndexNode* node=NULL;
-    CCARRAY_FOREACH_REVERSE(m_dynamicNodes, pObj){
-        node=static_cast<SortZIndexNode*>(pObj);
-        if (node->getEntity()==obj) {
-            
-            m_dynamicNodes->removeObjectAtIndex(i);
-            m_occlusionDirty=true;
-            break;
-        }
-        
-        ++i;
-    }
+    m_dynamicNodes->removeObjectForKey(obj->m_uID);
+}
+
+/**
+ * 动态物体的位置改变
+ */
+void GameActiveSortLayer::onDynamicObjectPositionChange(yhge::Message* message)
+{
+    GameEntity* obj=static_cast<GameEntity*>(message->getReceiver());
+    this->updateDynamicObjectZIndexNode(obj);
 }
 
 
@@ -238,23 +250,11 @@ SortZIndexNode* GameActiveSortLayer::createSortZIndexNodeWithRect(CCNode* mapObj
 //更新动态物体的ZOrder。创建成功的第一次更新
 void GameActiveSortLayer::updateDynamicObjectsZOrderFirst()
 {
-    CCObject* pObj=NULL;
+    CCDictElement* pElem=NULL;
     SortZIndexNode* node=NULL;
-    GameEntity* mapObject=NULL;
     
-    CCARRAY_FOREACH(m_dynamicNodes, pObj){
-        node=static_cast<SortZIndexNode*>(pObj);
-        
-        mapObject=static_cast<GameEntity*>(node->getEntity());
-        CCRect nodeRect=node->getRect();
-        
-        node->reset();
-        node->setEntity(mapObject);
-        
-        //更新位置，直接把屏幕坐标转成地图坐标，根据不同的实现，这里可能不同
-        ISOPositionComponent* positionComponent=mapObject->getISOPositionComponent();
-        nodeRect.origin=ccp(positionComponent->getX(),positionComponent->getY());
-        node->setRect(nodeRect);
+    CCDICT_FOREACH(m_dynamicNodes, pElem){
+        node=static_cast<SortZIndexNode*>(pElem->getObject());
         
         m_occlusion->insert(node);
     }
@@ -267,23 +267,13 @@ void GameActiveSortLayer::updateDynamicObjectsZOrderFirst()
 //更新动态物体的ZOrder
 void GameActiveSortLayer::updateDynamicObjectsZOrder()
 {
-    CCObject* pObj=NULL;
+    CCDictElement* pElem=NULL;
     SortZIndexNode* node=NULL;
-    GameEntity* mapObject=NULL;
     
-    CCARRAY_FOREACH(m_dynamicNodes, pObj){
-        node=static_cast<SortZIndexNode*>(pObj);
+    CCDICT_FOREACH(m_dynamicNodes, pElem){
+        node=static_cast<SortZIndexNode*>(pElem->getObject());
 
-        mapObject=static_cast<GameEntity*>(node->getEntity());
-        CCRect nodeRect=node->getRect();
-        
-        node->reset();
-        node->setEntity(mapObject);
-        
-        //更新位置，直接把屏幕坐标转成地图坐标，根据不同的实现，这里可能不同
-        ISOPositionComponent* positionComponent=mapObject->getISOPositionComponent();
-        nodeRect.origin=ccp(positionComponent->getX(),positionComponent->getY());
-        node->setRect(nodeRect);
+        node->resetRelation();
 
         m_occlusion->insert(node);
     }
@@ -314,6 +304,20 @@ GameEntity* GameActiveSortLayer::createDynamicObject(int gid,const CCPoint& coor
     GameEntity* gameObj=EntityFactory::getInstance()->createEntityById(gid);
     
     return gameObj;
+}
+
+//更新对象的排序结点
+void GameActiveSortLayer::updateDynamicObjectZIndexNode(GameEntity* obj)
+{
+    SortZIndexNode* node=static_cast<SortZIndexNode*>(m_dynamicNodes->objectForKey(obj->m_uID));
+    if (node) {
+        //只更新结点的rect
+        CCRect rect= node->getRect();
+        ISOPositionComponent* positionComponent=obj->getISOPositionComponent();
+        rect.origin=ccp(positionComponent->getX(),positionComponent->getY());
+        node->setRect(rect);
+        m_occlusionDirty=true;
+    }
 }
 
 NS_CC_GE_END
