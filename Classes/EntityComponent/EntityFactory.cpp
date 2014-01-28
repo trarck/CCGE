@@ -147,7 +147,7 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     player->addComponent(animation);
     animation->release();
     
-    float speed=2.0f;
+    float speed=1.5f;
     
     CameraFlowGridMoveComponent* gridMove=new CameraFlowGridMoveComponent();
     gridMove->init(speed);
