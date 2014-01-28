@@ -197,7 +197,7 @@ void GameWorldController::createGameMap()
     mapBuilder->setActiveLayerName("top");
     
     //不要创建活动层，由游戏自己创建
-    mapBuilder->setBuildActiveLayer(false);
+    mapBuilder->setBuildActiveLayer(true);
     
     mapBuilder->buildWithMapInfo(mapInfo);
     
@@ -210,12 +210,13 @@ void GameWorldController::createGameMap()
     //    m_isoMap->setupDynamicGroup();
     m_isoMap->showCoordLine();
     
+
+    m_activeLayer=static_cast<ISOActiveLayer*>(m_isoMap->getActiveLayer());
     
-    ISOActiveLayerInfo* activeLayerInfo=mapBuilder->getActiveLayerInfo(mapInfo);
+//    ISOActiveLayerInfo* activeLayerInfo=mapBuilder->getActiveLayerInfo(mapInfo);
+//    this->createActiveLayer(activeLayerInfo);
     
-    this->createActiveLayer(activeLayerInfo);
-    
-    
+    //加入渲染树中
     m_layer->addChild(m_isoMap,kGameMapZOrder);
     
     //设置地图的格子行列
@@ -224,11 +225,6 @@ void GameWorldController::createGameMap()
     m_iMapRow=(int)mapSize.height;
     
     //m_isoMap->release();
-    
-    //add active layer
-    
-//    m_pIntermediate=CCLayer::create();
-//    m_isoMap->addChild(m_pIntermediate,999);
     
 }
 
@@ -366,6 +362,8 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     gridMoveComponent->setInnerOrigin(pos);
 
     m_activeLayer->addChild(rendererComponent->getRenderer());
+    
+//    m_activeLayer->addDynamicObject(player);
     
 }
 

@@ -60,7 +60,14 @@ GameEntity* EntityFactory::createEntityById(int entityId)
     entity->setRendererComponent(renderer);
     
     //位置组件
-    ISOPositionComponent* isoPosition=new ISOPositionComponent();
+//    ISOPositionComponent* isoPosition=new ISOPositionComponent();
+//    isoPosition->init();
+//    entity->addComponent(isoPosition);
+//    isoPosition->release();
+//    entity->setISOPositionComponent(isoPosition);
+    
+    //使用自动排序的位置组件
+    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
     isoPosition->init();
     entity->addComponent(isoPosition);
     isoPosition->release();
@@ -117,6 +124,13 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     player->addComponent(isoPosition);
     isoPosition->release();
     player->setISOPositionComponent(isoPosition);
+    
+//    //使用自动排序的位置组件
+//    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
+//    isoPosition->init();
+//    player->addComponent(isoPosition);
+//    isoPosition->release();
+//    player->setISOPositionComponent(isoPosition);
 
     //动画组件
     AnimationComponent* animation=new AnimationComponent();

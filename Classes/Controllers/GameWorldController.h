@@ -255,7 +255,9 @@ private:
 	int m_iMapColumn;
 	int m_iMapRow;
     
-    GameActiveSortLayer* m_activeLayer;
+//    GameActiveSortLayer* m_activeLayer;
+    
+    yhge::ISOActiveLayer* m_activeLayer;
     
 //	CCLayer* m_pBackground;//背景层，加载地形资源
 //	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
