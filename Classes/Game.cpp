@@ -7,6 +7,7 @@
 //
 
 #include "Game.h"
+#include <yhge/yhge.h>
 
 #include "Scenes/GameSceneDirector.h"
 
@@ -15,8 +16,12 @@
 
 USING_NS_CC;
 USING_NS_CC_YHMVC;
+USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
+
+static const float kGameTileWidth=120;
+static const float kGameTileHeight=60;
 
 static Game* s_gameInstance=NULL;
 Game* Game::getInstance()
@@ -36,6 +41,16 @@ Game::Game()
 Game::~Game()
 {
 	CC_SAFE_RELEASE_NULL(m_sceneContext);
+}
+
+/**
+ * 执行初始化的工作
+ */
+void Game::setup()
+{
+    ISOStaticCoordinate::initTileSize(kGameTileWidth, kGameTileHeight);
+    
+    setupSceneDirector();
 }
 
 void Game::setupSceneDirector()

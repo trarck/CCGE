@@ -25,6 +25,11 @@ public:
     static Game* getInstance();
 
     /**
+     * 执行初始化的工作
+     */
+    void setup();
+    
+    /**
 	 * 设置场景管理
 	 */
     void setupSceneDirector();

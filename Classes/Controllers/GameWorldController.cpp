@@ -286,10 +286,10 @@ void GameWorldController::setCameraMoveRange()
     
     float scale=m_pGameCamera->getScale();
 
-    float minX=-mapSize.height*TileWidth*0.5*scale;
+    float minX=-mapSize.height*ISOStaticCoordinate::sTileWidth*0.5*scale;
     float minY=0;
-    float maxX=mapSize.width*TileWidth*0.5*scale;
-    float maxY=(mapSize.height+mapSize.height)*TileHeight*0.5*scale;
+    float maxX=mapSize.width*ISOStaticCoordinate::sTileWidth*0.5*scale;
+    float maxY=(mapSize.height+mapSize.height)*ISOStaticCoordinate::sTileHeight*0.5*scale;
     //由于坐标原点在屏幕左下角，所以要对maxX,maxY进行修正，它们的大小要减去可视区域大小
     maxX-=visibleSize.width;
     maxY-=visibleSize.height;
@@ -391,7 +391,7 @@ void GameWorldController::movePlayerToViewLocation(CCPoint location)
 
 //void GameWorldController::moveViewEntity(Unit* entity,CCPoint location)
 //{
-//	CCPoint coord=isoViewToGamePoint(location);
+//	CCPoint coord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(location));
 //	moveEntity(entity,coord);
 //}
 
@@ -449,7 +449,7 @@ CCArray* GameWorldController::mapPathsToViewPaths(CCArray* paths)
         
 		CCARRAY_FOREACH(paths,pObj){
 			it=(CCPointValue*)pObj;
-            toPos=isoGameToViewPoint(it->getPoint());
+            toPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(it->getPoint()));
 			newPaths->addObject(CCPointValue::create(toPos));
 		}
 		return newPaths;
@@ -466,12 +466,12 @@ bool GameWorldController::isWorkable(int x ,int y)
 
 CCPoint GameWorldController::toGameCoordinate(const CCPoint& position)
 {
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position));
+    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position)));
 }
 
 CCPoint GameWorldController::toGameCoordinate(float x,float y)
 {
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y)));
+    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y))));
 }
 
 void GameWorldController::updateMapPosition(const CCPoint& position)
@@ -495,7 +495,7 @@ bool  GameWorldController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     m_startPoint=m_layer->getPosition();
 	m_lastTouchLocation=touchPoint;
 
-	CCPoint mapCoord=isoViewToGamePoint(m_pGameCamera->getLocationInWorld(touchPoint));
+	CCPoint mapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(touchPoint)));
 	CCLOG("touch began view cood:%f,%f,map:%f,%f",touchPoint.x,touchPoint.y,mapCoord.x,mapCoord.y);
 	return true;
 }
@@ -519,7 +519,7 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 	if(!m_bIsTouchMoved){
 		 CCPoint touchPoint = pTouch->getLocation();
 		 touchPoint=m_pGameCamera->getLocationInWorld(touchPoint);
-		 CCPoint to=isoViewToGamePoint(touchPoint);
+		 CCPoint to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(touchPoint));
 		 //如果player正在移动，则此时取到的坐标和最终停下来的不一致。
 //		 CCPoint from=m_pPlayer->getCoordinate();
 //    
@@ -617,7 +617,7 @@ void GameWorldController::menuMoveToCallback(CCObject* pSender)
     
     
     //    CCSize screenSize= CCDirector::sharedDirector()->getWinSize();
-    //    CCPoint to=isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50);
+    //    CCPoint to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50));
     //	CCPoint from=m_pPlayer->getCoordinate();
     //
     //	CCArray* paths=searchPathsFrom(from,to);

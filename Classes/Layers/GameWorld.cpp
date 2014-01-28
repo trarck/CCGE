@@ -354,7 +354,7 @@ void GameWorld::movePlayerToViewLocation(CCPoint location)
 
 //void GameWorld::moveViewEntity(Unit* entity,CCPoint location)
 //{
-//	CCPoint coord=isoViewToGamePoint(location);
+//	CCPoint coord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(location));
 //	moveEntity(entity,coord);
 //}
 
@@ -407,7 +407,7 @@ CCArray* GameWorld::mapPathsToViewPaths(CCArray* paths)
         
 		CCARRAY_FOREACH(paths,pObj){
 			it=(CCPointValue*)pObj;
-            toPos=isoGameToViewPoint(it->getPoint());
+            toPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(it->getPoint()));
 			newPaths->addObject(CCPointValue::create(toPos));
 		}
 		return newPaths;
@@ -459,7 +459,7 @@ void GameWorld::menuMoveToCallback(CCObject* pSender)
    
     
 //    CCSize screenSize= CCDirector::sharedDirector()->getWinSize();
-//    CCPoint to=isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50);
+//    CCPoint to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(screenSize.width/2+50,screenSize.height/2+50));
 //	CCPoint from=m_pPlayer->getCoordinate();
 //    
 //	CCArray* paths=searchPathsFrom(from,to);
@@ -477,7 +477,7 @@ bool  GameWorld::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	m_startPoint=this->getPosition();
 	m_lastTouchLocation=touchPoint;
 
-	CCPoint mapCoord=isoViewToGamePoint(m_pGameCamera->getLocationInWorld(touchPoint));
+	CCPoint mapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(touchPoint)));
 	CCLOG("touch began view cood:%f,%f,map:%f,%f",touchPoint.x,touchPoint.y,mapCoord.x,mapCoord.y);
 	return true;
 }
@@ -501,7 +501,7 @@ void  GameWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 	if(!m_bIsTouchMoved){
 		 CCPoint touchPoint = pTouch->getLocation();
 		 touchPoint=m_pGameCamera->getLocationInWorld(touchPoint);
-		 CCPoint to=isoViewToGamePoint(touchPoint);
+		 CCPoint to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(touchPoint));
 		 //如果player正在移动，则此时取到的坐标和最终停下来的不一致。
 //		 CCPoint from=m_pPlayer->getCoordinate();
 //    
@@ -536,12 +536,12 @@ void GameWorld::updateMapPosition(float x,float y)
 
 CCPoint GameWorld::toGameCoordinate(const CCPoint& position)
 {
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position));
+    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(position)));
 }
 
 CCPoint GameWorld::toGameCoordinate(float x,float y)
 {
-    return isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y)));
+    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(ccp(x,y))));
 }
 
 
