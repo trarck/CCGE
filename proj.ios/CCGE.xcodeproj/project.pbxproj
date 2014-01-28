@@ -1889,7 +1889,7 @@
 		575E3F9B18892DC100E37B69 /* EntityComponent */ = {
 			isa = PBXGroup;
 			children = (
-				57F74DB9188CB794003E830F /* Components */,
+				57975ACF18974C1A008A9F38 /* Components */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
@@ -1911,7 +1911,7 @@
 			path = ../Classes/Layers;
 			sourceTree = "<group>";
 		};
-		57F74DB9188CB794003E830F /* Components */ = {
+		57975ACF18974C1A008A9F38 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 			);
