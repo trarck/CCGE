@@ -256,7 +256,8 @@ ISOMapInfo* GameWorldController::loadMapData()
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
     isoXmlParser->setTranslateObjectCoord(true);
-    isoXmlParser->initWithTMXFile(CCString::createWithFormat("map/zone/%d_%d.tmx",m_zoneId,m_mapId)->getCString());
+//    isoXmlParser->initWithTMXFile(CCString::createWithFormat("map/zone/%d_%d.tmx",m_zoneId,m_mapId)->getCString());
+    isoXmlParser->initWithTMXFile("map/zone/m1xin/cj0101.tmx");
     
     ISOMapInfo* mapInfo=isoXmlParser->getMapInfo();
     

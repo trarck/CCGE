@@ -19,4 +19,15 @@
 #define USING_NS_CC_GE
 #endif //__cplusplus
 
+
+#ifdef TileWidth
+#undef TileWidth
+#define TileWidth 120
+#endif
+//tile height
+#ifdef TileHeight
+#undef TileHeight
+#define TileHeight 60
+#endif
+
 #endif //CCGE_CCGEMACROS_H_
