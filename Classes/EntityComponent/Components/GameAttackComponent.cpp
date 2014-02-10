@@ -41,7 +41,6 @@ void GameAttackComponent::cleanupMessages()
     AttackComponent::cleanupMessages();
 }
 
-
 void GameAttackComponent::attack()
 {
     if(m_target){
