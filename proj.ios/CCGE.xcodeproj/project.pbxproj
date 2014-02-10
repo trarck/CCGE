@@ -250,6 +250,7 @@
 		575D1523187CEFD2004E9958 /* libyhgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1521187CEFB2004E9958 /* libyhgui.a */; };
 		575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9C18892DC100E37B69 /* GameEntity.cpp */; };
 		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
+		5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */; };
 		576E3FD9187D617500745A0A /* map in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FD8187D617500745A0A /* map */; };
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
@@ -807,6 +808,8 @@
 		575E3F9D18892DC100E37B69 /* GameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEntity.h; sourceTree = "<group>"; };
 		575E3F9F1889344600E37B69 /* EntityFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityFactory.cpp; sourceTree = "<group>"; };
 		575E3FA01889344600E37B69 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
+		5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAttackComponent.cpp; sourceTree = "<group>"; };
+		5768C14718A8DA0E005123C5 /* GameAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAttackComponent.h; sourceTree = "<group>"; };
 		576E3FD8187D617500745A0A /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
 		577105741883DF8900FA1446 /* MissionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionController.cpp; sourceTree = "<group>"; };
 		577105751883DF8900FA1446 /* MissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
@@ -1889,7 +1892,7 @@
 		575E3F9B18892DC100E37B69 /* EntityComponent */ = {
 			isa = PBXGroup;
 			children = (
-				57975ACF18974C1A008A9F38 /* Components */,
+				5768C14518A8DA0E005123C5 /* Components */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
@@ -1897,6 +1900,15 @@
 			);
 			name = EntityComponent;
 			path = ../Classes/EntityComponent;
+			sourceTree = "<group>";
+		};
+		5768C14518A8DA0E005123C5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */,
+				5768C14718A8DA0E005123C5 /* GameAttackComponent.h */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		577105771883DFED00FA1446 /* Layers */ = {
@@ -1909,13 +1921,6 @@
 			);
 			name = Layers;
 			path = ../Classes/Layers;
-			sourceTree = "<group>";
-		};
-		57975ACF18974C1A008A9F38 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -2202,6 +2207,7 @@
 				575AD893187BC54B00AA0477 /* GameSceneDirector.cpp in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
+				5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */,
 				575D150B187C0827004E9958 /* MenuItemUtil.cpp in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
