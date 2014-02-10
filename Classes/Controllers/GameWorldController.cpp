@@ -239,6 +239,7 @@ void GameWorldController::createGameMap()
     m_walkPaths=this->buildWalkPaths(mapInfo);
     m_walkPaths->retain();
     
+    //debug show walk path
     CCObject* pObj=NULL;
     CCPointValue* pointValue=NULL;
     std::string pathLog="";
@@ -247,11 +248,9 @@ void GameWorldController::createGameMap()
         pointValue=static_cast<CCPointValue*>(pObj);
         pathLog+=CCString::createWithFormat("(%d,%d)",(int)pointValue->getPoint().x,(int)pointValue->getPoint().y)->getCString();
     }
-    
     CCLOG("walk path:%s",pathLog.c_str());
     
     //m_isoMap->release();
-    
 }
 
 /*
