@@ -87,6 +87,9 @@
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp">
       <Filter>Classes\EntityComponent</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Layers\GameActiveSortLayer.cpp">
+      <Filter>Classes\Layers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h">
       <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Layers\GameActiveSortLayer.h">
+      <Filter>Classes\Layers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
