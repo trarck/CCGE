@@ -23,7 +23,7 @@ public:
     /**
      * 从配置文件中创建一个游戏实体
      */
-    GameEntity* createEntity(CCDictionary* data);
+    GameEntity* createEntity(int entityId,CCDictionary* data=NULL);
     
     /**
      * 根据id创建游戏实体
@@ -33,12 +33,12 @@ public:
     /**
      * 创建一个人物
      */
-    GameEntity* createPlayer(CCDictionary* param);
+    GameEntity* createPlayer(int entityId,CCDictionary* param=NULL);
     
     /**
      * 创建战斗中的人物
      */
-    GameEntity* createBattlePlayer(CCDictionary* param);
+    GameEntity* createBattlePlayer(int entityId,CCDictionary* param=NULL);
 };
 
 NS_CC_GE_END

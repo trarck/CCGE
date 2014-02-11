@@ -666,7 +666,7 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     CCPoint pos=ccp(visibleSize.width/2,visibleSize.height/2);
     pos=m_layer->convertToWorldSpace(pos);
     
-    GameEntity* player=EntityFactory::getInstance()->createPlayer(NULL);
+    GameEntity* player=EntityFactory::getInstance()->createPlayer(2);
     setPlayer(player);
     
     ISOPositionComponent* iosPositionComponent=static_cast<ISOPositionComponent*>(m_player->getComponent("ISOPositionComponent"));
