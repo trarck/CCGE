@@ -255,7 +255,11 @@
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
+		57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57823C5018A9BF11005ACB35 /* UnitProperty.cpp */; };
 		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
+		57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E918AA07070085A22F /* DamageFormula.cpp */; };
+		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
+		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
 		57F74DC1188CB890003E830F /* characters in Resources */ = {isa = PBXBuildFile; fileRef = 57F74DC0188CB890003E830F /* characters */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -817,8 +821,18 @@
 		577105791883DFED00FA1446 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorld.h; sourceTree = "<group>"; };
 		5771057B1883E1B800FA1446 /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
 		5771057C1883E1B800FA1446 /* MissionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionScene.h; sourceTree = "<group>"; };
+		57823C5018A9BF11005ACB35 /* UnitProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitProperty.cpp; sourceTree = "<group>"; };
+		57823C5118A9BF11005ACB35 /* UnitProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitProperty.h; sourceTree = "<group>"; };
+		57823C5818A9C42C005ACB35 /* PropertyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyDefine.h; sourceTree = "<group>"; };
 		57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameActiveSortLayer.cpp; sourceTree = "<group>"; };
 		57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActiveSortLayer.h; sourceTree = "<group>"; };
+		57CF76E918AA07070085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
+		57CF76EA18AA07070085A22F /* DamageFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageFormula.h; sourceTree = "<group>"; };
+		57CF76F018AA0D5F0085A22F /* AnimationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDefine.h; sourceTree = "<group>"; };
+		57CF76F118AA11380085A22F /* BattleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleController.cpp; sourceTree = "<group>"; };
+		57CF76F218AA11380085A22F /* BattleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleController.h; sourceTree = "<group>"; };
+		57CF76F418AA18450085A22F /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
+		57CF76F518AA18450085A22F /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		57F74DC0188CB890003E830F /* characters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = characters; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1356,8 +1370,10 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				57823C5718A9C42C005ACB35 /* Consts */,
 				575AD871187BC54B00AA0477 /* Controllers */,
 				575E3F9B18892DC100E37B69 /* EntityComponent */,
+				57CF76E818AA07070085A22F /* Formula */,
 				577105771883DFED00FA1446 /* Layers */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
 				575D1505187C0827004E9958 /* Tests */,
@@ -1822,6 +1838,8 @@
 		575AD871187BC54B00AA0477 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57CF76F118AA11380085A22F /* BattleController.cpp */,
+				57CF76F218AA11380085A22F /* BattleController.h */,
 				575AD872187BC54B00AA0477 /* FooterController.cpp */,
 				575AD873187BC54B00AA0477 /* FooterController.h */,
 				5755C7141884CB6800213F7C /* GameWorldController.cpp */,
@@ -1846,6 +1864,8 @@
 			children = (
 				575AD880187BC54B00AA0477 /* BaseScene.cpp */,
 				575AD881187BC54B00AA0477 /* BaseScene.h */,
+				57CF76F418AA18450085A22F /* BattleScene.cpp */,
+				57CF76F518AA18450085A22F /* BattleScene.h */,
 				575AD882187BC54B00AA0477 /* GameSceneDirector.cpp */,
 				575AD883187BC54B00AA0477 /* GameSceneDirector.h */,
 				575AD884187BC54B00AA0477 /* MainScene.cpp */,
@@ -1893,6 +1913,7 @@
 			isa = PBXGroup;
 			children = (
 				5768C14518A8DA0E005123C5 /* Components */,
+				57823C4F18A9BF11005ACB35 /* Properties */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
@@ -1921,6 +1942,35 @@
 			);
 			name = Layers;
 			path = ../Classes/Layers;
+			sourceTree = "<group>";
+		};
+		57823C4F18A9BF11005ACB35 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				57823C5018A9BF11005ACB35 /* UnitProperty.cpp */,
+				57823C5118A9BF11005ACB35 /* UnitProperty.h */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		57823C5718A9C42C005ACB35 /* Consts */ = {
+			isa = PBXGroup;
+			children = (
+				57CF76F018AA0D5F0085A22F /* AnimationDefine.h */,
+				57823C5818A9C42C005ACB35 /* PropertyDefine.h */,
+			);
+			name = Consts;
+			path = ../Classes/Consts;
+			sourceTree = "<group>";
+		};
+		57CF76E818AA07070085A22F /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				57CF76E918AA07070085A22F /* DamageFormula.cpp */,
+				57CF76EA18AA07070085A22F /* DamageFormula.h */,
+			);
+			name = Formula;
+			path = ../Classes/Formula;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -2078,6 +2128,7 @@
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
 				15A3D9031682F7D5002FB0C5 /* b2Collision.cpp in Sources */,
 				15A3D9041682F7D5002FB0C5 /* b2Distance.cpp in Sources */,
+				57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */,
 				15A3D9051682F7D5002FB0C5 /* b2DynamicTree.cpp in Sources */,
 				15A3D9061682F7D5002FB0C5 /* b2TimeOfImpact.cpp in Sources */,
 				15A3D9071682F7D5002FB0C5 /* b2ChainShape.cpp in Sources */,
@@ -2087,6 +2138,7 @@
 				15A3D90B1682F7D5002FB0C5 /* b2BlockAllocator.cpp in Sources */,
 				15A3D90C1682F7D5002FB0C5 /* b2Draw.cpp in Sources */,
 				15A3D90D1682F7D5002FB0C5 /* b2Math.cpp in Sources */,
+				57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */,
 				15A3D90E1682F7D5002FB0C5 /* b2Settings.cpp in Sources */,
 				15A3D90F1682F7D5002FB0C5 /* b2StackAllocator.cpp in Sources */,
 				575AD895187BC54B00AA0477 /* TestISOScene.cpp in Sources */,
@@ -2131,6 +2183,7 @@
 				15A3D99F1682F7F9002FB0C5 /* cpRotaryLimitJoint.c in Sources */,
 				15A3D9A01682F7F9002FB0C5 /* cpSimpleMotor.c in Sources */,
 				15A3D9A11682F7F9002FB0C5 /* cpSlideJoint.c in Sources */,
+				57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */,
 				15A3D9A21682F7F9002FB0C5 /* cpArbiter.c in Sources */,
 				15A3D9A31682F7F9002FB0C5 /* cpArray.c in Sources */,
 				15A3D9A41682F7F9002FB0C5 /* cpBB.c in Sources */,
@@ -2183,6 +2236,7 @@
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
+				57CF76F318AA11380085A22F /* BattleController.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
 				15A3DA501682F826002FB0C5 /* CCControlStepper.cpp in Sources */,
 				575AD88E187BC54B00AA0477 /* MainController.cpp in Sources */,
