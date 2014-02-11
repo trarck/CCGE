@@ -1,5 +1,7 @@
 #include "EntityFactory.h"
 #include <yhge/yhge.h>
+#include "../Consts/PropertyDefine.h"
+#include "Properties/UnitProperty.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -50,7 +52,13 @@ GameEntity* EntityFactory::createEntityById(int entityId)
 {
     GameEntity* entity=GameEntity::create();
     
-    //添加组件
+    //==========添加属性==========//
+    UnitProperty* unitProperty=new UnitProperty();
+    entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
+    unitProperty->release();
+    entity->setUnitProperty(unitProperty);
+    
+    //==========添加组件==========//
     
     //显示组件
     SpriteRendererComponent* renderer=new SpriteRendererComponent();
@@ -109,7 +117,7 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
 {
     GameEntity* player=GameEntity::create();
     
-    //添加组件
+    //==========添加组件==========//
     
     //显示组件
     SpriteRendererComponent* renderer=new SpriteRendererComponent();
@@ -157,6 +165,51 @@ GameEntity* EntityFactory::createPlayer(CCDictionary* param)
     
     player->addComponent(gridMove);
     gridMove->release();
+    
+    return player;
+}
+
+/**
+ * 创建战斗中的人物
+ */
+GameEntity* EntityFactory::createBattlePlayer(CCDictionary* param)
+{
+    GameEntity* player=GameEntity::create();
+    
+    //战斗中的人物需要战斗相关的属性
+    
+    //==========添加属性==========//
+    UnitProperty* unitProperty=new UnitProperty();
+    player->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
+    unitProperty->release();
+    player->setUnitProperty(unitProperty);
+    
+    //==========添加组件==========//
+    //不需要移动相关组件
+    
+    //显示组件
+    SpriteRendererComponent* renderer=new SpriteRendererComponent();
+    renderer->init();
+    player->addComponent(renderer);
+    renderer->release();
+    player->setRendererComponent(renderer);
+    
+    //动画组件
+    AnimationComponent* animation=new AnimationComponent();
+    animation->init();
+    
+    //TODO 加载战斗动画
+    
+    //空闲动画
+    CCArray* idleEightAnimations=AnimationComponent::eightDirectionActionListWithDir("characters/2/0", 10, CCSizeMake(62, 91), 0.15f, "%s/%02d%03d.png");
+    animation->addAnimationList(idleEightAnimations,"idle");
+    
+    //战斗动画
+    CCArray* moveEightAnimations=AnimationComponent::eightDirectionActionListWithDir("characters/2/1", 8, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
+    animation->addAnimationList(moveEightAnimations,"attack");
+    
+    player->addComponent(animation);
+    animation->release();
     
     return player;
 }

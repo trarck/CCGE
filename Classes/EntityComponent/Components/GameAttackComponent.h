@@ -4,8 +4,11 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
+#include "EntityComponent/Properties/UnitProperty.h"
 
 NS_CC_GE_BEGIN
+
+class GameEntity;
 
 class GameAttackComponent : public yhge::AttackComponent
 {
@@ -14,7 +17,15 @@ public:
     GameAttackComponent();
     ~GameAttackComponent();
     
-//    virtual bool init();
+    /**
+     * 设置
+     */
+    virtual void setup();
+    
+    /**
+     * 消除
+     */
+    virtual void cleanup();
     
     virtual bool registerMessages();
     
@@ -31,24 +42,31 @@ public:
     virtual void attackWithSkillId(int skillId);
 
     /**
-     * 处理攻击消息
+     * 处理目标伤害
      */
-    virtual void onAttack(yhge::Message *message);
+    void parseTargetDamage();
     
     /**
-     * 处理设置目标消息
+     * 计算伤害值
+     * 公式是固定的
      */
-    virtual void onSetAttackTarget(yhge::Message *message);
+    int calcDamage(UnitProperty* targetUnitProperty);
+
+    inline void setDamageFormulaParameterOne(float damageFormulaParameterOne)
+    {
+        m_damageFormulaParameterOne = damageFormulaParameterOne;
+    }
     
-    /**
-     * 处理目标死亡消息
-     */
-    virtual void onTargetDie(yhge::Message *message);
-    
-public:
-    
+    inline float getDamageFormulaParameterOne()
+    {
+        return m_damageFormulaParameterOne;
+    }
     
 protected:
+    
+    yhge::AnimationComponent* m_animationComponent;
+    
+    float m_damageFormulaParameterOne;
     
 };
 

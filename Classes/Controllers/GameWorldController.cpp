@@ -36,6 +36,7 @@ GameWorldController::GameWorldController()
 ,m_walkPaths(NULL)
 {
 	CCLOG("GameWorldController create");
+    m_sName="GameWorldController";
 }
 
 GameWorldController::~GameWorldController()
@@ -668,12 +669,11 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     GameEntity* player=EntityFactory::getInstance()->createPlayer(NULL);
     setPlayer(player);
     
-    RendererComponent* rendererComponent=static_cast<RendererComponent*>(m_player->getComponent("RendererComponent"));
-    
     ISOPositionComponent* iosPositionComponent=static_cast<ISOPositionComponent*>(m_player->getComponent("ISOPositionComponent"));
     iosPositionComponent->setCoordinate(coord);
     iosPositionComponent->updateRendererPosition();
     
+    //set animation
     CCDictionary* data=new CCDictionary();
     data->setObject(CCString::create("idle"), "name");
     data->setObject(CCInteger::create(0), "direction");
@@ -683,6 +683,7 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     gridMoveComponent->setCamera(m_pGameCamera);
     gridMoveComponent->setInnerOrigin(pos);
 
+    RendererComponent* rendererComponent=static_cast<RendererComponent*>(m_player->getComponent("RendererComponent"));
     m_activeLayer->addChild(rendererComponent->getRenderer());
     
 //    m_activeLayer->addDynamicObject(player);

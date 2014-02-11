@@ -8,6 +8,7 @@ NS_CC_GE_BEGIN
 GameEntity::GameEntity()
 :m_rendererComponent(NULL)
 ,m_isoPositionComponent(NULL)
+,m_unitProperty(NULL)
 {
 
 }

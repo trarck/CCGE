@@ -34,6 +34,11 @@ public:
      * 创建一个人物
      */
     GameEntity* createPlayer(CCDictionary* param);
+    
+    /**
+     * 创建战斗中的人物
+     */
+    GameEntity* createBattlePlayer(CCDictionary* param);
 };
 
 NS_CC_GE_END

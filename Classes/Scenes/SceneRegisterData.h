@@ -1,11 +1,3 @@
-//
-//  SceneRegisterData.h
-//  CCMVC
-//
-//  Created by duanhouhai on 13-11-1.
-//
-//
-
 #ifndef CCGE_SCENES_SCENEREGISTERDATA_H_
 #define CCGE_SCENES_SCENEREGISTERDATA_H_
 
@@ -23,6 +15,7 @@ typedef struct SceneRegisterItem
 #include "Scenes/MainScene.h"
 #include "Scenes/TestISOScene.h"
 #include "Scenes/MissionScene.h"
+#include "Scenes/BattleScene.h"
 
 NS_CC_GE_BEGIN
 
@@ -31,6 +24,7 @@ static SceneRegisterItem kSceneRegisterData[]=
     {kMainScene,SCENE_CREATE_SELECTOR(MainScene::create)},
 	{kTestISOScene,SCENE_CREATE_SELECTOR(TestISOScene::create)},
     {kMissioncene,SCENE_CREATE_SELECTOR(MissionScene::create)},
+    {kBattlecene,SCENE_CREATE_SELECTOR(BattleScene::create)},
 };
 
 NS_CC_GE_END

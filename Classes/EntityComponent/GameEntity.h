@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
+#include "Properties/UnitProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -37,11 +38,25 @@ public:
     {
         return m_isoPositionComponent;
     }
+    
+    inline void setUnitProperty(UnitProperty* unitProperty)
+    {
+        m_unitProperty = unitProperty;
+    }
+    
+    inline UnitProperty* getUnitProperty()
+    {
+        return m_unitProperty;
+    }
+
 private:
 
     yhge::RendererComponent* m_rendererComponent;
 
     yhge::ISOPositionComponent* m_isoPositionComponent;
+    
+    UnitProperty* m_unitProperty;
+    
 };
 
 NS_CC_GE_END

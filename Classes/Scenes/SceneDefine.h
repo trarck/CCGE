@@ -1,11 +1,3 @@
-//
-//  SceneDifine.h
-//  CCMVC
-//
-//  Created by duanhouhai on 13-11-1.
-//
-//
-
 #ifndef CCGE_SCENES_SCENEDIFINE_H_
 #define CCGE_SCENES_SCENEDIFINE_H_
 
@@ -14,6 +6,7 @@
 static const char* kMainScene="main";
 static const char* kTestISOScene="TestISO";
 static const char* kMissioncene="Misson";
+static const char* kBattlecene="Battle";
 
 #pragma unused(kMainScene)
 
