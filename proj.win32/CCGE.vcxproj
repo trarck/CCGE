@@ -128,6 +128,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Controllers\BattleController.cpp" />
     <ClCompile Include="..\Classes\Controllers\FooterController.cpp" />
     <ClCompile Include="..\Classes\Controllers\GameWorldController.cpp" />
     <ClCompile Include="..\Classes\Controllers\HeaderController.cpp" />
@@ -135,12 +136,16 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\Controllers\MissionController.cpp" />
     <ClCompile Include="..\Classes\Controllers\TestISOController.cpp" />
     <ClCompile Include="..\Classes\Controllers\ThreeSegmentController.cpp" />
+    <ClCompile Include="..\Classes\EntityComponent\Components\GameAttackComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\EntityFactory.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp" />
+    <ClCompile Include="..\Classes\EntityComponent\Properties\UnitProperty.cpp" />
+    <ClCompile Include="..\Classes\Formula\DamageFormula.cpp" />
     <ClCompile Include="..\Classes\Game.cpp" />
     <ClCompile Include="..\Classes\Layers\GameActiveSortLayer.cpp" />
     <ClCompile Include="..\Classes\Layers\GameWorld.cpp" />
     <ClCompile Include="..\Classes\Scenes\BaseScene.cpp" />
+    <ClCompile Include="..\Classes\Scenes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\Scenes\GameSceneDirector.cpp" />
     <ClCompile Include="..\Classes\Scenes\MainScene.cpp" />
     <ClCompile Include="..\Classes\Scenes\MissionScene.cpp" />
@@ -152,6 +157,9 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\CCGEMacros.h" />
+    <ClInclude Include="..\Classes\Consts\AnimationDefine.h" />
+    <ClInclude Include="..\Classes\Consts\PropertyDefine.h" />
+    <ClInclude Include="..\Classes\Controllers\BattleController.h" />
     <ClInclude Include="..\Classes\Controllers\FooterController.h" />
     <ClInclude Include="..\Classes\Controllers\GameWorldController.h" />
     <ClInclude Include="..\Classes\Controllers\HeaderController.h" />
@@ -159,13 +167,17 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Controllers\MissionController.h" />
     <ClInclude Include="..\Classes\Controllers\TestISOController.h" />
     <ClInclude Include="..\Classes\Controllers\ThreeSegmentController.h" />
+    <ClInclude Include="..\Classes\EntityComponent\Components\GameAttackComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\EntityFactory.h" />
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h" />
+    <ClInclude Include="..\Classes\EntityComponent\Properties\UnitProperty.h" />
+    <ClInclude Include="..\Classes\Formula\DamageFormula.h" />
     <ClInclude Include="..\Classes\Game.h" />
     <ClInclude Include="..\Classes\Layers\GameActiveSortLayer.h" />
     <ClInclude Include="..\Classes\Layers\GameWorld.h" />
     <ClInclude Include="..\Classes\Messages.h" />
     <ClInclude Include="..\Classes\Scenes\BaseScene.h" />
+    <ClInclude Include="..\Classes\Scenes\BattleScene.h" />
     <ClInclude Include="..\Classes\Scenes\GameSceneDirector.h" />
     <ClInclude Include="..\Classes\Scenes\MainScene.h" />
     <ClInclude Include="..\Classes\Scenes\MissionScene.h" />

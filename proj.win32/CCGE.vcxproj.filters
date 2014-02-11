@@ -25,6 +25,15 @@
     <Filter Include="Classes\EntityComponent\Components">
       <UniqueIdentifier>{63a1396e-5110-4f24-a471-201a122fe5af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Consts">
+      <UniqueIdentifier>{57bb4118-cb85-405e-a13d-058512dc5ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Formula">
+      <UniqueIdentifier>{383f62fd-39e5-46ad-b68d-2992f79a8658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent\Properties">
+      <UniqueIdentifier>{7f5cb2e3-e574-42f1-baa2-b875312f47a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +98,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Layers\GameActiveSortLayer.cpp">
       <Filter>Classes\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Formula\DamageFormula.cpp">
+      <Filter>Classes\Formula</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\GameAttackComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Properties\UnitProperty.cpp">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\BattleScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\BattleController.cpp">
+      <Filter>Classes\Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +190,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Layers\GameActiveSortLayer.h">
       <Filter>Classes\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Consts\AnimationDefine.h">
+      <Filter>Classes\Consts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Consts\PropertyDefine.h">
+      <Filter>Classes\Consts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Formula\DamageFormula.h">
+      <Filter>Classes\Formula</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\GameAttackComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Properties\UnitProperty.h">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\BattleScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\BattleController.h">
+      <Filter>Classes\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
