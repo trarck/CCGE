@@ -50,6 +50,7 @@ void MainController::layerDidLoad()
     createTestMenuItem("test iso dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::DynamicLayerType));
     createTestMenuItem("test iso batch",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     createTestMenuItem("test iso batch dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchDynamicLayerType));
+    createTestMenuItem("test sqlite",kTestSqlite,NULL);
 
 	CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
 

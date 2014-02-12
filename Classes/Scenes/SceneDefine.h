@@ -7,6 +7,7 @@ static const char* kMainScene="main";
 static const char* kTestISOScene="TestISO";
 static const char* kMissioncene="Misson";
 static const char* kBattlecene="Battle";
+static const char* kTestSqlite="Sqlite";
 
 #pragma unused(kMainScene)
 
