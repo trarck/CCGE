@@ -35,9 +35,9 @@ void TestSqliteController::layerDidLoad()
     
     createTable();
     
-    insertData("test1","testa",1,1.1);
-    insertData("test2","testb",2,2.2);
-    insertData("test3","testc",3,3.3);
+    //insertData("test1","testa",1,1.1);
+    //insertData("test2","testb",2,2.2);
+    //insertData("test3","testc",3,3.3);
     
     showTable();
     
@@ -47,13 +47,13 @@ void TestSqliteController::layerDidLoad()
 
 void TestSqliteController::createTable()
 {
-    std::string createSql="CREATE TABLE IF NOT EXISTS data(key TEXT PRIMARY KEY,value TEXT,inte integer,fl real);";
-//    m_sqliteDB->execute(createSql);
+    std::string createSql="CREATE TABLE IF NOT EXISTS data(key TEXT PRIMARY KEY,value TEXT,inte INTEGER,fl REAL);";
+    m_sqliteDB->execute(createSql);
 }
 
 void TestSqliteController::insertData(std::string key,std::string value,int inte,float fl)
 {
-    const char *insertSql = "INSERT into data(key,value) VALUES(?,?,?,?)";
+    const char *insertSql = "INSERT into data(key,value,inte,fl) VALUES(?,?,?,?)";
     Statement stmt(*m_sqliteDB, insertSql);
     stmt.bind(1, key);
     stmt.bind(2, value);
@@ -70,11 +70,12 @@ void TestSqliteController::showTable()
     int colCount=stmt.getColumnCount();
     
     while (stmt.executeStep()) {
+        std::string out="";
         for (int i=0; i<colCount; i++) {
             Column col=stmt.getColumn(i);
-            printf("%s[%d]=%s,",col.getName(),col.getType(),col.getText());
+            out+=CCString::createWithFormat("%s[%d]=%s,",col.getName(),col.getType(),col.getText())->getCString();
         }
-        printf("\n");
+        CCLOG(out.c_str());
     }
 }
 
