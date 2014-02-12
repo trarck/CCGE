@@ -27,11 +27,11 @@ void TestSqliteController::layerDidLoad()
 {
     //in test sqlite
     
-    std::string dbPath=CCFileUtils::sharedFileUtils()->getWritablePath()+"/test.db";
+    std::string dbPath=CCFileUtils::sharedFileUtils()->getWritablePath()+"test.db";
     
     m_sqliteDB=new SqliteDB();
 
-    m_sqliteDB->connect(dbPath,SQLITE_OPEN_READWRITE);
+    m_sqliteDB->connect(dbPath,SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE);
     
     createTable();
     
