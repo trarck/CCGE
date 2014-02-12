@@ -160,7 +160,6 @@
 		1AB8703C175E0A92005D39BF /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB8703B175E0A92005D39BF /* libwebsockets.a */; };
 		1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AC3624316D4A1E8000847F2 /* AppController.mm */; };
 		1AC3624B16D4A1E8000847F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC3624516D4A1E8000847F2 /* main.m */; };
-		1ACB3244164770DE00914215 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB3243164770DE00914215 /* libcurl.a */; };
 		1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */; };
 		1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B916D35E4900DB1158 /* CloseNormal.png */; };
 		1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */; };
@@ -232,6 +231,8 @@
 		379BB9D217F03F3700829B88 /* sconscript in Resources */ = {isa = PBXBuildFile; fileRef = 379BB98D17F03F3700829B88 /* sconscript */; };
 		379BB9D317F03F3700829B88 /* CCSGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99117F03F3700829B88 /* CCSGUIReader.cpp */; };
 		379BB9D417F03F3700829B88 /* CCSSceneReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99317F03F3700829B88 /* CCSSceneReader.cpp */; };
+		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
+		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		5755C7161884CB6800213F7C /* GameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5755C7141884CB6800213F7C /* GameWorldController.cpp */; };
 		575AD88C187BC54B00AA0477 /* FooterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD872187BC54B00AA0477 /* FooterController.cpp */; };
 		575AD88D187BC54B00AA0477 /* HeaderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD874187BC54B00AA0477 /* HeaderController.cpp */; };
@@ -260,6 +261,7 @@
 		57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E918AA07070085A22F /* DamageFormula.cpp */; };
 		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
 		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
+		57CF771018AB6B120085A22F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CF770F18AB6B120085A22F /* libsqlite3.dylib */; };
 		57F74DC1188CB890003E830F /* characters in Resources */ = {isa = PBXBuildFile; fileRef = 57F74DC0188CB890003E830F /* characters */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -775,6 +777,10 @@
 		379BB99217F03F3700829B88 /* CCSGUIReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSGUIReader.h; sourceTree = "<group>"; };
 		379BB99317F03F3700829B88 /* CCSSceneReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSSceneReader.cpp; sourceTree = "<group>"; };
 		379BB99417F03F3700829B88 /* CCSSceneReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSSceneReader.h; sourceTree = "<group>"; };
+		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
+		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
+		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
+		57525CC518AB6C7100166633 /* TestSqliteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteController.h; sourceTree = "<group>"; };
 		5755C7141884CB6800213F7C /* GameWorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorldController.cpp; sourceTree = "<group>"; };
 		5755C7151884CB6800213F7C /* GameWorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldController.h; sourceTree = "<group>"; };
 		575AD861187BC3CB00AA0477 /* yhge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhge.xcodeproj; path = ../../yhge/proj.ios/yhge.xcodeproj; sourceTree = "<group>"; };
@@ -833,6 +839,7 @@
 		57CF76F218AA11380085A22F /* BattleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleController.h; sourceTree = "<group>"; };
 		57CF76F418AA18450085A22F /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		57CF76F518AA18450085A22F /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
+		57CF770F18AB6B120085A22F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		57F74DC0188CB890003E830F /* characters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = characters; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -856,11 +863,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57CF771018AB6B120085A22F /* libsqlite3.dylib in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
 				575D1512187C08F1004E9958 /* libyhge.a in Frameworks */,
 				575D1523187CEFD2004E9958 /* libyhgui.a in Frameworks */,
 				575D1513187C08F5004E9958 /* libyhmvc.a in Frameworks */,
-				1ACB3244164770DE00914215 /* libcurl.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -1513,6 +1520,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57CF770F18AB6B120085A22F /* libsqlite3.dylib */,
 				1ACB3243164770DE00914215 /* libcurl.a */,
 				BF170DB212928DE900B8313A /* libxml2.dylib */,
 				BF170DB412928DE900B8313A /* libz.dylib */,
@@ -1852,6 +1860,8 @@
 				577105751883DF8900FA1446 /* MissionController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
 				575AD879187BC54B00AA0477 /* TestISOController.h */,
+				57525CC418AB6C7100166633 /* TestSqliteController.cpp */,
+				57525CC518AB6C7100166633 /* TestSqliteController.h */,
 				575AD87A187BC54B00AA0477 /* ThreeSegmentController.cpp */,
 				575AD87B187BC54B00AA0477 /* ThreeSegmentController.h */,
 			);
@@ -1874,6 +1884,8 @@
 				5771057C1883E1B800FA1446 /* MissionScene.h */,
 				575AD886187BC54B00AA0477 /* SceneDefine.h */,
 				575AD887187BC54B00AA0477 /* SceneRegisterData.h */,
+				57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */,
+				57525CBF18AB6C4800166633 /* TestSqliteScene.h */,
 				575AD888187BC54B00AA0477 /* TestISOScene.cpp */,
 				575AD889187BC54B00AA0477 /* TestISOScene.h */,
 				575AD88A187BC54B00AA0477 /* ThreeSegmentScene.cpp */,
@@ -2127,6 +2139,7 @@
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
 				15A3D9031682F7D5002FB0C5 /* b2Collision.cpp in Sources */,
+				57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */,
 				15A3D9041682F7D5002FB0C5 /* b2Distance.cpp in Sources */,
 				57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */,
 				15A3D9051682F7D5002FB0C5 /* b2DynamicTree.cpp in Sources */,
@@ -2234,6 +2247,7 @@
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
 				15A3DA4C1682F826002FB0C5 /* CCControlHuePicker.cpp in Sources */,
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
+				57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */,
 				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				57CF76F318AA11380085A22F /* BattleController.cpp in Sources */,
