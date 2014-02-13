@@ -110,7 +110,7 @@ GameEntity* EntityFactory::createEntityById(int entityId)
     
     //8方向移动动画
     CCArray* moveEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/2/1",entityId)->getCString(), moveFrameCount, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
+        CCString::createWithFormat("characters/%d/1",entityId)->getCString(), moveFrameCount, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
     
     animation->addAnimationList(moveEightAnimations,"move");
     

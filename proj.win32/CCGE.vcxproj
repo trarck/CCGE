@@ -139,6 +139,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClCompile Include="..\Classes\Controllers\TestISOController.cpp" />
     <ClCompile Include="..\Classes\Controllers\TestSqliteController.cpp" />
     <ClCompile Include="..\Classes\Controllers\ThreeSegmentController.cpp" />
+    <ClCompile Include="..\Classes\Datas\AnimationData.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\GameAttackComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\EntityFactory.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp" />
@@ -172,6 +173,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClInclude Include="..\Classes\Controllers\TestISOController.h" />
     <ClInclude Include="..\Classes\Controllers\TestSqliteController.h" />
     <ClInclude Include="..\Classes\Controllers\ThreeSegmentController.h" />
+    <ClInclude Include="..\Classes\Datas\AnimationData.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\GameAttackComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\EntityFactory.h" />
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h" />
