@@ -34,6 +34,9 @@
     <Filter Include="Classes\EntityComponent\Properties">
       <UniqueIdentifier>{7f5cb2e3-e574-42f1-baa2-b875312f47a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Datas">
+      <UniqueIdentifier>{85f05824-6567-4009-ae38-bea4b6ff4bc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Scenes\TestSqliteScene.cpp">
       <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\AnimationData.cpp">
+      <Filter>Classes\Datas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\TestSqliteScene.h">
       <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\AnimationData.h">
+      <Filter>Classes\Datas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
