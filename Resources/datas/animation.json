@@ -1,0 +1,16 @@
+{
+"2":{
+    "idle":{
+	"flag":1,
+	"frame_quantity":10,
+	"frame_width":62,
+	"frame_height":91,
+	"frame_delay":0.15,
+	"frame_index":0,
+	"frame_digit":5
+    },
+    "move":{},
+    "battle:{}
+}
+
+}
