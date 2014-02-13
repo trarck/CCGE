@@ -35,9 +35,9 @@ void TestSqliteController::layerDidLoad()
     
     createTable();
     
-    //insertData("test1","testa",1,1.1);
-    //insertData("test2","testb",2,2.2);
-    //insertData("test3","testc",3,3.3);
+//    insertData("test1","testa",1,1.1);
+//    insertData("test2","testb",2,2.2);
+//    insertData("test3","testc",3,3.3);
     
     showTable();
     
