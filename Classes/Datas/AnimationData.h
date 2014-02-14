@@ -10,10 +10,10 @@
 NS_CC_GE_BEGIN
 
 /**
- * ¶¯»­Êı¾İ
+ * åŠ¨ç”»æ•°æ®
  * id.key
  */
-class AnimationData:public JSONData
+class AnimationData:public yhge::JSONData
 {
 public:
     
