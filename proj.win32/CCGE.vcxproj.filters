@@ -126,6 +126,9 @@
     <ClCompile Include="..\Classes\Datas\AnimationData.cpp">
       <Filter>Classes\Datas</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Datas\DataFactory.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -231,6 +234,9 @@
       <Filter>Classes\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Datas\AnimationData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\DataFactory.h">
       <Filter>Classes\Datas</Filter>
     </ClInclude>
   </ItemGroup>
