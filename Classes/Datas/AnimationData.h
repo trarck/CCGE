@@ -21,12 +21,12 @@ public:
     
 	~AnimationData();
     
-    inline yhge::Json::Value getEntityAnimateData(int entityId)
+    inline const yhge::Json::Value& getEntityAnimateData(int entityId)
     {
         return m_data[entityId];
     }
 
-    inline yhge::Json::Value getEntityAnimateData(int entityId,const std::string& key)
+    inline const yhge::Json::Value& getEntityAnimateData(int entityId,const std::string& key)
     {
         return m_data[entityId][key];
     }

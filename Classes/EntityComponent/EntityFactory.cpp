@@ -2,6 +2,7 @@
 #include <yhge/yhge.h>
 #include "../Consts/PropertyDefine.h"
 #include "Properties/UnitProperty.h"
+#include "Datas/DataFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -165,31 +166,16 @@ GameEntity* EntityFactory::createPlayer(int entityId,CCDictionary* param)
     //动画组件
     AnimationComponent* animation=new AnimationComponent();
     animation->init();
-    
-    int idleFrameCount=0;
-    int moveFrameCount=0;
-    switch (entityId)
-    {
-        case 2:
-            idleFrameCount=10;
-            moveFrameCount=8;
-            break;
-        case 3:
-            idleFrameCount=7;
-            moveFrameCount=8;
-            break;
-        default:
-            break;
-    }
+
+    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entityId,"move");
 
     //8方向空闲动画
-    CCArray* idleEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/0",entityId)->getCString(), idleFrameCount, CCSizeMake(62, 91), 0.15f, "%s/%02d%03d.png");
+    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
     animation->addAnimationList(idleEightAnimations,"idle");
     
     //8方向移动动画
-    CCArray* moveEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/1",entityId)->getCString(), moveFrameCount, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
+    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
     animation->addAnimationList(moveEightAnimations,"move");
     
     player->addComponent(animation);
@@ -239,37 +225,33 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     AnimationComponent* animation=new AnimationComponent();
     animation->init();
     
-    //TODO 加载战斗动画
-    int idleFrameCount=0;
-    int moveFrameCount=0;
-    switch (entityId)
-    {
-        case 2:
-            idleFrameCount=10;
-            moveFrameCount=8;
-            break;
-        case 3:
-            idleFrameCount=7;
-            moveFrameCount=8;
-            break;
-        default:
-            break;
-    }
+    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entityId,"battle");
 
     //空闲动画
-    CCArray* idleEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/0",entityId)->getCString(), idleFrameCount, CCSizeMake(62, 91), 0.15f, "%s/%02d%03d.png");
+    CCArray* idleEightAnimations=createEightAnimations(battleAnimationData["idle"]);
     animation->addAnimationList(idleEightAnimations,"idle");
     
     //战斗动画
-    CCArray* moveEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/1",entityId)->getCString(), moveFrameCount, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
+    CCArray* moveEightAnimations=createEightAnimations(battleAnimationData["attack"]);
     animation->addAnimationList(moveEightAnimations,"attack");
     
     player->addComponent(animation);
     animation->release();
     
     return player;
+}
+
+CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configData)
+{
+    int frameQuantity=configData["frame_quantity"].asInt();
+    float frameWidth=configData["frame_width"].asDouble();
+    float frameHeight=configData["frame_height"].asDouble();
+    float frameDelay=configData["frame_delay"].asDouble();
+    std::string ext=configData["ext"].asString();
+
+    return AnimationComponent::eightDirectionActionListWithDirResource(
+        ext.c_str(),frameQuantity, CCSizeMake(frameWidth, frameHeight), frameDelay);
 }
 
 NS_CC_GE_END

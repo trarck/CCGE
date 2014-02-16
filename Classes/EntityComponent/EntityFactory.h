@@ -39,6 +39,10 @@ public:
      * 创建战斗中的人物
      */
     GameEntity* createBattlePlayer(int entityId,CCDictionary* param=NULL);
+
+protected:
+
+    CCArray* createEightAnimations(const yhge::Json::Value& configData);
 };
 
 NS_CC_GE_END
