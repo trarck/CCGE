@@ -231,6 +231,9 @@
 		379BB9D217F03F3700829B88 /* sconscript in Resources */ = {isa = PBXBuildFile; fileRef = 379BB98D17F03F3700829B88 /* sconscript */; };
 		379BB9D317F03F3700829B88 /* CCSGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99117F03F3700829B88 /* CCSGUIReader.cpp */; };
 		379BB9D417F03F3700829B88 /* CCSSceneReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99317F03F3700829B88 /* CCSSceneReader.cpp */; };
+		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
+		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
+		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
@@ -778,6 +781,11 @@
 		379BB99217F03F3700829B88 /* CCSGUIReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSGUIReader.h; sourceTree = "<group>"; };
 		379BB99317F03F3700829B88 /* CCSSceneReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSSceneReader.cpp; sourceTree = "<group>"; };
 		379BB99417F03F3700829B88 /* CCSSceneReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSSceneReader.h; sourceTree = "<group>"; };
+		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
+		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
+		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
+		574A569F18B1A0B200518953 /* AnimationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationProvider.h; sourceTree = "<group>"; };
+		574A56A118B1A39C00518953 /* datas */ = {isa = PBXFileReference; lastKnownFileType = folder; path = datas; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -1380,6 +1388,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				574A569D18B1A0B200518953 /* Animations */,
 				57823C5718A9C42C005ACB35 /* Consts */,
 				575AD871187BC54B00AA0477 /* Controllers */,
 				57525CEE18AC6E9300166633 /* Datas */,
@@ -1839,11 +1848,23 @@
 			path = CocoStudio;
 			sourceTree = "<group>";
 		};
+		574A569D18B1A0B200518953 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				574A569E18B1A0B200518953 /* AnimationProvider.cpp */,
+				574A569F18B1A0B200518953 /* AnimationProvider.h */,
+			);
+			name = Animations;
+			path = ../Classes/Animations;
+			sourceTree = "<group>";
+		};
 		57525CEE18AC6E9300166633 /* Datas */ = {
 			isa = PBXGroup;
 			children = (
 				57525CEF18AC6E9300166633 /* AnimationData.cpp */,
 				57525CF018AC6E9300166633 /* AnimationData.h */,
+				574A569718B19D7F00518953 /* DataFactory.cpp */,
+				574A569818B19D7F00518953 /* DataFactory.h */,
 			);
 			name = Datas;
 			path = ../Classes/Datas;
@@ -2003,13 +2024,14 @@
 			isa = PBXGroup;
 			children = (
 				57F74DC0188CB890003E830F /* characters */,
+				574A56A118B1A39C00518953 /* datas */,
 				576E3FD8187D617500745A0A /* map */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
-				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
 				D41A0AD0160F154A004552AE /* Default-568h@2x.png */,
 				7855E0DF153FEF240059DD9A /* Default.png */,
 				D446FD6D16102124000ADA7B /* Default@2x.png */,
+				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
 				D4EF949B15BD2D8E00D803EB /* Icon-114.png */,
 				D4EF949F15BD2D9800D803EB /* Icon-144.png */,
 				D4EF949915BD2D8B00D803EB /* Icon-57.png */,
@@ -2133,6 +2155,7 @@
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				576E3FD9187D617500745A0A /* map in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
+				574A56A218B1A39C00518953 /* datas in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				379BB9CC17F03F3700829B88 /* json_internalarray.inl in Resources */,
 				379BB9CD17F03F3700829B88 /* json_internalmap.inl in Resources */,
@@ -2197,6 +2220,7 @@
 				15A3D9271682F7D5002FB0C5 /* b2RevoluteJoint.cpp in Sources */,
 				15A3D9281682F7D5002FB0C5 /* b2RopeJoint.cpp in Sources */,
 				15A3D9291682F7D5002FB0C5 /* b2WeldJoint.cpp in Sources */,
+				574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */,
 				15A3D92A1682F7D5002FB0C5 /* b2WheelJoint.cpp in Sources */,
 				15A3D9391682F7D5002FB0C5 /* b2Rope.cpp in Sources */,
 				15A3D9951682F7F9002FB0C5 /* chipmunk.c in Sources */,
@@ -2369,6 +2393,7 @@
 				379BB9BD17F03F3700829B88 /* UIListView.cpp in Sources */,
 				379BB9BE17F03F3700829B88 /* UIPageView.cpp in Sources */,
 				379BB9BF17F03F3700829B88 /* UIScrollView.cpp in Sources */,
+				574A569918B19D7F00518953 /* DataFactory.cpp in Sources */,
 				379BB9C017F03F3700829B88 /* UIButton.cpp in Sources */,
 				379BB9C117F03F3700829B88 /* UICheckBox.cpp in Sources */,
 				379BB9C217F03F3700829B88 /* UIImageView.cpp in Sources */,
