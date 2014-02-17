@@ -12,7 +12,7 @@ NS_CC_GE_BEGIN
 class GameActiveSortLayer;
 
 class GameWorldController: public yhmvc::LayerController,
-    public yhge::ISOCameraDelegate,
+    public yhge::isometric::ISOCameraDelegate,
     public CCTouchDelegate
 {
 public:
@@ -47,7 +47,7 @@ public:
     /**
      * 加载游戏地图
      */
-    yhge::ISOMapInfo* loadMapData();
+    yhge::isometric::ISOMapInfo* loadMapData();
     
     /**
      * 设置相机的可视
@@ -213,14 +213,14 @@ public:
         return m_astar;
     }
     
-    inline void setOcclusion(yhge::SortZIndex* occlusion)
+    inline void setOcclusion(yhge::isometric::SortZIndex* occlusion)
     {
         CC_SAFE_RETAIN(occlusion);
         CC_SAFE_RELEASE(m_occlusion);
         m_occlusion = occlusion;
     }
     
-    inline yhge::SortZIndex* getOcclusion()
+    inline yhge::isometric::SortZIndex* getOcclusion()
     {
         return m_occlusion;
     }
@@ -242,28 +242,28 @@ protected:
     /*
      * 创建活动层
      */
-    void createActiveLayer(yhge::ISOActiveLayerInfo* activeLayerInfo);
+    void createActiveLayer(yhge::isometric::ISOActiveLayerInfo* activeLayerInfo);
     
     
     /*
      * 取得路径tile的id
      */
-    int getStepTileId(yhge::ISOMapInfo* mapInfo);
+    int getStepTileId(yhge::isometric::ISOMapInfo* mapInfo);
     
     /*
      * 构建行走路径所在的层
      */
-    yhge::ISOLayerInfo* getStepLayer(yhge::ISOMapInfo* mapInfo);
+    yhge::isometric::ISOLayerInfo* getStepLayer(yhge::isometric::ISOMapInfo* mapInfo);
     
     /*
      * 构建行走路径
      */
-    CCArray* buildWalkPaths(yhge::ISOMapInfo* mapInfo,int startX,int startY);
+    CCArray* buildWalkPaths(yhge::isometric::ISOMapInfo* mapInfo,int startX,int startY);
     
     /*
      * 创建行走路径
      */
-    CCArray* createWalkPaths(yhge::ISOLayerInfo* layerInfo,int stepTileId,int startX,int startY);
+    CCArray* createWalkPaths(yhge::isometric::ISOLayerInfo* layerInfo,int stepTileId,int startX,int startY);
     
     /*
      * 创建行走路径
@@ -294,13 +294,13 @@ protected:
      * 构建行走路径
      * 从任意点开始创建
      */
-    CCArray* buildWalkPaths(yhge::ISOMapInfo* mapInfo);
+    CCArray* buildWalkPaths(yhge::isometric::ISOMapInfo* mapInfo);
     
     /*
      * 创建行走路径
      *  从任意点开始创建
      */
-    CCArray* createWalkPaths(yhge::ISOLayerInfo* layerInfo,int stepTileId);
+    CCArray* createWalkPaths(yhge::isometric::ISOLayerInfo* layerInfo,int stepTileId);
     
 private:
     
@@ -315,7 +315,7 @@ private:
     
 //    GameActiveSortLayer* m_activeLayer;
     
-    yhge::ISOActiveLayer* m_activeLayer;
+    yhge::isometric::ISOActiveLayer* m_activeLayer;
     
 //	CCLayer* m_pBackground;//背景层，加载地形资源
 //	CCLayer* m_pIntermediate;//中间层，显示角色，怪物，等可变元素
@@ -324,11 +324,11 @@ private:
 	//寻路
     yhge::CallbackAstar* m_astar;
 	//处理遮挡
-    yhge::SortZIndex* m_occlusion;
+    yhge::isometric::SortZIndex* m_occlusion;
     
-    yhge::ISOCamera* m_pGameCamera;
+    yhge::isometric::ISOCamera* m_pGameCamera;
 
-    yhge::ISOTileMap* m_isoMap;
+    yhge::isometric::ISOTileMap* m_isoMap;
     
 	GameEntity* m_player;
 

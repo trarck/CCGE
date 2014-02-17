@@ -8,7 +8,7 @@
 
 NS_CC_GE_BEGIN
 
-class GameWorld: public yhmvc::Layer,public yhge::ISOCameraDelegate
+class GameWorld: public yhmvc::Layer,public yhge::isometric::ISOCameraDelegate
 {
 public:
 	
@@ -39,7 +39,7 @@ public:
     /**
      * 加载游戏地图
      */
-    yhge::ISOMapInfo* loadMapData();
+    yhge::isometric::ISOMapInfo* loadMapData();
     
 //	void loadBackground();
 //    
@@ -195,9 +195,9 @@ private:
 //	CCAstar* m_pAstar;
 	//处理遮挡
 //	CCZIndex* m_pZIndex;
-    yhge::ISOCamera* m_pGameCamera;
+    yhge::isometric::ISOCamera* m_pGameCamera;
 
-    yhge::ISOTileMap* m_isoMap;
+    yhge::isometric::ISOTileMap* m_isoMap;
 //	Player* m_pPlayer;
 
 	//touch

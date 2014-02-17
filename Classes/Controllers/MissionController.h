@@ -31,7 +31,7 @@ public:
 private:
 
 	CCPoint m_touchStartPosition;
-	yhge::ISOTileMap* m_isoMap;
+	yhge::isometric::ISOTileMap* m_isoMap;
 	CCPoint m_isoMapStartPosition;
     
     GameWorldController* m_gameWorld;

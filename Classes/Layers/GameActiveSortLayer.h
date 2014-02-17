@@ -14,7 +14,7 @@ NS_CC_GE_BEGIN
  * 使用遮挡排序来管理，活动元素。经测试性能还可以。
  * 游戏中的活动物体是GameEntity
  */
-class GameActiveSortLayer : public yhge::ISOActiveLayer {
+class GameActiveSortLayer : public yhge::isometric::ISOActiveLayer {
 
 public:
 	
@@ -68,14 +68,14 @@ public:
     
 public:
     
-    inline void setOcclusion(yhge::SortZIndex* occlusion)
+    inline void setOcclusion(yhge::isometric::SortZIndex* occlusion)
     {
         CC_SAFE_RETAIN(occlusion);
         CC_SAFE_RELEASE(m_occlusion);
         m_occlusion = occlusion;
     }
     
-    inline yhge::SortZIndex* getOcclusion()
+    inline yhge::isometric::SortZIndex* getOcclusion()
     {
         return m_occlusion;
     }
@@ -104,14 +104,14 @@ public:
 //        return m_dynamicObjects;
 //    }
     
-    inline void setStaticRootNode(yhge::SortZIndexNode* staticRootNode)
+    inline void setStaticRootNode(yhge::isometric::SortZIndexNode* staticRootNode)
     {
         CC_SAFE_RETAIN(staticRootNode);
         CC_SAFE_RELEASE(m_staticRootNode);
         m_staticRootNode = staticRootNode;
     }
     
-    inline yhge::SortZIndexNode* getStaticRootNode()
+    inline yhge::isometric::SortZIndexNode* getStaticRootNode()
     {
         return m_staticRootNode;
     }
@@ -141,9 +141,9 @@ public:
 protected:
         
     //创建排序结点
-    virtual yhge::SortZIndexNode* createSortZIndexNode(CCNode* mapObject,yhge::ISOObjectInfo* mapObjectDef);
+    virtual yhge::isometric::SortZIndexNode* createSortZIndexNode(CCNode* mapObject,yhge::isometric::ISOObjectInfo* mapObjectDef);
     
-    yhge::SortZIndexNode* createSortZIndexNodeWithRect(CCNode* mapObject,const CCRect& rect);
+    yhge::isometric::SortZIndexNode* createSortZIndexNodeWithRect(CCNode* mapObject,const CCRect& rect);
     
     //更新动态物体的ZOrder。创建成功的第一次更新
     virtual void updateDynamicObjectsZOrderFirst();
@@ -152,7 +152,7 @@ protected:
     virtual void updateDynamicObjectsZOrder();
     
     //取得对象的类型
-    int getObjectType(yhge::ISOObjectInfo* mapObjectDef);
+    int getObjectType(yhge::isometric::ISOObjectInfo* mapObjectDef);
     
     //创建动态对象
     GameEntity* createDynamicObject(int gid,const CCPoint& coord);
@@ -163,10 +163,10 @@ protected:
 protected:
 
     //遮挡处理
-    yhge::SortZIndex* m_occlusion;
+    yhge::isometric::SortZIndex* m_occlusion;
     
     //所有静态物体的遮挡关系树
-    yhge::SortZIndexNode* m_staticRootNode;
+    yhge::isometric::SortZIndexNode* m_staticRootNode;
     
     //静态物体
     CCArray* m_staticObjects;
