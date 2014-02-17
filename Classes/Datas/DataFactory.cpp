@@ -45,19 +45,19 @@ std::string DataFactory::getDataFilePath(const std::string& file)
 {
     std::string filePath=file;
 
-    //Èç¹ûÊÇ¾ø¶ÔÂ·¾¶£¬ÔòÖ±½ÓÊ¹ÓÃ
-    if (file.substr(0,1)!="/")
+    //å¦‚æžœæ˜¯ç»å¯¹è·¯å¾„ï¼Œåˆ™ç›´æŽ¥ä½¿ç”¨
+    if (filePath[0]!='/')
     {
-        //Èç¹û²»ÊÇÔÚdataÄ¿Â¼£¬ÔòÌí¼Óµ½dataÄ¿Â¼
-        if (file.find_first_of(kDataDir)!=0)
+        //å¦‚æžœä¸æ˜¯åœ¨dataç›®å½•ï¼Œåˆ™æ·»åŠ åˆ°dataç›®å½•
+        if (file.substr(0,strlen(kDataDir))!=kDataDir)
         {
             filePath=kDataDir+file;
         }
 
-        //×ªµ½¾ø¶ÔÄ¿Â¼
+        //è½¬åˆ°ç»å¯¹ç›®å½•
         filePath=CCFileUtils::sharedFileUtils()->fullPathForFilename(filePath.c_str());
     }
-
+    
     return filePath;
 }
 

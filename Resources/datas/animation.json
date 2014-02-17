@@ -21,8 +21,8 @@
                 "frame_digit":5,
                 "ext":"characters/2/1/%02d%03d.png"
             }
-        }
-        "battle:{
+        },
+        "battle":{
             "idle":{
                 "flag":1,
                 "frame_quantity":10,
@@ -49,7 +49,7 @@
         "move":{
             "idle":{
                 "flag":1,
-                "frame_quantity":10,
+                "frame_quantity":7,
                 "frame_width":62,
                 "frame_height":91,
                 "frame_delay":0.15,
@@ -67,11 +67,11 @@
                 "frame_digit":5,
                 "ext":"characters/3/1/%02d%03d.png"
             }
-        }
-        "battle:{
+        },
+        "battle":{
             "idle":{
                 "flag":1,
-                "frame_quantity":10,
+                "frame_quantity":7,
                 "frame_width":62,
                 "frame_height":91,
                 "frame_delay":0.15,

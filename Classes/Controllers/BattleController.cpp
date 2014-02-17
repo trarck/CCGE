@@ -62,7 +62,7 @@ void BattleController::loadSelfEntities()
     
     for (int i=0; i<teamSize; ++i) {
         
-        GameEntity* entity=EntityFactory::getInstance()->createPlayer(2);
+        GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(2);
         
         //set animation
         CCDictionary* data=new CCDictionary();
@@ -95,7 +95,7 @@ void BattleController::loadOppEntities()
     
     for (int i=0; i<teamSize; ++i) {
         
-        GameEntity* entity=EntityFactory::getInstance()->createPlayer(3);
+        GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(3);
         
         //set animation
         CCDictionary* data=new CCDictionary();

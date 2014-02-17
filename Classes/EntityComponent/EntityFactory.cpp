@@ -87,32 +87,15 @@ GameEntity* EntityFactory::createEntityById(int entityId)
     AnimationComponent* animation=new AnimationComponent();
     animation->init();
     
-    int idleFrameCount=0;
-    int moveFrameCount=0;
-    switch (entityId)
-    {
-        case 2:
-            idleFrameCount=10;
-            moveFrameCount=8;
-            break;
-        case 3:
-            idleFrameCount=7;
-            moveFrameCount=8;
-            break;
-        default:
-            break;
-    }
-
+    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entityId,"move");
+    
     //8方向空闲动画
-    CCArray* idleEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/0",entityId)->getCString(),
-        idleFrameCount, CCSizeMake(62, 91), 0.15f, "%s/%02d%03d.png");
+    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
     animation->addAnimationList(idleEightAnimations,"idle");
     
     //8方向移动动画
-    CCArray* moveEightAnimations=AnimationComponent::eightDirectionActionListWithDir(
-        CCString::createWithFormat("characters/%d/1",entityId)->getCString(), moveFrameCount, CCSizeMake(74, 93), 0.1f, "%s/%02d%03d.png");
-    
+    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
     animation->addAnimationList(moveEightAnimations,"move");
     
     entity->addComponent(animation);

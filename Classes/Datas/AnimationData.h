@@ -23,13 +23,21 @@ public:
     
     inline const yhge::Json::Value& getEntityAnimateData(int entityId)
     {
-        return m_data[entityId];
+        char idKey[10];
+        sprintf(idKey, "%u",entityId);
+        return m_data[idKey];
     }
 
     inline const yhge::Json::Value& getEntityAnimateData(int entityId,const std::string& key)
     {
-        return m_data[entityId][key];
+        char idKey[10];
+        sprintf(idKey, "%u",entityId);
+        return m_data[idKey][key];
     }
+    
+protected:
+    
+    
 };
 
 NS_CC_GE_END
