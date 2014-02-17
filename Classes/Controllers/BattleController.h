@@ -44,6 +44,25 @@ public:
      */
     void loadOppEntities();
 
+    /**
+     * @brief 开始战斗
+     */
+    void start();
+    
+    /**
+     * @brief 暂停战斗
+     */
+    void pause();
+    
+    /**
+     * @brief 停止战斗
+     */
+    void stop();
+    
+    /**
+     * @brief 执行战斗步骤
+     */
+    void parseStep();
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -71,6 +90,16 @@ public:
         return m_mapId;
     }
     
+    inline void setStep(int step)
+    {
+        m_step = step;
+    }
+    
+    inline int getStep()
+    {
+        return m_step;
+    }
+    
 private:
 
     //区域id
@@ -78,6 +107,9 @@ private:
     
     //地图id
     int m_mapId;
+    
+    //战斗回合数
+    int m_step;
     
 };
 NS_CC_GE_END

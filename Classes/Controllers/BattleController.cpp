@@ -13,6 +13,9 @@ static const float kGameTileWidth=100;
 static const float kGameTileHeight=90;
 
 BattleController::BattleController(void)
+:m_mapId(0)
+,m_zoneId(0)
+,m_step(0)
 {
     m_sName="BattleController";
 }
@@ -115,6 +118,30 @@ void BattleController::loadOppEntities()
         m_layer->addChild(renderer);
     }
 }
+
+void BattleController::start()
+{
+    parseStep();
+}
+
+void BattleController::pause()
+{
+    
+}
+
+void BattleController::stop()
+{
+    
+}
+
+void BattleController::parseStep()
+{
+    
+}
+
+
+
+
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
