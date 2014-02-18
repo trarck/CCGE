@@ -5,6 +5,7 @@
 #include <yhmvc/yhmvc.h>
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
+#include "Consts/GameDefine.h"
 
 NS_CC_GE_BEGIN
 
@@ -110,6 +111,12 @@ private:
     
     //战斗回合数
     int m_step;
+    
+    //自己的队伍.3x3.按一行一行存储
+    std::vector<int> m_selfTroops;
+    
+    //对手的队伍.3x3
+    std::vector<int> m_oppTroops;
     
 };
 NS_CC_GE_END

@@ -231,6 +231,14 @@
 		379BB9D217F03F3700829B88 /* sconscript in Resources */ = {isa = PBXBuildFile; fileRef = 379BB98D17F03F3700829B88 /* sconscript */; };
 		379BB9D317F03F3700829B88 /* CCSGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99117F03F3700829B88 /* CCSGUIReader.cpp */; };
 		379BB9D417F03F3700829B88 /* CCSSceneReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99317F03F3700829B88 /* CCSSceneReader.cpp */; };
+		57243EB118B33E050070163A /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAD18B33E050070163A /* BaseModel.cpp */; };
+		57243EB218B33E050070163A /* ModelFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAF18B33E050070163A /* ModelFactory.cpp */; };
+		57243EB818B33E870070163A /* BattleModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EB618B33E870070163A /* BattleModel.cpp */; };
+		57243EBB18B33EC10070163A /* UserModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EB918B33EC10070163A /* UserModel.cpp */; };
+		57243EC518B3551C0070163A /* BaseService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EBD18B3551C0070163A /* BaseService.cpp */; };
+		57243EC618B3551C0070163A /* BattleService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EBF18B3551C0070163A /* BattleService.cpp */; };
+		57243EC718B3551C0070163A /* ServiceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EC118B3551C0070163A /* ServiceFactory.cpp */; };
+		57243EC818B3551C0070163A /* UserService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EC318B3551C0070163A /* UserService.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
@@ -781,11 +789,28 @@
 		379BB99217F03F3700829B88 /* CCSGUIReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSGUIReader.h; sourceTree = "<group>"; };
 		379BB99317F03F3700829B88 /* CCSSceneReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSSceneReader.cpp; sourceTree = "<group>"; };
 		379BB99417F03F3700829B88 /* CCSSceneReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSSceneReader.h; sourceTree = "<group>"; };
+		57243EAD18B33E050070163A /* BaseModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseModel.cpp; sourceTree = "<group>"; };
+		57243EAE18B33E050070163A /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		57243EAF18B33E050070163A /* ModelFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelFactory.cpp; sourceTree = "<group>"; };
+		57243EB018B33E050070163A /* ModelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelFactory.h; sourceTree = "<group>"; };
+		57243EB618B33E870070163A /* BattleModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleModel.cpp; sourceTree = "<group>"; };
+		57243EB718B33E870070163A /* BattleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleModel.h; sourceTree = "<group>"; };
+		57243EB918B33EC10070163A /* UserModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserModel.cpp; sourceTree = "<group>"; };
+		57243EBA18B33EC10070163A /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		57243EBD18B3551C0070163A /* BaseService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseService.cpp; sourceTree = "<group>"; };
+		57243EBE18B3551C0070163A /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
+		57243EBF18B3551C0070163A /* BattleService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleService.cpp; sourceTree = "<group>"; };
+		57243EC018B3551C0070163A /* BattleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleService.h; sourceTree = "<group>"; };
+		57243EC118B3551C0070163A /* ServiceFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServiceFactory.cpp; sourceTree = "<group>"; };
+		57243EC218B3551C0070163A /* ServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceFactory.h; sourceTree = "<group>"; };
+		57243EC318B3551C0070163A /* UserService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserService.cpp; sourceTree = "<group>"; };
+		57243EC418B3551C0070163A /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
 		574A569F18B1A0B200518953 /* AnimationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationProvider.h; sourceTree = "<group>"; };
 		574A56A118B1A39C00518953 /* datas */ = {isa = PBXFileReference; lastKnownFileType = folder; path = datas; sourceTree = "<group>"; };
+		574A56B118B3101B00518953 /* GameDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDefine.h; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -1395,7 +1420,9 @@
 				575E3F9B18892DC100E37B69 /* EntityComponent */,
 				57CF76E818AA07070085A22F /* Formula */,
 				577105771883DFED00FA1446 /* Layers */,
+				57243EAC18B33E050070163A /* Models */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
+				57243EBC18B3551C0070163A /* Services */,
 				575D1505187C0827004E9958 /* Tests */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -1848,6 +1875,38 @@
 			path = CocoStudio;
 			sourceTree = "<group>";
 		};
+		57243EAC18B33E050070163A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				57243EAD18B33E050070163A /* BaseModel.cpp */,
+				57243EAE18B33E050070163A /* BaseModel.h */,
+				57243EB618B33E870070163A /* BattleModel.cpp */,
+				57243EB718B33E870070163A /* BattleModel.h */,
+				57243EAF18B33E050070163A /* ModelFactory.cpp */,
+				57243EB018B33E050070163A /* ModelFactory.h */,
+				57243EB918B33EC10070163A /* UserModel.cpp */,
+				57243EBA18B33EC10070163A /* UserModel.h */,
+			);
+			name = Models;
+			path = ../Classes/Models;
+			sourceTree = "<group>";
+		};
+		57243EBC18B3551C0070163A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				57243EBD18B3551C0070163A /* BaseService.cpp */,
+				57243EBE18B3551C0070163A /* BaseService.h */,
+				57243EBF18B3551C0070163A /* BattleService.cpp */,
+				57243EC018B3551C0070163A /* BattleService.h */,
+				57243EC118B3551C0070163A /* ServiceFactory.cpp */,
+				57243EC218B3551C0070163A /* ServiceFactory.h */,
+				57243EC318B3551C0070163A /* UserService.cpp */,
+				57243EC418B3551C0070163A /* UserService.h */,
+			);
+			name = Services;
+			path = ../Classes/Services;
+			sourceTree = "<group>";
+		};
 		574A569D18B1A0B200518953 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -2004,6 +2063,7 @@
 			isa = PBXGroup;
 			children = (
 				57CF76F018AA0D5F0085A22F /* AnimationDefine.h */,
+				574A56B118B3101B00518953 /* GameDefine.h */,
 				57823C5818A9C42C005ACB35 /* PropertyDefine.h */,
 			);
 			name = Consts;
@@ -2186,6 +2246,7 @@
 				15A3D9091682F7D5002FB0C5 /* b2EdgeShape.cpp in Sources */,
 				15A3D90A1682F7D5002FB0C5 /* b2PolygonShape.cpp in Sources */,
 				15A3D90B1682F7D5002FB0C5 /* b2BlockAllocator.cpp in Sources */,
+				57243EC718B3551C0070163A /* ServiceFactory.cpp in Sources */,
 				15A3D90C1682F7D5002FB0C5 /* b2Draw.cpp in Sources */,
 				15A3D90D1682F7D5002FB0C5 /* b2Math.cpp in Sources */,
 				57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */,
@@ -2240,6 +2301,7 @@
 				15A3D9A31682F7F9002FB0C5 /* cpArray.c in Sources */,
 				15A3D9A41682F7F9002FB0C5 /* cpBB.c in Sources */,
 				15A3D9A51682F7F9002FB0C5 /* cpBBTree.c in Sources */,
+				57243EC618B3551C0070163A /* BattleService.cpp in Sources */,
 				15A3D9A61682F7F9002FB0C5 /* cpBody.c in Sources */,
 				575AD891187BC54B00AA0477 /* Game.cpp in Sources */,
 				15A3D9A71682F7F9002FB0C5 /* cpCollision.c in Sources */,
@@ -2261,6 +2323,7 @@
 				15A3DA341682F826002FB0C5 /* CCBReader.cpp in Sources */,
 				15A3DA351682F826002FB0C5 /* CCBSequence.cpp in Sources */,
 				15A3DA361682F826002FB0C5 /* CCBSequenceProperty.cpp in Sources */,
+				57243EB818B33E870070163A /* BattleModel.cpp in Sources */,
 				15A3DA371682F826002FB0C5 /* CCBValue.cpp in Sources */,
 				15A3DA381682F826002FB0C5 /* CCControlButtonLoader.cpp in Sources */,
 				575AD88F187BC54B00AA0477 /* TestISOController.cpp in Sources */,
@@ -2272,6 +2335,7 @@
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
 				15A3DA3F1682F826002FB0C5 /* CCLayerLoader.cpp in Sources */,
+				57243EC818B3551C0070163A /* UserService.cpp in Sources */,
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
 				15A3DA411682F826002FB0C5 /* CCMenuItemLoader.cpp in Sources */,
 				15A3DA421682F826002FB0C5 /* CCNode+CCBRelativePositioning.cpp in Sources */,
@@ -2281,6 +2345,7 @@
 				15A3DA461682F826002FB0C5 /* CCScale9SpriteLoader.cpp in Sources */,
 				15A3DA471682F826002FB0C5 /* CCScrollViewLoader.cpp in Sources */,
 				15A3DA481682F826002FB0C5 /* CCSpriteLoader.cpp in Sources */,
+				57243EB218B33E050070163A /* ModelFactory.cpp in Sources */,
 				15A3DA491682F826002FB0C5 /* CCControl.cpp in Sources */,
 				15A3DA4A1682F826002FB0C5 /* CCControlButton.cpp in Sources */,
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
@@ -2291,6 +2356,7 @@
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				57CF76F318AA11380085A22F /* BattleController.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
+				57243EBB18B33EC10070163A /* UserModel.cpp in Sources */,
 				15A3DA501682F826002FB0C5 /* CCControlStepper.cpp in Sources */,
 				575AD88E187BC54B00AA0477 /* MainController.cpp in Sources */,
 				15A3DA511682F826002FB0C5 /* CCControlSwitch.cpp in Sources */,
@@ -2305,6 +2371,7 @@
 				15A3DA5C1682F826002FB0C5 /* CCTableViewCell.cpp in Sources */,
 				15A3DA5D1682F826002FB0C5 /* HttpClient.cpp in Sources */,
 				575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */,
+				57243EC518B3551C0070163A /* BaseService.cpp in Sources */,
 				15A3DA5E1682F826002FB0C5 /* CCPhysicsDebugNode.cpp in Sources */,
 				575AD894187BC54B00AA0477 /* MainScene.cpp in Sources */,
 				15A3DA5F1682F826002FB0C5 /* CCPhysicsSprite.cpp in Sources */,
@@ -2384,6 +2451,7 @@
 				379BB9B417F03F3700829B88 /* Layout.cpp in Sources */,
 				379BB9B617F03F3700829B88 /* LayoutParameter.cpp in Sources */,
 				379BB9B717F03F3700829B88 /* UILayoutDefine.cpp in Sources */,
+				57243EB118B33E050070163A /* BaseModel.cpp in Sources */,
 				379BB9B817F03F3700829B88 /* CocosGUI.cpp in Sources */,
 				379BB9B917F03F3700829B88 /* UIHelper.cpp in Sources */,
 				575AD88C187BC54B00AA0477 /* FooterController.cpp in Sources */,

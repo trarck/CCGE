@@ -137,11 +137,18 @@ void BattleController::stop()
 
 void BattleController::parseStep()
 {
+    //myself
+    for (int i=0; i<kBattleCellCol*kBattleCellRow; ++i) {
+        if (m_selfTroops[i]) {
+            
+            //get entity from model
+            
+            
+        }
+    }
     
+    //opp
 }
-
-
-
 
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
