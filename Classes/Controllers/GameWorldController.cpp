@@ -258,7 +258,7 @@ void GameWorldController::createGameMap()
 /*
  * 创建活动层
  */
-void GameWorldController::createActiveLayer(yhge::ISOActiveLayerInfo* activeLayerInfo)
+void GameWorldController::createActiveLayer(ISOActiveLayerInfo* activeLayerInfo)
 {
     m_activeLayer=new GameActiveSortLayer();
     m_activeLayer->init();
@@ -306,7 +306,7 @@ ISOMapInfo* GameWorldController::loadMapData()
 /*
  * 取得路径tile的id
  */
-int GameWorldController::getStepTileId(yhge::ISOMapInfo* mapInfo)
+int GameWorldController::getStepTileId(ISOMapInfo* mapInfo)
 {
     CCArray* tilesets = mapInfo->getTilesets();
     if (tilesets && tilesets->count()>0)
@@ -375,7 +375,7 @@ CCArray* GameWorldController::buildWalkPaths(ISOMapInfo* mapInfo,int startX,int 
 /*
  * 创建行走路径
  */
-CCArray* GameWorldController::createWalkPaths(yhge::ISOLayerInfo* layerInfo,int stepTileId,int startX,int startY)
+CCArray* GameWorldController::createWalkPaths(ISOLayerInfo* layerInfo,int stepTileId,int startX,int startY)
 {
     unsigned int* tiles=layerInfo->getTiles();
     
@@ -483,7 +483,7 @@ bool GameWorldController::getNextStepPoint(int* nextX,int* nextY,int* outStepX,i
  * 构建行走路径
  * 从任意点开始创建
  */
-CCArray* GameWorldController::buildWalkPaths(yhge::ISOMapInfo* mapInfo)
+CCArray* GameWorldController::buildWalkPaths(ISOMapInfo* mapInfo)
 {
     int stepTileId=this->getStepTileId(mapInfo);
     
@@ -498,7 +498,7 @@ CCArray* GameWorldController::buildWalkPaths(yhge::ISOMapInfo* mapInfo)
  * 创建行走路径
  *  从任意点开始创建
  */
-CCArray* GameWorldController::createWalkPaths(yhge::ISOLayerInfo* layerInfo,int stepTileId)
+CCArray* GameWorldController::createWalkPaths(ISOLayerInfo* layerInfo,int stepTileId)
 {
     unsigned int* tiles=layerInfo->getTiles();
     

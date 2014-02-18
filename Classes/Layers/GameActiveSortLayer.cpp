@@ -286,7 +286,7 @@ void GameActiveSortLayer::updateDynamicObjectsZOrder()
 }
 
 //取得对象的类型
-int GameActiveSortLayer::getObjectType(yhge::ISOObjectInfo* mapObjectDef)
+int GameActiveSortLayer::getObjectType(ISOObjectInfo* mapObjectDef)
 {
     //把字符串转成数字
     std::string objectTypeStr=mapObjectDef->getType();
