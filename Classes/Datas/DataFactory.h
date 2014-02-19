@@ -28,6 +28,7 @@ public:
     {
         return m_animationData;
     }
+    
 protected:
 
     /**

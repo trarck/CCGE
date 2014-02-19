@@ -17,6 +17,11 @@ public:
     
 	~BaseService();
     
+    bool init()
+    {
+        return true;
+    }
+    
 protected:
     
     

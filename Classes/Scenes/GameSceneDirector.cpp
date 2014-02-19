@@ -27,7 +27,7 @@ GameSceneDirector* GameSceneDirector::getInstance()
     return s_gameSceneDirectorInstance;
 }
 
-//======================场景操作 同要加上message=====================//
+//======================场景操作 同时加上message=====================//
 /**
 * 开始运行一个Scene,使用注册的名子
 */

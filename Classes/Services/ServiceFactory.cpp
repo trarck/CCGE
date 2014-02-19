@@ -8,13 +8,14 @@ NS_CC_GE_BEGIN
 static ServiceFactory* s_dataFactoryInstance=NULL;
 
 ServiceFactory::ServiceFactory()
+:m_pveBattleService(NULL)
 {
 
 }
 
 ServiceFactory::~ServiceFactory()
 {
-
+    CC_SAFE_RELEASE_NULL(m_pveBattleService);
 }
 
 bool ServiceFactory::init()
@@ -35,7 +36,8 @@ ServiceFactory* ServiceFactory::getInstance()
 
 void ServiceFactory::setup()
 {
-
+    m_pveBattleService=new PveBattleService();
+    m_pveBattleService->init();
 }
 
 NS_CC_GE_END

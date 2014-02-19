@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
+#include "PveBattleService.h"
 
 NS_CC_GE_BEGIN
 
@@ -22,7 +23,15 @@ public:
     static ServiceFactory* getInstance();
     
     void setup();
-
+    
+    PveBattleService* getPveBattleService()
+    {
+        return m_pveBattleService;
+    }
+    
+protected:
+    
+    PveBattleService* m_pveBattleService;
 };
 
 NS_CC_GE_END

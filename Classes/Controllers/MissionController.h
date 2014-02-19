@@ -27,15 +27,13 @@ public:
 	void layerDidLoad();
     
     void onLayerExit();
+    
+    
+    void doStepEvent();
 
 private:
-
-	CCPoint m_touchStartPosition;
-	yhge::isometric::ISOTileMap* m_isoMap;
-	CCPoint m_isoMapStartPosition;
     
     GameWorldController* m_gameWorld;
-//    GameWorld* m_gameWorld;
     
 };
 NS_CC_GE_END
