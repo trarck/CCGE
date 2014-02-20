@@ -7,6 +7,7 @@
  */
 
 #define CCGE_DATA_PLAYROLE "PlayRole"
-
+#define CCGE_DATA_BATTLE_TYPE "battleType"
+#define CCGE_DATA_BATTLE_OPPID "oppId"
 
 #endif /* defined(CCGE_CONSTS_DATADEFINE_H_) */

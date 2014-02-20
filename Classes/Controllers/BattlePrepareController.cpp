@@ -1,7 +1,9 @@
 #include "BattlePrepareController.h"
 #include "Game.h"
+#include "Consts/DataDefine.h"
 #include "EntityComponent/EntityFactory.h"
 #include "Scenes/GameSceneDirector.h"
+#include "Services/ServiceFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -14,6 +16,7 @@ static const float kGameTileWidth=100;
 static const float kGameTileHeight=90;
 
 BattlePrepareController::BattlePrepareController(void)
+:m_battleService(NULL)
 {
     m_sName="BattlePrepareController";
 }
@@ -25,7 +28,20 @@ BattlePrepareController::~BattlePrepareController(void)
 
 void BattlePrepareController::layerDidLoad()
 {
-
+    CCDictionary* battleParam=static_cast<CCDictionary*>(GameSceneDirector::getInstance()->getSceneContext());
+    getBattleData(battleParam);
+//    loadResource();
+    
+    //create test button
+    
+    CCMenuItemLabel *battleBtn=CCMenuItemLabel::create(CCLabelTTF::create("battle", "Arial", 20),
+                                                     this,
+                                                     menu_selector(BattlePrepareController::onBattle));
+    
+    CCMenu* menu=CCMenu::create(battleBtn,NULL);
+    menu->alignItemsHorizontally();
+    
+    m_layer->addChild(menu);
 }
 
 void BattlePrepareController::onLayerExit()
@@ -33,14 +49,34 @@ void BattlePrepareController::onLayerExit()
     LayerController::onLayerExit();
 }
 
-void BattlePrepareController::getBattleData()
+void BattlePrepareController::getBattleData(CCDictionary* battleParam)
 {
+    CCInteger* battleTypeValue=static_cast<CCInteger*>(battleParam->objectForKey(CCGE_DATA_BATTLE_TYPE));
+    int battleType=battleTypeValue->getValue();
+    
+    CCInteger* oppIdValue=static_cast<CCInteger*>(battleParam->objectForKey(CCGE_DATA_BATTLE_OPPID));
+    int oppId=oppIdValue?oppIdValue->getValue():0;
+    
+    m_battleService=ServiceFactory::getInstance()->getPveBattleService();
+    m_battleService->prepareBattle(oppId);
+    
     
 }
 
 void BattlePrepareController::loadResource()
 {
     
+}
+
+void BattlePrepareController::gotoBattleScene()
+{
+    GameSceneDirector::getInstance()->replaceScene(kBattleScene);
+}
+
+
+void BattlePrepareController::onBattle(CCObject* sender)
+{
+    gotoBattleScene();
 }
 
 NS_CC_GE_END

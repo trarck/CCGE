@@ -1,4 +1,5 @@
 #include "BattleController.h"
+#include <yhgui/yhgui.h>
 #include "Game.h"
 #include "EntityComponent/EntityFactory.h"
 #include "Scenes/GameSceneDirector.h"
@@ -31,6 +32,18 @@ void BattleController::layerDidLoad()
     this->loadBattleGround();
     
     this->loadEntities();
+    
+    //create test button
+    
+    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 20),
+                                                   this,
+                                                   menu_selector(BattleController::onSkip));
+
+    CCMenu* menu=CCMenu::create(skipBtn,NULL);
+    menu->alignItemsHorizontally();
+    
+    m_layer->addChild(menu);
+    
 }
 
 void BattleController::onLayerExit()
@@ -150,6 +163,20 @@ void BattleController::parseStep()
     //opp
 }
 
+/**
+ * @brief 战斗结束操作
+ */
+void BattleController::doBattleEnd()
+{
+    
+}
+
+void BattleController::onSkip(CCObject* pSender)
+{
+    //goto before battle scene
+    GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
+    GameSceneDirector::getInstance()->popScene();
+}
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {

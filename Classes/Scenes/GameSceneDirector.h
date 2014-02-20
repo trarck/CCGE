@@ -19,6 +19,9 @@ class GameSceneDirector:public yhmvc::SceneDirector
 {
 public:
     
+    GameSceneDirector();
+    ~GameSceneDirector();
+    
     static GameSceneDirector* getInstance();
 
 	//======================场景操作 同时加上message=====================//
@@ -53,6 +56,26 @@ public:
      * 弹出栈元素，直到栈还有level个元素,并把栈顶的Scene显示出来
      */
 	void popToSceneStackLevel(int level);
+    
+public:
+    
+    inline void setSceneContext(CCObject* sceneContext)
+    {
+        CC_SAFE_RETAIN(sceneContext);
+        CC_SAFE_RELEASE(m_sceneContext);
+        m_sceneContext = sceneContext;
+    }
+    
+    inline CCObject* getSceneContext()
+    {
+        return m_sceneContext;
+    }
+    
+protected:
+    /**
+	 * 场景切换上下文变量
+	 */
+    CCObject* m_sceneContext;
 };
 
 NS_CC_GE_END

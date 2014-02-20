@@ -1,5 +1,5 @@
 #include "GameWorldController.h"
-#include "Game.h"
+#include "Scenes/GameSceneDirector.h"
 #include "EntityComponent/EntityFactory.h"
 #include "Layers/GameActiveSortLayer.h"
 
@@ -184,7 +184,7 @@ void GameWorldController::createGameMap()
     //取得要使用的layer渲染类型
     int mapLyaerType=ISOTileMapBuilder::BatchLayerType;
     
-    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
+    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(GameSceneDirector::getInstance()->getSceneContext());
     
     if (mapLyaerTypeValue) {
         mapLyaerType=mapLyaerTypeValue->getValue();

@@ -30,6 +30,8 @@ public:
     
     
     void doStepEvent();
+    
+    void onStepEvent(CCObject* sender);
 
 private:
     

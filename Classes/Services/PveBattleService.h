@@ -22,12 +22,7 @@ public:
      * 从远程或本地取得战斗双方的队伍数据，战斗用到的随机数等。
      * @param oppId 在pvp中为玩家角色id，pve中为ai的id
      */
-    virtual void prepareBattle(int oppId);
-    
-    /**
-     * @brief 取得对方的队伍
-     */
-    virtual std::vector<int> getOppTroops(int oppId);
+    virtual void prepareBattle(int oppId){};
     
 protected:
     

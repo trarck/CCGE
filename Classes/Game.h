@@ -30,24 +30,8 @@ public:
     {
         return yhge::MessageManager::defaultManager();
     }
-    
-    inline void setSceneContext(CCObject* sceneContext)
-    {
-        CC_SAFE_RETAIN(sceneContext);
-        CC_SAFE_RELEASE(m_sceneContext);
-        m_sceneContext = sceneContext;
-    }
-    
-    inline CCObject* getSceneContext()
-    {
-        return m_sceneContext;
-    }
-    
+        
 private:
-    /**
-	 * 场景切换上下文变量
-	 */
-    CCObject* m_sceneContext;
 };
 
 NS_CC_GE_END

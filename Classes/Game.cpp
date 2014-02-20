@@ -34,14 +34,12 @@ Game* Game::getInstance()
 }
 
 Game::Game()
-:m_sceneContext(NULL)
 {
 
 }
 
 Game::~Game()
 {
-	CC_SAFE_RELEASE_NULL(m_sceneContext);
 }
 
 /**

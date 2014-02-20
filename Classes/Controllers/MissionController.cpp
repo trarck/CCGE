@@ -1,6 +1,7 @@
 #include "MissionController.h"
 #include <yhge/isometric.h>
 #include "Game.h"
+#include "Consts/DataDefine.h"
 #include "Scenes/GameSceneDirector.h"
 
 
@@ -34,6 +35,15 @@ void MissionController::layerDidLoad()
     
     m_layer->addChild(m_gameWorld->getLayer());
     
+    //create test button
+    CCMenuItemLabel *stepBtn=CCMenuItemLabel::create(CCLabelTTF::create("step", "Arial", 20),
+                                                     this,
+                                                     menu_selector(MissionController::onStepEvent));
+    
+    CCMenu* menu=CCMenu::create(stepBtn,NULL);
+    menu->alignItemsHorizontally();
+    
+    m_layer->addChild(menu);
 }
 
 void MissionController::onLayerExit()
@@ -43,7 +53,20 @@ void MissionController::onLayerExit()
 
 void MissionController::doStepEvent()
 {
+    CCDictionary* dict=new CCDictionary();
+    dict->setObject(CCInteger::create(1), CCGE_DATA_BATTLE_TYPE);
+    dict->setObject(CCInteger::create(1), CCGE_DATA_BATTLE_OPPID);
     
+    GameSceneDirector::getInstance()->setSceneContext(dict);
+    
+    dict->release();
+    
+    GameSceneDirector::getInstance()->pushScene(kBattlePrepareScene);
+}
+
+void MissionController::onStepEvent(CCObject* sender)
+{
+    doStepEvent();
 }
 
 NS_CC_GE_END

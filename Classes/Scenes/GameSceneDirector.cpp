@@ -27,6 +27,17 @@ GameSceneDirector* GameSceneDirector::getInstance()
     return s_gameSceneDirectorInstance;
 }
 
+GameSceneDirector::GameSceneDirector()
+:m_sceneContext(NULL)
+{
+    
+}
+
+GameSceneDirector::~GameSceneDirector()
+{
+    CC_SAFE_RELEASE_NULL(m_sceneContext);
+}
+
 //======================场景操作 同时加上message=====================//
 /**
 * 开始运行一个Scene,使用注册的名子

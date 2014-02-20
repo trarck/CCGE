@@ -33,7 +33,7 @@ void TestISOController::layerDidLoad()
     //取得要使用的layer渲染类型
     int mapLyaerType=ISOTileMapBuilder::NormalLayerType;
     
-    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(Game::getInstance()->getSceneContext());
+    CCInteger* mapLyaerTypeValue=static_cast<CCInteger*>(GameSceneDirector::getInstance()->getSceneContext());
     
     if (mapLyaerTypeValue) {
         mapLyaerType=mapLyaerTypeValue->getValue();

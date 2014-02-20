@@ -6,6 +6,7 @@
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
 #include "Consts/GameDefine.h"
+#include "Services/BattleService.h"
 
 NS_CC_GE_BEGIN
 
@@ -28,13 +29,20 @@ public:
     /**
      * @brief 取得战斗数据
      */
-    void getBattleData();
+    void getBattleData(CCDictionary* battleParam);
     
     /**
      * @brief 加载战斗资源
      */
     void loadResource();
     
+    void gotoBattleScene();
+    
+    void onBattle(CCObject* sender);
+    
+private:
+    
+    BattleService* m_battleService;
 };
 NS_CC_GE_END
 

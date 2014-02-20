@@ -10,23 +10,27 @@ typedef struct SceneRegisterItem
     cocos2d::yhmvc::SceneCreate createFun;
 } SceneRegisterItem;
 
-//TODO use generate tool to create this file
-#include "SceneDefine.h"
+//this file generate by tools.do not modify directorly
+
 #include "Scenes/MainScene.h"
 #include "Scenes/TestISOScene.h"
 #include "Scenes/MissionScene.h"
 #include "Scenes/BattleScene.h"
+#include "Scenes/BattlePrepareScene.h"
 #include "Scenes/TestSqliteScene.h"
+
 
 NS_CC_GE_BEGIN
 
 static SceneRegisterItem kSceneRegisterData[]=
 {
-    {kMainScene,SCENE_CREATE_SELECTOR(MainScene::create)},
+	{kMainScene,SCENE_CREATE_SELECTOR(MainScene::create)},
 	{kTestISOScene,SCENE_CREATE_SELECTOR(TestISOScene::create)},
-    {kMissioncene,SCENE_CREATE_SELECTOR(MissionScene::create)},
-    {kBattlecene,SCENE_CREATE_SELECTOR(BattleScene::create)},
-    {kTestSqlite,SCENE_CREATE_SELECTOR(TestSqliteScene::create)},
+	{kMissionScene,SCENE_CREATE_SELECTOR(MissionScene::create)},
+	{kBattleScene,SCENE_CREATE_SELECTOR(BattleScene::create)},
+	{kBattlePrepareScene,SCENE_CREATE_SELECTOR(BattlePrepareScene::create)},
+	{kTestSqlite,SCENE_CREATE_SELECTOR(TestSqliteScene::create)},
+
 };
 
 NS_CC_GE_END

@@ -64,6 +64,13 @@ public:
      * @brief 执行战斗步骤
      */
     void parseStep();
+    
+    /**
+     * @brief 战斗结束操作
+     */
+    void doBattleEnd();
+    
+    void onSkip(CCObject* pSender);
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
