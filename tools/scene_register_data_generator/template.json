@@ -1,0 +1,14 @@
+{
+	"template":{
+		"sceneDefine":{
+			"file":"SceneDefine.tpx"
+		},
+		"sceneRegisterData":{
+			"file":"SceneRegisterData.tpx"
+		},
+		"sceneDefineItem":"static const char* #{key}=\"#{value}\";\n",
+		"unusedItem":"#{key},",
+		"sceneRegisterIncludeItem":"#include \"#{path}\"\n",
+		"sceneRegisterDataItem":"\t{#{key},SCENE_CREATE_SELECTOR(#{creator})},\n"
+	}
+}
