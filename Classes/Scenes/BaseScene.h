@@ -18,6 +18,9 @@ class BaseScene:public cocos2d::yhmvc::Scene
 {
 public:
     
+    virtual void onEnter();
+    
+    virtual void onExit();
 };
 
 NS_CC_GE_END

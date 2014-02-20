@@ -18,6 +18,7 @@ USING_NS_CC;
 USING_NS_CC_YHMVC;
 USING_NS_CC_YHGE;
 USING_NS_CC_YHGE_ISOMETRIC;
+USING_NS_CC_YHGUI;
 
 NS_CC_GE_BEGIN
 
@@ -34,12 +35,14 @@ Game* Game::getInstance()
 }
 
 Game::Game()
+:m_interactiveOrganizer(NULL)
 {
 
 }
 
 Game::~Game()
 {
+    CC_SAFE_RELEASE_NULL(m_interactiveOrganizer);
 }
 
 /**
@@ -50,6 +53,13 @@ void Game::setup()
     ISOStaticCoordinate::initTileSize(kGameTileWidth, kGameTileHeight);
     
     setupSceneDirector();
+}
+
+void Game::setupGui()
+{
+    m_interactiveOrganizer=new DocumentTreeOrganizer();
+    m_interactiveOrganizer->init();
+    m_interactiveOrganizer->registerWithTouchDispatcher();
 }
 
 void Game::setupSceneDirector()

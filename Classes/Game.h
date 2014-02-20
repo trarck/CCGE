@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "CCGEMacros.h"
 #include <yhge/Message/MessageManager.h>
+#include <yhgui/yhgui.h>
 
 NS_CC_GE_BEGIN
 
@@ -22,6 +23,11 @@ public:
     void setup();
     
     /**
+     * 初始化gui
+     */
+    void setupGui();
+    
+    /**
 	 * 设置场景管理
 	 */
     void setupSceneDirector();
@@ -30,8 +36,22 @@ public:
     {
         return yhge::MessageManager::defaultManager();
     }
-        
+    
+    inline void setInteractiveOrganizer(yhgui::DocumentTreeOrganizer* interactiveOrganizer)
+    {
+        CC_SAFE_RETAIN(interactiveOrganizer);
+        CC_SAFE_RELEASE(m_interactiveOrganizer);
+        m_interactiveOrganizer = interactiveOrganizer;
+    }
+    
+    inline yhgui::DocumentTreeOrganizer* getInteractiveOrganizer()
+    {
+        return m_interactiveOrganizer;
+    }
+    
 private:
+    
+    yhgui::DocumentTreeOrganizer* m_interactiveOrganizer;
 };
 
 NS_CC_GE_END
