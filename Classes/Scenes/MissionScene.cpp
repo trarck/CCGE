@@ -11,14 +11,14 @@ void MissionScene::loadContents()
 {
 	ThreeSegmentScene::loadContents();
     
-    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getLayerControllerByName("ThreeSegmentController"));
+    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getControllerByName("ThreeSegmentController"));
 
 	MissionController* missionController=new MissionController();
 	missionController->init();
     missionController->setPreferredContentSize(threeSegmentController->getBodyLayer()->getContentSize());
 
-	threeSegmentController->getBodyLayer()->addChild(missionController->getLayer());
-    addLayerController(missionController);
+	threeSegmentController->getBodyLayer()->addChild(missionController->getView());
+    addController(missionController);
     missionController->release();
 }
 

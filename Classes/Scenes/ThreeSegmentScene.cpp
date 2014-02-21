@@ -13,22 +13,22 @@ void ThreeSegmentScene::loadContents()
     
     ThreeSegmentController* threeSegmentController=new ThreeSegmentController();
     threeSegmentController->init("ThreeSegmentController");
-    addLayerController(threeSegmentController);
+    addController(threeSegmentController);
     threeSegmentController->release();
-    addChild(threeSegmentController->getLayer());
+    addChild(threeSegmentController->getView());
     
     HeaderController* headerController=new HeaderController();
 	headerController->init();
     headerController->setPreferredContentSize(threeSegmentController->getHeaderLayer()->getContentSize());
-	threeSegmentController->getHeaderLayer()->addChild(headerController->getLayer());
-    addLayerController(headerController);
+	threeSegmentController->getHeaderLayer()->addChild(headerController->getView());
+    addController(headerController);
     headerController->release();
     
     FooterController* footerController=new FooterController();
 	footerController->init();
     footerController->setPreferredContentSize(threeSegmentController->getFooterLayer()->getContentSize());
-	threeSegmentController->getFooterLayer()->addChild(footerController->getLayer());
-    addLayerController(footerController);
+	threeSegmentController->getFooterLayer()->addChild(footerController->getView());
+    addController(footerController);
     footerController->release();
 }
 

@@ -16,7 +16,7 @@ NS_CC_GE_BEGIN
  * 可以添加其它controller来作为显示内容
  * 由于结构简单不容易出错。
  */
-class MissionController:public yhmvc::LayerController,public CCTouchDelegate
+class MissionController:public yhmvc::Controller,public CCTouchDelegate
 {
 public:
 	
@@ -24,9 +24,9 @@ public:
     
 	~MissionController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
     
-    void onLayerExit();
+    void onViewExit();
     
     
     void doStepEvent();

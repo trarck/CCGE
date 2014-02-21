@@ -26,7 +26,7 @@ TestISOController::~TestISOController(void)
     CCLOG("TestISOController destroy");
 }
 
-void TestISOController::layerDidLoad()
+void TestISOController::viewDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
@@ -73,7 +73,7 @@ void TestISOController::layerDidLoad()
     //构建dynamic group
     m_isoMap->setupDynamicGroup();
     
-    m_layer->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
+    m_view->addChild(m_isoMap,0,kLayerTagTestIsoLayer);
     m_isoMap->release();
 
 	m_isoMap->showCoordLine();
@@ -95,13 +95,13 @@ void TestISOController::layerDidLoad()
     CCMenu* pMenu = CCMenu::create(pItem,pItem2, NULL);
 	pMenu->setPosition( ccp(visibleSize.width/2,30) );
 	pMenu->alignItemsHorizontallyWithPadding(20);
-    m_layer->addChild(pMenu, 1);
+    m_view->addChild(pMenu, 1);
 }
 
-void TestISOController::onLayerExit()
+void TestISOController::onViewExit()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    LayerController::onLayerExit();
+    Controller::onViewExit();
 }
 
 bool TestISOController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

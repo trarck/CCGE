@@ -68,7 +68,7 @@ bool GameWorldController::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !LayerController::init() )
+    if ( !Controller::init() )
     {
         return false;
     }
@@ -86,17 +86,17 @@ bool GameWorldController::init(int zoneId,int mapId)
 	return true;
 }
 
-void GameWorldController::layerDidLoad()
+void GameWorldController::viewDidLoad()
 {
-    LayerController::layerDidLoad();
+    Controller::viewDidLoad();
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-100,false);
     this->setup();
 }
 
-void GameWorldController::onLayerExit()
+void GameWorldController::onViewExit()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    LayerController::onLayerExit();
+    Controller::onViewExit();
 }
 
 void GameWorldController::setup()
@@ -176,7 +176,7 @@ void GameWorldController::createGameMap()
 {
     //移除去之前的地图文件
     if (m_isoMap) {
-        m_layer->removeChild(m_isoMap);
+        m_view->removeChild(m_isoMap);
     }
     
     CCSize visibleSize =this->getPreferredContentSize();//CCSizeMake(480,240);//
@@ -229,7 +229,7 @@ void GameWorldController::createGameMap()
 //    this->createActiveLayer(activeLayerInfo);
     
     //加入渲染树中
-    m_layer->addChild(m_isoMap,kGameMapZOrder);
+    m_view->addChild(m_isoMap,kGameMapZOrder);
     
     //设置地图的格子行列
     CCSize mapSize=m_isoMap->getMapSize();
@@ -639,7 +639,7 @@ void GameWorldController::createTestMenu()
     CCMenu* pMenu = CCMenu::create(pItem,pItem2, NULL);
 	pMenu->setPosition( ccp(visibleSize.width/2,30) );
 	pMenu->alignItemsHorizontallyWithPadding(20);
-    m_layer->addChild(pMenu, 1);
+    m_view->addChild(pMenu, 1);
 }
 
 //void GameWorldController::setupNetWork()
@@ -665,7 +665,7 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
 {
     CCSize visibleSize=this->getPreferredContentSize();
     CCPoint pos=ccp(visibleSize.width/2,visibleSize.height/2);
-    pos=m_layer->convertToWorldSpace(pos);
+    pos=m_view->convertToWorldSpace(pos);
     
     GameEntity* player=EntityFactory::getInstance()->createPlayer(2);
     setPlayer(player);
@@ -815,7 +815,7 @@ bool  GameWorldController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	
 	m_bIsTouchMoved=false;
 	m_startTouchLocation=touchPoint;
-    m_startPoint=m_layer->getPosition();
+    m_startPoint=m_view->getPosition();
 	m_lastTouchLocation=touchPoint;
 
 	CCPoint mapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_pGameCamera->getLocationInWorld(touchPoint)));

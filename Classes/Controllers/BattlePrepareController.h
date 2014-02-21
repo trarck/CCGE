@@ -14,7 +14,7 @@ NS_CC_GE_BEGIN
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
  */
-class BattlePrepareController:public yhmvc::LayerController
+class BattlePrepareController:public yhmvc::Controller
 {
 public:
 	
@@ -22,9 +22,9 @@ public:
     
 	~BattlePrepareController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
     
-    void onLayerExit();
+    void onViewExit();
     
     /**
      * @brief 取得战斗数据

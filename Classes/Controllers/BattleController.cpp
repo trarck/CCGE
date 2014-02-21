@@ -27,7 +27,7 @@ BattleController::~BattleController(void)
     CCLOG("BattleController destroy");
 }
 
-void BattleController::layerDidLoad()
+void BattleController::viewDidLoad()
 {
     this->loadBattleGround();
     
@@ -42,14 +42,14 @@ void BattleController::layerDidLoad()
     CCMenu* menu=CCMenu::create(skipBtn,NULL);
     menu->alignItemsHorizontally();
     
-    m_layer->addChild(menu);
+    m_view->addChild(menu);
     
 }
 
-void BattleController::onLayerExit()
+void BattleController::onViewExit()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    LayerController::onLayerExit();
+    Controller::onViewExit();
 }
 
 void BattleController::loadBattleGround()
@@ -96,7 +96,7 @@ void BattleController::loadSelfEntities()
         
         renderer->setZOrder(row-i%row);
         
-        m_layer->addChild(renderer);
+        m_view->addChild(renderer);
     }
 }
 
@@ -129,7 +129,7 @@ void BattleController::loadOppEntities()
         
         renderer->setZOrder(row-i%row);
         
-        m_layer->addChild(renderer);
+        m_view->addChild(renderer);
     }
 }
 

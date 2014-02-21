@@ -11,14 +11,14 @@ void TestISOScene::loadContents()
 {
 	ThreeSegmentScene::loadContents();
     
-    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getLayerControllerByName("ThreeSegmentController"));
+    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getControllerByName("ThreeSegmentController"));
 
 	TestISOController* testISOController=new TestISOController();
 	testISOController->init();
     testISOController->setPreferredContentSize(threeSegmentController->getBodyLayer()->getContentSize());
 
-	threeSegmentController->getBodyLayer()->addChild(testISOController->getLayer());
-    addLayerController(testISOController);
+	threeSegmentController->getBodyLayer()->addChild(testISOController->getView());
+    addController(testISOController);
     testISOController->release();
 }
 

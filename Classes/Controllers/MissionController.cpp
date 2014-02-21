@@ -25,7 +25,7 @@ MissionController::~MissionController(void)
     CC_SAFE_RELEASE_NULL(m_gameWorld);
 }
 
-void MissionController::layerDidLoad()
+void MissionController::viewDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
@@ -33,7 +33,7 @@ void MissionController::layerDidLoad()
     m_gameWorld->init(1000, 1);
     m_gameWorld->setPreferredContentSize(visibleSize);
     
-    m_layer->addChild(m_gameWorld->getLayer());
+    m_view->addChild(m_gameWorld->getView());
     
     //create test button
     CCMenuItemLabel *stepBtn=CCMenuItemLabel::create(CCLabelTTF::create("step", "Arial", 20),
@@ -43,12 +43,12 @@ void MissionController::layerDidLoad()
     CCMenu* menu=CCMenu::create(stepBtn,NULL);
     menu->alignItemsHorizontally();
     
-    m_layer->addChild(menu);
+    m_view->addChild(menu);
 }
 
-void MissionController::onLayerExit()
+void MissionController::onViewExit()
 {
-    LayerController::onLayerExit();
+    Controller::onViewExit();
 }
 
 void MissionController::doStepEvent()

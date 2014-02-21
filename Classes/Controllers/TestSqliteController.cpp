@@ -23,7 +23,7 @@ TestSqliteController::~TestSqliteController(void)
     CC_SAFE_RELEASE_NULL(m_sqliteDB);
 }
 
-void TestSqliteController::layerDidLoad()
+void TestSqliteController::viewDidLoad()
 {
     //in test sqlite
     

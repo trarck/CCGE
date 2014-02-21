@@ -13,7 +13,7 @@ NS_CC_GE_BEGIN
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
  */
-class BattleController:public yhmvc::LayerController,public CCTouchDelegate
+class BattleController:public yhmvc::Controller,public CCTouchDelegate
 {
 public:
 	
@@ -21,9 +21,9 @@ public:
     
 	~BattleController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
     
-    void onLayerExit();
+    void onViewExit();
     
     /**
      * @brief 加载背景

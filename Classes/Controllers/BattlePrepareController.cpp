@@ -26,7 +26,7 @@ BattlePrepareController::~BattlePrepareController(void)
     CCLOG("BattlePrepareController destroy");
 }
 
-void BattlePrepareController::layerDidLoad()
+void BattlePrepareController::viewDidLoad()
 {
     CCDictionary* battleParam=static_cast<CCDictionary*>(GameSceneDirector::getInstance()->getSceneContext());
     getBattleData(battleParam);
@@ -41,12 +41,12 @@ void BattlePrepareController::layerDidLoad()
     CCMenu* menu=CCMenu::create(battleBtn,NULL);
     menu->alignItemsHorizontally();
     
-    m_layer->addChild(menu);
+    m_view->addChild(menu);
 }
 
-void BattlePrepareController::onLayerExit()
+void BattlePrepareController::onViewExit()
 {
-    LayerController::onLayerExit();
+    Controller::onViewExit();
 }
 
 void BattlePrepareController::getBattleData(CCDictionary* battleParam)

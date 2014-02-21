@@ -11,7 +11,7 @@ NS_CC_GE_BEGIN
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
  */
-class TestSqliteController:public yhmvc::LayerController
+class TestSqliteController:public yhmvc::Controller
 {
 public:
 	
@@ -19,7 +19,7 @@ public:
     
 	~TestSqliteController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
     
 private:
     

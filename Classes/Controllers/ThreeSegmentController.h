@@ -1,12 +1,12 @@
 #ifndef CCGE_CONTROLLERS_THREESEGMENTCONTROLLER_H_
 #define CCGE_CONTROLLERS_THREESEGMENTCONTROLLER_H_
 
-#include "yhmvc/Core/LayerController.h"
-#include "yhmvc/Core/Layer.h"
+#include "yhmvc/Core/Controller.h"
+#include "yhmvc/Core/View.h"
 #include "CCGEMacros.h"
 
 NS_CC_GE_BEGIN
-class ThreeSegmentController:public cocos2d::yhmvc::LayerController
+class ThreeSegmentController:public cocos2d::yhmvc::Controller
 {
 public:
 	
@@ -14,30 +14,30 @@ public:
     
 	~ThreeSegmentController(void);
 
-	void layerDidLoad();    
+	void viewDidLoad();    
     
     //get setter
     
-    inline yhmvc::Layer* getHeaderLayer()
+    inline yhmvc::View* getHeaderLayer()
     {
         return m_headerLayer;
     }
     
-    inline yhmvc::Layer* getFooterLayer()
+    inline yhmvc::View* getFooterLayer()
     {
         return m_footerLayer;
     }
     
-    inline yhmvc::Layer* getBodyLayer()
+    inline yhmvc::View* getBodyLayer()
     {
         return m_bodyLayer;
     }
     
 protected:
     
-    yhmvc::Layer* m_headerLayer;
-    yhmvc::Layer* m_footerLayer;
-    yhmvc::Layer* m_bodyLayer;
+    yhmvc::View* m_headerLayer;
+    yhmvc::View* m_footerLayer;
+    yhmvc::View* m_bodyLayer;
 };
 
 NS_CC_GE_END

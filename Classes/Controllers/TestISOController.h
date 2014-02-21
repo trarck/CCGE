@@ -14,7 +14,7 @@ NS_CC_GE_BEGIN
  * 可以添加其它controller来作为显示内容
  * 由于结构简单不容易出错。
  */
-class TestISOController:public yhmvc::LayerController,public CCTouchDelegate
+class TestISOController:public yhmvc::Controller,public CCTouchDelegate
 {
 public:
 	
@@ -22,9 +22,9 @@ public:
     
 	~TestISOController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
     
-    void onLayerExit();
+    void onViewExit();
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

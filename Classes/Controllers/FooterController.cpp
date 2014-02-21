@@ -1,5 +1,5 @@
 #include "FooterController.h"
-#include "yhmvc/Core/Layer.h"
+#include "yhmvc/Core/View.h"
 #include "Scenes/GameSceneDirector.h"
 
 USING_NS_CC;
@@ -18,7 +18,7 @@ FooterController::~FooterController(void)
     CCLOG("FooterController destroy");
 }
 
-void FooterController::layerDidLoad()
+void FooterController::viewDidLoad()
 {
     CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
     
@@ -36,7 +36,7 @@ void FooterController::layerDidLoad()
     
     menu->setPosition( CCPointZero );
     
-    m_layer->addChild(menu);
+    m_view->addChild(menu);
 }
 
 void FooterController::backCallback(CCObject* pSender)
@@ -49,7 +49,7 @@ void FooterController::backCallback(CCObject* pSender)
 
 void FooterController::exitCallback(CCObject* pSender)
 {
-	m_layer->removeAllChildrenWithCleanup(true);
+	m_view->removeAllChildrenWithCleanup(true);
     CCDirector::sharedDirector()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

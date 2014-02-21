@@ -11,14 +11,14 @@ void BattleScene::loadContents()
 {
 	ThreeSegmentScene::loadContents();
     
-    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getLayerControllerByName("ThreeSegmentController"));
+    ThreeSegmentController* threeSegmentController=static_cast<ThreeSegmentController*>(getControllerByName("ThreeSegmentController"));
 
 	BattleController* battleController=new BattleController();
 	battleController->init();
     battleController->setPreferredContentSize(threeSegmentController->getBodyLayer()->getContentSize());
 
-	threeSegmentController->getBodyLayer()->addChild(battleController->getLayer());
-    addLayerController(battleController);
+	threeSegmentController->getBodyLayer()->addChild(battleController->getView());
+    addController(battleController);
     battleController->release();
 }
 

@@ -11,7 +11,7 @@ NS_CC_GE_BEGIN
 
 class GameActiveSortLayer;
 
-class GameWorldController: public yhmvc::LayerController,
+class GameWorldController: public yhmvc::Controller,
     public yhge::isometric::ISOCameraDelegate,
     public CCTouchDelegate
 {
@@ -25,9 +25,9 @@ public:
 
 	virtual bool init(int zoneId,int mapId);
 
-    void layerDidLoad();
+    void viewDidLoad();
 
-    void onLayerExit();
+    void onViewExit();
 
     /**
      * 设置游戏世界

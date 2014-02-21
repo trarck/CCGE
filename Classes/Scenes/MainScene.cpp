@@ -21,25 +21,25 @@ void MainScene::loadContents()
     
 	MainController* mainController=new MainController();
 	mainController->init();
-	this->addChild(mainController->getLayer());
-    addLayerController(mainController);
+	this->addChild(mainController->getView());
+    addController(mainController);
     mainController->release();
     
-    mainController->getLayer()->setPosition(ccp(0.0f, footerHeight));
+    mainController->getView()->setPosition(ccp(0.0f, footerHeight));
     
     HeaderController* headerController=new HeaderController();
 	headerController->init();
-	this->addChild(headerController->getLayer());
-    addLayerController(headerController);
+	this->addChild(headerController->getView());
+    addController(headerController);
     headerController->release();
 
-    headerController->getLayer()->setPosition(ccp(0.0f, screenSize.height-headerHeight));
+    headerController->getView()->setPosition(ccp(0.0f, screenSize.height-headerHeight));
     
     
     FooterController* footerController=new FooterController();
 	footerController->init();
-	this->addChild(footerController->getLayer());
-    addLayerController(footerController);
+	this->addChild(footerController->getView());
+    addController(footerController);
     footerController->release();
 }
 

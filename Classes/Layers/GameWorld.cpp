@@ -50,12 +50,12 @@ bool GameWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayer::init() )
+    if ( !yhmvc::View::init() )
     {
         return false;
     }
-    this->setTouchMode(kCCTouchesOneByOne);
-	this->setTouchEnabled(true);
+//    this->setTouchMode(kCCTouchesOneByOne);
+//	this->setTouchEnabled(true);
 //    this->setScale(8);
 
 	m_iMapColumn=20;

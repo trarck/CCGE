@@ -1,5 +1,5 @@
 #include "HeaderController.h"
-#include "yhmvc/Core/Layer.h"
+#include "yhmvc/Core/View.h"
 #include "Scenes/GameSceneDirector.h"
 
 USING_NS_CC;
@@ -18,7 +18,7 @@ HeaderController::~HeaderController(void)
     CCLOG("HeaderController destroy");
 }
 
-void HeaderController::layerDidLoad()
+void HeaderController::viewDidLoad()
 {
     CCSize contentSize=getPreferredContentSize();
 
@@ -26,7 +26,7 @@ void HeaderController::layerDidLoad()
     
     m_title->setPosition(ccp(contentSize.width/2,contentSize.height/2));
 
-    m_layer->addChild(m_title);
+    m_view->addChild(m_title);
    
 }
 

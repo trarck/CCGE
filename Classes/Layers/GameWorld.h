@@ -8,7 +8,7 @@
 
 NS_CC_GE_BEGIN
 
-class GameWorld: public yhmvc::Layer,public yhge::isometric::ISOCameraDelegate
+class GameWorld: public yhmvc::View,public yhge::isometric::ISOCameraDelegate
 {
 public:
 	

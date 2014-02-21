@@ -1,19 +1,19 @@
 #ifndef CCGE_CONTROLLERS_MAINCONTROLLER_H_
 #define CCGE_CONTROLLERS_MAINCONTROLLER_H_
 
-#include "yhmvc/Core/LayerController.h"
-#include "yhmvc/Core/Layer.h"
+#include "yhmvc/Core/Controller.h"
+#include "yhmvc/Core/View.h"
 #include "CCGEMacros.h"
 
 NS_CC_GE_BEGIN
 
-class MainController:public yhmvc::LayerController
+class MainController:public yhmvc::Controller
 {
 public:
 	MainController(void);
 	~MainController(void);
 
-	void layerDidLoad();
+	void viewDidLoad();
 
 	void menuCloseCallback(CCObject* pSender);
     
