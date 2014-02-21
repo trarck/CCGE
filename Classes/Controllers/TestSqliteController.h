@@ -21,6 +21,12 @@ public:
 
 	void viewDidLoad();
     
+    void onCreateTable(yhge::Event* event);
+    
+    void onInsertTable(yhge::Event* event);
+    
+    void onShowTable(yhge::Event* event);
+    
 private:
     
     void createTable();

@@ -21,7 +21,7 @@ void MainScene::loadContents()
     
 	MainController* mainController=new MainController();
 	mainController->init();
-	this->addChild(mainController->getView());
+	m_document->addChild(mainController->getView());
     addController(mainController);
     mainController->release();
     
@@ -29,7 +29,7 @@ void MainScene::loadContents()
     
     HeaderController* headerController=new HeaderController();
 	headerController->init();
-	this->addChild(headerController->getView());
+	m_document->addChild(headerController->getView());
     addController(headerController);
     headerController->release();
 
@@ -38,7 +38,7 @@ void MainScene::loadContents()
     
     FooterController* footerController=new FooterController();
 	footerController->init();
-	this->addChild(footerController->getView());
+	m_document->addChild(footerController->getView());
     addController(footerController);
     footerController->release();
 }

@@ -15,7 +15,7 @@ void BattlePrepareScene::loadContents()
 	battlePrepareController->init();
     battlePrepareController->setPreferredContentSize(CCDirector::sharedDirector()->getWinSize());
 
-	addChild(battlePrepareController->getView());
+	m_document->addChild(battlePrepareController->getView());
     addController(battlePrepareController);
     battlePrepareController->release();
 }

@@ -51,7 +51,7 @@ Game::~Game()
 void Game::setup()
 {
     ISOStaticCoordinate::initTileSize(kGameTileWidth, kGameTileHeight);
-    
+    setupGui();
     setupSceneDirector();
 }
 

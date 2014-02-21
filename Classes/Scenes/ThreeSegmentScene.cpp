@@ -15,7 +15,7 @@ void ThreeSegmentScene::loadContents()
     threeSegmentController->init("ThreeSegmentController");
     addController(threeSegmentController);
     threeSegmentController->release();
-    addChild(threeSegmentController->getView());
+    m_document->addChild(threeSegmentController->getView());
     
     HeaderController* headerController=new HeaderController();
 	headerController->init();
