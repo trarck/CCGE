@@ -25,7 +25,7 @@ public:
     
     void onInsertTable(yhge::Event* event);
     
-    void onShowTable(yhge::Event* event);
+    void onShowTable(yhge::Event* event);   
     
 private:
     

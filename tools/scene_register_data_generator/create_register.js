@@ -27,7 +27,7 @@ var opts= [
 ];
 
 var result=ArgParser.parse(opts);
-console.log(result);
+// console.log(result);
 
 var configFilePath=result.options.config||"config.json";
 var templateFilePath=result.options.template||"template.json";
@@ -36,7 +36,7 @@ var sceneDefineFile=result.options.sceneDefine||"../../Classes/Scenes/SceneDefin
 var sceneRegisterDataFile=result.options.sceneRegisterData||"../../Classes/Scenes/sceneRegisterData.h";
 
 var templateData=loadTemplate(templateFilePath);
-console.log(templateData)
+// console.log(templateData)
 
 var configData=loadConfigFile(configFilePath);
 
@@ -80,12 +80,20 @@ function parseConfigData(configData,templateData){
 	
 	var scenes=configData.scenes;
 	var sceneItem;
+	var includePath="";
+	
 	for (var i in scenes) {
 		sceneItem=scenes[i];
 		sceneItem=parseConfigSceneItem(sceneItem);
 		defineOut+=createDefineData(sceneItem,templateData.sceneDefineItem);
 		unusedOut+=createUnusedData(sceneItem,templateData.unusedItem);
-		registerIncludeOut+=createRegisterInclude(sceneItem,templateData.sceneRegisterIncludeItem);
+		
+		
+		includePath=createRegisterInclude(sceneItem,templateData.sceneRegisterIncludeItem);
+		//check unic include path
+		if (registerIncludeOut.indexOf(includePath)==-1) {
+			registerIncludeOut+=createRegisterInclude(sceneItem,templateData.sceneRegisterIncludeItem);
+		}
 		registerDataOut+=createRegisterData(sceneItem,templateData.sceneRegisterDataItem);
 	}
 	unusedOut=unusedOut.substring(0,unusedOut.length-1);
