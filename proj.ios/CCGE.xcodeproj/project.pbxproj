@@ -255,7 +255,6 @@
 		575AD890187BC54B00AA0477 /* ThreeSegmentController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD87A187BC54B00AA0477 /* ThreeSegmentController.cpp */; };
 		575AD891187BC54B00AA0477 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD87C187BC54B00AA0477 /* Game.cpp */; };
 		575AD892187BC54B00AA0477 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD880187BC54B00AA0477 /* BaseScene.cpp */; };
-		575AD893187BC54B00AA0477 /* GameSceneDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD882187BC54B00AA0477 /* GameSceneDirector.cpp */; };
 		575AD894187BC54B00AA0477 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD884187BC54B00AA0477 /* MainScene.cpp */; };
 		575AD895187BC54B00AA0477 /* TestISOScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD888187BC54B00AA0477 /* TestISOScene.cpp */; };
 		575AD896187BC54B00AA0477 /* ThreeSegmentScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD88A187BC54B00AA0477 /* ThreeSegmentScene.cpp */; };
@@ -267,6 +266,11 @@
 		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
 		5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */; };
 		576E3FD9187D617500745A0A /* map in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FD8187D617500745A0A /* map */; };
+		57704F9218CDAC29006B8A62 /* BuilderExternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F8E18CDAC29006B8A62 /* BuilderExternal.cpp */; };
+		57704F9318CDAC29006B8A62 /* GameSceneBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9018CDAC29006B8A62 /* GameSceneBuilder.cpp */; };
+		57704F9918CDACCB006B8A62 /* BaseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9718CDACCB006B8A62 /* BaseController.cpp */; };
+		57704F9F18CDAD72006B8A62 /* GameSceneDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9B18CDAD72006B8A62 /* GameSceneDirector.cpp */; };
+		57704FA218CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FA018CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp */; };
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
@@ -840,12 +844,8 @@
 		575AD87E187BC54B00AA0477 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Messages.h; path = ../Classes/Messages.h; sourceTree = "<group>"; };
 		575AD880187BC54B00AA0477 /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseScene.cpp; sourceTree = "<group>"; };
 		575AD881187BC54B00AA0477 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScene.h; sourceTree = "<group>"; };
-		575AD882187BC54B00AA0477 /* GameSceneDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSceneDirector.cpp; sourceTree = "<group>"; };
-		575AD883187BC54B00AA0477 /* GameSceneDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneDirector.h; sourceTree = "<group>"; };
 		575AD884187BC54B00AA0477 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
 		575AD885187BC54B00AA0477 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
-		575AD886187BC54B00AA0477 /* SceneDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDefine.h; sourceTree = "<group>"; };
-		575AD887187BC54B00AA0477 /* SceneRegisterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneRegisterData.h; sourceTree = "<group>"; };
 		575AD888187BC54B00AA0477 /* TestISOScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestISOScene.cpp; sourceTree = "<group>"; };
 		575AD889187BC54B00AA0477 /* TestISOScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestISOScene.h; sourceTree = "<group>"; };
 		575AD88A187BC54B00AA0477 /* ThreeSegmentScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreeSegmentScene.cpp; sourceTree = "<group>"; };
@@ -861,6 +861,19 @@
 		5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAttackComponent.cpp; sourceTree = "<group>"; };
 		5768C14718A8DA0E005123C5 /* GameAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAttackComponent.h; sourceTree = "<group>"; };
 		576E3FD8187D617500745A0A /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
+		57704F8D18CDAC29006B8A62 /* BuilderDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderDefine.h; sourceTree = "<group>"; };
+		57704F8E18CDAC29006B8A62 /* BuilderExternal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuilderExternal.cpp; sourceTree = "<group>"; };
+		57704F8F18CDAC29006B8A62 /* BuilderExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderExternal.h; sourceTree = "<group>"; };
+		57704F9018CDAC29006B8A62 /* GameSceneBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSceneBuilder.cpp; sourceTree = "<group>"; };
+		57704F9118CDAC29006B8A62 /* GameSceneBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneBuilder.h; sourceTree = "<group>"; };
+		57704F9718CDACCB006B8A62 /* BaseController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseController.cpp; sourceTree = "<group>"; };
+		57704F9818CDACCB006B8A62 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
+		57704F9B18CDAD72006B8A62 /* GameSceneDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSceneDirector.cpp; sourceTree = "<group>"; };
+		57704F9C18CDAD72006B8A62 /* GameSceneDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneDirector.h; sourceTree = "<group>"; };
+		57704F9D18CDAD72006B8A62 /* SceneDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDefine.h; sourceTree = "<group>"; };
+		57704F9E18CDAD72006B8A62 /* SceneRegisterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneRegisterData.h; sourceTree = "<group>"; };
+		57704FA018CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DimetricCoordinateLayer.cpp; sourceTree = "<group>"; };
+		57704FA118CDB7EA006B8A62 /* DimetricCoordinateLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimetricCoordinateLayer.h; sourceTree = "<group>"; };
 		577105741883DF8900FA1446 /* MissionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionController.cpp; sourceTree = "<group>"; };
 		577105751883DF8900FA1446 /* MissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
 		577105781883DFED00FA1446 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorld.cpp; sourceTree = "<group>"; };
@@ -1413,6 +1426,8 @@
 				57243EAC18B33E050070163A /* Models */,
 				575AD87F187BC54B00AA0477 /* Scenes */,
 				57243EBC18B3551C0070163A /* Services */,
+				57704F8C18CDAC29006B8A62 /* SceneBuilder */,
+				57704F9A18CDAD72006B8A62 /* SceneDirector */,
 				575D1505187C0827004E9958 /* Tests */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -1934,6 +1949,8 @@
 		575AD871187BC54B00AA0477 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57704F9718CDACCB006B8A62 /* BaseController.cpp */,
+				57704F9818CDACCB006B8A62 /* BaseController.h */,
 				57CF76F118AA11380085A22F /* BattleController.cpp */,
 				57CF76F218AA11380085A22F /* BattleController.h */,
 				57243ED718B49C1F0070163A /* BattlePrepareController.cpp */,
@@ -1968,14 +1985,10 @@
 				57243ED518B49BE70070163A /* BattlePrepareScene.h */,
 				57CF76F418AA18450085A22F /* BattleScene.cpp */,
 				57CF76F518AA18450085A22F /* BattleScene.h */,
-				575AD882187BC54B00AA0477 /* GameSceneDirector.cpp */,
-				575AD883187BC54B00AA0477 /* GameSceneDirector.h */,
 				575AD884187BC54B00AA0477 /* MainScene.cpp */,
 				575AD885187BC54B00AA0477 /* MainScene.h */,
 				5771057B1883E1B800FA1446 /* MissionScene.cpp */,
 				5771057C1883E1B800FA1446 /* MissionScene.h */,
-				575AD886187BC54B00AA0477 /* SceneDefine.h */,
-				575AD887187BC54B00AA0477 /* SceneRegisterData.h */,
 				575AD888187BC54B00AA0477 /* TestISOScene.cpp */,
 				575AD889187BC54B00AA0477 /* TestISOScene.h */,
 				57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */,
@@ -2036,9 +2049,36 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		57704F8C18CDAC29006B8A62 /* SceneBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				57704F8D18CDAC29006B8A62 /* BuilderDefine.h */,
+				57704F8E18CDAC29006B8A62 /* BuilderExternal.cpp */,
+				57704F8F18CDAC29006B8A62 /* BuilderExternal.h */,
+				57704F9018CDAC29006B8A62 /* GameSceneBuilder.cpp */,
+				57704F9118CDAC29006B8A62 /* GameSceneBuilder.h */,
+			);
+			name = SceneBuilder;
+			path = ../Classes/SceneBuilder;
+			sourceTree = "<group>";
+		};
+		57704F9A18CDAD72006B8A62 /* SceneDirector */ = {
+			isa = PBXGroup;
+			children = (
+				57704F9B18CDAD72006B8A62 /* GameSceneDirector.cpp */,
+				57704F9C18CDAD72006B8A62 /* GameSceneDirector.h */,
+				57704F9D18CDAD72006B8A62 /* SceneDefine.h */,
+				57704F9E18CDAD72006B8A62 /* SceneRegisterData.h */,
+			);
+			name = SceneDirector;
+			path = ../Classes/SceneDirector;
+			sourceTree = "<group>";
+		};
 		577105771883DFED00FA1446 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				57704FA018CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp */,
+				57704FA118CDB7EA006B8A62 /* DimetricCoordinateLayer.h */,
 				57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */,
 				57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */,
 				577105781883DFED00FA1446 /* GameWorld.cpp */,
@@ -2231,6 +2271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A3D8FF1682F7D5002FB0C5 /* b2BroadPhase.cpp in Sources */,
+				57704F9F18CDAD72006B8A62 /* GameSceneDirector.cpp in Sources */,
 				15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */,
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
@@ -2335,6 +2376,7 @@
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
 				57243ECC18B45B580070163A /* RemoteCache.cpp in Sources */,
+				57704FA218CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp in Sources */,
 				15A3DA3F1682F826002FB0C5 /* CCLayerLoader.cpp in Sources */,
 				57243EC818B3551C0070163A /* UserService.cpp in Sources */,
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
@@ -2342,6 +2384,7 @@
 				15A3DA421682F826002FB0C5 /* CCNode+CCBRelativePositioning.cpp in Sources */,
 				15A3DA431682F826002FB0C5 /* CCNodeLoader.cpp in Sources */,
 				15A3DA441682F826002FB0C5 /* CCNodeLoaderLibrary.cpp in Sources */,
+				57704F9918CDACCB006B8A62 /* BaseController.cpp in Sources */,
 				15A3DA451682F826002FB0C5 /* CCParticleSystemQuadLoader.cpp in Sources */,
 				15A3DA461682F826002FB0C5 /* CCScale9SpriteLoader.cpp in Sources */,
 				15A3DA471682F826002FB0C5 /* CCScrollViewLoader.cpp in Sources */,
@@ -2379,7 +2422,6 @@
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
-				575AD893187BC54B00AA0477 /* GameSceneDirector.cpp in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */,
@@ -2430,6 +2472,7 @@
 				379BB9A017F03F3700829B88 /* CCBatchNode.cpp in Sources */,
 				379BB9A117F03F3700829B88 /* CCDecorativeDisplay.cpp in Sources */,
 				379BB9A217F03F3700829B88 /* CCDisplayFactory.cpp in Sources */,
+				57704F9318CDAC29006B8A62 /* GameSceneBuilder.cpp in Sources */,
 				379BB9A317F03F3700829B88 /* CCDisplayManager.cpp in Sources */,
 				379BB9A417F03F3700829B88 /* CCSkin.cpp in Sources */,
 				379BB9A517F03F3700829B88 /* CCColliderDetector.cpp in Sources */,
@@ -2454,6 +2497,7 @@
 				379BB9B717F03F3700829B88 /* UILayoutDefine.cpp in Sources */,
 				57243EB118B33E050070163A /* BaseModel.cpp in Sources */,
 				379BB9B817F03F3700829B88 /* CocosGUI.cpp in Sources */,
+				57704F9218CDAC29006B8A62 /* BuilderExternal.cpp in Sources */,
 				379BB9B917F03F3700829B88 /* UIHelper.cpp in Sources */,
 				575AD88C187BC54B00AA0477 /* FooterController.cpp in Sources */,
 				379BB9BA17F03F3700829B88 /* UIInputManager.cpp in Sources */,

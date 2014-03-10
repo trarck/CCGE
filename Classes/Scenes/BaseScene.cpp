@@ -18,40 +18,47 @@ NS_CC_GE_BEGIN
 
 BaseScene::BaseScene()
 :m_document(NULL)
+,m_internalOrgnaizer(NULL)
 {
     
 }
 
 BaseScene::~BaseScene()
 {
-//    CC_SAFE_RELEASE_NULL(m_document);
+    //    CC_SAFE_RELEASE_NULL(m_document);
+    CC_SAFE_RELEASE_NULL(m_internalOrgnaizer);
 }
 
 bool BaseScene::init()
 {
-    if (Scene::init()) {
-        m_document=new Component();
+    if(yhmvc::Scene::init()){
         
-        addChild(m_document);
-        
-//        m_document->release();
-        
+        createDocument();
         return true;
     }
     
     return false;
 }
 
-void BaseScene::onEnter()
+void BaseScene::createDocument()
 {
-    yhmvc::Scene::onEnter();
-    Game::getInstance()->getInteractiveOrganizer()->setDocument(m_document);
+    m_internalOrgnaizer=new yhgui::NormalDocumentTreeOrganizer();
+    m_internalOrgnaizer->init();
+    m_internalOrgnaizer->registerWithTouchDispatcher();
+    
+    m_document=new yhgui::Component();
+    
+    addChild(m_document);
+    
+    m_internalOrgnaizer->setDocument(m_document);
+    
+    m_document->release();
 }
 
-void BaseScene::onExit()
-{
-    Game::getInstance()->getInteractiveOrganizer()->setDocument(NULL);
-    yhmvc::Scene::onExit();
-}
-
+//void BaseScene::loadContents()
+//{
+//    yhmvc::Scene::loadContents();
+//    //    createDocument();
+//    
+//}
 NS_CC_GE_END

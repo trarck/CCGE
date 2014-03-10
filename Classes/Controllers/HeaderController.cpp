@@ -1,6 +1,6 @@
 #include "HeaderController.h"
 #include "yhmvc/Core/View.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 
 USING_NS_CC;
 USING_NS_CC_YHMVC;

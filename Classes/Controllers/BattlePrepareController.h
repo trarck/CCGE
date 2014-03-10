@@ -5,6 +5,7 @@
 #include <yhmvc/yhmvc.h>
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
+#include "BaseController.h"
 #include "Consts/GameDefine.h"
 #include "Services/BattleService.h"
 
@@ -14,7 +15,7 @@ NS_CC_GE_BEGIN
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
  */
-class BattlePrepareController:public yhmvc::Controller
+class BattlePrepareController:public BaseController
 {
 public:
 	

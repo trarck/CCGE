@@ -2,7 +2,7 @@
 #include <yhmvc/Core/View.h>
 #include <yhge/isometric.h>
 #include "Game.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 #include "Tests/MenuItemUtil.h"
 
 USING_NS_CC;

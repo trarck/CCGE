@@ -6,6 +6,8 @@
 #include <yhge/Message/MessageManager.h>
 #include <yhgui/yhgui.h>
 
+#include "SceneDirector/GameSceneDirector.h"
+
 NS_CC_GE_BEGIN
 
 class Game:public CCObject
@@ -13,6 +15,7 @@ class Game:public CCObject
 public:
     
 	Game();
+    
 	~Game();
     
     static Game* getInstance();
@@ -49,9 +52,23 @@ public:
         return m_interactiveOrganizer;
     }
     
+    inline void setSceneDirector(GameSceneDirector* sceneDirector)
+    {
+        CC_SAFE_RETAIN(sceneDirector);
+        CC_SAFE_RELEASE(m_sceneDirector);
+        m_sceneDirector = sceneDirector;
+    }
+    
+    inline GameSceneDirector* getSceneDirector()
+    {
+        return m_sceneDirector;
+    }
+    
 private:
     
     yhgui::DocumentTreeOrganizer* m_interactiveOrganizer;
+    
+    GameSceneDirector* m_sceneDirector;
 };
 
 NS_CC_GE_END

@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Consts/DataDefine.h"
 #include "EntityComponent/EntityFactory.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 #include "Services/ServiceFactory.h"
 
 USING_NS_CC;

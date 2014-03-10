@@ -1,5 +1,5 @@
-#ifndef CCGE_SCENES_SCENEDIFINE_H_
-#define CCGE_SCENES_SCENEDIFINE_H_
+#ifndef CCGE_SCENEDIRECTOR_SCENEDIFINE_H_
+#define CCGE_SCENEDIRECTOR_SCENEDIFINE_H_
 
 //this file generate by tool.do not modify derectely
 
@@ -7,4 +7,4 @@
 
 #pragma unused(#{unusedData})
 
-#endif //CCGE_SCENES_SCENEDIFINE_H_
+#endif //CCGE_SCENEDIRECTOR_SCENEDIFINE_H_

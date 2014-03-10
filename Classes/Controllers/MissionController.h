@@ -5,6 +5,7 @@
 #include <yhmvc/yhmvc.h>
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
+#include "BaseController.h"
 #include "GameWorldController.h"
 #include "Layers/GameWorld.h"
 
@@ -16,7 +17,7 @@ NS_CC_GE_BEGIN
  * 可以添加其它controller来作为显示内容
  * 由于结构简单不容易出错。
  */
-class MissionController:public yhmvc::Controller,public CCTouchDelegate
+class MissionController:public BaseController,public CCTouchDelegate
 {
 public:
 	

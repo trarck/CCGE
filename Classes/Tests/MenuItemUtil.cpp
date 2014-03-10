@@ -4,7 +4,7 @@
 //
 
 #include "MenuItemUtil.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 
 
 NS_CC_GE_BEGIN

@@ -1,8 +1,10 @@
 #include "BattleController.h"
 #include <yhgui/yhgui.h>
+#include <yhge/yhge.h>
 #include "Game.h"
 #include "EntityComponent/EntityFactory.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
+#include "Layers/DimetricCoordinateLayer.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -13,6 +15,12 @@ NS_CC_GE_BEGIN
 
 static const float kGameTileWidth=100;
 static const float kGameTileHeight=90;
+
+//static const float kGameTileWidth=120;
+//static const float kGameTileHeight=60;
+
+//static const float kGameTileWidth=120;
+//static const float kGameTileHeight=48;
 
 BattleController::BattleController(void)
 :m_mapId(0)
@@ -65,6 +73,14 @@ void BattleController::loadEntities()
     
     //加载对方
     this->loadOppEntities();
+    
+    //show coordinate line
+    DimetricCoordinateLayer* coordLayer=new DimetricCoordinateLayer();
+    coordLayer->setMapWidth(20);
+    coordLayer->setMapHeight(20);
+    m_view->addChild(coordLayer);
+    
+    coordLayer->release();
 }
 
 void BattleController::loadSelfEntities()
@@ -108,7 +124,9 @@ void BattleController::loadOppEntities()
     int col=3;
     int row=3;
     
-    CCPoint offset=ccp(contentSize.width-row*kGameTileWidth+60,20);
+    CCPoint offset=ccp(contentSize.width/2-200,220);
+    
+//    dimetric::StaticSideViewCoordinateFormulae::initTileSize(120, 20);
     
     for (int i=0; i<teamSize; ++i) {
         
@@ -124,8 +142,15 @@ void BattleController::loadOppEntities()
         CCNode* renderer=rendererComponent->getRenderer();
         
         renderer->setScale(1.5f);
+//        CCPoint pos=dimetric::StaticSideViewCoordinateFormulae::gameToView2F(i/row,i%row);
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(i/row,i%row);
         
-        renderer->setPosition(ccp(offset.x+(i/row)*kGameTileWidth,offset.y+(i%row)*kGameTileHeight));
+        CCLOG("aa:%d,%d,to:%d,%d",i,i%row,(int)pos.x,(int)pos.y);
+        
+        pos.x+=offset.x;
+        pos.y+=offset.y;
+        
+        renderer->setPosition(pos);
         
         renderer->setZOrder(row-i%row);
         

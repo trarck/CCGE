@@ -4,9 +4,10 @@
 #include "yhmvc/Core/Controller.h"
 #include "yhmvc/Core/View.h"
 #include "CCGEMacros.h"
+#include "BaseController.h"
 
 NS_CC_GE_BEGIN
-class ThreeSegmentController:public cocos2d::yhmvc::Controller
+class ThreeSegmentController:public BaseController
 {
 public:
 	

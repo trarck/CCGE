@@ -1,13 +1,5 @@
-//
-//  GameSceneDirector.h
-//  CCMVC
-//
-//  Created by duanhouhai on 13-11-1.
-//
-//
-
-#ifndef CCGE_GAMESCENEDIRECTOR_H_
-#define CCGE_GAMESCENEDIRECTOR_H_
+#ifndef CCGE_SCENEDIRECTOR_GAMESCENEDIRECTOR_H_
+#define CCGE_SCENEDIRECTOR_GAMESCENEDIRECTOR_H_
 
 #include <yhmvc/yhmvc.h>
 #include "CCGEMacros.h"
@@ -80,4 +72,4 @@ protected:
 
 NS_CC_GE_END
 
-#endif /* defined(CCGE_GAMESCENEDIRECTOR_H_) */
+#endif // CCGE_SCENEDIRECTOR_GAMESCENEDIRECTOR_H_

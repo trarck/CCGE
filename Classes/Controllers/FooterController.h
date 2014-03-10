@@ -1,12 +1,10 @@
 #ifndef CCGE_CONTROLLERS_FOOTERCONTROLLER_H_
 #define CCGE_CONTROLLERS_FOOTERCONTROLLER_H_
 
-#include "yhmvc/Core/Controller.h"
-#include "yhmvc/Core/View.h"
-#include "CCGEMacros.h"
+#include "BaseController.h"
 
 NS_CC_GE_BEGIN
-class FooterController:public yhmvc::Controller
+class FooterController:public BaseController
 {
 public:
 	

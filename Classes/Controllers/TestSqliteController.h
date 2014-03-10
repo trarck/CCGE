@@ -4,6 +4,7 @@
 #include <yhge/yhge.h>
 #include <yhmvc/yhmvc.h>
 #include "CCGEMacros.h"
+#include "BaseController.h"
 
 NS_CC_GE_BEGIN
 
@@ -11,7 +12,7 @@ NS_CC_GE_BEGIN
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
  */
-class TestSqliteController:public yhmvc::Controller
+class TestSqliteController:public BaseController
 {
 public:
 	

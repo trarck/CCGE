@@ -1,5 +1,5 @@
 #include "GameWorldController.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 #include "EntityComponent/EntityFactory.h"
 #include "Layers/GameActiveSortLayer.h"
 

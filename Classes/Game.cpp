@@ -9,10 +9,8 @@
 #include "Game.h"
 #include <yhge/yhge.h>
 
-#include "Scenes/GameSceneDirector.h"
-
-#include "Scenes/SceneDefine.h"
-#include "Scenes/SceneRegisterData.h"
+#include "SceneDirector/SceneDefine.h"
+#include "SceneDirector/SceneRegisterData.h"
 
 USING_NS_CC;
 USING_NS_CC_YHMVC;
@@ -36,6 +34,7 @@ Game* Game::getInstance()
 
 Game::Game()
 :m_interactiveOrganizer(NULL)
+,m_sceneDirector(NULL)
 {
 
 }
@@ -43,6 +42,7 @@ Game::Game()
 Game::~Game()
 {
     CC_SAFE_RELEASE_NULL(m_interactiveOrganizer);
+    CC_SAFE_RELEASE_NULL(m_sceneDirector);
 }
 
 /**
@@ -51,6 +51,18 @@ Game::~Game()
 void Game::setup()
 {
     ISOStaticCoordinate::initTileSize(kGameTileWidth, kGameTileHeight);
+    
+    
+    float tileWidth=120;
+    
+    float sideHeight=tileWidth/6;
+    
+    float topHeight=tileWidth*0.4;
+    
+    dimetric::StaticSideViewCoordinateFormulae::initTileSize(tileWidth, sideHeight);
+    
+    dimetric::StaticTopViewCoordinateFormulae::initTileSize(tileWidth, topHeight);
+    
     setupGui();
     setupSceneDirector();
 }
@@ -73,6 +85,8 @@ void Game::setupSceneDirector()
     for (int i=0; i<registerDataSize; ++i) {
         sceneDirector->registerSceneCreate(kSceneRegisterData[i].name,kSceneRegisterData[i].createFun);
     }
+    
+    setSceneDirector(sceneDirector);
 }
 
 

@@ -2,7 +2,7 @@
 #include <yhge/isometric.h>
 #include "Game.h"
 #include "Consts/DataDefine.h"
-#include "Scenes/GameSceneDirector.h"
+#include "SceneDirector/GameSceneDirector.h"
 
 
 USING_NS_CC;

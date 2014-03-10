@@ -1,13 +1,11 @@
 #ifndef CCGE_CONTROLLERS_MAINCONTROLLER_H_
 #define CCGE_CONTROLLERS_MAINCONTROLLER_H_
 
-#include "yhmvc/Core/Controller.h"
-#include "yhmvc/Core/View.h"
-#include "CCGEMacros.h"
+#include "BaseController.h"
 
 NS_CC_GE_BEGIN
 
-class MainController:public yhmvc::Controller
+class MainController:public BaseController
 {
 public:
 	MainController(void);

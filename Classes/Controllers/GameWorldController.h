@@ -5,13 +5,14 @@
 #include <yhge/yhge.h>
 #include <yhmvc/yhmvc.h>
 #include "CCGEMacros.h"
+#include "BaseController.h"
 #include "EntityComponent/GameEntity.h"
 
 NS_CC_GE_BEGIN
 
 class GameActiveSortLayer;
 
-class GameWorldController: public yhmvc::Controller,
+class GameWorldController: public BaseController,
     public yhge::isometric::ISOCameraDelegate,
     public CCTouchDelegate
 {
