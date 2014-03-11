@@ -53,7 +53,7 @@ void Game::setup()
     ISOStaticCoordinate::initTileSize(kGameTileWidth, kGameTileHeight);
     
     
-    float tileWidth=120;
+    float tileWidth=150;
     
     float sideHeight=tileWidth/6;
     

@@ -78,6 +78,9 @@ void BattleController::loadEntities()
     DimetricCoordinateLayer* coordLayer=new DimetricCoordinateLayer();
     coordLayer->setMapWidth(20);
     coordLayer->setMapHeight(20);
+    coordLayer->setAnchorPoint(ccp(0,0));
+    coordLayer->setPosition(ccp(0,1));
+    
     m_view->addChild(coordLayer);
     
     coordLayer->release();
@@ -108,7 +111,15 @@ void BattleController::loadSelfEntities()
         
         renderer->setScale(1.5f);
         
-        renderer->setPosition(ccp(offset.x+(i/row)*kGameTileWidth,offset.y+(i%row)*kGameTileHeight));
+        //放在格子中，坐标要加0.5
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(i/row,i%row+0.5);
+        
+//        CCPoint pos=dimetric::StaticSideViewCoordinateFormulae::gameToView2F(i/row,i%row+0.5);
+        
+        pos.x+=offset.x;
+        pos.y+=(i%row)*20;
+        
+        renderer->setPosition(pos);
         
         renderer->setZOrder(row-i%row);
         
@@ -128,6 +139,8 @@ void BattleController::loadOppEntities()
     
 //    dimetric::StaticSideViewCoordinateFormulae::initTileSize(120, 20);
     
+    int offsetCol=5;
+    
     for (int i=0; i<teamSize; ++i) {
         
         GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(3);
@@ -143,12 +156,13 @@ void BattleController::loadOppEntities()
         
         renderer->setScale(1.5f);
 //        CCPoint pos=dimetric::StaticSideViewCoordinateFormulae::gameToView2F(i/row,i%row);
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(i/row,i%row);
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(offsetCol+i/row,i%row+0.5);
         
-        CCLOG("aa:%d,%d,to:%d,%d",i,i%row,(int)pos.x,(int)pos.y);
+//        CCLOG("aa:%d,%d,to:%d,%d",i,i%row,(int)pos.x,(int)pos.y);
         
-        pos.x+=offset.x;
-        pos.y+=offset.y;
+//        pos.x+=offset.x;
+//        pos.y+=offset.y;
+        pos.y+=(i%row)*20;
         
         renderer->setPosition(pos);
         
