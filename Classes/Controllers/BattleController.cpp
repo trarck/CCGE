@@ -2,6 +2,7 @@
 #include <yhgui/yhgui.h>
 #include <yhge/yhge.h>
 #include "Game.h"
+#include "Consts/GameDefine.h"
 #include "EntityComponent/EntityFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Layers/DimetricCoordinateLayer.h"
@@ -86,17 +87,40 @@ void BattleController::loadEntities()
     coordLayer->release();
 }
 
+/*
+ 格子分布
+ 
+      row
+ 
+ col  7   4   1         1   4   7
+ 
+      8   5   2         2   5   8
+     
+      9   6   3         3   6   9
+ */
+
+void BattleController::convertCoord(int index,int* col,int* row,int* x,int* y)
+{
+    *col=index%kBattleCellCol;
+    *row=index/kBattleCellCol;
+    
+    //x=kBattleCellCol-row-1
+    //y=kBattleCellRow-col-1;
+    *x=kBattleCellRow-*row-1;
+    *y=kBattleCellCol-*col-1;
+}
+
 void BattleController::loadSelfEntities()
 {
-    CCSize contentSize =  this->getPreferredContentSize();
+    int col=0;
+    int row=0;
+    int x=0;
+    int y=0;
     
     int teamSize=9;
-    int col=3;
-    int row=3;
-    
-    CCPoint offset=ccp(40,20);
-    
     for (int i=0; i<teamSize; ++i) {
+        
+        convertCoord(i, &col, &row, &x, &y);
         
         GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(2);
         
@@ -111,17 +135,15 @@ void BattleController::loadSelfEntities()
         
         renderer->setScale(1.5f);
         
-        //放在格子中，坐标要加0.5
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(i/row,i%row+0.5);
+        //y方向居中对齐，坐标要加0.5
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y+0.5);
         
-//        CCPoint pos=dimetric::StaticSideViewCoordinateFormulae::gameToView2F(i/row,i%row+0.5);
-        
-        pos.x+=offset.x;
-        pos.y+=(i%row)*20;
+        pos.x+=kBattleSelfOffsetX+x*kBattleCellOffsetX;
+        pos.y+=kBattleSelfOffsetY+y*kBattleCellOffsetY;
         
         renderer->setPosition(pos);
         
-        renderer->setZOrder(row-i%row);
+        renderer->setZOrder(kBattleCellRow-i%kBattleCellRow);
         
         m_view->addChild(renderer);
     }
@@ -129,19 +151,17 @@ void BattleController::loadSelfEntities()
 
 void BattleController::loadOppEntities()
 {
-    CCSize contentSize =  this->getPreferredContentSize();
+    
+    int col=0;
+    int row=0;
+    int x=0;
+    int y=0;
     
     int teamSize=9;
-    int col=3;
-    int row=3;
-    
-    CCPoint offset=ccp(contentSize.width/2-200,220);
-    
-//    dimetric::StaticSideViewCoordinateFormulae::initTileSize(120, 20);
-    
-    int offsetCol=5;
     
     for (int i=0; i<teamSize; ++i) {
+        
+        convertCoord(i, &col, &row, &x, &y);
         
         GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(3);
         
@@ -155,18 +175,16 @@ void BattleController::loadOppEntities()
         CCNode* renderer=rendererComponent->getRenderer();
         
         renderer->setScale(1.5f);
-//        CCPoint pos=dimetric::StaticSideViewCoordinateFormulae::gameToView2F(i/row,i%row);
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(offsetCol+i/row,i%row+0.5);
         
-//        CCLOG("aa:%d,%d,to:%d,%d",i,i%row,(int)pos.x,(int)pos.y);
+        //y方向居中对齐，坐标要加0.5
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
         
-//        pos.x+=offset.x;
-//        pos.y+=offset.y;
-        pos.y+=(i%row)*20;
+        pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
+        pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
         
         renderer->setPosition(pos);
         
-        renderer->setZOrder(row-i%row);
+        renderer->setZOrder(kBattleCellRow-i%kBattleCellRow);
         
         m_view->addChild(renderer);
     }
@@ -230,4 +248,5 @@ void BattleController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     
 }
+
 NS_CC_GE_END

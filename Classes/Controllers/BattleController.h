@@ -77,6 +77,19 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     
+protected:
+    
+    /**
+     * @brief 把一维转成二维
+     *
+     * @param index 序列号
+     * @param col 逻辑列值
+     * @param row 逻辑行值
+     * @param x   地图x坐标
+     * @param y   地图y坐标
+     */
+    void convertCoord(int index,int* col,int* row,int* x,int* y);
+    
 public:
     
     inline void setZoneId(int zoneId)
