@@ -120,8 +120,10 @@ void BattleController::loadSelfEntities()
     int teamSize=9;
     for (int i=0; i<teamSize; ++i) {
         
+        //取得坐标
         convertCoord(i, &col, &row, &x, &y);
         
+        //创建对象
         GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(2);
         
         //set animation
@@ -132,18 +134,16 @@ void BattleController::loadSelfEntities()
         
         RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
         CCNode* renderer=rendererComponent->getRenderer();
-        
         renderer->setScale(1.5f);
+        renderer->setZOrder(col);
+        
+        //设置坐标
         
         //y方向居中对齐，坐标要加0.5
         CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y+0.5);
-        
         pos.x+=kBattleSelfOffsetX+x*kBattleCellOffsetX;
         pos.y+=kBattleSelfOffsetY+y*kBattleCellOffsetY;
-        
         renderer->setPosition(pos);
-        
-        renderer->setZOrder(kBattleCellRow-i%kBattleCellRow);
         
         m_view->addChild(renderer);
     }
@@ -161,8 +161,10 @@ void BattleController::loadOppEntities()
     
     for (int i=0; i<teamSize; ++i) {
         
+        //取得坐标
         convertCoord(i, &col, &row, &x, &y);
         
+        //创建对象
         GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(3);
         
         //set animation
@@ -173,18 +175,15 @@ void BattleController::loadOppEntities()
         
         RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
         CCNode* renderer=rendererComponent->getRenderer();
-        
         renderer->setScale(1.5f);
+        renderer->setZOrder(col);
         
+        //设置坐标
         //y方向居中对齐，坐标要加0.5
         CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
-        
         pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
         pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
-        
         renderer->setPosition(pos);
-        
-        renderer->setZOrder(kBattleCellRow-i%kBattleCellRow);
         
         m_view->addChild(renderer);
     }
