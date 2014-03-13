@@ -271,6 +271,7 @@
 		57704F9918CDACCB006B8A62 /* BaseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9718CDACCB006B8A62 /* BaseController.cpp */; };
 		57704F9F18CDAD72006B8A62 /* GameSceneDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9B18CDAD72006B8A62 /* GameSceneDirector.cpp */; };
 		57704FA218CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FA018CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp */; };
+		57704FAE18CFFCF6006B8A62 /* BattleProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FAC18CFFCF6006B8A62 /* BattleProperty.cpp */; };
 		577105761883DF8900FA1446 /* MissionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105741883DF8900FA1446 /* MissionController.cpp */; };
 		5771057A1883DFED00FA1446 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577105781883DFED00FA1446 /* GameWorld.cpp */; };
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
@@ -874,6 +875,9 @@
 		57704F9E18CDAD72006B8A62 /* SceneRegisterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneRegisterData.h; sourceTree = "<group>"; };
 		57704FA018CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DimetricCoordinateLayer.cpp; sourceTree = "<group>"; };
 		57704FA118CDB7EA006B8A62 /* DimetricCoordinateLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimetricCoordinateLayer.h; sourceTree = "<group>"; };
+		57704FAC18CFFCF6006B8A62 /* BattleProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleProperty.cpp; sourceTree = "<group>"; };
+		57704FAD18CFFCF6006B8A62 /* BattleProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleProperty.h; sourceTree = "<group>"; };
+		57704FB318D050E1006B8A62 /* GameMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.h; sourceTree = "<group>"; };
 		577105741883DF8900FA1446 /* MissionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionController.cpp; sourceTree = "<group>"; };
 		577105751883DF8900FA1446 /* MissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
 		577105781883DFED00FA1446 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorld.cpp; sourceTree = "<group>"; };
@@ -2091,6 +2095,8 @@
 		57823C4F18A9BF11005ACB35 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				57704FAC18CFFCF6006B8A62 /* BattleProperty.cpp */,
+				57704FAD18CFFCF6006B8A62 /* BattleProperty.h */,
 				57823C5018A9BF11005ACB35 /* UnitProperty.cpp */,
 				57823C5118A9BF11005ACB35 /* UnitProperty.h */,
 			);
@@ -2103,6 +2109,7 @@
 				57CF76F018AA0D5F0085A22F /* AnimationDefine.h */,
 				57243ED018B45CF40070163A /* DataDefine.h */,
 				574A56B118B3101B00518953 /* GameDefine.h */,
+				57704FB318D050E1006B8A62 /* GameMessage.h */,
 				57823C5818A9C42C005ACB35 /* PropertyDefine.h */,
 			);
 			name = Consts;
@@ -2276,6 +2283,7 @@
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
 				15A3D9031682F7D5002FB0C5 /* b2Collision.cpp in Sources */,
+				57704FAE18CFFCF6006B8A62 /* BattleProperty.cpp in Sources */,
 				57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */,
 				15A3D9041682F7D5002FB0C5 /* b2Distance.cpp in Sources */,
 				57243ECF18B45C1E0070163A /* RemoteCacheData.cpp in Sources */,
