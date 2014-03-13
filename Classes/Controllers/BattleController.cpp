@@ -40,8 +40,6 @@ BattleController::BattleController(void)
 
 BattleController::~BattleController(void)
 {
-    cleanTroops();
-    
     CCLOG("BattleController destroy");
 }
 
@@ -82,6 +80,7 @@ void BattleController::viewDidLoad()
 
 void BattleController::onViewExit()
 {
+    CCLOG("BattleController::onViewExit %d",this->retainCount());
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     Controller::onViewExit();
 }
@@ -89,7 +88,6 @@ void BattleController::onViewExit()
 void BattleController::loadBattleGround()
 {
     //TODO load by zoneId
-    
 }
 
 void BattleController::loadEntities()
@@ -297,15 +295,23 @@ void BattleController::initTroops()
 //消除战斗双方的队伍
 void BattleController::cleanTroops()
 {
+    GameEntity* entity=NULL;
+    
     for (int j=0; j<kBattleCellRow; ++j) {
         for (int i=0; i<kBattleCellCol; ++i) {
             
-            if (m_selfTroops[j][i]) {
-                m_selfTroops[j][i]->release();
+            entity=m_selfTroops[j][i];
+            if (entity) {
+                removeEntityMessage(entity);
+                entity->cleanup();
+                entity->release();
             }
             
-            if (m_oppTroops[j][i]) {
-                m_oppTroops[j][i]->release();
+            entity=m_oppTroops[j][i];
+            if (entity) {
+                removeEntityMessage(entity);
+                entity->cleanup();
+                entity->release();
             }
         }
     }
@@ -495,7 +501,7 @@ void BattleController::parseRound()
     m_selfStepIndex=0;
     m_oppStepIndex=0;
 
-    parseStep();
+    parseNextStep();
 }
 
 bool BattleController::trunSelfStep()
@@ -556,15 +562,17 @@ void BattleController::battleUpdate(float delta)
     
 }
 
-void BattleController::parseStep()
+void BattleController::parseNextStep()
 {
     if (m_battleEnd) {
         return;
     }
     
+    bool stepRet=true;
+    
     if (m_stepSide==kSelfSide) {
         
-        trunSelfStep();
+        stepRet=trunSelfStep();
         
         //如果对手还可以攻击，则下个进行攻击的是对方
         if (m_oppStepIndex<kBattleCellSize) {
@@ -573,12 +581,17 @@ void BattleController::parseStep()
         
     }else if(m_stepSide==kOppSide){
         
-        trunOppStep();
+        stepRet=trunOppStep();
         
         //如果对手还可以攻击，则下个进行攻击的是对方
         if (m_selfStepIndex<kBattleCellSize) {
             m_stepSide=kSelfSide;
         }
+    }
+    
+    //没有攻击动作
+    if (!stepRet) {
+        doStepEnd();
     }
 }
 
@@ -586,6 +599,17 @@ void BattleController::parseStep()
 bool BattleController::isRoundComplete()
 {
     return m_selfStepIndex>=kBattleCellSize && m_oppStepIndex>=kBattleCellSize;
+}
+
+void BattleController::doStepEnd()
+{
+    if (isRoundComplete()) {
+        ++m_round;
+        parseRound();
+    }else{
+        //继续下一步
+        parseNextStep();
+    }
 }
 
 int BattleController::getExistEntityBySide(int index,int side,GameEntity** entity)
@@ -654,16 +678,22 @@ void BattleController::entityAttack(GameEntity* entity,int col,int row,int side)
     
     //取得普通攻击目标
     
-    //取得对方
+    //取得对立的一方
     int oppSide=getOtherSide(side);
     
     GameEntity* target=getAttackTarget(col, row, oppSide);
     
-    MessageManager* messageManager=Game::getInstance()->getMessageManager();
-    
-    messageManager->registerReceiver(entity, kMSGEntityAttackComplete, NULL, message_selector(BattleController::onEntityAttackComplete),this);
-    
-    messageManager->dispatchMessage(MSG_ATTACK, NULL, entity,target);
+    if (target) {
+        MessageManager* messageManager=Game::getInstance()->getMessageManager();
+        
+        messageManager->registerReceiver(entity, kMSGEntityAttackComplete, NULL, message_selector(BattleController::onEntityAttackComplete),this);
+        
+        messageManager->dispatchMessage(MSG_ATTACK, NULL, entity,target);
+        
+    }else{
+        //如果没有目标，说明对方已经打光。
+        doBattleEnd(side==kSelfSide);
+    }
 }
 
 /*取得攻击目标
@@ -707,6 +737,13 @@ void BattleController::doBattleEnd(bool win)
 {
     m_battleEnd=true;
     m_win=win;
+    
+    cleanTroops();
+    
+    CCLOG("BattleEnd:win %d",win);
+    
+    GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
+    GameSceneDirector::getInstance()->popScene();
 }
 
 //一个实体攻击完成
@@ -721,14 +758,7 @@ void BattleController::onEntityAttackComplete(yhge::Message* message)
     
     
     //检查这一轮是否结束，即这一轮所有用户能参与战斗
-    if (isRoundComplete()) {
-        ++m_round;
-        //next round
-        parseRound();
-    }else{
-        //next turn
-        parseStep();
-    }
+    doStepEnd();
 }
 
 //一个实体死亡
@@ -747,13 +777,15 @@ void BattleController::onEntityDie(yhge::Message* message)
     //移除消息处理
     removeEntityMessage(entity);
     
-    //从显示队列里移除
-    entity->getRendererComponent()->getRenderer()->removeFromParent();
+//    //从显示队列里移除
+//    entity->getRendererComponent()->getRenderer()->removeFromParent();
     
 }
 
 void BattleController::onSkip(CCObject* pSender)
 {
+    cleanTroops();
+    
     //goto before battle scene
     GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     GameSceneDirector::getInstance()->popScene();
@@ -790,6 +822,9 @@ void BattleController::removeEntityMessage(GameEntity* entity)
     MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->removeReceiver(messageManager->getGlobalObject(), MSG_ENTITY_DIE, entity);
+    
+    //防止中途退出没有消除消息
+    messageManager->removeReceiver(entity, kMSGEntityAttackComplete);
 }
 
 NS_CC_GE_END

@@ -148,7 +148,7 @@ public:
     /**
      * @brief 执行战斗步骤
      */
-    void parseStep();
+    void parseNextStep();
     
     /**
      * @brief 执行我方战斗步骤
@@ -188,6 +188,11 @@ protected:
      * @brief 检查一轮是否完成
      */
     bool isRoundComplete();
+    
+    /**
+     * @brief 一个步骤结点
+     */
+    void doStepEnd();
     
     /**
      * @brief 把一维转成二维
