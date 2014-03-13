@@ -8,6 +8,7 @@
 
 #include "Components/GameAttackComponent.h"
 #include "Components/DieComponent.h"
+#include "Components/HealthBarComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -245,6 +246,13 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     dieComponent->init();
     player->addComponent(dieComponent);
     dieComponent->release();
+    
+    //血条组件
+    HealthBarComponent* healthBarComponent=new HealthBarComponent();
+    healthBarComponent->init();
+    player->addComponent(healthBarComponent);
+    healthBarComponent->release();
+    player->setHealthBarComponent(healthBarComponent);
     
     return player;
 }

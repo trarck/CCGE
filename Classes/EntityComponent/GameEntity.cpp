@@ -11,8 +11,9 @@ GameEntity::GameEntity()
 ,m_attackComponent(NULL)
 ,m_unitProperty(NULL)
 ,m_battleProperty(NULL)
+,m_healthBarComponent(NULL)
 {
-
+    
 }
 
 GameEntity::~GameEntity()

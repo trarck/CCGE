@@ -142,13 +142,16 @@ void GameAttackComponent::parseTargetDamage()
     CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
     
     if (targetHp<=0) {
-        unitProperty->setHealth(0);
+        targetHp=0;
+        unitProperty->setHealth(targetHp);
+        this->getMessageManager()->dispatchMessage(kMSGEntityHealthChange, m_target, this->getMessageManager()->getGlobalObject(),CCFloat::create(targetHp));
         
         //send target die message
         this->getMessageManager()->dispatchMessage(MSG_ENTITY_DIE, m_target, this->getMessageManager()->getGlobalObject());
         
     }else{
         unitProperty->setHealth(targetHp);
+        this->getMessageManager()->dispatchMessage(kMSGEntityHealthChange, m_target, this->getMessageManager()->getGlobalObject(),CCFloat::create(targetHp));
     }
 }
 

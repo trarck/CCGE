@@ -8,6 +8,7 @@
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"
 #include "Components/GameAttackComponent.h"
+#include "Components/HealthBarComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -71,6 +72,16 @@ public:
         return m_battleProperty;
     }
     
+    inline void setHealthBarComponent(HealthBarComponent* healthBarComponent)
+    {
+        m_healthBarComponent = healthBarComponent;
+    }
+    
+    inline HealthBarComponent* getHealthBarComponent()
+    {
+        return m_healthBarComponent;
+    }
+    
 private:
 
     yhge::RendererComponent* m_rendererComponent;
@@ -82,6 +93,8 @@ private:
     UnitProperty* m_unitProperty;
     
     BattleProperty* m_battleProperty;
+    
+    HealthBarComponent* m_healthBarComponent;
 };
 
 NS_CC_GE_END

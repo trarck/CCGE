@@ -78,6 +78,12 @@ void BattleController::viewDidLoad()
     
 }
 
+void BattleController::onViewEnter()
+{
+    Controller::onViewExit();
+    start();
+}
+
 void BattleController::onViewExit()
 {
     CCLOG("BattleController::onViewExit %d",this->retainCount());
@@ -214,6 +220,14 @@ void BattleController::loadSelfEntities()
         
         m_view->addChild(renderer);
         
+        
+        //血条
+        HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
+        healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+        healthBarComponent->setCurrentHp(unitProperty->getHealth());
+        
+        healthBarComponent->getHealthBar()->setPosition(ccp(0,85));
+        
         registerEntityMessage(entity);
     }
 }
@@ -276,10 +290,17 @@ void BattleController::loadOppEntities()
         
         m_view->addChild(renderer);
         
+        //血条
+        HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
+        healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+        healthBarComponent->setCurrentHp(unitProperty->getHealth());
+        
+        //TODO load from config
+        healthBarComponent->getHealthBar()->setPosition(ccp(15,85));
+        
         registerEntityMessage(entity);
     }
 }
-
 
 //初始化战斗双方的队伍
 void BattleController::initTroops()
@@ -793,7 +814,7 @@ void BattleController::onSkip(CCObject* pSender)
 
 void BattleController::onStart(CCObject* pSender)
 {
-    start();
+//    start();
 }
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

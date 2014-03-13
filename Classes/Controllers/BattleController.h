@@ -27,6 +27,8 @@ public:
 
 	void viewDidLoad();
     
+    void onViewEnter();
+    
     void onViewExit();
     
     /**

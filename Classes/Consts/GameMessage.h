@@ -9,6 +9,8 @@ enum GameMessage
 {
     //用户的message最好从一个大号开始，防止和系统冲突。
     kMSGEntityAttackComplete=100000,
+    //用户血量改变
+    kMSGEntityHealthChange
 
 };
 
