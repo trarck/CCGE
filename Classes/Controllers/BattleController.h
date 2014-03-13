@@ -169,6 +169,8 @@ public:
      */
     void doBattleEnd(bool win);
     
+    void onEndTipCallback();
+    
     /**
      * @brief 一个实体攻击完成
      */

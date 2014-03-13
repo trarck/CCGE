@@ -763,6 +763,33 @@ void BattleController::doBattleEnd(bool win)
     
     CCLOG("BattleEnd:win %d",win);
     
+    CCLabelTTF* tempLabel=NULL;
+    
+    if(win){
+        tempLabel=CCLabelTTF::create("胜利", "Arial", 64);
+        tempLabel->setColor(ccc3(200, 0, 0));
+    }else{
+        tempLabel=CCLabelTTF::create("失败", "Arial", 64);
+        tempLabel->setColor(ccc3(200, 200, 0));
+    }
+    
+    CCSize contentSize=CCDirector::sharedDirector()->getWinSize();
+    
+    tempLabel->setPosition(ccp(contentSize.width/2,contentSize.height/2-100));
+    m_view->addChild(tempLabel);
+    
+    CCAction* action=CCSequence::create(
+                                        CCMoveBy::create(1.0, ccp(0,200)),
+                                        CCRemoveSelf::create(),
+                                        CCDelayTime::create(1.0),
+                                        CCCallFunc::create(this, callfunc_selector(BattleController::onEndTipCallback)),
+                                        NULL);
+    
+    tempLabel->runAction(action);
+}
+
+void BattleController::onEndTipCallback()
+{
     GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     GameSceneDirector::getInstance()->popScene();
 }
