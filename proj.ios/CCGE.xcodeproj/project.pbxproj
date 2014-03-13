@@ -242,6 +242,7 @@
 		57243ED618B49BE70070163A /* BattlePrepareScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ED418B49BE70070163A /* BattlePrepareScene.cpp */; };
 		57243ED918B49C1F0070163A /* BattlePrepareController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ED718B49C1F0070163A /* BattlePrepareController.cpp */; };
 		5747632418D186800031E2E0 /* DieComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632218D186800031E2E0 /* DieComponent.cpp */; };
+		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
@@ -817,6 +818,8 @@
 		57243ED818B49C1F0070163A /* BattlePrepareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePrepareController.h; sourceTree = "<group>"; };
 		5747632218D186800031E2E0 /* DieComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DieComponent.cpp; sourceTree = "<group>"; };
 		5747632318D186800031E2E0 /* DieComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieComponent.h; sourceTree = "<group>"; };
+		5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthBarComponent.cpp; sourceTree = "<group>"; };
+		5747632F18D1AB7A0031E2E0 /* HealthBarComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBarComponent.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
@@ -2054,6 +2057,8 @@
 				5747632318D186800031E2E0 /* DieComponent.h */,
 				5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */,
 				5768C14718A8DA0E005123C5 /* GameAttackComponent.h */,
+				5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */,
+				5747632F18D1AB7A0031E2E0 /* HealthBarComponent.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2522,6 +2527,7 @@
 				379BB9BF17F03F3700829B88 /* UIScrollView.cpp in Sources */,
 				574A569918B19D7F00518953 /* DataFactory.cpp in Sources */,
 				379BB9C017F03F3700829B88 /* UIButton.cpp in Sources */,
+				5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */,
 				379BB9C117F03F3700829B88 /* UICheckBox.cpp in Sources */,
 				379BB9C217F03F3700829B88 /* UIImageView.cpp in Sources */,
 				379BB9C317F03F3700829B88 /* UILabel.cpp in Sources */,
