@@ -8,6 +8,8 @@ NS_CC_GE_BEGIN
 const int kBattleCellCol=3;
 const int kBattleCellRow=3;
 
+const int kBattleCellSize=9;
+
 const float kBattleCellOffsetX=0;
 const float kBattleCellOffsetY=20;
 
@@ -19,6 +21,11 @@ const float kBattleOppOffsetY=0;
 
 const int kBattleOppOffsetCell=5;
 
+enum BattleSide
+{
+    kSelfSide=1,
+    kOppSide=2
+};
 
 NS_CC_GE_END
 

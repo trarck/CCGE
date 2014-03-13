@@ -32,7 +32,7 @@ public:
     virtual void cleanupMessages();
     
     /**
-     * 攻击
+     * 普通攻击
      */
     virtual void attack();
     
@@ -40,7 +40,17 @@ public:
      * 使用技能攻击
      */
     virtual void attackWithSkillId(int skillId);
-
+    
+    /**
+     * @brief 移动到攻击目标的前面
+     */
+    void moveToTargetFront();
+    
+    /**
+     * @brief 回到原来的位置
+     */
+    void moveBackOrigin();
+    
     /**
      * 处理目标伤害
      */
@@ -51,6 +61,35 @@ public:
      * 公式是固定的
      */
     int calcDamage(UnitProperty* targetUnitProperty);
+
+    /**
+     * @brief 移动到目录前面结束
+     */
+    void onMoveToTargetFrontComplete();
+    
+    /**
+     * @brief 移动到原来位置结束
+     */
+    void onMoveBackOriginComplete();
+    
+    /**
+     * @brief 普通攻击动画完成
+     */
+    void onAttackAnimationComplete(yhge::Message* message);
+    
+protected:
+    
+    /**
+     * @brief 显示攻击动画
+     */
+    void showAttackAnimation();
+    
+    /**
+     * @brief 显示空闲动画
+     */
+    void showIdleAnimation();
+    
+public:
 
     inline void setDamageFormulaParameterOne(float damageFormulaParameterOne)
     {
@@ -66,7 +105,11 @@ protected:
     
     yhge::AnimationComponent* m_animationComponent;
     
+    yhge::RendererComponent* m_rendererComponent;
+    
     float m_damageFormulaParameterOne;
+    
+    CCPoint m_originalPosition;
     
 };
 

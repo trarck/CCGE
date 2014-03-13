@@ -41,6 +41,7 @@
                 "frame_delay":0.1,
                 "frame_index":0,
                 "frame_digit":5,
+				"loops":1,
                 "ext":"characters/2/1/%02d%03d.png"
             }
         }
@@ -87,6 +88,7 @@
                 "frame_delay":0.1,
                 "frame_index":0,
                 "frame_digit":5,
+				"loops":1,
                 "ext":"characters/3/1/%02d%03d.png"
             }
         }

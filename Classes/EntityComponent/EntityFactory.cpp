@@ -1,8 +1,12 @@
 #include "EntityFactory.h"
 #include <yhge/yhge.h>
-#include "../Consts/PropertyDefine.h"
-#include "Properties/UnitProperty.h"
+#include "Consts/PropertyDefine.h"
 #include "Datas/DataFactory.h"
+
+#include "Properties/UnitProperty.h"
+#include "Properties/BattleProperty.h"
+
+#include "Components/GameAttackComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -194,6 +198,11 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     unitProperty->release();
     player->setUnitProperty(unitProperty);
     
+    BattleProperty* battleProperty=new BattleProperty();
+    player->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    player->setBattleProperty(battleProperty);
+    
     //==========添加组件==========//
     //不需要移动相关组件
     
@@ -222,6 +231,14 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     player->addComponent(animation);
     animation->release();
     
+    
+    //战斗组件
+    GameAttackComponent* attackComponent=new GameAttackComponent();
+    attackComponent->init();
+    player->addComponent(attackComponent);
+    attackComponent->release();
+    player->setAttackComponent(attackComponent);
+    
     return player;
 }
 
@@ -232,9 +249,10 @@ CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configDat
     float frameHeight=configData["frame_height"].asDouble();
     float frameDelay=configData["frame_delay"].asDouble();
     std::string ext=configData["ext"].asString();
+    int loops=configData.get("loops", -1).asInt();
 
     return AnimationComponent::eightDirectionActionListWithDirResource(
-        ext.c_str(),frameQuantity, CCSizeMake(frameWidth, frameHeight), frameDelay);
+        ext.c_str(),frameQuantity, CCSizeMake(frameWidth, frameHeight), frameDelay,loops);
 }
 
 NS_CC_GE_END

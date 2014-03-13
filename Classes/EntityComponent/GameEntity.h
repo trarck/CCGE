@@ -6,6 +6,8 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "Properties/UnitProperty.h"
+#include "Properties/BattleProperty.h"
+#include "Components/GameAttackComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -39,6 +41,16 @@ public:
         return m_isoPositionComponent;
     }
     
+    inline void setAttackComponent(GameAttackComponent* attackComponent)
+    {
+        m_attackComponent = attackComponent;
+    }
+    
+    inline GameAttackComponent* getAttackComponent()
+    {
+        return m_attackComponent;
+    }
+    
     inline void setUnitProperty(UnitProperty* unitProperty)
     {
         m_unitProperty = unitProperty;
@@ -49,14 +61,27 @@ public:
         return m_unitProperty;
     }
 
+    inline void setBattleProperty(BattleProperty* battleProperty)
+    {
+        m_battleProperty = battleProperty;
+    }
+    
+    inline BattleProperty* getBattleProperty()
+    {
+        return m_battleProperty;
+    }
+    
 private:
 
     yhge::RendererComponent* m_rendererComponent;
 
     yhge::ISOPositionComponent* m_isoPositionComponent;
     
+    GameAttackComponent* m_attackComponent;
+    
     UnitProperty* m_unitProperty;
     
+    BattleProperty* m_battleProperty;
 };
 
 NS_CC_GE_END

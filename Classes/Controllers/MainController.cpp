@@ -69,7 +69,7 @@ void MainController::createTestMenuItem(const std::string& name,const std::strin
     MyGotoSceneProxy* proxy=new MyGotoSceneProxy();
 	proxy->init(gotoSceneName,param);
     
-	CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create(name.c_str(), "Arial", 20),
+	CCMenuItemLabel *pItem=CCMenuItemLabel::create(CCLabelTTF::create(name.c_str(), "Arial", 30),
                                                    proxy,
                                                    menu_selector(GotoSceneProxy::menuItemCallback));
 	pItem->setUserObject(proxy);
