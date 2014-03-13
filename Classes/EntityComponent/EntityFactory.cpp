@@ -7,6 +7,7 @@
 #include "Properties/BattleProperty.h"
 
 #include "Components/GameAttackComponent.h"
+#include "Components/DieComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -238,6 +239,12 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     player->addComponent(attackComponent);
     attackComponent->release();
     player->setAttackComponent(attackComponent);
+    
+    //死亡组件
+    DieComponent* dieComponent=new DieComponent();
+    dieComponent->init();
+    player->addComponent(dieComponent);
+    dieComponent->release();
     
     return player;
 }
