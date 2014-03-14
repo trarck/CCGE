@@ -81,7 +81,7 @@ void BattleController::viewDidLoad()
 void BattleController::onViewEnter()
 {
     Controller::onViewExit();
-    start();
+//    start();
 }
 
 void BattleController::onViewExit()
@@ -759,8 +759,6 @@ void BattleController::doBattleEnd(bool win)
     m_battleEnd=true;
     m_win=win;
     
-    cleanTroops();
-    
     CCLOG("BattleEnd:win %d",win);
     
     CCLabelTTF* tempLabel=NULL;
@@ -781,7 +779,7 @@ void BattleController::doBattleEnd(bool win)
     CCAction* action=CCSequence::create(
                                         CCMoveBy::create(1.0, ccp(0,200)),
                                         CCRemoveSelf::create(),
-                                        CCDelayTime::create(1.0),
+//                                        CCDelayTime::create(0.5),
                                         CCCallFunc::create(this, callfunc_selector(BattleController::onEndTipCallback)),
                                         NULL);
     
@@ -790,6 +788,9 @@ void BattleController::doBattleEnd(bool win)
 
 void BattleController::onEndTipCallback()
 {
+    
+    cleanTroops();
+    
     GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     GameSceneDirector::getInstance()->popScene();
 }
@@ -841,7 +842,7 @@ void BattleController::onSkip(CCObject* pSender)
 
 void BattleController::onStart(CCObject* pSender)
 {
-//    start();
+    start();
 }
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

@@ -43,6 +43,8 @@ public:
 protected:
 
     CCArray* createEightAnimations(const yhge::Json::Value& configData);
+    
+    CCArray* createTwoAnimations(const yhge::Json::Value& configData);
 };
 
 NS_CC_GE_END

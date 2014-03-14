@@ -10,7 +10,7 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-static const float kAttackKeepDisance=60.0f;
+static const float kAttackKeepDisance=80.0f;
 
 GameAttackComponent::GameAttackComponent()
 :m_damageFormulaParameterOne(400)
@@ -64,7 +64,7 @@ void GameAttackComponent::cleanupMessages()
 void GameAttackComponent::attack()
 {
     if(m_target){
-        CCLOG("GameAttackComponent::startAttack");
+        CCLOG("GameAttackComponent[%d]::startAttack",m_uID);
         //移动攻击者到被攻击都的前面
         moveToTargetFront();
         
@@ -172,9 +172,18 @@ void GameAttackComponent::onMoveToTargetFrontComplete()
 {
     CCLOG("GameAttackComponent::onMoveToTargetFrontComplete");
 
-
-    //攻击动画成完后在做攻击数值处理。
+    //由位置决定人物朝向
+    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
+    int direction=battleProperty->getSide()-1;
     
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create(CCGE_ANIMATION_BEATTACK), CCGE_ANIMATION_NAME);
+    data->setObject(CCInteger::create(direction), CCGE_ANIMATION_DIRECTION);
+    
+    //目标做被攻击动画
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
+    
+    data->release();
     
 }
 
@@ -185,6 +194,18 @@ void GameAttackComponent::onMoveBackOriginComplete()
     //恢复空闲动画
     showIdleAnimation();
     
+    //恢复目标动画
+    //由位置决定人物朝向
+    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
+    int direction=battleProperty->getSide()-1;
+    
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
+    data->setObject(CCInteger::create(direction), CCGE_ANIMATION_DIRECTION);
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
+    
+    data->release();
+    
     //发送消息，本次攻击结束
     getMessageManager()->dispatchMessage(kMSGEntityAttackComplete, this, m_owner);
     
@@ -194,7 +215,7 @@ void GameAttackComponent::onMoveBackOriginComplete()
 
 void GameAttackComponent::onAttackAnimationComplete(yhge::Message* message)
 {
-    CCLOG("GameAttackComponent::onAttackAnimationComplete");
+    CCLOG("GameAttackComponent[%d]::onAttackAnimationComplete",m_uID);
     
     //处理目标伤害
     parseTargetDamage();
@@ -209,7 +230,7 @@ void GameAttackComponent::showAttackAnimation()
     int direction=battleProperty->getSide()-1;
     
     //执行攻击动画
-    m_animationComponent->runAnimation(CCGE_ANIMATION_ATTACK,direction);
+    m_animationComponent->runAnimation(CCGE_ANIMATION_ATTACK,direction,true);
 }
 
 void GameAttackComponent::showIdleAnimation()
@@ -219,7 +240,7 @@ void GameAttackComponent::showIdleAnimation()
     int direction=battleProperty->getSide()-1;
     
     //执行攻击动画
-    m_animationComponent->runAnimation(CCGE_ANIMATION_IDLE,direction);
+    m_animationComponent->runAnimation(CCGE_ANIMATION_IDLE,direction,true);
 }
 
 NS_CC_GE_END

@@ -9,6 +9,9 @@
 #define CCGE_ANIMATION_DIRECTION "direction"
 #define CCGE_ANIMATION_ATTACK "attack"
 #define CCGE_ANIMATION_IDLE "idle"
+#define CCGE_ANIMATION_DIE "die"
+#define CCGE_ANIMATION_BEATTACK "beAttack"
+#define CCGE_ANIMATION_USE_SKILL "useSkill"
 
 /*
  

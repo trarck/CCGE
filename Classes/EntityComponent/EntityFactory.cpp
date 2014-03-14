@@ -222,13 +222,13 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
     yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entityId,"battle");
 
-    //空闲动画
-    CCArray* idleEightAnimations=createEightAnimations(battleAnimationData["idle"]);
-    animation->addAnimationList(idleEightAnimations,"idle");
+    yhge::Json::Value::Members members=battleAnimationData.getMemberNames();
     
-    //战斗动画
-    CCArray* moveEightAnimations=createEightAnimations(battleAnimationData["attack"]);
-    animation->addAnimationList(moveEightAnimations,"attack");
+    CCArray* twoAnimations=NULL;
+    for (yhge::Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
+        twoAnimations=createTwoAnimations(battleAnimationData[*iter]);
+        animation->addAnimationList(twoAnimations,*iter);
+    }
     
     player->addComponent(animation);
     animation->release();
@@ -268,6 +268,40 @@ CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configDat
 
     return AnimationComponent::eightDirectionActionListWithDirResource(
         ext.c_str(),frameQuantity, CCSizeMake(frameWidth, frameHeight), frameDelay,loops);
+}
+
+CCArray* EntityFactory::createTwoAnimations(const yhge::Json::Value& configData)
+{
+    int frameQuantity=configData["frame_quantity"].asInt();
+//    float frameWidth=configData["frame_width"].asDouble();
+//    float frameHeight=configData["frame_height"].asDouble();
+    float frameDelay=configData["frame_delay"].asDouble();
+    std::string ext=configData["ext"].asString();
+    int loops=configData.get("loops", -1).asInt();
+    
+    
+    CCArray* animations=CCArray::createWithCapacity(2);
+    
+    const char* resource=ext.c_str();
+    
+//    CCSize frameSize=CCSizeMake(frameWidth, frameHeight);
+	
+	//move actiongit
+	char str[255] = {0};
+	for (int i=0; i<2; i++) {
+		CCAnimation* animation = CCAnimation::create();
+		for (int j=0; j<frameQuantity; j++) {
+			sprintf(str,resource,i,j);//"xxx/xx/%02d%03d.png"
+			animation->addSpriteFrameWithFileName(str);
+		}
+		animation->setDelayPerUnit(frameDelay);
+		animation->setRestoreOriginalFrame(true);
+        animation->setLoops(loops);
+		//animation.delay=delay;
+        animations->addObject(animation);
+	}
+    
+	return animations;
 }
 
 NS_CC_GE_END
