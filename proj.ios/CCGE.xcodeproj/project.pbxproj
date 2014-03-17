@@ -245,6 +245,7 @@
 		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
 		5747634318D68DBE0031E2E0 /* BaseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634118D68DBE0031E2E0 /* BaseState.cpp */; };
+		5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
@@ -826,6 +827,8 @@
 		5747633C18D68AFC0031E2E0 /* EntityState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityState.h; sourceTree = "<group>"; };
 		5747634118D68DBE0031E2E0 /* BaseState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseState.cpp; sourceTree = "<group>"; };
 		5747634218D68DBE0031E2E0 /* BaseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseState.h; sourceTree = "<group>"; };
+		5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityPropertyFactory.cpp; sourceTree = "<group>"; };
+		5747634618D6D1940031E2E0 /* EntityPropertyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityPropertyFactory.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
@@ -2061,6 +2064,8 @@
 				5747633A18D68AFC0031E2E0 /* States */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
+				5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */,
+				5747634618D6D1940031E2E0 /* EntityPropertyFactory.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
 				575E3F9D18892DC100E37B69 /* GameEntity.h */,
 			);
@@ -2567,6 +2572,7 @@
 				379BB9C017F03F3700829B88 /* UIButton.cpp in Sources */,
 				5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */,
 				379BB9C117F03F3700829B88 /* UICheckBox.cpp in Sources */,
+				5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */,
 				379BB9C217F03F3700829B88 /* UIImageView.cpp in Sources */,
 				379BB9C317F03F3700829B88 /* UILabel.cpp in Sources */,
 				379BB9C417F03F3700829B88 /* UILabelAtlas.cpp in Sources */,
