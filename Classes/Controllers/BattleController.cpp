@@ -273,13 +273,14 @@ void BattleController::loadOppEntities()
         //set animation
         CCDictionary* data=new CCDictionary();
         data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-        data->setObject(CCInteger::create(kEightDirctionLeftBottom), CCGE_ANIMATION_DIRECTION);
+        data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
         MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
         
         RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
         CCNode* renderer=rendererComponent->getRenderer();
         renderer->setScale(1.5f);
         renderer->setZOrder(col);
+        static_cast<CCSprite*>(renderer)->setFlipX(true);
         
         //设置坐标
         //y方向居中对齐，坐标要加0.5

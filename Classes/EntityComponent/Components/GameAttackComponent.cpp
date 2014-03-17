@@ -173,12 +173,12 @@ void GameAttackComponent::onMoveToTargetFrontComplete()
     CCLOG("GameAttackComponent::onMoveToTargetFrontComplete");
 
     //由位置决定人物朝向
-    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
-    int direction=battleProperty->getSide()-1;
+//    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
+//    int direction=battleProperty->getSide()-1;
     
     CCDictionary* data=new CCDictionary();
     data->setObject(CCString::create(CCGE_ANIMATION_BEATTACK), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(direction), CCGE_ANIMATION_DIRECTION);
+    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
     
     //目标做被攻击动画
     this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
@@ -196,12 +196,12 @@ void GameAttackComponent::onMoveBackOriginComplete()
     
     //恢复目标动画
     //由位置决定人物朝向
-    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
-    int direction=battleProperty->getSide()-1;
+//    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
+//    int direction=battleProperty->getSide()-1;
     
     CCDictionary* data=new CCDictionary();
     data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(direction), CCGE_ANIMATION_DIRECTION);
+    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
     this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
     
     data->release();
@@ -226,21 +226,21 @@ void GameAttackComponent::onAttackAnimationComplete(yhge::Message* message)
 void GameAttackComponent::showAttackAnimation()
 {
     //由位置决定人物朝向
-    BattleProperty* battleProperty=static_cast<GameEntity*>(m_owner)->getBattleProperty();
-    int direction=battleProperty->getSide()-1;
+//    BattleProperty* battleProperty=static_cast<GameEntity*>(m_owner)->getBattleProperty();
+//    int direction=battleProperty->getSide()-1;
     
     //执行攻击动画
-    m_animationComponent->runAnimation(CCGE_ANIMATION_ATTACK,direction,true);
+    m_animationComponent->runAnimation(CCGE_ANIMATION_ATTACK,kEightDirctionRightBottom,true);
 }
 
 void GameAttackComponent::showIdleAnimation()
 {
     //由位置决定人物朝向
-    BattleProperty* battleProperty=static_cast<GameEntity*>(m_owner)->getBattleProperty();
-    int direction=battleProperty->getSide()-1;
+//    BattleProperty* battleProperty=static_cast<GameEntity*>(m_owner)->getBattleProperty();
+//    int direction=battleProperty->getSide()-1;
     
     //执行攻击动画
-    m_animationComponent->runAnimation(CCGE_ANIMATION_IDLE,direction,true);
+    m_animationComponent->runAnimation(CCGE_ANIMATION_IDLE,kEightDirctionRightBottom,true);
 }
 
 NS_CC_GE_END
