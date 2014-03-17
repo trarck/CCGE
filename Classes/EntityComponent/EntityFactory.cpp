@@ -18,13 +18,14 @@ NS_CC_GE_BEGIN
 static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
 
 EntityFactory::EntityFactory()
+:m_entityPropertyFactory(NULL)
 {
 
 }
 
 EntityFactory::~EntityFactory()
 {
-
+    CC_SAFE_RELEASE_NULL(m_entityPropertyFactory);
 }
 
 static EntityFactory* s_instance=NULL;
@@ -40,15 +41,27 @@ EntityFactory* EntityFactory::getInstance()
 
 bool EntityFactory::init()
 {
+    m_entityPropertyFactory=new EntityPropertyFactory();
+    m_entityPropertyFactory->init();
+    
     return true;
 }
 
 /**
  * 从配置文件中创建一个游戏实体
  */
-GameEntity* EntityFactory::createEntity(int entityId,CCDictionary* data)
+GameEntity* EntityFactory::createEntity(int entityId)
 {
-    return NULL;
+    GameEntity* entity=GameEntity::create();
+    entity->setEntityId(entityId);
+    return entity;
+}
+
+GameEntity* EntityFactory::createEntityWithParams(int entityId,CCDictionary* params)
+{
+    GameEntity* entity=GameEntity::create();
+    entity->setEntityId(entityId);
+    return entity;
 }
 
 /**
@@ -66,57 +79,9 @@ GameEntity* EntityFactory::createEntityById(int entityId)
     unitProperty->release();
     entity->setUnitProperty(unitProperty);
     
-    //==========添加组件==========//
+    //添加组件
     
-    //显示组件
-    SpriteRendererComponent* renderer=new SpriteRendererComponent();
-    renderer->init();
-    entity->addComponent(renderer);
-    renderer->release();
-    entity->setRendererComponent(renderer);
-    
-    //位置组件
-//    ISOPositionComponent* isoPosition=new ISOPositionComponent();
-//    isoPosition->init();
-//    entity->addComponent(isoPosition);
-//    isoPosition->release();
-//    entity->setISOPositionComponent(isoPosition);
-    
-    //使用自动排序的位置组件
-    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
-    isoPosition->init();
-    entity->addComponent(isoPosition);
-    isoPosition->release();
-    entity->setISOPositionComponent(isoPosition);
-    
-    //动画组件
-    AnimationComponent* animation=new AnimationComponent();
-    animation->init();
-    
-    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
-    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entityId,"move");
-    
-    //8方向空闲动画
-    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
-    animation->addAnimationList(idleEightAnimations,"idle");
-    
-    //8方向移动动画
-    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
-    animation->addAnimationList(moveEightAnimations,"move");
-    
-    entity->addComponent(animation);
-    animation->release();
-    
-    float speed=2.0f;
-    
-    CameraFlowGridMoveComponent* gridMove=new CameraFlowGridMoveComponent();
-    gridMove->init(speed);
-    gridMove->setInnerOffset(kDefaultInnerOffset);
-    
-    //相机的引用和中心点在外面设置。有可能地图不是全屏的
-    
-    entity->addComponent(gridMove);
-    gridMove->release();
+    addMapComponents(entity);
     
     return entity;
 }
@@ -129,57 +94,8 @@ GameEntity* EntityFactory::createPlayer(int entityId,CCDictionary* param)
     GameEntity* player=GameEntity::create();
     player->setEntityId(entityId);
 
-    //==========添加组件==========//
-    
-    //显示组件
-    SpriteRendererComponent* renderer=new SpriteRendererComponent();
-    renderer->init();
-    player->addComponent(renderer);
-    renderer->release();
-    player->setRendererComponent(renderer);
-
-    //位置组件
-    ISOPositionComponent* isoPosition=new ISOPositionComponent();
-    isoPosition->init();
-    player->addComponent(isoPosition);
-    isoPosition->release();
-    player->setISOPositionComponent(isoPosition);
-    
-//    //使用自动排序的位置组件
-//    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
-//    isoPosition->init();
-//    player->addComponent(isoPosition);
-//    isoPosition->release();
-//    player->setISOPositionComponent(isoPosition);
-
-    //动画组件
-    AnimationComponent* animation=new AnimationComponent();
-    animation->init();
-
-    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
-    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entityId,"move");
-
-    //8方向空闲动画
-    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
-    animation->addAnimationList(idleEightAnimations,"idle");
-    
-    //8方向移动动画
-    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
-    animation->addAnimationList(moveEightAnimations,"move");
-    
-    player->addComponent(animation);
-    animation->release();
-    
-    float speed=1.5f;
-    
-    CameraFlowGridMoveComponent* gridMove=new CameraFlowGridMoveComponent();
-    gridMove->init(speed);
-    gridMove->setInnerOffset(kDefaultInnerOffset);
-    
-    //相机的引用和中心点在外面设置。有可能地图不是全屏的
-    
-    player->addComponent(gridMove);
-    gridMove->release();
+    //添加组件
+    addMapComponents(player);
     
     return player;
 }
@@ -194,34 +110,90 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
 
     //战斗中的人物需要战斗相关的属性
     
-    //==========添加属性==========//
-    UnitProperty* unitProperty=new UnitProperty();
-    player->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
-    unitProperty->release();
-    player->setUnitProperty(unitProperty);
+    //添加属性
+    m_entityPropertyFactory->createBattleProperties(player);
     
-    BattleProperty* battleProperty=new BattleProperty();
-    player->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
-    battleProperty->release();
-    player->setBattleProperty(battleProperty);
+    //添加组件
+    addBattleComponents(player);
     
-    //==========添加组件==========//
-    //不需要移动相关组件
-    
+    return player;
+}
+
+/**
+ * @brief 给entity添加地图相关组件
+ */
+void EntityFactory::addMapComponents(GameEntity* entity)
+{
     //显示组件
     SpriteRendererComponent* renderer=new SpriteRendererComponent();
     renderer->init();
-    player->addComponent(renderer);
+    entity->addComponent(renderer);
     renderer->release();
-    player->setRendererComponent(renderer);
+    entity->setRendererComponent(renderer);
+    
+    //位置组件
+    ISOPositionComponent* isoPosition=new ISOPositionComponent();
+    isoPosition->init();
+    entity->addComponent(isoPosition);
+    isoPosition->release();
+    entity->setISOPositionComponent(isoPosition);
+    
+    //    //使用自动排序的位置组件
+    //    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
+    //    isoPosition->init();
+    //    player->addComponent(isoPosition);
+    //    isoPosition->release();
+    //    player->setISOPositionComponent(isoPosition);
     
     //动画组件
     AnimationComponent* animation=new AnimationComponent();
     animation->init();
     
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
-    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entityId,"battle");
+    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"move");
+    
+    //8方向空闲动画
+    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
+    animation->addAnimationList(idleEightAnimations,"idle");
+    
+    //8方向移动动画
+    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
+    animation->addAnimationList(moveEightAnimations,"move");
+    
+    entity->addComponent(animation);
+    animation->release();
+    
+    float speed=1.5f;
+    
+    CameraFlowGridMoveComponent* gridMove=new CameraFlowGridMoveComponent();
+    gridMove->init(speed);
+    gridMove->setInnerOffset(kDefaultInnerOffset);
+    
+    //相机的引用和中心点在外面设置。有可能地图不是全屏的
+    
+    entity->addComponent(gridMove);
+    gridMove->release();
+}
 
+/**
+ * @brief 给entity添加战斗相关组件
+ */
+void EntityFactory::addBattleComponents(GameEntity* entity)
+{
+    //显示组件
+    SpriteRendererComponent* renderer=new SpriteRendererComponent();
+    renderer->init();
+    entity->addComponent(renderer);
+    renderer->release();
+    entity->setRendererComponent(renderer);
+    
+    //动画组件
+    AnimationComponent* animation=new AnimationComponent();
+    animation->init();
+    
+    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"battle");
+    
     yhge::Json::Value::Members members=battleAnimationData.getMemberNames();
     
     CCArray* twoAnimations=NULL;
@@ -230,31 +202,30 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
         animation->addAnimationList(twoAnimations,*iter);
     }
     
-    player->addComponent(animation);
+    entity->addComponent(animation);
     animation->release();
     
     
     //战斗组件
     GameAttackComponent* attackComponent=new GameAttackComponent();
     attackComponent->init();
-    player->addComponent(attackComponent);
+    entity->addComponent(attackComponent);
     attackComponent->release();
-    player->setAttackComponent(attackComponent);
+    entity->setAttackComponent(attackComponent);
     
     //死亡组件
     DieComponent* dieComponent=new DieComponent();
     dieComponent->init();
-    player->addComponent(dieComponent);
+    entity->addComponent(dieComponent);
     dieComponent->release();
     
     //血条组件
     HealthBarComponent* healthBarComponent=new HealthBarComponent();
     healthBarComponent->init();
-    player->addComponent(healthBarComponent);
+    entity->addComponent(healthBarComponent);
     healthBarComponent->release();
-    player->setHealthBarComponent(healthBarComponent);
-    
-    return player;
+    entity->setHealthBarComponent(healthBarComponent);
+
 }
 
 CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configData)
