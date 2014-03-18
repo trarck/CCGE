@@ -29,7 +29,7 @@ void MissionController::viewDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
-    m_gameWorld=new GameWorldController();
+    m_gameWorld=new StepGameWorldController();
     m_gameWorld->init(1000, 1);
     m_gameWorld->setPreferredContentSize(visibleSize);
     

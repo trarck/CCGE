@@ -226,7 +226,7 @@ void GameWorld::setupUtil()
 /**
  * 设置游戏地图
  */
-void GameWorld::createGameMap()
+ISOMapInfo* GameWorld::createGameMap()
 {
     //移除去之前的地图文件
     if (m_isoMap) {
@@ -244,7 +244,7 @@ void GameWorld::createGameMap()
         mapLyaerType=mapLyaerTypeValue->getValue();
     }
     
-    //加载数据
+    //加载数据.mapInfo自动释放
     ISOMapInfo* mapInfo=loadMapData();
     
     //构建地图
@@ -275,6 +275,7 @@ void GameWorld::createGameMap()
     
     m_isoMap->release();
     
+    return mapInfo;
 }
 
 ISOMapInfo* GameWorld::loadMapData()

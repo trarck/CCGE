@@ -34,7 +34,7 @@ public:
     /**
      * 创建游戏地图
      */
-	void createGameMap();
+	yhge::isometric::ISOMapInfo* createGameMap();
 
     /**
      * 加载游戏地图

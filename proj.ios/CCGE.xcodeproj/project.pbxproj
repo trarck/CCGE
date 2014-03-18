@@ -246,6 +246,7 @@
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
 		5747634318D68DBE0031E2E0 /* BaseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634118D68DBE0031E2E0 /* BaseState.cpp */; };
 		5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */; };
+		5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
@@ -829,6 +830,8 @@
 		5747634218D68DBE0031E2E0 /* BaseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseState.h; sourceTree = "<group>"; };
 		5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityPropertyFactory.cpp; sourceTree = "<group>"; };
 		5747634618D6D1940031E2E0 /* EntityPropertyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityPropertyFactory.h; sourceTree = "<group>"; };
+		5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StepGameWorldController.cpp; sourceTree = "<group>"; };
+		5747634918D6F10B0031E2E0 /* StepGameWorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepGameWorldController.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
@@ -1995,6 +1998,8 @@
 				575AD877187BC54B00AA0477 /* MainController.h */,
 				577105741883DF8900FA1446 /* MissionController.cpp */,
 				577105751883DF8900FA1446 /* MissionController.h */,
+				5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */,
+				5747634918D6F10B0031E2E0 /* StepGameWorldController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
 				575AD879187BC54B00AA0477 /* TestISOController.h */,
 				57525CC418AB6C7100166633 /* TestSqliteController.cpp */,
@@ -2554,6 +2559,7 @@
 				379BB9B117F03F3700829B88 /* CCInputDelegate.cpp in Sources */,
 				379BB9B217F03F3700829B88 /* UIRootWidget.cpp in Sources */,
 				379BB9B317F03F3700829B88 /* UIWidget.cpp in Sources */,
+				5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */,
 				379BB9B417F03F3700829B88 /* Layout.cpp in Sources */,
 				379BB9B617F03F3700829B88 /* LayoutParameter.cpp in Sources */,
 				379BB9B717F03F3700829B88 /* UILayoutDefine.cpp in Sources */,
