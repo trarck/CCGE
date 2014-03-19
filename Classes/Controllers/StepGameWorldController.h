@@ -30,6 +30,21 @@ public:
      * 创建游戏地图
      */
     virtual yhge::isometric::ISOMapInfo* createGameMap();
+    
+    /**
+     * @brief 移动到下一步
+     */
+    void nextStep(int step=1);
+    
+    /**
+     * @brief 检查当前结点是否是终点
+     */
+    bool isEndStep();
+    
+    /**
+     * @brief 取得玩家的当前点
+     */
+    const CCPoint& getCurrentPosition();
 
 protected:
     /*
@@ -89,10 +104,38 @@ protected:
      */
     CCArray* createWalkPaths(yhge::isometric::ISOLayerInfo* layerInfo,int stepTileId);
     
+
+public:
+    
+    inline void setWalkPaths(CCArray* walkPaths)
+    {
+        CC_SAFE_RETAIN(walkPaths);
+        CC_SAFE_RELEASE(m_walkPaths);
+        m_walkPaths = walkPaths;
+    }
+    
+    inline CCArray* getWalkPaths()
+    {
+        return m_walkPaths;
+    }
+    
+    inline void setStepIndex(int stepIndex)
+    {
+        m_stepIndex = stepIndex;
+    }
+    
+    inline int getStepIndex()
+    {
+        return m_stepIndex;
+    }
+    
 private:
 
     //行走路径
     CCArray* m_walkPaths;
+    
+    //路径结点索引值.0-表示起始
+    int m_stepIndex;
 
 };
 

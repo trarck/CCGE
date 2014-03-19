@@ -9,6 +9,7 @@ static ServiceFactory* s_dataFactoryInstance=NULL;
 
 ServiceFactory::ServiceFactory()
 :m_pveBattleService(NULL)
+,m_missionService(NULL)
 {
 
 }
@@ -16,6 +17,7 @@ ServiceFactory::ServiceFactory()
 ServiceFactory::~ServiceFactory()
 {
     CC_SAFE_RELEASE_NULL(m_pveBattleService);
+    CC_SAFE_RELEASE_NULL(m_missionService);
 }
 
 bool ServiceFactory::init()
@@ -38,6 +40,9 @@ void ServiceFactory::setup()
 {
     m_pveBattleService=new PveBattleService();
     m_pveBattleService->init();
+    
+    m_missionService=new MissionService();
+    m_missionService->init();
 }
 
 NS_CC_GE_END

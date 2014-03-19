@@ -489,6 +489,7 @@ CCPoint GameWorldController::toGameCoordinate(float x,float y)
 
 void GameWorldController::updateMapPosition(const CCPoint& position)
 {
+//    CCLOG("map pos:%f,%f",position.x,position.y);
     m_isoMap->setPosition(ccpNeg(position));
     m_isoMap->scrollLayer(position);
 }

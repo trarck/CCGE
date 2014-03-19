@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
-#include <yhge/Message/MessageManager.h>
+#include <yhge/yhge.h>
 #include <yhgui/yhgui.h>
 
 #include "SceneDirector/GameSceneDirector.h"
@@ -35,6 +35,12 @@ public:
 	 */
     void setupSceneDirector();
     
+protected:
+    
+    void setupRandom();
+    
+public:
+    
     inline static yhge::MessageManager* getMessageManager()
     {
         return yhge::MessageManager::defaultManager();
@@ -64,11 +70,18 @@ public:
         return m_sceneDirector;
     }
     
+    inline yhge::RandomMT* getRandom()
+    {
+        return m_random;
+    }
+    
 private:
     
     yhgui::DocumentTreeOrganizer* m_interactiveOrganizer;
     
     GameSceneDirector* m_sceneDirector;
+    
+    yhge::RandomMT* m_random;
 };
 
 NS_CC_GE_END

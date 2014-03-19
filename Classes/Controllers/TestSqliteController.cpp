@@ -23,7 +23,7 @@ TestSqliteController::~TestSqliteController(void)
 {
     CCLOG("TestSqliteController destroy");
     m_sqliteDB->close();
-    CC_SAFE_RELEASE_NULL(m_sqliteDB);
+    CC_SAFE_DELETE(m_sqliteDB);
 }
 
 void TestSqliteController::viewDidLoad()

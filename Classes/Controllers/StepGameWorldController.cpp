@@ -23,6 +23,7 @@ static const int kStepNearsCount=4;
 
 StepGameWorldController::StepGameWorldController()
 :m_walkPaths(NULL)
+,m_stepIndex(0)
 {
 	CCLOG("StepGameWorldController create");
     m_sName="StepGameWorldController";
@@ -63,16 +64,22 @@ void StepGameWorldController::setup()
 {
     GameWorldController::setup();
 
-    CCPointValue* firstPointValue=static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(0));
+    CCPointValue* firstPointValue=static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex));
     CCPoint firstPos=firstPointValue->getPoint();
     
     addPlayerAtCoord(firstPos);
     
+    //把人物显示在屏幕中间
     CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(firstPos));
     
     CCLOG("first: cell:%f,%f,view:%f,%f",firstPos.x,firstPos.y,viewPos.x,viewPos.y);
     
-    m_pGameCamera->moveTo(viewPos.x,-viewPos.y);
+    CCSize contentSize= this->getPreferredContentSize();
+    
+    float scaleX=m_pGameCamera->getScaleX(),
+          scaleY=m_pGameCamera->getScaleY();
+    
+    m_pGameCamera->moveTo(viewPos.x*scaleX-contentSize.width/2,viewPos.y*scaleY-contentSize.height/2);
 }
 
 /**
@@ -98,6 +105,50 @@ ISOMapInfo* StepGameWorldController::createGameMap()
 //    CCLOG("walk path:%s",pathLog.c_str());
  
     return mapInfo;
+}
+
+void StepGameWorldController::nextStep(int step)
+{
+    CCLOG("StepGameWorldController::nextStep step:%d",step);
+    
+    int totalPath=m_walkPaths->count();
+    
+    if (m_stepIndex<totalPath) {
+        
+        //检查剩余的路径点是否够移动的step，如果不够，从新设置step
+        step= (m_stepIndex+step) < totalPath ? step:(totalPath-m_stepIndex-1);
+        
+        CCArray* paths=CCArray::createWithCapacity(step);
+        
+        std::string path="";
+        //注意路径是倒序的
+        for (int i=step; i>=0; --i) {
+            paths->addObject(m_walkPaths->objectAtIndex(m_stepIndex+i));
+            
+            
+            CCPoint pos=static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex+i))->getPoint();
+            path+=CCString::createWithFormat("%f,%f:",pos.x,pos.y)->getCString();
+        }
+        
+        CCLOG("path:%s",path.c_str());
+        
+        m_stepIndex+=step;
+        
+        MessageManager::defaultManager()->dispatchMessage(MSG_MOVE_PATH, NULL, m_player,paths);
+    }
+}
+
+bool StepGameWorldController::isEndStep()
+{
+    //对于只有一条路径，只要检查结点的数量，如果有多条路径，则要比较结点的属性
+    return m_stepIndex==m_walkPaths->count()-1;
+}
+
+const CCPoint& StepGameWorldController::getCurrentPosition()
+{
+    CCPointValue* value=static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex));
+    
+    return value->getPoint();
 }
 
 /*

@@ -22,15 +22,15 @@ void FooterController::viewDidLoad()
 {
     CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
     
-    m_backButton=CCMenuItemLabel::create(CCLabelTTF::create("back", "Arial", 20),
+    m_backButton=CCMenuItemLabel::create(CCLabelTTF::create("back", "Arial", 30),
                                                       this,
                                                       menu_selector(FooterController::backCallback));
     m_backButton->setPosition(ccp(60,20));
     
-    CCMenuItemLabel *exitItem=CCMenuItemLabel::create(CCLabelTTF::create("exit", "Arial", 20),
+    CCMenuItemLabel *exitItem=CCMenuItemLabel::create(CCLabelTTF::create("exit", "Arial", 30),
                                                         this,
                                                         menu_selector(FooterController::exitCallback));
-    exitItem->setPosition(ccp(screenSize.width-100,20));
+    exitItem->setPosition(ccp(screenSize.width-40,screenSize.height-20));
     
     CCMenu* menu=CCMenu::create(m_backButton,exitItem,NULL);
     

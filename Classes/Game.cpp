@@ -35,6 +35,7 @@ Game* Game::getInstance()
 Game::Game()
 :m_interactiveOrganizer(NULL)
 ,m_sceneDirector(NULL)
+,m_random(NULL)
 {
 
 }
@@ -43,6 +44,7 @@ Game::~Game()
 {
     CC_SAFE_RELEASE_NULL(m_interactiveOrganizer);
     CC_SAFE_RELEASE_NULL(m_sceneDirector);
+    CC_SAFE_DELETE(m_random);
 }
 
 /**
@@ -63,7 +65,10 @@ void Game::setup()
     
     dimetric::StaticTopViewCoordinateFormulae::initTileSize(tileWidth, topHeight);
     
+    setupRandom();
+    
     setupGui();
+    
     setupSceneDirector();
 }
 
@@ -87,6 +92,15 @@ void Game::setupSceneDirector()
     }
     
     setSceneDirector(sceneDirector);
+}
+
+void Game::setupRandom()
+{
+    struct timeval now;
+    
+    gettimeofday(&now, NULL);
+    
+    m_random=new RandomMT(now.tv_sec*1000000+now.tv_usec);
 }
 
 

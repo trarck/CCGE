@@ -250,6 +250,7 @@
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
+		574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4DA18D97C3200490B18 /* MissionService.cpp */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
@@ -838,6 +839,8 @@
 		574A569F18B1A0B200518953 /* AnimationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationProvider.h; sourceTree = "<group>"; };
 		574A56A118B1A39C00518953 /* datas */ = {isa = PBXFileReference; lastKnownFileType = folder; path = datas; sourceTree = "<group>"; };
 		574A56B118B3101B00518953 /* GameDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDefine.h; sourceTree = "<group>"; };
+		574FE4DA18D97C3200490B18 /* MissionService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionService.cpp; sourceTree = "<group>"; };
+		574FE4DB18D97C3200490B18 /* MissionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionService.h; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -1915,6 +1918,8 @@
 				57243EBE18B3551C0070163A /* BaseService.h */,
 				57243EBF18B3551C0070163A /* BattleService.cpp */,
 				57243EC018B3551C0070163A /* BattleService.h */,
+				574FE4DA18D97C3200490B18 /* MissionService.cpp */,
+				574FE4DB18D97C3200490B18 /* MissionService.h */,
 				57243ED118B490BC0070163A /* PveBattleService.cpp */,
 				57243ED218B490BC0070163A /* PveBattleService.h */,
 				57243EC118B3551C0070163A /* ServiceFactory.cpp */,
@@ -2463,6 +2468,7 @@
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */,
 				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
+				574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				57CF76F318AA11380085A22F /* BattleController.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,

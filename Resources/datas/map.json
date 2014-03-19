@@ -1,0 +1,26 @@
+{
+    "1":{
+        "id":1,
+		"name":"测试一",
+		"zone":1,
+		"data_file":"map/zone/m1xin/cj0101.tmx",
+		"event_file":"map/events/1.json",
+		"next_map":2
+    },
+    "2":{
+        "id":2,
+		"name":"测试二",
+		"zone":1,
+		"data_file":"map/zone/m1xin/cj0102.tmx",
+		"event_file":"map/events/2.json",
+		"next_map":2
+    },
+    "3":{
+        "id":3,
+		"name":"测试三",
+		"zone":1,
+		"data_file":"map/zone/m1xin/cj0103.tmx",
+		"event_file":"map/events/3.json",
+		"next_map":2
+    }
+}
