@@ -14,7 +14,7 @@ static const float kGameTileWidth=100;
 static const float kGameTileHeight=90;
 
 TestSqliteController::TestSqliteController(void)
-:m_sqliteDB(NULL)
+:m_sqliteDriver(NULL)
 {
     m_sName="TestSqliteController";
 }
@@ -22,8 +22,8 @@ TestSqliteController::TestSqliteController(void)
 TestSqliteController::~TestSqliteController(void)
 {
     CCLOG("TestSqliteController destroy");
-    m_sqliteDB->close();
-    CC_SAFE_DELETE(m_sqliteDB);
+    m_sqliteDriver->close();
+    CC_SAFE_DELETE(m_sqliteDriver);
 }
 
 void TestSqliteController::viewDidLoad()
@@ -74,10 +74,10 @@ void TestSqliteController::viewDidLoad()
     m_view->addChild(showBtn);
     
 
-    m_sqliteDB=new SqliteDB();
+    m_sqliteDriver=new SqliteDriver();
     std::string dbPath=CCFileUtils::sharedFileUtils()->getWritablePath()+"test.db";
     
-    m_sqliteDB->connect(dbPath,SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE);
+    m_sqliteDriver->connect(dbPath,SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE);
 
 }
 
@@ -85,24 +85,39 @@ void TestSqliteController::viewDidLoad()
 void TestSqliteController::createTable()
 {
     std::string createSql="CREATE TABLE IF NOT EXISTS data(key TEXT PRIMARY KEY,value TEXT,inte INTEGER,fl REAL);";
-    m_sqliteDB->execute(createSql);
+    m_sqliteDriver->execute(createSql);
 }
 
 void TestSqliteController::insertData(std::string key,std::string value,int inte,float fl)
 {
-    const char *insertSql = "INSERT into data(key,value,inte,fl) VALUES(?,?,?,?)";
-    Statement stmt(*m_sqliteDB, insertSql);
+//    const char *insertSql = "INSERT into data(key,value,inte,fl) VALUES(?,?,?,?)";
+//    Statement stmt(*m_sqliteDriver, insertSql);
+//    stmt.bind(1, key);
+//    stmt.bind(2, value);
+//    stmt.bind(3, inte);
+//    stmt.bind(4, fl);
+//    stmt.execute();
+//    
+//    stmt.reset();
+//    stmt.bind(1, "aa");
+//    stmt.bind(2, "bb");
+//    stmt.bind(3, 1);
+//    stmt.bind(4, 2.0f);
+//    stmt.execute();
+    
+    const char *insertSql = "INSERT into data(key,value,inte,fl) VALUES(?,:a,?,:b)";
+    Statement stmt(*m_sqliteDriver, insertSql);
     stmt.bind(1, key);
-    stmt.bind(2, value);
+    stmt.bind(":a", value);
     stmt.bind(3, inte);
-    stmt.bind(4, fl);
+    stmt.bind(":b", fl);
     stmt.execute();
 }
 
 void TestSqliteController::showTable()
 {
     const char *selectSQl = "SELECT * FROM data;";
-    Statement stmt(*m_sqliteDB, selectSQl);
+    Statement stmt(*m_sqliteDriver, selectSQl);
     
     int colCount=stmt.getColumnCount();
     
@@ -120,13 +135,13 @@ void TestSqliteController::onCreateTable(yhge::Event* event)
 {
     CCLOG("####create table#####");
     
-//    createTable();
+    createTable();
 }
 
 void TestSqliteController::onInsertTable(yhge::Event* event)
 {
     CCLOG("####insert table#####");
-//    insertData("test1","testa",1,1.1);
+    insertData("test1","testa",1,1.1);
 //    insertData("test2","testb",2,2.2);
 //    insertData("test3","testc",3,3.3);
 }
@@ -134,7 +149,7 @@ void TestSqliteController::onInsertTable(yhge::Event* event)
 void TestSqliteController::onShowTable(yhge::Event* event)
 {
     CCLOG("####show table#####");
-//    showTable();
+    showTable();
 }
 
 NS_CC_GE_END

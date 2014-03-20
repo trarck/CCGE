@@ -38,7 +38,7 @@ private:
    
 private:
     
-    yhge::sqlite::SqliteDB* m_sqliteDB;
+    yhge::sqlite::SqliteDriver* m_sqliteDriver;
 };
 NS_CC_GE_END
 
