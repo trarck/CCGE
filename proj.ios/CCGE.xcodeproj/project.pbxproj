@@ -251,6 +251,8 @@
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574A56A218B1A39C00518953 /* datas in Resources */ = {isa = PBXBuildFile; fileRef = 574A56A118B1A39C00518953 /* datas */; };
 		574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4DA18D97C3200490B18 /* MissionService.cpp */; };
+		574FE5CA18DC16CA00490B18 /* MapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE5C618DC16CA00490B18 /* MapData.cpp */; };
+		574FE5CB18DC16CA00490B18 /* ZoneData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE5C818DC16CA00490B18 /* ZoneData.cpp */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
@@ -841,6 +843,10 @@
 		574A56B118B3101B00518953 /* GameDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDefine.h; sourceTree = "<group>"; };
 		574FE4DA18D97C3200490B18 /* MissionService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionService.cpp; sourceTree = "<group>"; };
 		574FE4DB18D97C3200490B18 /* MissionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionService.h; sourceTree = "<group>"; };
+		574FE5C618DC16CA00490B18 /* MapData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapData.cpp; sourceTree = "<group>"; };
+		574FE5C718DC16CA00490B18 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapData.h; sourceTree = "<group>"; };
+		574FE5C818DC16CA00490B18 /* ZoneData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneData.cpp; sourceTree = "<group>"; };
+		574FE5C918DC16CA00490B18 /* ZoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneData.h; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -1969,8 +1975,12 @@
 				57525CF018AC6E9300166633 /* AnimationData.h */,
 				574A569718B19D7F00518953 /* DataFactory.cpp */,
 				574A569818B19D7F00518953 /* DataFactory.h */,
+				574FE5C618DC16CA00490B18 /* MapData.cpp */,
+				574FE5C718DC16CA00490B18 /* MapData.h */,
 				57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */,
 				57243ECE18B45C1E0070163A /* RemoteCacheData.h */,
+				574FE5C818DC16CA00490B18 /* ZoneData.cpp */,
+				574FE5C918DC16CA00490B18 /* ZoneData.h */,
 			);
 			name = Datas;
 			path = ../Classes/Datas;
@@ -2349,6 +2359,7 @@
 				15A3D9041682F7D5002FB0C5 /* b2Distance.cpp in Sources */,
 				5747634318D68DBE0031E2E0 /* BaseState.cpp in Sources */,
 				57243ECF18B45C1E0070163A /* RemoteCacheData.cpp in Sources */,
+				574FE5CB18DC16CA00490B18 /* ZoneData.cpp in Sources */,
 				57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */,
 				15A3D9051682F7D5002FB0C5 /* b2DynamicTree.cpp in Sources */,
 				15A3D9061682F7D5002FB0C5 /* b2TimeOfImpact.cpp in Sources */,
@@ -2530,6 +2541,7 @@
 				1A8F3B81175E05DA00049216 /* SlotData.cpp in Sources */,
 				1A8F3B82175E05DA00049216 /* spine-cocos2dx.cpp in Sources */,
 				379BB99517F03F3700829B88 /* CCActionFrame.cpp in Sources */,
+				574FE5CA18DC16CA00490B18 /* MapData.cpp in Sources */,
 				379BB99617F03F3700829B88 /* CCActionFrameEasing.cpp in Sources */,
 				379BB99717F03F3700829B88 /* CCActionManager.cpp in Sources */,
 				379BB99817F03F3700829B88 /* CCActionNode.cpp in Sources */,
