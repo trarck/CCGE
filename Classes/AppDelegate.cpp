@@ -30,7 +30,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     Game::getInstance()->setup();
     
-    GameSceneDirector::getInstance()->runWithScene(kMainScene);
+    GameSceneDirector::getInstance()->runWithScene(kInitializeScene);
 
     return true;
 }

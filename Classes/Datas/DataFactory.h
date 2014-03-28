@@ -3,7 +3,9 @@
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
+#include "BaseData.h"
 #include "AnimationData.h"
+#include "MapData.h"
 
 NS_CC_GE_BEGIN
 
@@ -29,6 +31,16 @@ public:
         return m_animationData;
     }
     
+    MapData* getMapData()
+    {
+        return m_mapData;
+    }
+    
+    BaseData* getZoneData()
+    {
+        return m_zoneData;
+    }
+    
 protected:
 
     /**
@@ -39,8 +51,14 @@ protected:
     std::string getDataFilePath(const std::string& file);
 
 protected:
+    
     //动画数据
     AnimationData* m_animationData;
+    
+    //地图数据
+    MapData* m_mapData;
+    
+    BaseData* m_zoneData;
 };
 
 NS_CC_GE_END

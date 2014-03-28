@@ -81,7 +81,7 @@ void BattleController::viewDidLoad()
 void BattleController::onViewEnter()
 {
     Controller::onViewExit();
-//    start();
+    start();
 }
 
 void BattleController::onViewExit()
@@ -843,7 +843,7 @@ void BattleController::onSkip(CCObject* pSender)
 
 void BattleController::onStart(CCObject* pSender)
 {
-    start();
+//    start();
 }
 
 bool BattleController::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

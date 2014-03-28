@@ -2,6 +2,7 @@
 #include "SceneDirector/GameSceneDirector.h"
 #include "EntityComponent/EntityFactory.h"
 #include "Layers/GameActiveSortLayer.h"
+#include "Datas/DataFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -265,12 +266,16 @@ void GameWorldController::createActiveLayer(ISOActiveLayerInfo* activeLayerInfo)
 
 ISOMapInfo* GameWorldController::loadMapData()
 {
+    std::string mapFile=DataFactory::getInstance()->getMapData()->getDataById(m_mapId)["data_file"].asString();
+    
+    CCLOG("map file=%s",mapFile.c_str());
+    
     //解析地图数据
     ISOXMLParser* isoXmlParser=new ISOXMLParser();
     isoXmlParser->setTranslateLayerData(true);
     isoXmlParser->setTranslateObjectCoord(true);
 //    isoXmlParser->initWithTMXFile(CCString::createWithFormat("map/zone/%d_%d.tmx",m_zoneId,m_mapId)->getCString());
-    isoXmlParser->initWithTMXFile("map/zone/m1xin/cj0101.tmx");
+    isoXmlParser->initWithTMXFile(mapFile.c_str());
     
     ISOMapInfo* mapInfo=isoXmlParser->getMapInfo();
     

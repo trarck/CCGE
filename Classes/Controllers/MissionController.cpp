@@ -45,8 +45,10 @@ void MissionController::viewDidLoad()
 {
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
+    MissionService* missionService=ServiceFactory::getInstance()->getMissionService();
+    
     m_gameWorld=new StepGameWorldController();
-    m_gameWorld->init(1000, 1);
+    m_gameWorld->init(missionService->getCurrentZone(), missionService->getCurrentMap());
     m_gameWorld->setTouchable(false);
     m_gameWorld->setPreferredContentSize(visibleSize);
     m_gameWorld->setStepIndex(ServiceFactory::getInstance()->getMissionService()->getLastMapStepIndex());
@@ -68,6 +70,8 @@ void MissionController::viewDidLoad()
     
     //for test
     generateStepPathEvent();
+    
+    showStepEvent();
     
 }
 
@@ -132,7 +136,8 @@ void MissionController::onStepEvent(CCObject* sender)
         
     }else{
         //步骤完成
-        
+        ServiceFactory::getInstance()->getMissionService()->completeCurrentMap();
+        Game::getInstance()->getSceneDirector()->popScene();
     }
     
 }
@@ -210,6 +215,63 @@ void MissionController::doPvpEvent()
 int MissionController::positionToStepKey(const CCPoint& pos)
 {
     return m_gameWorld->getMapColumn() * (int)pos.y+(int)pos.x;
+}
+
+/**
+ * @brief 显示步骤事件
+ */
+void MissionController::showStepEvent()
+{
+    CCArray* paths=m_gameWorld->getWalkPaths();
+    CCObject* pObj=NULL;
+    CCPointValue* posValue=NULL;
+    
+    CCInteger* typeValue=NULL;
+    
+    CCString* iconPath=NULL;
+    
+    CCARRAY_FOREACH(paths, pObj){
+        posValue=static_cast<CCPointValue*>(pObj);
+        
+        CCPoint coord=posValue->getPoint();
+        
+        typeValue=static_cast<CCInteger*>(m_stepEvents->objectForKey(positionToStepKey(coord)));
+        
+        if (typeValue) {
+            switch (typeValue->getValue()) {
+                case kBattleEvent:
+                case kGetMoneyEvent:
+                case kGetExpEvent:
+                case kGetItemEvent:
+                case kPvpEvent:
+                    iconPath=CCString::createWithFormat("event_icon/%d.png",typeValue->getValue());
+                    break;
+                default:
+                    iconPath=NULL;
+                    break;
+            }
+            
+            if (iconPath) {
+                
+                CCSprite* iconSprite=CCSprite::create(iconPath->getCString());
+                
+                //fixed to cell center
+                coord.x+=0.5f;
+                coord.y+=0.5f;
+                
+                CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord));
+
+                iconSprite->setPosition(viewPos);
+                
+                m_gameWorld->getStepEventLayer()->addChild(iconSprite);
+                
+            }
+            
+        }else{
+            CCLOG("no %f,%f",posValue->getPoint().x,posValue->getPoint().y);
+        }
+    }
+    
 }
 
 NS_CC_GE_END

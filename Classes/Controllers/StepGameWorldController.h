@@ -31,6 +31,8 @@ public:
      */
     virtual yhge::isometric::ISOMapInfo* createGameMap();
     
+    void createStepEventLayer();
+    
     /**
      * @brief 移动到下一步
      */
@@ -129,6 +131,11 @@ public:
         return m_stepIndex;
     }
     
+    inline yhge::isometric::ISOLayer* getStepEventLayer()
+    {
+        return m_stepEventLayer;
+    }
+    
 private:
 
     //行走路径
@@ -136,6 +143,8 @@ private:
     
     //路径结点索引值.0-表示起始
     int m_stepIndex;
+    
+    yhge::isometric::ISOLayer* m_stepEventLayer;
 
 };
 

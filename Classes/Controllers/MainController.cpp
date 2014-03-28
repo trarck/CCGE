@@ -39,6 +39,7 @@ MainController::~MainController(void)
 
 void MainController::viewDidLoad()
 {
+    
 	m_menuItems=new CCArray();
 	m_menuItems->init();
 

@@ -34,7 +34,19 @@ public:
      *
      * @param mapId 完成的地图id
      */
+    void completeCurrentMap()
+    {
+        completeMap(m_currentMap);
+    }
+    
+    /**
+     * @brief 玩家完成一个地图
+     * 计算一个区，下一个地图
+     *
+     * @param mapId 完成的地图id
+     */
     void completeMap(int mapId);
+
     
 public:
     
@@ -50,6 +62,7 @@ public:
     
     inline void setCurrentMap(int currentMap)
     {
+        CCLOG("setCurrentMap:%d",currentMap);
         m_currentMap = currentMap;
     }
     

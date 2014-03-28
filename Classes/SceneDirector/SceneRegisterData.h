@@ -18,7 +18,8 @@ typedef struct SceneRegisterItem
 #include "Scenes/BattleScene.h"
 #include "Scenes/BattlePrepareScene.h"
 #include "Scenes/TestSqliteScene.h"
-
+#include "Scenes/SimpleScene.h"
+#include "Scenes/InitializeScene.h"
 
 NS_CC_GE_BEGIN
 
@@ -30,7 +31,7 @@ static SceneRegisterItem kSceneRegisterData[]=
 	{kBattleScene,SCENE_CREATE_SELECTOR(BattleScene::create)},
 	{kBattlePrepareScene,SCENE_CREATE_SELECTOR(BattlePrepareScene::create)},
 	{kTestSqlite,SCENE_CREATE_SELECTOR(TestSqliteScene::create)},
-
+    {kInitializeScene,SCENE_CREATE_SELECTOR(InitializeScene::create)},
 };
 
 NS_CC_GE_END

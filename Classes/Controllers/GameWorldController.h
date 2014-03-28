@@ -247,6 +247,11 @@ public:
     {
         return m_touchable;
     }
+    
+    yhge::isometric::ISOActiveLayer* getActiveLayer()
+    {
+        return m_activeLayer;
+    }
 
 protected:
     

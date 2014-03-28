@@ -21,6 +21,6 @@
 		"zone":1,
 		"data_file":"map/zone/m1xin/cj0103.tmx",
 		"event_file":"map/events/3.json",
-		"next_map":2
+		"next_map":0
     }
 }

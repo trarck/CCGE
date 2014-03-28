@@ -9,13 +9,18 @@ static const char* kDataDir="datas/";
 static DataFactory* s_dataFactoryInstance=NULL;
 
 DataFactory::DataFactory()
+:m_animationData(NULL)
+,m_mapData(NULL)
+,m_zoneData(NULL)
 {
 
 }
 
 DataFactory::~DataFactory()
 {
-
+    CC_SAFE_RELEASE_NULL(m_animationData);
+    CC_SAFE_RELEASE_NULL(m_mapData);
+    CC_SAFE_RELEASE_NULL(m_zoneData);
 }
 
 bool DataFactory::init()
@@ -39,6 +44,14 @@ void DataFactory::setup()
     m_animationData=new AnimationData();
     m_animationData->init();
     m_animationData->loadFromFile(getDataFilePath("animation.json"));
+    
+    m_mapData=new MapData();
+    m_mapData->init();
+    m_mapData->loadFromFile(getDataFilePath("map.json"));
+    
+    m_zoneData=new BaseData();
+    m_zoneData->init();
+    m_zoneData->loadFromFile(getDataFilePath("zone.json"));
 }
 
 std::string DataFactory::getDataFilePath(const std::string& file)

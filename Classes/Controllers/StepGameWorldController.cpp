@@ -24,6 +24,7 @@ static const int kStepNearsCount=4;
 StepGameWorldController::StepGameWorldController()
 :m_walkPaths(NULL)
 ,m_stepIndex(0)
+,m_stepEventLayer(NULL)
 {
 	CCLOG("StepGameWorldController create");
     m_sName="StepGameWorldController";
@@ -104,7 +105,27 @@ ISOMapInfo* StepGameWorldController::createGameMap()
 //    }
 //    CCLOG("walk path:%s",pathLog.c_str());
  
+    createStepEventLayer();
+    
     return mapInfo;
+}
+
+/*
+ * 创建事件显示层
+ */
+void StepGameWorldController::createStepEventLayer()
+{
+    m_stepEventLayer=new ISOLayer();
+    m_stepEventLayer->init();
+    m_stepEventLayer->setMap(m_isoMap);
+    m_stepEventLayer->setLayerName("stepEvent");
+    m_stepEventLayer->setLayerOrientation(m_isoMap->getMapOrientation());
+
+    m_stepEventLayer->setupLayer();
+    
+    m_isoMap->addChild(m_stepEventLayer,m_activeLayer->getZOrder()-1);
+    
+    m_stepEventLayer->release();
 }
 
 void StepGameWorldController::nextStep(int step)

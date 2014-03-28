@@ -29,7 +29,6 @@ public:
     
     void onViewExit();
     
-    
     void doStepEvent();
     
     void onStepEvent(CCObject* sender);
@@ -38,6 +37,11 @@ public:
      * @brief 人物移动完成
      */
     void onPlayerMoveComplete(yhge::Message* message);
+    
+    /**
+     * @brief 显示步骤事件
+     */
+    void showStepEvent();
     
 protected:
     
