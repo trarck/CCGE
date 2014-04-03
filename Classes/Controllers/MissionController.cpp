@@ -29,6 +29,7 @@ enum StepEventType
 MissionController::MissionController(void)
 :m_gameWorld(NULL)
 ,m_stepEvents(NULL)
+,m_leftStep(0)
 {
     
 }
@@ -118,27 +119,46 @@ void MissionController::doStepEvent()
     }
 }
 
+void MissionController::moveStep(int step)
+{
+    m_leftStep=0;
+    
+    Game::getInstance()->getMessageManager()->registerReceiver(
+                                                               m_gameWorld->getPlayer(), MSG_MOVE_COMPLETE, NULL,
+                                                               message_selector(MissionController::onPlayerMoveComplete), this);
+    
+    // 如果路上有被阻碍的点(比如战斗事件)则要处理阻碍事件再继续。
+    int stopStep=checkPathBarrier(step);
+    if (stopStep) {
+        m_leftStep=step-stopStep;
+        step=stopStep;
+    }
+    
+    m_gameWorld->nextStep(step);
+    
+    ServiceFactory::getInstance()->getMissionService()->setLastMapStepIndex(m_gameWorld->getStepIndex());
+}
+
+void MissionController::doMissionFinish()
+{
+    //步骤完成
+    ServiceFactory::getInstance()->getMissionService()->completeCurrentMap();
+    Game::getInstance()->getSceneDirector()->popScene();
+}
+
 void MissionController::onStepEvent(CCObject* sender)
 {
-    if (!m_gameWorld->isEndStep()) {
-        
-        Game::getInstance()->getMessageManager()->registerReceiver(
-                                                                   m_gameWorld->getPlayer(), MSG_MOVE_COMPLETE, NULL,
-                                                                   message_selector(MissionController::onPlayerMoveComplete), this);
-        
-        //还没有到达终点，继续前进。
+//    if (!m_gameWorld->isEndStep()) {
+    
+        //还没有到达终点，继续前进。不需要检查，会在移动完成处理
         
         unsigned int step=Game::getInstance()->getRandom()->NextUInt(1,6);
-        //TODO 如果路上有被阻碍的点(比如战斗事件)则要处理阻碍事件再继续。
-        m_gameWorld->nextStep(step);
         
-        ServiceFactory::getInstance()->getMissionService()->setLastMapStepIndex(m_gameWorld->getStepIndex());
+        moveStep(step);
         
-    }else{
-        //步骤完成
-        ServiceFactory::getInstance()->getMissionService()->completeCurrentMap();
-        Game::getInstance()->getSceneDirector()->popScene();
-    }
+//    }else{
+//        doMissionFinish();
+//    }
     
 }
 
@@ -147,6 +167,17 @@ void MissionController::onPlayerMoveComplete(yhge::Message* message)
     Game::getInstance()->getMessageManager()->removeReceiver(m_gameWorld->getPlayer(), MSG_MOVE_COMPLETE,
                                                                message_selector(MissionController::onPlayerMoveComplete));
     doStepEvent();
+    
+    //检查是否被断下来
+    if (m_leftStep) {
+        //继续移动
+        moveStep(m_leftStep);
+    }
+    
+    //检查是否移动完成
+    if (m_gameWorld->isEndStep()) {
+        doMissionFinish();
+    }
 }
 
 void MissionController::generateStepPathEvent()
@@ -272,6 +303,48 @@ void MissionController::showStepEvent()
         }
     }
     
+}
+
+int MissionController::checkPathBarrier(int step)
+{
+    CCArray* paths=m_gameWorld->getWalkPaths();
+    
+    CCPointValue* posValue=NULL;
+    
+    CCInteger* typeValue=NULL;
+    
+    int startIndex=m_gameWorld->getStepIndex();
+    
+    if (startIndex<paths->count()) {
+        
+        for (int i=0 ; i<step; ++i) {
+            
+            posValue=static_cast<CCPointValue*>(paths->objectAtIndex(startIndex+i));
+            
+            CCPoint coord=posValue->getPoint();
+            
+            typeValue=static_cast<CCInteger*>(m_stepEvents->objectForKey(positionToStepKey(coord)));
+            
+            if (typeValue) {
+                switch (typeValue->getValue()) {
+                        
+                    //在战斗事件上停下来
+                    case kBattleEvent:
+                    case kPvpEvent:
+                        //must stop
+                        return i+1;
+                        break;
+                    default:
+                        break;
+                }
+            }else{
+                CCLOG("no %f,%f",posValue->getPoint().x,posValue->getPoint().y);
+            }
+            
+        }
+    }
+    
+    return 0;
 }
 
 NS_CC_GE_END

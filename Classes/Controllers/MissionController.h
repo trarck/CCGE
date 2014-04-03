@@ -45,6 +45,16 @@ public:
     
 protected:
     
+    /**
+     * @brief 移动一定步骤
+     */
+    void moveStep(int step);
+    
+    /**
+     * @brief 检查所有事件都完成
+     */
+    void doMissionFinish();
+    
     void generateStepPathEvent();
     
     /**
@@ -77,6 +87,11 @@ protected:
      */
     int positionToStepKey(const CCPoint& pos);
     
+    /**
+     * 检查路径上的障碍点。
+     * 像战斗事件，必须处理
+     */
+    int checkPathBarrier(int step);
     
 public:
     
