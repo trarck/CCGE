@@ -143,13 +143,15 @@ void StepGameWorldController::nextStep(int step)
         
         std::string path="";
         //注意路径是倒序的
-        for (int i=step; i>=0; --i) {
+        for (int i=step; i>0; --i) {
             paths->addObject(m_walkPaths->objectAtIndex(m_stepIndex+i));
             
             
             CCPoint pos=static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex+i))->getPoint();
             path+=CCString::createWithFormat("%f,%f:",pos.x,pos.y)->getCString();
         }
+        
+        CCLOG("currentPos:%f,%f",static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex))->getPoint().x,static_cast<CCPointValue*>(m_walkPaths->objectAtIndex(m_stepIndex))->getPoint().y);
         
         CCLOG("path:%s",path.c_str());
         

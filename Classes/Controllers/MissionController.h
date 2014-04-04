@@ -55,7 +55,7 @@ protected:
      */
     void doMissionFinish();
     
-    void generateStepPathEvent();
+//    void generateStepPathEvent();
     
     /**
      * @brief 执行战斗事件
@@ -95,14 +95,17 @@ protected:
     
 public:
     
-    inline void setLeftStep(int leftStep)
+    
+    inline void setStepEvents(CCDictionary* stepEvents)
     {
-        m_leftStep = leftStep;
+        CC_SAFE_RETAIN(stepEvents);
+        CC_SAFE_RELEASE(m_stepEvents);
+        m_stepEvents = stepEvents;
     }
     
-    inline int getLeftStep()
+    inline CCDictionary* getStepEvents()
     {
-        return m_leftStep;
+        return m_stepEvents;
     }
     
 private:
@@ -111,9 +114,7 @@ private:
     
     //key=y*mapWith+x,value事件数据;
     CCDictionary* m_stepEvents;
-    
-    int m_leftStep;
-    
+        
 };
 NS_CC_GE_END
 

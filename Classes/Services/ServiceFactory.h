@@ -23,6 +23,8 @@ public:
 
     static ServiceFactory* getInstance();
     
+    static void destroyInstance();
+    
     void setup();
     
     PveBattleService* getPveBattleService()

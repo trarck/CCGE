@@ -2,6 +2,7 @@
 #include <yhge/isometric.h>
 #include "Game.h"
 #include "Consts/DataDefine.h"
+#include "Consts/GameDefine.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Services/ServiceFactory.h"
 
@@ -13,23 +14,9 @@ USING_NS_CC_YHMVC;
 
 NS_CC_GE_BEGIN
 
-enum StepEventType
-{
-    kNopEvent=0,//没有事件
-    kBattleEvent,
-    kGetMoneyEvent,
-    kGetExpEvent,
-    kGetItemEvent,
-    kPvpEvent,
-    
-    kStartEvent,//开始结点
-    kEndEvent//结束结点
-};
-
 MissionController::MissionController(void)
 :m_gameWorld(NULL)
 ,m_stepEvents(NULL)
-,m_leftStep(0)
 {
     
 }
@@ -48,8 +35,10 @@ void MissionController::viewDidLoad()
     
     MissionService* missionService=ServiceFactory::getInstance()->getMissionService();
     
+    int mapId=missionService->getCurrentMap();
+    
     m_gameWorld=new StepGameWorldController();
-    m_gameWorld->init(missionService->getCurrentZone(), missionService->getCurrentMap());
+    m_gameWorld->init(missionService->getCurrentZone(), mapId);
     m_gameWorld->setTouchable(false);
     m_gameWorld->setPreferredContentSize(visibleSize);
     m_gameWorld->setStepIndex(ServiceFactory::getInstance()->getMissionService()->getLastMapStepIndex());
@@ -68,11 +57,21 @@ void MissionController::viewDidLoad()
     m_view->addChild(menu);
     
     
+    //地图事件
+    //取得地图的事件信息
+    CCDictionary* stepEvents=missionService->getMapStepEvents(mapId);
+    if (!stepEvents) {
+       stepEvents=missionService->generateMapStepEvents(mapId, m_gameWorld->getWalkPaths(), m_gameWorld->getMapColumn());
+    }
     
-    //for test
-    generateStepPathEvent();
-    
+    setStepEvents(stepEvents);
     showStepEvent();
+    
+    //检查是否被断下来
+    if (missionService->getMoveLeftStep()) {
+        //继续移动
+        moveStep(missionService->getMoveLeftStep());
+    }
     
 }
 
@@ -121,7 +120,10 @@ void MissionController::doStepEvent()
 
 void MissionController::moveStep(int step)
 {
-    m_leftStep=0;
+    CCLOG("moveStep:step=%d",step);
+    MissionService* missionService=ServiceFactory::getInstance()->getMissionService();
+    
+    missionService->setMoveLeftStep(0);
     
     Game::getInstance()->getMessageManager()->registerReceiver(
                                                                m_gameWorld->getPlayer(), MSG_MOVE_COMPLETE, NULL,
@@ -130,8 +132,12 @@ void MissionController::moveStep(int step)
     // 如果路上有被阻碍的点(比如战斗事件)则要处理阻碍事件再继续。
     int stopStep=checkPathBarrier(step);
     if (stopStep) {
-        m_leftStep=step-stopStep;
+        int leftStep=step-stopStep;
         step=stopStep;
+        
+        missionService->setMoveLeftStep(leftStep);
+        
+        CCLOG("moveStep:stop:%d,%d",step,leftStep);
     }
     
     m_gameWorld->nextStep(step);
@@ -155,7 +161,19 @@ void MissionController::onStepEvent(CCObject* sender)
         unsigned int step=Game::getInstance()->getRandom()->NextUInt(1,6);
         
         moveStep(step);
-        
+    
+    
+        //显示投出的数字，现在使用文字。TODO，使用筛子动画
+    CCSize contentSize=getPreferredContentSize();
+    CCLabelTTF* tipLable=CCLabelTTF::create(CCString::createWithFormat("%d",step)->getCString(), "Arial", 40);
+    
+    float offsetY=80;
+    
+    tipLable->setPosition(ccp(contentSize.width/2,(contentSize.height-offsetY)/2));
+    m_view->addChild(tipLable);
+    
+    tipLable->runAction(CCSequence::createWithTwoActions(CCMoveBy::create(0.5f, ccp(0, offsetY)), CCRemoveSelf::create()));
+    
 //    }else{
 //        doMissionFinish();
 //    }
@@ -168,47 +186,41 @@ void MissionController::onPlayerMoveComplete(yhge::Message* message)
                                                                message_selector(MissionController::onPlayerMoveComplete));
     doStepEvent();
     
-    //检查是否被断下来
-    if (m_leftStep) {
-        //继续移动
-        moveStep(m_leftStep);
-    }
-    
     //检查是否移动完成
     if (m_gameWorld->isEndStep()) {
         doMissionFinish();
     }
 }
-
-void MissionController::generateStepPathEvent()
-{
-    CCArray* paths=m_gameWorld->getWalkPaths();
-    m_stepEvents=new CCDictionary();
-    
-    CCPointValue* posValue=NULL;
-    CCPoint pos;
-    int key=0;
-    
-    //start
-    posValue= static_cast<CCPointValue*>(paths->objectAtIndex(0));
-    pos=posValue->getPoint();
-    key=positionToStepKey(pos);
-    m_stepEvents->setObject(CCInteger::create(kStartEvent), key);
-    
-    //end
-    posValue= static_cast<CCPointValue*>(paths->objectAtIndex(paths->count()-1));
-    pos=posValue->getPoint();
-    key=positionToStepKey(pos);
-    m_stepEvents->setObject(CCInteger::create(kEndEvent), key);
-    
-    //其它点，随机生成
-    for (int i=1; i<paths->count()-2; ++i) {
-        posValue= static_cast<CCPointValue*>(paths->objectAtIndex(i));
-        pos=posValue->getPoint();
-        key=positionToStepKey(pos);
-        m_stepEvents->setObject(CCInteger::create(Game::getInstance()->getRandom()->Next(kStartEvent)), key);
-    }
-}
+//
+//void MissionController::generateStepPathEvent()
+//{
+//    CCArray* paths=m_gameWorld->getWalkPaths();
+//    m_stepEvents=new CCDictionary();
+//    
+//    CCPointValue* posValue=NULL;
+//    CCPoint pos;
+//    int key=0;
+//    
+//    //start
+//    posValue= static_cast<CCPointValue*>(paths->objectAtIndex(0));
+//    pos=posValue->getPoint();
+//    key=positionToStepKey(pos);
+//    m_stepEvents->setObject(CCInteger::create(kStartEvent), key);
+//    
+//    //end
+//    posValue= static_cast<CCPointValue*>(paths->objectAtIndex(paths->count()-1));
+//    pos=posValue->getPoint();
+//    key=positionToStepKey(pos);
+//    m_stepEvents->setObject(CCInteger::create(kEndEvent), key);
+//    
+//    //其它点，随机生成
+//    for (int i=1; i<paths->count()-2; ++i) {
+//        posValue= static_cast<CCPointValue*>(paths->objectAtIndex(i));
+//        pos=posValue->getPoint();
+//        key=positionToStepKey(pos);
+//        m_stepEvents->setObject(CCInteger::create(Game::getInstance()->getRandom()->Next(kStartEvent)), key);
+//    }
+//}
 
 void MissionController::doBattleEvent()
 {
@@ -240,7 +252,17 @@ void MissionController::doGetItemEvent()
 
 void MissionController::doPvpEvent()
 {
-    CCLOG("battle with other");
+    CCLOG("doPvpEvent");
+    
+    CCDictionary* dict=new CCDictionary();
+    dict->setObject(CCInteger::create(1), CCGE_DATA_BATTLE_TYPE);
+    dict->setObject(CCInteger::create(1), CCGE_DATA_BATTLE_OPPID);
+    
+    GameSceneDirector::getInstance()->setSceneContext(dict);
+    
+    dict->release();
+    
+    GameSceneDirector::getInstance()->pushScene(kBattlePrepareScene);
 }
 
 int MissionController::positionToStepKey(const CCPoint& pos)
@@ -317,7 +339,10 @@ int MissionController::checkPathBarrier(int step)
     
     if (startIndex<paths->count()) {
         
-        for (int i=0 ; i<step; ++i) {
+        //处理超出范围
+        step=startIndex+step<paths->count()?step:(paths->count()-startIndex-1);
+        
+        for (int i=1 ; i<step; ++i) {
             
             posValue=static_cast<CCPointValue*>(paths->objectAtIndex(startIndex+i));
             
@@ -332,7 +357,7 @@ int MissionController::checkPathBarrier(int step)
                     case kBattleEvent:
                     case kPvpEvent:
                         //must stop
-                        return i+1;
+                        return i;
                         break;
                     default:
                         break;

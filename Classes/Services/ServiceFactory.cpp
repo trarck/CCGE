@@ -36,6 +36,13 @@ ServiceFactory* ServiceFactory::getInstance()
     return s_dataFactoryInstance;
 }
 
+void ServiceFactory::destroyInstance()
+{
+    if (s_dataFactoryInstance){
+        s_dataFactoryInstance->release();
+    }
+}
+
 void ServiceFactory::setup()
 {
     m_pveBattleService=new PveBattleService();

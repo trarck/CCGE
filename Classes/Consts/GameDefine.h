@@ -27,6 +27,20 @@ enum BattleSide
     kOppSide=2
 };
 
+
+enum StepEventType
+{
+    kNopEvent=0,//没有事件
+    kBattleEvent,
+    kGetMoneyEvent,
+    kGetExpEvent,
+    kGetItemEvent,
+    kPvpEvent,
+    
+    kStartEvent,//开始结点
+    kEndEvent//结束结点
+};
+
 NS_CC_GE_END
 
 #endif // CCGE_CONSTS_GAMEDEFINE_H_
