@@ -59,6 +59,26 @@ public:
     void cleanupMapStepEvents(int mapId);
     
     /**
+     * @brief 完成地图上的某一步
+     * 向服务端发送完成事件，获取物品
+     *
+     * @param stepKey 每一步的key
+     */
+    void completeCurrentMapStep(int stepKey)
+    {
+        completeCurrentMapStep(m_currentMap,stepKey);
+    }
+    
+    /**
+     * @brief 完成地图上的某一步
+     * 向服务端发送完成事件，获取物品
+     *
+     * @param mapId 的地图id
+     * @param stepKey 每一步的key
+     */
+    void completeCurrentMapStep(int mapId,int stepKey);
+    
+    /**
      * @brief 玩家完成一个地图
      * 计算一个区，下一个地图
      *

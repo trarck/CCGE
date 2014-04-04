@@ -87,6 +87,13 @@ void MissionService::cleanupMapStepEvents(int mapId)
     m_mapStepEventsCache->removeObjectForKey(mapId);
 }
 
+void MissionService::completeCurrentMapStep(int mapId,int stepKey)
+{
+    //TODO 发送服务器数据
+    CCDictionary* stepEvents=getMapStepEvents(mapId);
+    stepEvents->removeObjectForKey(stepKey);
+}
+
 int MissionService::positionToStepKey(const CCPoint& pos,int mapColumn)
 {
     return mapColumn * (int)pos.y+(int)pos.x;

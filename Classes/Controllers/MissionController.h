@@ -87,6 +87,13 @@ protected:
      */
     int positionToStepKey(const CCPoint& pos);
     
+    
+    /**
+     * @brief 移除事件的标识
+     * 目前pve不能移除，TODO 配置文件配置
+     */
+    void removeEventIcon(int key);
+    
     /**
      * 检查路径上的障碍点。
      * 像战斗事件，必须处理

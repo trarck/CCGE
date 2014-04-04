@@ -115,6 +115,10 @@ void MissionController::doStepEvent()
             default:
                 break;
         }
+        
+        if (typeValue->getValue()!=kBattleEvent) {
+            removeEventIcon(key);
+        }
     }
 }
 
@@ -288,7 +292,9 @@ void MissionController::showStepEvent()
         
         CCPoint coord=posValue->getPoint();
         
-        typeValue=static_cast<CCInteger*>(m_stepEvents->objectForKey(positionToStepKey(coord)));
+        int positionKey=positionToStepKey(coord);
+        
+        typeValue=static_cast<CCInteger*>(m_stepEvents->objectForKey(positionKey));
         
         if (typeValue) {
             switch (typeValue->getValue()) {
@@ -315,6 +321,7 @@ void MissionController::showStepEvent()
                 CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord));
 
                 iconSprite->setPosition(viewPos);
+                iconSprite->setTag(positionKey);
                 
                 m_gameWorld->getStepEventLayer()->addChild(iconSprite);
                 
@@ -325,6 +332,14 @@ void MissionController::showStepEvent()
         }
     }
     
+}
+
+void MissionController::removeEventIcon(int key)
+{
+    m_gameWorld->getStepEventLayer()->removeChildByTag(key);
+    
+    MissionService* missionService=ServiceFactory::getInstance()->getMissionService();
+    missionService->completeCurrentMapStep(key);
 }
 
 int MissionController::checkPathBarrier(int step)
