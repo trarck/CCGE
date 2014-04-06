@@ -13,7 +13,7 @@
 		"zone":1,
 		"data_file":"map/zone/m1xin/cj0102.tmx",
 		"event_file":"map/events/2.json",
-		"next_map":2
+		"next_map":3
     },
     "3":{
         "id":3,
