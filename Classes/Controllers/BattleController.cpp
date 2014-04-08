@@ -81,12 +81,14 @@ void BattleController::viewDidLoad()
 void BattleController::onViewEnter()
 {
     Controller::onViewExit();
-    start();
+    delayStart();
 }
 
 void BattleController::onViewExit()
 {
     CCLOG("BattleController::onViewExit %d",this->retainCount());
+    
+    CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     Controller::onViewExit();
 }
@@ -498,6 +500,16 @@ void BattleController::removeEntityFromTroops(int col,int row,int side)
     }
 }
 
+void BattleController::delayStart()
+{
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(BattleController::onDdelayStartUpdate), this, 1.0f, 0, 0.0, false);
+}
+
+void BattleController::onDdelayStartUpdate(float delta)
+{
+    start();
+}
+
 void BattleController::start()
 {
     m_battleEnd=false;
@@ -806,7 +818,15 @@ void BattleController::onEntityAttackComplete(yhge::Message* message)
     
     Game::getInstance()->getMessageManager()->removeReceiver(entity, kMSGEntityAttackComplete);
     
+    //一步结束，中间有个小间隔，下个人物才开始行动
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
+            schedule_selector(BattleController::onEntityAttackCompleteDelay), this, 0.5f, 0, 0.0f, false);
     
+}
+
+//一个实体攻击完成
+void BattleController::onEntityAttackCompleteDelay(float delta)
+{
     //检查这一轮是否结束，即这一轮所有用户能参与战斗
     doStepEnd();
 }

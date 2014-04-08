@@ -9,6 +9,7 @@
 #include "Components/GameAttackComponent.h"
 #include "Components/DieComponent.h"
 #include "Components/HealthBarComponent.h"
+#include "Components/HurtComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -225,6 +226,12 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     entity->addComponent(healthBarComponent);
     healthBarComponent->release();
     entity->setHealthBarComponent(healthBarComponent);
+    
+    //伤害组件
+    HurtComponent* hurtComponent=new HurtComponent();
+    hurtComponent->init();
+    entity->addComponent(hurtComponent);
+    hurtComponent->release();
 
 }
 

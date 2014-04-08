@@ -125,6 +125,11 @@ public:
      */
     void removeEntityFromTroops(int col,int row,int side);
     
+    
+    void delayStart();
+    
+    void onDdelayStartUpdate(float delta);
+    
     /**
      * @brief 开始战斗
      */
@@ -176,6 +181,11 @@ public:
      */
     void onEntityAttackComplete(yhge::Message* message);
     
+    /**
+     * @brief 攻击后的等待
+     */
+    void onEntityAttackCompleteDelay(float delta);
+    
     void onEntityDie(yhge::Message* message);
     
     void onSkip(CCObject* pSender);
@@ -194,7 +204,7 @@ protected:
     bool isRoundComplete();
     
     /**
-     * @brief 一个步骤结点
+     * @brief 一个步骤线束
      */
     void doStepEnd();
     
