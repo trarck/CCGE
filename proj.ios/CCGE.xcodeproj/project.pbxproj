@@ -291,6 +291,8 @@
 		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
 		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
 		57CF771018AB6B120085A22F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CF770F18AB6B120085A22F /* libsqlite3.dylib */; };
+		57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */; };
+		57E2C2C418F3AD5B00124DF1 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 57E2C2C318F3AD5B00124DF1 /* fonts */; };
 		57F74DC1188CB890003E830F /* characters in Resources */ = {isa = PBXBuildFile; fileRef = 57F74DC0188CB890003E830F /* characters */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -934,6 +936,9 @@
 		57CF76F418AA18450085A22F /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		57CF76F518AA18450085A22F /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		57CF770F18AB6B120085A22F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HurtComponent.cpp; sourceTree = "<group>"; };
+		57E2C2BE18F3A0A300124DF1 /* HurtComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HurtComponent.h; sourceTree = "<group>"; };
+		57E2C2C318F3AD5B00124DF1 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		57F74DC0188CB890003E830F /* characters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = characters; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2120,6 +2125,8 @@
 				5768C14718A8DA0E005123C5 /* GameAttackComponent.h */,
 				5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */,
 				5747632F18D1AB7A0031E2E0 /* HealthBarComponent.h */,
+				57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */,
+				57E2C2BE18F3A0A300124DF1 /* HurtComponent.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2203,6 +2210,7 @@
 				57F74DC0188CB890003E830F /* characters */,
 				574A56A118B1A39C00518953 /* datas */,
 				57582AF718E2B4200057FF9D /* event_icon */,
+				57E2C2C318F3AD5B00124DF1 /* fonts */,
 				576E3FD8187D617500745A0A /* map */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
@@ -2337,6 +2345,7 @@
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				574A56A218B1A39C00518953 /* datas in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				57E2C2C418F3AD5B00124DF1 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2406,6 +2415,7 @@
 				15A3D91B1682F7D5002FB0C5 /* b2ContactSolver.cpp in Sources */,
 				15A3D91C1682F7D5002FB0C5 /* b2EdgeAndCircleContact.cpp in Sources */,
 				15A3D91D1682F7D5002FB0C5 /* b2EdgeAndPolygonContact.cpp in Sources */,
+				57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */,
 				15A3D91E1682F7D5002FB0C5 /* b2PolygonAndCircleContact.cpp in Sources */,
 				15A3D91F1682F7D5002FB0C5 /* b2PolygonContact.cpp in Sources */,
 				57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */,
