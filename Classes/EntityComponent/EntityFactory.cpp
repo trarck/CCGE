@@ -146,7 +146,7 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     //    player->setISOPositionComponent(isoPosition);
     
     //动画组件
-    AnimationComponent* animation=new AnimationComponent();
+    EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
@@ -188,7 +188,7 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     entity->setRendererComponent(renderer);
     
     //动画组件
-    AnimationComponent* animation=new AnimationComponent();
+    EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
@@ -238,7 +238,7 @@ CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configDat
     int loops=configData.get("loops", -1).asInt();
     std::string frameIndexPrefix=configData["frame_index_prefix"].asString();
 
-    return AnimationComponent::createDirectionActionListWithResource(
+    return EightDirectionAnimationComponent::createDirectionActionListWithResource(
         ext.c_str(),frameIndexPrefix.c_str(),8,frameQuantity, frameDelay,loops);
 }
 
@@ -252,7 +252,7 @@ CCArray* EntityFactory::createTwoAnimations(const yhge::Json::Value& configData)
     int loops=configData.get("loops", -1).asInt();
     std::string frameIndexPrefix=configData["frame_index_prefix"].asString();
     
-    return AnimationComponent::createDirectionActionListWithResource(
+    return EightDirectionAnimationComponent::createDirectionActionListWithResource(
                                                                      ext.c_str(),frameIndexPrefix.c_str(),1,frameQuantity, frameDelay,loops);
 }
 
