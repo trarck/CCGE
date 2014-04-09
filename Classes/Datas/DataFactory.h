@@ -3,9 +3,11 @@
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
+#include <yhge/yhge.h>
 #include "BaseData.h"
 #include "AnimationData.h"
 #include "MapData.h"
+#include "EntityData.h"
 
 NS_CC_GE_BEGIN
 
@@ -25,20 +27,36 @@ public:
     static DataFactory* getInstance();
     
     void setup();
+    
+    void setupDao();
+    
+    void setupData();
 
-    AnimationData* getAnimationData()
+public:
+    
+    inline yhge::JSONDAO* getGameDao()
+    {
+        return m_gameDao;
+    }
+    
+    inline AnimationData* getAnimationData()
     {
         return m_animationData;
     }
     
-    MapData* getMapData()
+    inline MapData* getMapData()
     {
         return m_mapData;
     }
     
-    BaseData* getZoneData()
+    inline BaseData* getZoneData()
     {
         return m_zoneData;
+    }
+    
+    inline EntityData* getEntityData()
+    {
+        return m_entityData;
     }
     
 protected:
@@ -52,6 +70,8 @@ protected:
 
 protected:
     
+    yhge::JSONDAO* m_gameDao;
+    
     //动画数据
     AnimationData* m_animationData;
     
@@ -59,6 +79,9 @@ protected:
     MapData* m_mapData;
     
     BaseData* m_zoneData;
+    
+    EntityData* m_entityData;
+    
 };
 
 NS_CC_GE_END

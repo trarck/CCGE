@@ -5,6 +5,7 @@
 #include "CCGEMacros.h"
 #include "PveBattleService.h"
 #include "MissionService.h"
+#include "UserService.h"
 
 NS_CC_GE_BEGIN
 
@@ -37,12 +38,18 @@ public:
         return m_missionService;
     }
     
+    inline UserService* getUserService()
+    {
+        return m_userService;
+    }
+    
 protected:
     
     PveBattleService* m_pveBattleService;
     
     MissionService* m_missionService;
     
+    UserService* m_userService;
 };
 
 NS_CC_GE_END
