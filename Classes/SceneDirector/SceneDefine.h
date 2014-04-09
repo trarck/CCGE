@@ -12,6 +12,6 @@ static const char* kTestSqlite="Sqlite";
 static const char* kInitializeScene="InitializeScene";
 
 
-#pragma unused(kMainScene,kTestISOScene,kMissionScene,kBattleScene,kBattlePrepareScene,kTestSqlite)
+#pragma unused(kMainScene,kTestISOScene,kMissionScene,kBattleScene,kBattlePrepareScene,kTestSqlite,kInitializeScene)
 
 #endif //CCGE_SCENES_SCENEDIFINE_H_

@@ -127,7 +127,7 @@ void TestSqliteController::showTable()
             Column col=stmt.getColumn(i);
             out+=CCString::createWithFormat("%s[%d]=%s,",col.getName(),col.getType(),col.getText())->getCString();
         }
-        CCLOG(out.c_str());
+        CCLOG("%s",out.c_str());
     }
 }
 
