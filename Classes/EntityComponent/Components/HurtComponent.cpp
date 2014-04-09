@@ -69,19 +69,22 @@ void HurtComponent::onAttackDamage(yhge::Message* message)
         CCLabelBMFont* label=CCLabelBMFont::create(damageString->getCString(), "fonts/Red_36.fnt");
         
         CCSize size=m_rendererComponent->getRenderer()->getContentSize();
-        CCPoint pos=m_rendererComponent->getRenderer()->getPosition();
+        CCPoint pos=CCPointZero;//m_rendererComponent->getRenderer()->getPosition();
         
-//        CCLog("tt:%f,%f aa:%f,%f",pos.x,pos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
+//        label->setPosition(ccp(pos.x,pos.y+size.height+50));
         
-        label->setPosition(ccp(pos.x,pos.y+size.height+50));
+        float scale=m_rendererComponent->getRenderer()->getScale();
         
-//        label->setScale(0.8);
+        label->setPosition(ccp(size.width/(2*scale),pos.y+(size.height/scale)+40));
+        
+        label->setScale(1/scale);
         
         //action
         CCAction* effect=CCSequence::createWithTwoActions(CCMoveBy::create(0.4f, ccp(0,40.0f)), CCRemoveSelf::create());
         
-        //TODO 添加到场境的前层
-        m_rendererComponent->getRenderer()->getParent()->addChild(label,1000);
+        //和renderer在一个结点。如果renderer移动，则显示会跟着移动，看起来真些。
+//        m_rendererComponent->getRenderer()->getParent()->addChild(label,1000);
+        m_rendererComponent->getRenderer()->addChild(label,1000);
         
         label->runAction(effect);
     }
