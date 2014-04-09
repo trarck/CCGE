@@ -5,6 +5,8 @@
 
 NS_CC_GE_BEGIN
 
+#define GAME_CONTENT_PATH "content"
+
 const int kBattleCellCol=3;
 const int kBattleCellRow=3;
 

@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "Game.h"
+#include "Consts/GameDefine.h"
 #include "SceneDirector/GameSceneDirector.h"
 
 USING_NS_CC;
@@ -26,6 +27,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
+    
+    //set search paths for content
+    CCFileUtils* pFileUtils = CCFileUtils::sharedFileUtils();
+    std::vector<std::string> searchPaths;
+    
+	searchPaths.push_back(GAME_CONTENT_PATH);
+
+	pFileUtils->setSearchPaths(searchPaths);
 
     // create a scene. it's an autorelease object
     Game::getInstance()->setup();
