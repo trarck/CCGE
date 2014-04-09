@@ -198,6 +198,8 @@ public:
     
 protected:
     
+    GameEntity* createSelfTroopEntity(int entityId,int index);
+    
     /**
      * @brief 检查一轮是否完成
      */

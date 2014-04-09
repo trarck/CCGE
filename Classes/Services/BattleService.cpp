@@ -37,30 +37,30 @@ CCDictionary* BattleService::getOppBattleData(int oppId)
 std::vector<int> BattleService::getSelfTroops()
 {
     std::vector<int> troops;
-    troops[0]=2;
-    troops[1]=2;
-    troops[2]=2;
-    troops[3]=2;
-    troops[4]=2;
-    troops[5]=2;
-    troops[6]=2;
-    troops[7]=2;
-    troops[8]=2;
+    troops.push_back(2);
+    troops.push_back(2);
+    troops.push_back(0);
+    troops.push_back(2);
+    troops.push_back(2);
+    troops.push_back(2);
+    troops.push_back(2);
+    troops.push_back(2);
+    troops.push_back(2);
     return troops;
 }
 
 std::vector<int> BattleService::getOppTroops()
 {
     std::vector<int> troops;
-    troops[0]=3;
-    troops[1]=3;
-    troops[2]=3;
-    troops[3]=3;
-    troops[4]=3;
-    troops[5]=3;
-    troops[6]=3;
-    troops[7]=3;
-    troops[8]=3;
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
+    troops.push_back(3);
     return troops;
 }
 

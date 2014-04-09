@@ -245,6 +245,7 @@
 		5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */; };
 		5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */; };
 		57489DF518F536EC005F540E /* content in Resources */ = {isa = PBXBuildFile; fileRef = 57489DF418F536EC005F540E /* content */; };
+		57489DFB18F54CFB005F540E /* EntityService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DF918F54CFB005F540E /* EntityService.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4DA18D97C3200490B18 /* MissionService.cpp */; };
@@ -838,6 +839,8 @@
 		5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StepGameWorldController.cpp; sourceTree = "<group>"; };
 		5747634918D6F10B0031E2E0 /* StepGameWorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepGameWorldController.h; sourceTree = "<group>"; };
 		57489DF418F536EC005F540E /* content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = content; sourceTree = "<group>"; };
+		57489DF918F54CFB005F540E /* EntityService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityService.cpp; sourceTree = "<group>"; };
+		57489DFA18F54CFB005F540E /* EntityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityService.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
@@ -1934,6 +1937,8 @@
 				57243EBE18B3551C0070163A /* BaseService.h */,
 				57243EBF18B3551C0070163A /* BattleService.cpp */,
 				57243EC018B3551C0070163A /* BattleService.h */,
+				57489DF918F54CFB005F540E /* EntityService.cpp */,
+				57489DFA18F54CFB005F540E /* EntityService.h */,
 				574FE4DA18D97C3200490B18 /* MissionService.cpp */,
 				574FE4DB18D97C3200490B18 /* MissionService.h */,
 				57243ED118B490BC0070163A /* PveBattleService.cpp */,
@@ -2496,6 +2501,7 @@
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */,
 				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
+				57489DFB18F54CFB005F540E /* EntityService.cpp in Sources */,
 				574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				57CF76F318AA11380085A22F /* BattleController.cpp in Sources */,

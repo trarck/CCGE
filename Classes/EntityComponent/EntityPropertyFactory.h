@@ -32,6 +32,10 @@ public:
      */
     void createBattleProperties(GameEntity* entity);
     
+    void createBattleProperties(GameEntity* entity,CCDictionary* params);
+    
+    void createBattleProperties(GameEntity* entity,const yhge::Json::Value& params);
+    
 };
 
 NS_CC_GE_END

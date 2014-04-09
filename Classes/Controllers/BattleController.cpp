@@ -2,10 +2,14 @@
 #include <yhgui/yhgui.h>
 #include <yhge/yhge.h>
 #include "Game.h"
+#include "Consts/PropertyDefine.h"
 #include "Consts/GameDefine.h"
+#include "Consts/DataDefine.h"
 #include "Consts/GameMessage.h"
 #include "Consts/AnimationDefine.h"
 #include "EntityComponent/EntityFactory.h"
+#include "Datas/DataFactory.h"
+#include "Services/ServiceFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Layers/DimetricCoordinateLayer.h"
 
@@ -172,136 +176,161 @@ void BattleController::convertOppCoord(int index,int* col,int* row,int* x,int* y
 
 void BattleController::loadSelfEntities()
 {
+    BattleService* battleService=ServiceFactory::getInstance()->getPveBattleService();
+
+    std::vector<int> troops=battleService->getSelfTroops();
+    
+    int teamSize=troops.size();
+    
     int col=0;
     int row=0;
     int x=0;
     int y=0;
     
-    int teamSize=9;
+    int entityId=0;
+    
     for (int i=0; i<teamSize; ++i) {
         
-        //取得坐标
-        convertCoord(i, &col, &row, &x, &y);
+        entityId=troops[i];
         
-        //创建对象
-        GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(2);
+        if (entityId) {
+            
+            //取得坐标
+            convertCoord(i, &col, &row, &x, &y);
+            
+            //创建对象
+            GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(entityId);
+            
+            addEntityToSelfTroops(entity, col, row);
+            
+            //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
+            UnitProperty* unitProperty=entity->getUnitProperty();
+            unitProperty->setDamage(10);
+            unitProperty->setDefence(10);
+            unitProperty->setHealth(100);
+            unitProperty->setMaxHealth(100);
+            
+            //set battle property
+            BattleProperty* battleProperty=entity->getBattleProperty();
+            battleProperty->setCol(col);
+            battleProperty->setRow(row);
+            battleProperty->setSide(kSelfSide);
+            
+            //set animation
+            CCDictionary* data=new CCDictionary();
+            data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
+            data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+            MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
+            
+            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
+            CCNode* renderer=rendererComponent->getRenderer();
+            renderer->setScale(1.5f);
+            renderer->setZOrder(col);
+            
+            //设置坐标
+            
+            //y方向居中对齐，坐标要加0.5
+            CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y+0.5);
+            pos.x+=kBattleSelfOffsetX+x*kBattleCellOffsetX;
+            pos.y+=kBattleSelfOffsetY+y*kBattleCellOffsetY;
+            renderer->setPosition(pos);
+            
+            m_view->addChild(renderer);
+            
+            
+            //血条
+            HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
+            healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+            healthBarComponent->setCurrentHp(unitProperty->getHealth());
+            
+            healthBarComponent->getHealthBar()->setPosition(ccp(0,85));
+            
+            registerEntityMessage(entity);
+        }
         
-        addEntityToSelfTroops(entity, col, row);
-        
-        //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
-        UnitProperty* unitProperty=entity->getUnitProperty();
-        unitProperty->setDamage(10);
-        unitProperty->setDefence(10);
-        unitProperty->setHealth(100);
-        unitProperty->setMaxHealth(100);
-        
-        //set battle property
-        BattleProperty* battleProperty=entity->getBattleProperty();
-        battleProperty->setCol(col);
-        battleProperty->setRow(row);
-        battleProperty->setSide(kSelfSide);
-        
-        //set animation
-        CCDictionary* data=new CCDictionary();
-        data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-        data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-        MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
-        
-        RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-        CCNode* renderer=rendererComponent->getRenderer();
-        renderer->setScale(1.5f);
-        renderer->setZOrder(col);
-        
-        //设置坐标
-        
-        //y方向居中对齐，坐标要加0.5
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y+0.5);
-        pos.x+=kBattleSelfOffsetX+x*kBattleCellOffsetX;
-        pos.y+=kBattleSelfOffsetY+y*kBattleCellOffsetY;
-        renderer->setPosition(pos);
-        
-        m_view->addChild(renderer);
-        
-        
-        //血条
-        HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
-        healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
-        healthBarComponent->setCurrentHp(unitProperty->getHealth());
-        
-        healthBarComponent->getHealthBar()->setPosition(ccp(0,85));
-        
-        registerEntityMessage(entity);
     }
 }
 
 void BattleController::loadOppEntities()
 {
+
+    BattleService* battleService=ServiceFactory::getInstance()->getPveBattleService();
+   
+    std::vector<int> troops=battleService->getOppTroops();
+    
+    int teamSize=troops.size();
     
     int col=0;
     int row=0;
     int x=0;
     int y=0;
     
-    int teamSize=9;
+    int entityId=0;
     
     for (int i=0; i<teamSize; ++i) {
         
-        //取得坐标
-        convertOppCoord(i, &col, &row, &x, &y);
+        entityId=troops[i];
         
-        //创建对象
-        GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(3);
-        
-        addEntityToOppTroops(entity, col, row);
-        
-        //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
-        UnitProperty* unitProperty=entity->getUnitProperty();
-        unitProperty->setDamage(10);
-        unitProperty->setDefence(10);
-        
-        if (i==1) {
-            unitProperty->setHealth(9);
-        }else{
-            unitProperty->setHealth(30);
+        if (entityId) {
+            
+            //创建对象
+            GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(entityId);
+            
+            //取得坐标
+            convertOppCoord(i, &col, &row, &x, &y);
+            
+            
+            addEntityToOppTroops(entity, col, row);
+            
+            //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
+            UnitProperty* unitProperty=entity->getUnitProperty();
+            unitProperty->setDamage(10);
+            unitProperty->setDefence(10);
+            
+            if (i==1) {
+                unitProperty->setHealth(9);
+            }else{
+                unitProperty->setHealth(30);
+            }
+            unitProperty->setMaxHealth(100);
+            
+            //set battle property
+            BattleProperty* battleProperty=entity->getBattleProperty();
+            battleProperty->setCol(col);
+            battleProperty->setRow(row);
+            battleProperty->setSide(kOppSide);
+            
+            //set animation
+            CCDictionary* data=new CCDictionary();
+            data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
+            data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+            MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
+            
+            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
+            CCNode* renderer=rendererComponent->getRenderer();
+            renderer->setScale(1.5f);
+            renderer->setZOrder(col);
+            static_cast<CCSprite*>(renderer)->setFlipX(true);
+            
+            //设置坐标
+            //y方向居中对齐，坐标要加0.5
+            CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
+            pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
+            pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
+            renderer->setPosition(pos);
+            
+            m_view->addChild(renderer);
+            
+            //血条
+            HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
+            healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+            healthBarComponent->setCurrentHp(unitProperty->getHealth());
+            
+            //TODO load from config
+            healthBarComponent->getHealthBar()->setPosition(ccp(15,85));
+            
+            registerEntityMessage(entity);
         }
-        unitProperty->setMaxHealth(100);
-        
-        //set battle property
-        BattleProperty* battleProperty=entity->getBattleProperty();
-        battleProperty->setCol(col);
-        battleProperty->setRow(row);
-        battleProperty->setSide(kOppSide);
-        
-        //set animation
-        CCDictionary* data=new CCDictionary();
-        data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-        data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-        MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
-        
-        RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-        CCNode* renderer=rendererComponent->getRenderer();
-        renderer->setScale(1.5f);
-        renderer->setZOrder(col);
-        static_cast<CCSprite*>(renderer)->setFlipX(true);
-        
-        //设置坐标
-        //y方向居中对齐，坐标要加0.5
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
-        pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
-        pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
-        renderer->setPosition(pos);
-        
-        m_view->addChild(renderer);
-        
-        //血条
-        HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
-        healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
-        healthBarComponent->setCurrentHp(unitProperty->getHealth());
-        
-        //TODO load from config
-        healthBarComponent->getHealthBar()->setPosition(ccp(15,85));
-        
-        registerEntityMessage(entity);
     }
 }
 
@@ -339,6 +368,88 @@ void BattleController::cleanTroops()
             }
         }
     }
+}
+
+GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
+{
+    
+    int col=0;
+    int row=0;
+    int x=0;
+    int y=0;
+    
+    //取得坐标
+    convertOppCoord(index, &col, &row, &x, &y);
+    
+    //取得配置
+    EntityData* entityData=DataFactory::getInstance()->getEntityData();
+    
+    Json::Value entityConfig=entityData->getDataById(entityId);
+    
+    //创建实体
+    GameEntity* entity=EntityFactory::getInstance()->createEntity(entityId);
+    
+    //添加属性
+    
+    //UnitProperty
+    //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
+    UnitProperty* unitProperty=new UnitProperty();
+
+    unitProperty->setDamage(entityConfig[CCGE_ENTITY_DAMAGE].asDouble());
+    unitProperty->setDefence(entityConfig[CCGE_ENTITY_DEFENCE].asDouble());
+    unitProperty->setHealth(entityConfig[CCGE_ENTITY_HEALTH].asDouble());
+    unitProperty->setMaxHealth(entityConfig[CCGE_ENTITY_MAX_HEALTH].asDouble());
+    
+    entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
+    unitProperty->release();
+    entity->setUnitProperty(unitProperty);
+    
+    
+    //BattleProperty
+    BattleProperty* battleProperty=new BattleProperty();
+    
+    battleProperty->setCol(col);
+    battleProperty->setRow(row);
+    battleProperty->setSide(kSelfSide);
+    
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    entity->setBattleProperty(battleProperty);
+    
+    //添加组件
+    EntityFactory::getInstance()->addBattleComponents(entity);
+    
+    //设置初始动画
+    CCDictionary* animationData=new CCDictionary();
+    animationData->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
+    animationData->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,animationData);
+    
+    //设置显示
+    SpriteRendererComponent* rendererComponent=static_cast<SpriteRendererComponent*>(entity->getComponent("RendererComponent"));
+    CCNode* renderer=rendererComponent->getRenderer();
+    renderer->setScale(1.5f);
+    renderer->setZOrder(col);
+    rendererComponent->getSpriteRenderer()->setFlipX(true);
+    
+    //设置坐标
+    //y方向居中对齐，坐标要加0.5
+    CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
+    pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
+    pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
+    renderer->setPosition(pos);
+    
+    m_view->addChild(renderer);
+    
+    //血条
+    HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
+    healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+    healthBarComponent->setCurrentHp(unitProperty->getHealth());
+    
+    //TODO load from config
+    healthBarComponent->getHealthBar()->setPosition(ccp(15,85));
+    
+    return entity;
 }
 
 void BattleController::addEntityToSelfTroops(GameEntity* entity,int col,int row)

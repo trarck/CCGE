@@ -18,9 +18,9 @@ public:
     
 	~EntityData();
     
-    inline yhge::Json::Value getDataById(int unitId)
+    inline yhge::Json::Value getDataById(int entityId)
     {
-        return loadData(unitId);
+        return loadData(entityId);
     }
     
 protected:
