@@ -1,4 +1,4 @@
-#include "EntityService.h"
+#include "UnitService.h"
 #include "Consts/DataDefine.h"
 
 USING_NS_CC;
@@ -6,17 +6,17 @@ USING_NS_CC;
 NS_CC_GE_BEGIN
 
 
-EntityService::EntityService()
+UnitService::UnitService()
 {
     
 }
 
-EntityService::~EntityService()
+UnitService::~UnitService()
 {
 
 }
 
-UnitProperty* EntityService::calcLevelUnitProperty(int level,const yhge::Json::Value& entityConfig)
+UnitProperty* UnitService::calcLevelUnitProperty(int level,const yhge::Json::Value& entityConfig)
 {
     
     //根据属生成长计算某个等级的元素属性

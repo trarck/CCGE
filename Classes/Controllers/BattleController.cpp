@@ -370,6 +370,11 @@ void BattleController::cleanTroops()
     }
 }
 
+//注意entityId和unitId是不同的.
+//entityId是enitty的唯一标识.
+//unit可能被几个entity使用。
+//比如玩家队伍，同一个玩家可以拥有不同的unit,但entityId不同。
+//比如怪物，不同关卡，出现的怪物可以是同一个unit，只是等级装备不同
 GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
 {
     
@@ -378,13 +383,15 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     int x=0;
     int y=0;
     
+    
+    
     //取得坐标
     convertOppCoord(index, &col, &row, &x, &y);
     
     //取得配置
-    EntityData* entityData=DataFactory::getInstance()->getEntityData();
+    UnitData* unitData=DataFactory::getInstance()->getUnitData();
     
-    Json::Value entityConfig=entityData->getDataById(entityId);
+    Json::Value unitConfig=unitData->getDataById(entityId);
     
     //创建实体
     GameEntity* entity=EntityFactory::getInstance()->createEntity(entityId);
@@ -395,10 +402,10 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
     UnitProperty* unitProperty=new UnitProperty();
 
-    unitProperty->setDamage(entityConfig[CCGE_ENTITY_DAMAGE].asDouble());
-    unitProperty->setDefence(entityConfig[CCGE_ENTITY_DEFENCE].asDouble());
-    unitProperty->setHealth(entityConfig[CCGE_ENTITY_HEALTH].asDouble());
-    unitProperty->setMaxHealth(entityConfig[CCGE_ENTITY_MAX_HEALTH].asDouble());
+    unitProperty->setDamage(unitConfig[CCGE_ENTITY_DAMAGE].asDouble());
+    unitProperty->setDefence(unitConfig[CCGE_ENTITY_DEFENCE].asDouble());
+    unitProperty->setHealth(unitConfig[CCGE_ENTITY_HEALTH].asDouble());
+    unitProperty->setMaxHealth(unitConfig[CCGE_ENTITY_MAX_HEALTH].asDouble());
     
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();

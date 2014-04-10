@@ -7,7 +7,7 @@
 #include "BaseData.h"
 #include "AnimationData.h"
 #include "MapData.h"
-#include "EntityData.h"
+#include "UnitData.h"
 
 NS_CC_GE_BEGIN
 
@@ -54,9 +54,9 @@ public:
         return m_zoneData;
     }
     
-    inline EntityData* getEntityData()
+    inline UnitData* getUnitData()
     {
-        return m_entityData;
+        return m_unitData;
     }
     
 protected:
@@ -80,7 +80,7 @@ protected:
     
     BaseData* m_zoneData;
     
-    EntityData* m_entityData;
+    UnitData* m_unitData;
     
 };
 

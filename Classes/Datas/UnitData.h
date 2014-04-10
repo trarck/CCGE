@@ -10,13 +10,13 @@ NS_CC_GE_BEGIN
 /**
  * 单位数据
  */
-class EntityData:public yhge::SqliteDBData
+class UnitData:public yhge::SqliteDBData
 {
 public:
     
-	EntityData();
+	UnitData();
     
-	~EntityData();
+	~UnitData();
     
     inline yhge::Json::Value getDataById(int entityId)
     {

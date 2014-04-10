@@ -1,4 +1,4 @@
-#include "EntityData.h"
+#include "UnitData.h"
 #include <yhge/yhge.h>
 
 USING_NS_CC;
@@ -6,12 +6,12 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-EntityData::EntityData()
+UnitData::UnitData()
 {
 
 }
 
-EntityData::~EntityData()
+UnitData::~UnitData()
 {
 
 }

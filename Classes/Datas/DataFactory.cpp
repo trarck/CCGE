@@ -15,7 +15,7 @@ DataFactory::DataFactory()
 ,m_animationData(NULL)
 ,m_mapData(NULL)
 ,m_zoneData(NULL)
-,m_entityData(NULL)
+,m_unitData(NULL)
 {
 
 }
@@ -26,7 +26,7 @@ DataFactory::~DataFactory()
     CC_SAFE_RELEASE_NULL(m_animationData);
     CC_SAFE_RELEASE_NULL(m_mapData);
     CC_SAFE_RELEASE_NULL(m_zoneData);
-    CC_SAFE_RELEASE_NULL(m_entityData);
+    CC_SAFE_RELEASE_NULL(m_unitData);
 }
 
 bool DataFactory::init()
@@ -77,8 +77,8 @@ void DataFactory::setupData()
     m_zoneData->init();
     m_zoneData->loadFromFile(getDataFilePath("zone.json"));
     
-    m_entityData=new EntityData();
-    m_entityData->init(m_gameDao,"entity");
+    m_unitData=new UnitData();
+    m_unitData->init(m_gameDao,"entity");
     
 }
 

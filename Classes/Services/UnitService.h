@@ -9,13 +9,13 @@ NS_CC_GE_BEGIN
 /**
  * @brief 实体逻辑
  */
-class EntityService:public BaseService
+class UnitService:public BaseService
 {
 public:
     
-	EntityService();
+	UnitService();
     
-	~EntityService();
+	~UnitService();
     
     /**
      * @brief 计算实体的总的属性值
