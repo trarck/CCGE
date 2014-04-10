@@ -76,6 +76,8 @@ public:
     
     void setCurrentHp(float hp);
     
+    void setRendererContentSize(CCSize contentSize,CCPoint offset);
+    
     void onHealthChange(yhge::Message* message);
     
     inline void setHealthBar(HealthBar* healthBar)

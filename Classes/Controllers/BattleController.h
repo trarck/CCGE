@@ -35,6 +35,12 @@ public:
      * @brief 加载背景
      */
     void loadBattleGround();
+    
+    
+    /**
+     * @brief 显示坐标
+     */
+    void showCoordinate();
 
     /**
      * @brief 加载战斗单元
@@ -50,6 +56,7 @@ public:
      * @brief 加载对方
      */
     void loadOppEntities();
+
     
     /**
      * @brief 初始化战斗双方的队伍
@@ -199,6 +206,9 @@ public:
 protected:
     
     GameEntity* createSelfTroopEntity(int entityId,int index);
+    GameEntity* createOppTroopEntity(int entityId,int index);
+    
+    GameEntity* createTroopEntity(int entityId,int index);
     
     /**
      * @brief 检查一轮是否完成

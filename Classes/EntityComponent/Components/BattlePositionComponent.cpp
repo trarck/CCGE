@@ -100,9 +100,7 @@ void BattlePositionComponent::updateRendererPosition()
         CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y+0.5);
         pos.x+=offset.x+x*kBattleCellOffsetX;
         pos.y+=offset.y+y*kBattleCellOffsetY;
-        
-        CCLOG("ppp:%f,%f",pos.x,pos.y);
-        
+                
         m_rendererComponent->getRenderer()->setPosition(pos);
         
     }

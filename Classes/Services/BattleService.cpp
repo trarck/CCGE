@@ -38,7 +38,7 @@ std::vector<int> BattleService::getSelfTroops()
 {
     std::vector<int> troops;
     troops.push_back(1);
-    troops.push_back(1);
+    troops.push_back(2);
     troops.push_back(0);
     troops.push_back(1);
     troops.push_back(1);
@@ -52,15 +52,15 @@ std::vector<int> BattleService::getSelfTroops()
 std::vector<int> BattleService::getOppTroops()
 {
     std::vector<int> troops;
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
-    troops.push_back(3);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
+    troops.push_back(1);
     return troops;
 }
 

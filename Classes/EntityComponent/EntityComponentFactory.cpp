@@ -129,8 +129,13 @@ void EntityComponentFactory::addHealthBarComponent(GameEntity* entity)
     
     //设置血条显示在人物上面
     AnimationComponent* animationComponent=static_cast<AnimationComponent*>(entity->getComponent("AnimationComponent"));
-    CCSize entitySize=animationComponent->getAnimationContentSize(animationComponent->getLastAnimation());
-    healthBarComponent->getHealthBar()->setPosition(ccp(0,entitySize.height));
+    CCAnimation* animation=animationComponent->getLastAnimation();
+    CCSpriteFrame* spriteFrame=static_cast<CCAnimationFrame*>(animation->getFrames()->objectAtIndex(0))->getSpriteFrame();
+    
+    CCSize entitySize=spriteFrame->getOriginalSize();
+    CCPoint offset=spriteFrame->getOffset();
+    
+    healthBarComponent->setRendererContentSize(entitySize,offset);
     
 }
 

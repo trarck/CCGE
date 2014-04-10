@@ -9,6 +9,7 @@ NS_CC_GE_BEGIN
 
 static const float kBarWidth=40;
 static const float kBarHeight=4;
+static const float kBarOffsetY=5.0f;
 
 HealthBar::HealthBar()
 :m_currentValue(1)
@@ -24,6 +25,8 @@ void HealthBar::draw()
     ccDrawSolidRect(CCPointZero, ccp(currentWidth,kBarHeight), ccc4f(1.0, 0, 0, 1.0));
     ccDrawColor4F(1.0, 0, 0, 1.0);
     ccDrawRect(CCPointZero, ccp(kBarWidth,kBarHeight));
+    
+//    ccDrawRect(ccp(kBarWidth/2, 10), ccp(kBarWidth,kBarHeight));
 }
 
 HealthBarComponent::HealthBarComponent()
@@ -46,6 +49,9 @@ void HealthBarComponent::setup()
     
     m_healthBar=new HealthBar();
     m_healthBar->init();
+    
+//    m_healthBar->setAnchorPoint(ccp(0.5,0.5));
+//    m_healthBar->setScale(2);
     
     m_rendererComponent->getRenderer()->addChild(m_healthBar);
 }
@@ -88,6 +94,14 @@ void HealthBarComponent::setMaxHp(float maxHp)
 void HealthBarComponent::setCurrentHp(float hp)
 {
     m_healthBar->setCurrentValue(hp);
+}
+
+void HealthBarComponent::setRendererContentSize(CCSize contentSize,CCPoint offset)
+{
+    
+    CCLOG("ccc:%f,%f",contentSize.width,contentSize.height);
+    
+    m_healthBar->setPosition(-kBarWidth/2+offset.x,contentSize.height+kBarOffsetY);
 }
 
 void HealthBarComponent::onHealthChange(yhge::Message* message)
