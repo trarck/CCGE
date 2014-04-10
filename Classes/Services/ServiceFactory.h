@@ -6,6 +6,7 @@
 #include "PveBattleService.h"
 #include "MissionService.h"
 #include "UserService.h"
+#include "UnitService.h"
 
 NS_CC_GE_BEGIN
 
@@ -43,6 +44,11 @@ public:
         return m_userService;
     }
     
+    inline UnitService* getUnitService()
+    {
+        return m_unitService;
+    }
+    
 protected:
     
     PveBattleService* m_pveBattleService;
@@ -50,6 +56,8 @@ protected:
     MissionService* m_missionService;
     
     UserService* m_userService;
+    
+    UnitService* m_unitService;
 };
 
 NS_CC_GE_END

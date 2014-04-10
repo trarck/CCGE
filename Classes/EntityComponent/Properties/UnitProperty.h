@@ -11,6 +11,16 @@ class UnitProperty : public yhge::Property
 {
 public:
     
+    inline void setUnitId(int unitId)
+    {
+        m_unitId = unitId;
+    }
+    
+    inline int getUnitId()
+    {
+        return m_unitId;
+    }
+    
     inline void setLevel(int level)
     {
         m_level = level;
@@ -82,7 +92,7 @@ public:
     }
 
 protected:
-    
+    int m_unitId;
     int m_level;
     float m_health;
     float m_maxHealth;

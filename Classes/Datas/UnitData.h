@@ -1,5 +1,5 @@
-#ifndef CCGE_DATAS_ENTITYDATA_H_
-#define CCGE_DATAS_ENTITYDATA_H_
+#ifndef CCGE_DATAS_UNITDATA_H_
+#define CCGE_DATAS_UNITDATA_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
@@ -29,4 +29,4 @@ protected:
 };
 
 NS_CC_GE_END
-#endif //CCGE_DATAS_ENTITYDATA_H_
+#endif //CCGE_DATAS_UNITDATA_H_

@@ -6,6 +6,7 @@
 #include "CCGEMacros.h"
 #include "GameEntity.h"
 #include "EntityPropertyFactory.h"
+#include "EntityComponentFactory.h"
 
 NS_CC_GE_BEGIN
 
@@ -39,17 +40,24 @@ public:
     /**
      * 创建一个人物
      */
-    GameEntity* createPlayer(int entityId,CCDictionary* param=NULL);
+    GameEntity* createPlayer(int entityId,CCDictionary* params=NULL);
     
     /**
      * 创建战斗中的人物
      */
-    GameEntity* createBattlePlayer(int entityId,CCDictionary* param=NULL);
+    GameEntity* createBattlePlayer(int entityId,CCDictionary* params=NULL);
+    
+    /**
+     * 创建战斗中的人物
+     */
+    GameEntity* createBattlePlayer(int entityId,const yhge::Json::Value& params);
     
     /**
      * @brief 给entity添加地图相关组件
      */
     void addMapComponents(GameEntity* entity);
+    
+    void addBattleComponentsProtogenic(GameEntity* entity);
     
     /**
      * @brief 给entity添加战斗相关组件
@@ -69,6 +77,18 @@ public:
     {
         return m_entityPropertyFactory;
     }
+    
+    inline void setEntityComponentFactory(EntityComponentFactory* entityComponentFactory)
+    {
+        CC_SAFE_RETAIN(entityComponentFactory);
+        CC_SAFE_RELEASE(m_entityComponentFactory);
+        m_entityComponentFactory = entityComponentFactory;
+    }
+    
+    inline EntityComponentFactory* getEntityComponentFactory()
+    {
+        return m_entityComponentFactory;
+    }
 
 protected:
 
@@ -79,6 +99,8 @@ protected:
 protected:
     
     EntityPropertyFactory* m_entityPropertyFactory;
+    
+    EntityComponentFactory* m_entityComponentFactory;
 };
 
 NS_CC_GE_END

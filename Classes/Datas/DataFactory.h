@@ -8,6 +8,8 @@
 #include "AnimationData.h"
 #include "MapData.h"
 #include "UnitData.h"
+#include "MonsterData.h"
+#include "PlayerData.h"
 
 NS_CC_GE_BEGIN
 
@@ -59,6 +61,16 @@ public:
         return m_unitData;
     }
     
+    inline MonsterData* getMonsterData()
+    {
+        return m_monsterData;
+    }
+
+    inline PlayerData* getPlayerData()
+    {
+        return m_playerData;
+    }
+    
 protected:
 
     /**
@@ -81,6 +93,10 @@ protected:
     BaseData* m_zoneData;
     
     UnitData* m_unitData;
+    
+    MonsterData* m_monsterData;
+    
+    PlayerData* m_playerData;
     
 };
 

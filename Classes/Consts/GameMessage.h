@@ -12,6 +12,7 @@ enum GameMessage
     //用户血量改变
     kMSGEntityHealthChange,
     kMSGAttackDamage,
+    kMSGBattlePositionUpdate,
 
 };
 
