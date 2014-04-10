@@ -246,6 +246,10 @@
 		5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */; };
 		57489DF518F536EC005F540E /* content in Resources */ = {isa = PBXBuildFile; fileRef = 57489DF418F536EC005F540E /* content */; };
 		57489DFB18F54CFB005F540E /* UnitService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DF918F54CFB005F540E /* UnitService.cpp */; };
+		57489DFE18F63871005F540E /* MonsterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFC18F63871005F540E /* MonsterData.cpp */; };
+		57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* PlayerData.cpp */; };
+		57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */; };
+		57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0518F67A22005F540E /* EntityComponentFactory.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4DA18D97C3200490B18 /* MissionService.cpp */; };
@@ -841,6 +845,14 @@
 		57489DF418F536EC005F540E /* content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = content; sourceTree = "<group>"; };
 		57489DF918F54CFB005F540E /* UnitService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitService.cpp; sourceTree = "<group>"; };
 		57489DFA18F54CFB005F540E /* UnitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitService.h; sourceTree = "<group>"; };
+		57489DFC18F63871005F540E /* MonsterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterData.cpp; sourceTree = "<group>"; };
+		57489DFD18F63871005F540E /* MonsterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterData.h; sourceTree = "<group>"; };
+		57489DFF18F63AAB005F540E /* PlayerData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerData.cpp; sourceTree = "<group>"; };
+		57489E0018F63AAB005F540E /* PlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerData.h; sourceTree = "<group>"; };
+		57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePositionComponent.cpp; sourceTree = "<group>"; };
+		57489E0318F63EC3005F540E /* BattlePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePositionComponent.h; sourceTree = "<group>"; };
+		57489E0518F67A22005F540E /* EntityComponentFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponentFactory.cpp; sourceTree = "<group>"; };
+		57489E0618F67A22005F540E /* EntityComponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityComponentFactory.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
 		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
@@ -1992,12 +2004,16 @@
 				574FE61E18DFE4EC00490B18 /* BaseData.h */,
 				574A569718B19D7F00518953 /* DataFactory.cpp */,
 				574A569818B19D7F00518953 /* DataFactory.h */,
-				5726027618F4EA8D004C77A1 /* UnitData.cpp */,
-				5726027718F4EA8D004C77A1 /* UnitData.h */,
 				574FE5C618DC16CA00490B18 /* MapData.cpp */,
 				574FE5C718DC16CA00490B18 /* MapData.h */,
+				57489DFC18F63871005F540E /* MonsterData.cpp */,
+				57489DFD18F63871005F540E /* MonsterData.h */,
+				57489DFF18F63AAB005F540E /* PlayerData.cpp */,
+				57489E0018F63AAB005F540E /* PlayerData.h */,
 				57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */,
 				57243ECE18B45C1E0070163A /* RemoteCacheData.h */,
+				5726027618F4EA8D004C77A1 /* UnitData.cpp */,
+				5726027718F4EA8D004C77A1 /* UnitData.h */,
 				574FE5C818DC16CA00490B18 /* ZoneData.cpp */,
 				574FE5C918DC16CA00490B18 /* ZoneData.h */,
 			);
@@ -2107,6 +2123,8 @@
 				5768C14518A8DA0E005123C5 /* Components */,
 				57823C4F18A9BF11005ACB35 /* Properties */,
 				5747633A18D68AFC0031E2E0 /* States */,
+				57489E0518F67A22005F540E /* EntityComponentFactory.cpp */,
+				57489E0618F67A22005F540E /* EntityComponentFactory.h */,
 				575E3F9F1889344600E37B69 /* EntityFactory.cpp */,
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */,
@@ -2121,6 +2139,8 @@
 		5768C14518A8DA0E005123C5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */,
+				57489E0318F63EC3005F540E /* BattlePositionComponent.h */,
 				5747632218D186800031E2E0 /* DieComponent.cpp */,
 				5747632318D186800031E2E0 /* DieComponent.h */,
 				5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */,
@@ -2358,7 +2378,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"remove data\"\nrm -r -f \"${TARGET_BUILD_DIR}/${TARGET_NAME}.app/datas\"";
+			shellScript = "echo \"remove data\"\necho \"${TARGET_BUILD_DIR}/${TARGET_NAME}.app/content\"\nrm -r -f \"${TARGET_BUILD_DIR}/${TARGET_NAME}.app/content\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2465,6 +2485,7 @@
 				15A3DA321682F826002FB0C5 /* CCBFileLoader.cpp in Sources */,
 				15A3DA331682F826002FB0C5 /* CCBKeyframe.cpp in Sources */,
 				15A3DA341682F826002FB0C5 /* CCBReader.cpp in Sources */,
+				57489DFE18F63871005F540E /* MonsterData.cpp in Sources */,
 				15A3DA351682F826002FB0C5 /* CCBSequence.cpp in Sources */,
 				15A3DA361682F826002FB0C5 /* CCBSequenceProperty.cpp in Sources */,
 				57243EB818B33E870070163A /* BattleModel.cpp in Sources */,
@@ -2543,6 +2564,7 @@
 				1A8F3B6E175E05DA00049216 /* Animation.cpp in Sources */,
 				1A8F3B6F175E05DA00049216 /* AnimationState.cpp in Sources */,
 				1A8F3B70175E05DA00049216 /* AnimationStateData.cpp in Sources */,
+				57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */,
 				1A8F3B71175E05DA00049216 /* Atlas.cpp in Sources */,
 				1A8F3B72175E05DA00049216 /* AtlasAttachmentLoader.cpp in Sources */,
 				1A8F3B73175E05DA00049216 /* Attachment.cpp in Sources */,
@@ -2575,6 +2597,7 @@
 				379BB99A17F03F3700829B88 /* CCArmatureAnimation.cpp in Sources */,
 				379BB99B17F03F3700829B88 /* CCProcessBase.cpp in Sources */,
 				379BB99C17F03F3700829B88 /* CCTween.cpp in Sources */,
+				57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */,
 				57243ED318B490BC0070163A /* PveBattleService.cpp in Sources */,
 				379BB99D17F03F3700829B88 /* CCArmature.cpp in Sources */,
 				379BB99E17F03F3700829B88 /* CCBone.cpp in Sources */,
@@ -2601,6 +2624,7 @@
 				575AD88D187BC54B00AA0477 /* HeaderController.cpp in Sources */,
 				379BB9B117F03F3700829B88 /* CCInputDelegate.cpp in Sources */,
 				379BB9B217F03F3700829B88 /* UIRootWidget.cpp in Sources */,
+				57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */,
 				379BB9B317F03F3700829B88 /* UIWidget.cpp in Sources */,
 				574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */,
 				5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */,
