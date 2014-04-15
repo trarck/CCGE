@@ -36,6 +36,7 @@ public:
      */
     void loadBattleGround();
     
+    void loadBattleWorld();
     
     /**
      * @brief 显示坐标
@@ -436,6 +437,8 @@ private:
     bool m_battleEnd;
     
     bool m_win;
+    
+    CCLayer* m_battleWorld;
 
     
 };

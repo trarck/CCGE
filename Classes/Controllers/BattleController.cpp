@@ -39,6 +39,7 @@ BattleController::BattleController(void)
 ,m_oppStepIndex(0)
 ,m_battleEnd(false)
 ,m_win(false)
+,m_battleWorld(NULL)
 {
     m_sName="BattleController";
 }
@@ -46,6 +47,8 @@ BattleController::BattleController(void)
 BattleController::~BattleController(void)
 {
     CCLOG("BattleController destroy");
+    
+    CC_SAFE_RELEASE_NULL(m_battleWorld);
 }
 
 bool BattleController::init()
@@ -63,6 +66,9 @@ bool BattleController::init()
 void BattleController::viewDidLoad()
 {
     loadBattleGround();
+    
+    //create battle layer
+    loadBattleWorld();
     
     loadEntities();
     
@@ -118,6 +124,13 @@ void BattleController::loadBattleGround()
 //    bg->setScaleY(scaleY);
     
     m_view->addChild(bg);
+}
+
+void BattleController::loadBattleWorld()
+{
+    m_battleWorld=new CCLayer();
+    m_battleWorld->setPosition(ccp(0,100));
+    m_view->addChild(m_battleWorld);
 }
 
 void BattleController::showCoordinate()
@@ -445,7 +458,7 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     EntityFactory::getInstance()->addBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-    m_view->addChild(rendererComponent->getRenderer());
+    m_battleWorld->addChild(rendererComponent->getRenderer());
     
     
     addEntityToSelfTroops(entity, col, row);
@@ -498,7 +511,7 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     EntityFactory::getInstance()->addBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-    m_view->addChild(rendererComponent->getRenderer());
+    m_battleWorld->addChild(rendererComponent->getRenderer());
     
     addEntityToOppTroops(entity, col, row);
     
