@@ -7,6 +7,45 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Scenes">
+      <UniqueIdentifier>{29f977f7-e14a-4171-8ad4-ab3393371a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Controllers">
+      <UniqueIdentifier>{58905bf0-e449-4a4b-b60a-29f397e8dfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Tests">
+      <UniqueIdentifier>{04bd3629-98ab-46d5-8a29-db2a7496c603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Layers">
+      <UniqueIdentifier>{b91665ff-14b1-4e7f-a2d2-d4cc7196e906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent">
+      <UniqueIdentifier>{7821bb7f-f25a-4bec-bc8f-8b20664c12bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent\Components">
+      <UniqueIdentifier>{63a1396e-5110-4f24-a471-201a122fe5af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Consts">
+      <UniqueIdentifier>{57bb4118-cb85-405e-a13d-058512dc5ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Formula">
+      <UniqueIdentifier>{383f62fd-39e5-46ad-b68d-2992f79a8658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent\Properties">
+      <UniqueIdentifier>{7f5cb2e3-e574-42f1-baa2-b875312f47a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Datas">
+      <UniqueIdentifier>{85f05824-6567-4009-ae38-bea4b6ff4bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\SceneDirector">
+      <UniqueIdentifier>{95518e8e-8ab1-4db2-a5a1-e2b86e4cdea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\SceneBuilder">
+      <UniqueIdentifier>{7232816f-898c-49b0-b26c-6062c5d29965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Services">
+      <UniqueIdentifier>{a5157dc3-ef55-4c17-85d1-acd0074258aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -15,8 +54,158 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+    <ClCompile Include="..\Classes\Controllers\FooterController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\HeaderController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\MainController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\TestISOController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\ThreeSegmentController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Tests\MenuItemUtil.cpp">
+      <Filter>Classes\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\BaseScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\MainScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\TestISOScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\ThreeSegmentScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Layers\GameWorld.cpp">
+      <Filter>Classes\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\GameWorldController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\MissionController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\MissionScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\EntityFactory.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Layers\GameActiveSortLayer.cpp">
+      <Filter>Classes\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Formula\DamageFormula.cpp">
+      <Filter>Classes\Formula</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\GameAttackComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Properties\UnitProperty.cpp">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\BattleScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\BattleController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\TestSqliteController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\TestSqliteScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\AnimationData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\DataFactory.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SceneDirector\GameSceneDirector.cpp">
+      <Filter>Classes\SceneDirector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SceneBuilder\BuilderExternal.cpp">
+      <Filter>Classes\SceneBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SceneBuilder\GameSceneBuilder.cpp">
+      <Filter>Classes\SceneBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\BattlePrepareScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\BaseController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\BattlePrepareController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\InitializeController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\StepGameWorldController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\BaseData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\MapData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\RemoteCacheData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\ZoneData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Properties\BattleProperty.cpp">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\DieComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\HealthBarComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Layers\DimetricCoordinateLayer.cpp">
+      <Filter>Classes\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\BaseService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\BattleService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\MissionService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\PveBattleService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\ServiceFactory.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\UserService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\EntityPropertyFactory.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\InitializeScene.cpp">
+      <Filter>Classes\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -26,8 +215,185 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
+    <ClInclude Include="..\Classes\Controllers\FooterController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\HeaderController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\MainController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\TestISOController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\ThreeSegmentController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tests\MenuItemUtil.h">
+      <Filter>Classes\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\BaseScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\MainScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\SceneDefine.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\SceneRegisterData.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\TestISOScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\ThreeSegmentScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCGEMacros.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Messages.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Layers\GameWorld.h">
+      <Filter>Classes\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\GameWorldController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\MissionController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\MissionScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\EntityFactory.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\GameEntity.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Layers\GameActiveSortLayer.h">
+      <Filter>Classes\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Consts\AnimationDefine.h">
+      <Filter>Classes\Consts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Consts\PropertyDefine.h">
+      <Filter>Classes\Consts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Formula\DamageFormula.h">
+      <Filter>Classes\Formula</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\GameAttackComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Properties\UnitProperty.h">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\BattleScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\BattleController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\TestSqliteController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\TestSqliteScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\AnimationData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\DataFactory.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneDirector\GameSceneDirector.h">
+      <Filter>Classes\SceneDirector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneDirector\SceneDefine.h">
+      <Filter>Classes\SceneDirector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneDirector\SceneRegisterData.h">
+      <Filter>Classes\SceneDirector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneBuilder\BuilderDefine.h">
+      <Filter>Classes\SceneBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneBuilder\BuilderExternal.h">
+      <Filter>Classes\SceneBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneBuilder\GameSceneBuilder.h">
+      <Filter>Classes\SceneBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\BattlePrepareScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\BaseController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\BattlePrepareController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\InitializeController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\StepGameWorldController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\BaseData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\MapData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\RemoteCacheData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\ZoneData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Properties\BattleProperty.h">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\DieComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\HealthBarComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Layers\DimetricCoordinateLayer.h">
+      <Filter>Classes\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\BaseService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\BattleService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\MissionService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\PveBattleService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\ServiceFactory.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\UserService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\EntityPropertyFactory.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\InitializeScene.h">
+      <Filter>Classes\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

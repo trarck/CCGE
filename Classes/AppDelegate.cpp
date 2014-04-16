@@ -1,7 +1,11 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "Game.h"
+#include "Consts/GameDefine.h"
+#include "SceneDirector/GameSceneDirector.h"
 
 USING_NS_CC;
+USING_NS_CC_YHMVC;
+USING_NS_CC_GE;
 
 AppDelegate::AppDelegate() {
 
@@ -23,12 +27,19 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
+    
+    //set search paths for content
+    CCFileUtils* pFileUtils = CCFileUtils::sharedFileUtils();
+    std::vector<std::string> searchPaths;
+    
+	searchPaths.push_back(GAME_CONTENT_PATH);
+
+	pFileUtils->setSearchPaths(searchPaths);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
-
-    // run
-    pDirector->runWithScene(pScene);
+    Game::getInstance()->setup();
+    
+    GameSceneDirector::getInstance()->runWithScene(kInitializeScene);
 
     return true;
 }

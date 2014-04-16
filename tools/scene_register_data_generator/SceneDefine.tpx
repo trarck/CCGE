@@ -1,0 +1,10 @@
+#ifndef CCGE_SCENEDIRECTOR_SCENEDIFINE_H_
+#define CCGE_SCENEDIRECTOR_SCENEDIFINE_H_
+
+//this file generate by tool.do not modify derectely
+
+#{defineData}
+
+#pragma unused(#{unusedData})
+
+#endif //CCGE_SCENEDIRECTOR_SCENEDIFINE_H_

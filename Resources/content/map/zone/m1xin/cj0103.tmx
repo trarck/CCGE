@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="14" height="14" tilewidth="120" tileheight="60">
+ <tileset firstgid="1" name="taohuadao01" tilewidth="120" tileheight="60">
+  <image source="taohuadao_01.png" width="840" height="840"/>
+  <tile id="14">
+   <properties>
+    <property name="type" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="块层 1" width="14" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAO4MWDSVWPSx8XmfrItW+w6sOmn976SHE7MYDe+nABAEy0BSw=
+  </data>
+ </layer>
+ <layer name="块层 2" width="14" height="14">
+  <data encoding="base64" compression="zlib">
+   eJyVUkEKwkAMLEIreFIPlgqKHurRPfkCBUEvve3/f2ICExiGlOLAMJuQ7KTZNk2OvegxqdlQzdo4Gt/GwThBHdekdzfj66jGbZK/QFvQsTJ2iO/I9Ulvj7rAi+4qM36Ri74n9IvcY8GP5/zIXQco75Vn8LpJ4sAJynuNGQq0Ul9L/ezhM5xx1ncO74569TtHqL5znfFbQpE426tC/9PbH36DqOMH8h8Iag==
+  </data>
+ </layer>
+ <layer name="块层 3" width="14" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYEAAVyjtAMT+ULY5A24QhMT2QWKHQWk7PHojgVgJiJWh/FgoHQOlObHogbkvAY+52ADIL/FA7Avl60FpfQL6NBkQfkEG3Hj0wNxogCQG8qculA3zpwOaPgsGSBjC/A+yWwfKNkFS5wfE7gyo4WPPAPGTKZLdxlC2NZK6UAbMcHVDYhtBaSsoLcpAPLAEYiYoWwWIZUjQa8aAiAttBkSaIAbYkqCWGAAALdwNXQ==
+  </data>
+ </layer>
+ <layer name="ground" width="14" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAAUQbygQwaP5ZIfbFQzI+EiQXI6onR64OkFgaUiLQTm/nE6rMhwixs+mAAFpYsBPTF4mATslOOCLcQ41dXLHZLE6EPBHzQ+CJE6kMHemTqQwYAZYMFsg==
+  </data>
+ </layer>
+</map>
