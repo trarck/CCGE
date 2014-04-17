@@ -1,31 +1,22 @@
-//
-//  DamageFormula.h
-//
-#ifndef CCGE_FORMULA_DAMAGEFORMULA_H_
-#define CCGE_FORMULA_DAMAGEFORMULA_H_
+#ifndef CCGE_FORMULA_ATTACKSPEEDFORMULA_H_
+#define CCGE_FORMULA_ATTACKSPEEDFORMULA_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
 
 NS_CC_GE_BEGIN
 
-class DamageFormula : public CCObject 
+static const float kMinAttackSpeed=0.2;
+static const float kMaxAttackSpeed=5;
+static const float kAgilityToAttackSpeedParam=0.02;
+
+/**
+ * 攻击速度的值越大，攻击的越快
+ */
+class AttackSpeedFormula : public CCObject 
 {
 
 public:
-
-    /**
-     * 计算伤害值
-     DR:伤害减免，AC:护甲,PAM1:系数1,DAM:伤害值,ATK:攻击力
-     DR=AC/(AC+PAM1)
-     
-     DAM=ATK*(1-DR)=ATK*(1-AC/(AC+PAM1))=ATK*PAM1/(AC+PAM1)
-     
-     */
-    inline static int calcDamage(float attack,float defence,float param1)
-    {
-        return (int)(attack*param1/(defence+param1));
-    }
     
     /**
      * 计算攻击速度
@@ -55,7 +46,11 @@ public:
     
     inline static float calcAttackSpeed(float baseAttackSpeed,float othersAttackSpeed,float agility,float param1)
     {
-        return baseAttackSpeed*(1+othersAttackSpeed+agility*param1);
+        float attackSpeed=baseAttackSpeed*(1+othersAttackSpeed+agility*param1);
+        
+        attackSpeed=MAX(kMinAttackSpeed,MIN(kMaxAttackSpeed, attackSpeed));
+        
+        return attackSpeed;
     }
     
     /**
@@ -65,7 +60,11 @@ public:
      */
     inline static float calcAttackSpeed(float baseAttackSpeed,float othersAttackSpeed)
     {
-        return baseAttackSpeed*(1+othersAttackSpeed);
+        float attackSpeed=baseAttackSpeed*(1+othersAttackSpeed);
+        
+        attackSpeed=MAX(kMinAttackSpeed,MIN(kMaxAttackSpeed, attackSpeed));
+        
+        return attackSpeed;
     }
     
     /**
@@ -81,4 +80,4 @@ public:
 
 NS_CC_GE_END
 
-#endif //CCGE_FORMULA_DAMAGEFORMULA_H_
+#endif //CCGE_FORMULA_ATTACKSPEEDFORMULA_H_

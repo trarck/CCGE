@@ -1,10 +1,4 @@
-//
-//  DamageFormula.m
-//  isometric
-//
-//
-
-#include "DamageFormula.h"
+#include "AttackSpeedFormula.h"
 
 NS_CC_GE_BEGIN
 
