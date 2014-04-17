@@ -2,13 +2,15 @@
 	"scenes":[
 		
 		"MainScene","TestISOScene","MissionScene","BattleScene","BattlePrepareScene",
+		"InitializeScene",
 		{
 			"name":"TestSqlite",
 			"key":"kTestSqlite",
 			"value":"Sqlite",
 			"path":"Scenes/TestSqliteScene.h",
 			"creator":"TestSqliteScene::create"
-		}
+		},
+		"RealtimeBattleScene"
 	]
 		
 	

@@ -32,8 +32,8 @@ var result=ArgParser.parse(opts);
 var configFilePath=result.options.config||"config.json";
 var templateFilePath=result.options.template||"template.json";
 
-var sceneDefineFile=result.options.sceneDefine||"../../Classes/Scenes/SceneDefine.h";
-var sceneRegisterDataFile=result.options.sceneRegisterData||"../../Classes/Scenes/sceneRegisterData.h";
+var sceneDefineFile=result.options.sceneDefine||"../../Classes/SceneDirector/SceneDefine.h";
+var sceneRegisterDataFile=result.options.sceneRegisterData||"../../Classes/SceneDirector/SceneRegisterData.h";
 
 var templateData=loadTemplate(templateFilePath);
 // console.log(templateData)
