@@ -296,6 +296,8 @@
 		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
 		57CF771018AB6B120085A22F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CF770F18AB6B120085A22F /* libsqlite3.dylib */; };
 		57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */; };
+		57F0133318FF6EFB00CB32E9 /* RealtimeBattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */; };
+		57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -950,6 +952,10 @@
 		57CF770F18AB6B120085A22F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HurtComponent.cpp; sourceTree = "<group>"; };
 		57E2C2BE18F3A0A300124DF1 /* HurtComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HurtComponent.h; sourceTree = "<group>"; };
+		57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtimeBattleController.cpp; sourceTree = "<group>"; };
+		57F0133218FF6EFB00CB32E9 /* RealtimeBattleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleController.h; sourceTree = "<group>"; };
+		57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtimeBattleScene.cpp; sourceTree = "<group>"; };
+		57F0133818FF70D400CB32E9 /* RealtimeBattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleScene.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -2050,6 +2056,8 @@
 				575AD877187BC54B00AA0477 /* MainController.h */,
 				577105741883DF8900FA1446 /* MissionController.cpp */,
 				577105751883DF8900FA1446 /* MissionController.h */,
+				57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */,
+				57F0133218FF6EFB00CB32E9 /* RealtimeBattleController.h */,
 				5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */,
 				5747634918D6F10B0031E2E0 /* StepGameWorldController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
@@ -2078,6 +2086,8 @@
 				575AD885187BC54B00AA0477 /* MainScene.h */,
 				5771057B1883E1B800FA1446 /* MissionScene.cpp */,
 				5771057C1883E1B800FA1446 /* MissionScene.h */,
+				57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */,
+				57F0133818FF70D400CB32E9 /* RealtimeBattleScene.h */,
 				574FE62318E014A300490B18 /* SimpleScene.cpp */,
 				574FE62418E014A300490B18 /* SimpleScene.h */,
 				575AD888187BC54B00AA0477 /* TestISOScene.cpp */,
@@ -2430,6 +2440,7 @@
 				15A3D91C1682F7D5002FB0C5 /* b2EdgeAndCircleContact.cpp in Sources */,
 				15A3D91D1682F7D5002FB0C5 /* b2EdgeAndPolygonContact.cpp in Sources */,
 				57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */,
+				57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */,
 				15A3D91E1682F7D5002FB0C5 /* b2PolygonAndCircleContact.cpp in Sources */,
 				15A3D91F1682F7D5002FB0C5 /* b2PolygonContact.cpp in Sources */,
 				57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */,
@@ -2519,6 +2530,7 @@
 				15A3DA4A1682F826002FB0C5 /* CCControlButton.cpp in Sources */,
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
 				15A3DA4C1682F826002FB0C5 /* CCControlHuePicker.cpp in Sources */,
+				57F0133318FF6EFB00CB32E9 /* RealtimeBattleController.cpp in Sources */,
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */,
 				5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */,
