@@ -1,5 +1,6 @@
 #include "UnitService.h"
 #include "Consts/DataDefine.h"
+#include "Formula/AttackSpeedFormula.h"
 
 USING_NS_CC;
 
@@ -34,7 +35,7 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //health
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_HEALTH].asDouble(),
+                              entityConfig[CCGE_UNIT_BASE_HEALTH].asDouble(),
                               entityConfig[CCGE_UNIT_GROW_HEALTH].asDouble(),
                               level,growType);
     
@@ -44,7 +45,7 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //mana
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_MANA].asDouble(),
+                              entityConfig[CCGE_UNIT_BASE_MANA].asDouble(),
                               entityConfig[CCGE_UNIT_GROW_MANA].asDouble(),
                               level,growType);
     unitProperty->setMana(finalValue);
@@ -53,17 +54,30 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //damage
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_DAMAGE].asDouble(),
+                              entityConfig[CCGE_UNIT_BASE_DAMAGE].asDouble(),
                               entityConfig[CCGE_UNIT_GROW_DAMAGE].asDouble(),
                               level,growType);
     unitProperty->setDamage(finalValue);
     
     //defence
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_DEFENCE].asDouble(),
+                              entityConfig[CCGE_UNIT_BASE_DEFENCE].asDouble(),
                               entityConfig[CCGE_UNIT_GROW_DEFENCE].asDouble(),
                               level,growType);
     unitProperty->setDefence(finalValue);
+    
+    //agility
+    finalValue=calcGrow(
+                        entityConfig[CCGE_UNIT_BASE_AGILITY].asDouble(),
+                        entityConfig[CCGE_UNIT_GROW_AGILITY].asDouble(),
+                        level,growType);
+    unitProperty->setAgility(finalValue);
+    
+    //base attack speed
+    unitProperty->setBaseAttackSpeed(entityConfig[CCGE_UNIT_BASE_ATTACK_SPEED].asDouble());
+    
+    //attack speed
+    unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(unitProperty->getBaseAttackSpeed(), 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
     
     unitProperty->autorelease();
     

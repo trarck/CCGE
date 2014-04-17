@@ -298,6 +298,7 @@
 		57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */; };
 		57F0133318FF6EFB00CB32E9 /* RealtimeBattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */; };
 		57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */; };
+		57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -956,6 +957,8 @@
 		57F0133218FF6EFB00CB32E9 /* RealtimeBattleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleController.h; sourceTree = "<group>"; };
 		57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtimeBattleScene.cpp; sourceTree = "<group>"; };
 		57F0133818FF70D400CB32E9 /* RealtimeBattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleScene.h; sourceTree = "<group>"; };
+		57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackSpeedFormula.cpp; sourceTree = "<group>"; };
+		57F0133B18FF87E500CB32E9 /* AttackSpeedFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackSpeedFormula.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -2229,6 +2232,8 @@
 		57CF76E818AA07070085A22F /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */,
+				57F0133B18FF87E500CB32E9 /* AttackSpeedFormula.h */,
 				57CF76E918AA07070085A22F /* DamageFormula.cpp */,
 				57CF76EA18AA07070085A22F /* DamageFormula.h */,
 			);
@@ -2549,6 +2554,7 @@
 				15A3DA551682F826002FB0C5 /* CCEditBox.cpp in Sources */,
 				15A3DA571682F826002FB0C5 /* CCEditBoxImplIOS.mm in Sources */,
 				15A3DA591682F826002FB0C5 /* CCScrollView.cpp in Sources */,
+				57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */,
 				15A3DA5A1682F826002FB0C5 /* CCSorting.cpp in Sources */,
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
 				15A3DA5C1682F826002FB0C5 /* CCTableViewCell.cpp in Sources */,
