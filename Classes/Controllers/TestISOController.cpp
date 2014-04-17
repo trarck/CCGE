@@ -28,6 +28,10 @@ TestISOController::~TestISOController(void)
 
 void TestISOController::viewDidLoad()
 {
+    
+    ISOStaticCoordinate::initTileSize(64, 32);
+
+    
     CCSize visibleSize =  this->getPreferredContentSize();//CCSizeMake(480,240);//
     
     //取得要使用的layer渲染类型
@@ -100,6 +104,8 @@ void TestISOController::viewDidLoad()
 
 void TestISOController::onViewExit()
 {
+    ISOStaticCoordinate::initTileSize(120, 60);
+    
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     Controller::onViewExit();
 }

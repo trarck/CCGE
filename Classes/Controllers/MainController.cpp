@@ -47,6 +47,7 @@ void MainController::viewDidLoad()
 	m_proxys->init();
 
     createTestMenuItem("battle",kBattleScene,NULL);
+    createTestMenuItem("realtime battle",kRealtimeBattleScene,NULL);
     createTestMenuItem("mission",kMissionScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
 	createTestMenuItem("test iso normal",kTestISOScene,CCInteger::create(ISOTileMapBuilder::NormalLayerType));
     createTestMenuItem("test iso dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::DynamicLayerType));
