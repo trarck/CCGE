@@ -33,6 +33,8 @@ public:
     
     void addBattlePositionComponent(GameEntity* entity);
     
+    void addBattleStateMachineComponent(GameEntity* entity);
+    
 protected:
     
     CCArray* createEightAnimations(const yhge::Json::Value& configData);

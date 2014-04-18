@@ -52,7 +52,7 @@ void HurtComponent::cleanupMessages()
 {
     yhge::MessageManager* messageManager=this->getMessageManager();
     
-    messageManager->removeReceiver(messageManager->getGlobalObject(), kMSGAttackDamage, m_owner);
+    messageManager->removeReceiver(m_owner, kMSGAttackDamage);
     
     Component::cleanupMessages();
 }

@@ -14,6 +14,7 @@
 #include "Components/HealthBarComponent.h"
 #include "Components/HurtComponent.h"
 #include "Components/BattlePositionComponent.h"
+#include "Components/BattleStateMachineComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -156,6 +157,13 @@ void EntityComponentFactory::addBattlePositionComponent(GameEntity* entity)
     battlePositionComponent->updateRendererPosition();
 }
 
+void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
+{
+    BattleStateMachineComponent* battleStateMachineComponent=new BattleStateMachineComponent();
+    battleStateMachineComponent->init();
+    entity->addComponent(battleStateMachineComponent);
+    battleStateMachineComponent->release();
+}
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)
 {

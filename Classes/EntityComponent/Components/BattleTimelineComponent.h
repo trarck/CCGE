@@ -1,5 +1,5 @@
-#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_HURTCOMPONENT_H_
-#define CCGE_ENTITYCOMPONENT_COMPONENTS_HURTCOMPONENT_H_
+#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BattleTimelineComponent_H_
+#define CCGE_ENTITYCOMPONENT_COMPONENTS_BattleTimelineComponent_H_
 
 #include "cocos2d.h"
 #include <yhge/yhge.h>
@@ -8,16 +8,15 @@
 NS_CC_GE_BEGIN
 
 /**
- * 伤害组件
- * 主要显示伤害的数值
+ * 战斗时间线组件
  */
-class HurtComponent : public yhge::Component
+class BattleTimelineComponent : public yhge::Component
 {
 public:
     
-    HurtComponent();
+    BattleTimelineComponent();
     
-    ~HurtComponent();
+    ~BattleTimelineComponent();
     
     /**
      * 设置
@@ -45,4 +44,4 @@ protected:
 
 NS_CC_GE_END
 
-#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_HURTCOMPONENT_H_
+#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BattleTimelineComponent_H_

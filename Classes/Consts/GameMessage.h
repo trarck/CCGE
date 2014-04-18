@@ -13,6 +13,10 @@ enum GameMessage
     kMSGEntityHealthChange,
     kMSGAttackDamage,
     kMSGBattlePositionUpdate,
+    //
+    kMSGBattleMoveComplete,
+    kMSGBattleMoveToTargetComplete,
+    kMSGBattleMoveBackOriginComplete,
 
 };
 

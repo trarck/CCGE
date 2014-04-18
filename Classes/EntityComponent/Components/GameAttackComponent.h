@@ -77,8 +77,6 @@ public:
      */
     void onAttackAnimationComplete(yhge::Message* message);
     
-protected:
-    
     /**
      * @brief 显示攻击动画
      */
@@ -88,6 +86,16 @@ protected:
      * @brief 显示空闲动画
      */
     void showIdleAnimation();
+    
+    /**
+     * @brief 显示对手被攻击动画
+     */
+    void showTargetBeAttackAnimation();
+    
+    /**
+     * @brief 显示对手空闲动画
+     */
+    void showTargetIdleAnimation();
     
 public:
 

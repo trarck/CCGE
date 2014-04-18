@@ -1,4 +1,4 @@
-#include "HurtComponent.h"
+#include "BattleTimelineComponent.h"
 #include "Consts/GameMessage.h"
 #include "EntityComponent/GameEntity.h"
 
@@ -10,45 +10,45 @@ NS_CC_GE_BEGIN
 static const float kBarWidth=40;
 static const float kBarHeight=4;
 
-HurtComponent::HurtComponent()
+BattleTimelineComponent::BattleTimelineComponent()
 :m_rendererComponent(NULL)
-,Component("HurtComponent")
+,Component("BattleTimelineComponent")
 {
     
 }
 
-HurtComponent::~HurtComponent()
+BattleTimelineComponent::~BattleTimelineComponent()
 {
 }
 
-void HurtComponent::setup()
+void BattleTimelineComponent::setup()
 {
     Component::setup();
     m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
     
 }
 
-void HurtComponent::cleanup()
+void BattleTimelineComponent::cleanup()
 {
     m_rendererComponent=NULL;
     Component::cleanup();
 }
 
-bool HurtComponent::registerMessages()
+bool BattleTimelineComponent::registerMessages()
 {
     if(Component::registerMessages()){
     
         yhge::MessageManager* messageManager=this->getMessageManager();
         
         messageManager->registerReceiver(m_owner, kMSGAttackDamage, NULL,
-                                         message_selector(HurtComponent::onAttackDamage),this);
+                                         message_selector(BattleTimelineComponent::onAttackDamage),this);
         
         return true;
     }
     return false;
 }
 
-void HurtComponent::cleanupMessages()
+void BattleTimelineComponent::cleanupMessages()
 {
     yhge::MessageManager* messageManager=this->getMessageManager();
     
@@ -57,7 +57,7 @@ void HurtComponent::cleanupMessages()
     Component::cleanupMessages();
 }
 
-void HurtComponent::onAttackDamage(yhge::Message* message)
+void BattleTimelineComponent::onAttackDamage(yhge::Message* message)
 {
     
     CCInteger* damageValue=static_cast<CCInteger*>(message->getData());

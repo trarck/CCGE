@@ -43,6 +43,15 @@ enum StepEventType
     kEndEvent//结束结点
 };
 
+enum BattleStateEvent
+{
+    //近身普通攻击
+    kBSENearAttack,
+    //远程普通攻击
+    kBSEFarAttack,
+    
+};
+
 NS_CC_GE_END
 
 #endif // CCGE_CONSTS_GAMEDEFINE_H_

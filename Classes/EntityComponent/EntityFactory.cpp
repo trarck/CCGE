@@ -280,6 +280,9 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     
     //位置组件
     m_entityComponentFactory->addBattlePositionComponent(entity);
+    
+    //状态机组件
+    m_entityComponentFactory->addBattleStateMachineComponent(entity);
 }
 
 

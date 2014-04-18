@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
+#include "EntityComponent/GameEntity.h"
 
 NS_CC_GE_BEGIN
 
@@ -15,9 +16,23 @@ public:
 	BaseState();
     
 	~BaseState();
-        
-private:
-
+    
+public:
+    
+    inline void setGameEntity(GameEntity* gameEntity)
+    {
+        m_gameEntity = gameEntity;
+    }
+    
+    inline GameEntity* getGameEntity()
+    {
+        return m_gameEntity;
+    }
+    
+protected:
+    //对GameEntity的弱引用
+    GameEntity* m_gameEntity;
+    
 };
 
 NS_CC_GE_END
