@@ -299,6 +299,9 @@
 		57F0133318FF6EFB00CB32E9 /* RealtimeBattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */; };
 		57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */; };
 		57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */; };
+		57F0133F1900B6F300CB32E9 /* BattleTimelineComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133D1900B6F300CB32E9 /* BattleTimelineComponent.cpp */; };
+		57F013421900C38300CB32E9 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F013401900C38300CB32E9 /* BattleState.cpp */; };
+		57F013451900C8F100CB32E9 /* BattleStateMachineComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -959,6 +962,12 @@
 		57F0133818FF70D400CB32E9 /* RealtimeBattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleScene.h; sourceTree = "<group>"; };
 		57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackSpeedFormula.cpp; sourceTree = "<group>"; };
 		57F0133B18FF87E500CB32E9 /* AttackSpeedFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackSpeedFormula.h; sourceTree = "<group>"; };
+		57F0133D1900B6F300CB32E9 /* BattleTimelineComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleTimelineComponent.cpp; sourceTree = "<group>"; };
+		57F0133E1900B6F300CB32E9 /* BattleTimelineComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleTimelineComponent.h; sourceTree = "<group>"; };
+		57F013401900C38300CB32E9 /* BattleState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleState.cpp; sourceTree = "<group>"; };
+		57F013411900C38300CB32E9 /* BattleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleState.h; sourceTree = "<group>"; };
+		57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleStateMachineComponent.cpp; sourceTree = "<group>"; };
+		57F013441900C8F100CB32E9 /* BattleStateMachineComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleStateMachineComponent.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1988,6 +1997,8 @@
 			children = (
 				5747634118D68DBE0031E2E0 /* BaseState.cpp */,
 				5747634218D68DBE0031E2E0 /* BaseState.h */,
+				57F013401900C38300CB32E9 /* BattleState.cpp */,
+				57F013411900C38300CB32E9 /* BattleState.h */,
 				5747633B18D68AFC0031E2E0 /* EntityState.cpp */,
 				5747633C18D68AFC0031E2E0 /* EntityState.h */,
 			);
@@ -2154,6 +2165,10 @@
 			children = (
 				57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */,
 				57489E0318F63EC3005F540E /* BattlePositionComponent.h */,
+				57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */,
+				57F013441900C8F100CB32E9 /* BattleStateMachineComponent.h */,
+				57F0133D1900B6F300CB32E9 /* BattleTimelineComponent.cpp */,
+				57F0133E1900B6F300CB32E9 /* BattleTimelineComponent.h */,
 				5747632218D186800031E2E0 /* DieComponent.cpp */,
 				5747632318D186800031E2E0 /* DieComponent.h */,
 				5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */,
@@ -2463,6 +2478,7 @@
 				15A3D92A1682F7D5002FB0C5 /* b2WheelJoint.cpp in Sources */,
 				15A3D9391682F7D5002FB0C5 /* b2Rope.cpp in Sources */,
 				15A3D9951682F7F9002FB0C5 /* chipmunk.c in Sources */,
+				57F013451900C8F100CB32E9 /* BattleStateMachineComponent.cpp in Sources */,
 				15A3D9971682F7F9002FB0C5 /* cpConstraint.c in Sources */,
 				574FE61F18DFE4EC00490B18 /* BaseData.cpp in Sources */,
 				15A3D9981682F7F9002FB0C5 /* cpDampedRotarySpring.c in Sources */,
@@ -2559,6 +2575,7 @@
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
 				15A3DA5C1682F826002FB0C5 /* CCTableViewCell.cpp in Sources */,
 				57243ED618B49BE70070163A /* BattlePrepareScene.cpp in Sources */,
+				57F013421900C38300CB32E9 /* BattleState.cpp in Sources */,
 				575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */,
 				57243EC518B3551C0070163A /* BaseService.cpp in Sources */,
 				15A3DA5E1682F826002FB0C5 /* CCPhysicsDebugNode.cpp in Sources */,
@@ -2611,6 +2628,7 @@
 				379BB99717F03F3700829B88 /* CCActionManager.cpp in Sources */,
 				379BB99817F03F3700829B88 /* CCActionNode.cpp in Sources */,
 				5755C7161884CB6800213F7C /* GameWorldController.cpp in Sources */,
+				57F0133F1900B6F300CB32E9 /* BattleTimelineComponent.cpp in Sources */,
 				379BB99917F03F3700829B88 /* CCActionObject.cpp in Sources */,
 				379BB99A17F03F3700829B88 /* CCArmatureAnimation.cpp in Sources */,
 				379BB99B17F03F3700829B88 /* CCProcessBase.cpp in Sources */,
