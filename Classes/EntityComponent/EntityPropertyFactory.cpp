@@ -1,6 +1,7 @@
 #include "EntityPropertyFactory.h"
 #include <yhge/yhge.h>
 #include "Consts/PropertyDefine.h"
+#include "Consts/DataDefine.h"
 #include "Datas/DataFactory.h"
 
 #include "Properties/UnitProperty.h"
@@ -37,35 +38,120 @@ bool EntityPropertyFactory::init()
     return true;
 }
 
-/**
- * @brief 添加物体地图相关属性
- */
-void EntityPropertyFactory::createMapProperties(GameEntity* entity)
+void EntityPropertyFactory::addUnitProperty(GameEntity* entity)
 {
     UnitProperty* unitProperty=new UnitProperty();
     
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();
     entity->setUnitProperty(unitProperty);
+}
+
+void EntityPropertyFactory::addUnitProperty(GameEntity* entity,const yhge::Json::Value& value)
+{
+    UnitProperty* unitProperty=new UnitProperty();
     
+    setUnitPropertyValue(unitProperty, value);
+    
+    entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
+    unitProperty->release();
+    entity->setUnitProperty(unitProperty);
+}
+
+void EntityPropertyFactory::addBattleProperty(GameEntity* entity)
+{
+    BattleProperty* battleProperty=new BattleProperty();
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    entity->setBattleProperty(battleProperty);
+}
+
+void EntityPropertyFactory::addBattleProperty(GameEntity* entity,const yhge::Json::Value& value)
+{
+    BattleProperty* battleProperty=new BattleProperty();
+    
+    setBattlePropertyValue(battleProperty, value);
+    
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    entity->setBattleProperty(battleProperty);
+}
+
+void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int side,float scale)
+{
+    BattleProperty* battleProperty=new BattleProperty();
+    
+    battleProperty->setCol(col);
+    battleProperty->setRow(row);
+    battleProperty->setSide(side);
+    battleProperty->setScale(scale);
+    
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    entity->setBattleProperty(battleProperty);
+}
+
+/**
+ * @brief 添加物体地图相关属性
+ */
+void EntityPropertyFactory::addMapProperties(GameEntity* entity)
+{
+    addUnitProperty(entity);
 }
 
 /**
  * @brief 添加物体战斗相关属性
  */
-void EntityPropertyFactory::createBattleProperties(GameEntity* entity)
+void EntityPropertyFactory::addBattleProperties(GameEntity* entity)
 {
-    UnitProperty* unitProperty=new UnitProperty();
+    addUnitProperty(entity);
     
-    entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
-    unitProperty->release();
-    entity->setUnitProperty(unitProperty);
+    addBattleProperty(entity);
+}
+
+void EntityPropertyFactory::addBattleProperties(GameEntity* entity,CCDictionary* params)
+{
     
-    BattleProperty* battleProperty=new BattleProperty();
-    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
-    battleProperty->release();
-    entity->setBattleProperty(battleProperty);
+}
+
+void EntityPropertyFactory::addBattleProperties(GameEntity* entity,const yhge::Json::Value& params)
+{
+    //unit property
+    addUnitProperty(entity,params[CCGE_DATA_PROPERTY_CONFIG_ENTITY]);
     
+    //battle property
+    addBattleProperty(entity, params[CCGE_DATA_PROPERTY_CONFIG_BATTLE]);
+
+}
+
+void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& value)
+{    
+    if (!value.isNull()) {
+        
+        property->setUnitId(value[CCGE_UNIT_ID].asInt());
+        
+        property->setDamage(value[CCGE_UNIT_DAMAGE].asDouble());
+        property->setDefence(value[CCGE_UNIT_DEFENCE].asDouble());
+        property->setHealth(value[CCGE_UNIT_HEALTH].asDouble());
+        property->setMaxHealth(value[CCGE_UNIT_HEALTH].asDouble());
+        property->setMana(value[CCGE_UNIT_MANA].asDouble());
+        property->setMaxMana(value[CCGE_UNIT_MANA].asDouble());
+        property->setAgility(value[CCGE_UNIT_AGILITY].asDouble());
+        property->setAttackSpeed(value[CCGE_UNIT_ATTACK_SPEED].asDouble());
+        
+        property->setLevel(value[CCGE_UNIT_LEVEL].asInt());
+    }
+}
+
+void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& value)
+{
+    if (!value.isNull()) {
+        
+        property->setCol(value[CCGE_BATTLE_CELL_COL].asInt());
+        property->setRow(value[CCGE_BATTLE_CELL_ROW].asInt());
+        property->setSide(value[CCGE_BATTLE_CELL_SIDE].asInt());
+        property->setScale(value[CCGE_BATTLE_CELL_SCALE].asDouble());
+    }
 }
 
 NS_CC_GE_END

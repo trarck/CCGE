@@ -5,6 +5,8 @@
 
 NS_CC_GE_BEGIN
 
+#define GAME_CONTENT_PATH "content"
+
 const int kBattleCellCol=3;
 const int kBattleCellRow=3;
 
@@ -39,6 +41,15 @@ enum StepEventType
     
     kStartEvent,//开始结点
     kEndEvent//结束结点
+};
+
+enum BattleStateEvent
+{
+    //近身普通攻击
+    kBSENearAttack,
+    //远程普通攻击
+    kBSEFarAttack,
+    
 };
 
 NS_CC_GE_END

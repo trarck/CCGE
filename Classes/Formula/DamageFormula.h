@@ -9,7 +9,6 @@
 
 NS_CC_GE_BEGIN
 
-
 class DamageFormula : public CCObject 
 {
 

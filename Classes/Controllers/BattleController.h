@@ -35,6 +35,13 @@ public:
      * @brief 加载背景
      */
     void loadBattleGround();
+    
+    void loadBattleWorld();
+    
+    /**
+     * @brief 显示坐标
+     */
+    void showCoordinate();
 
     /**
      * @brief 加载战斗单元
@@ -50,6 +57,7 @@ public:
      * @brief 加载对方
      */
     void loadOppEntities();
+
     
     /**
      * @brief 初始化战斗双方的队伍
@@ -125,6 +133,11 @@ public:
      */
     void removeEntityFromTroops(int col,int row,int side);
     
+    
+    void delayStart();
+    
+    void onDdelayStartUpdate(float delta);
+    
     /**
      * @brief 开始战斗
      */
@@ -176,6 +189,11 @@ public:
      */
     void onEntityAttackComplete(yhge::Message* message);
     
+    /**
+     * @brief 攻击后的等待
+     */
+    void onEntityAttackCompleteDelay(float delta);
+    
     void onEntityDie(yhge::Message* message);
     
     void onSkip(CCObject* pSender);
@@ -188,13 +206,18 @@ public:
     
 protected:
     
+    GameEntity* createSelfTroopEntity(int entityId,int index);
+    GameEntity* createOppTroopEntity(int entityId,int index);
+    
+    GameEntity* createTroopEntity(int entityId,int index);
+    
     /**
      * @brief 检查一轮是否完成
      */
     bool isRoundComplete();
     
     /**
-     * @brief 一个步骤结点
+     * @brief 一个步骤线束
      */
     void doStepEnd();
     
@@ -414,6 +437,8 @@ private:
     bool m_battleEnd;
     
     bool m_win;
+    
+    CCLayer* m_battleWorld;
 
     
 };

@@ -20,17 +20,35 @@ public:
     
     static EntityPropertyFactory* getInstance();
     
+    void addUnitProperty(GameEntity* entity);
+    
+    void addUnitProperty(GameEntity* entity,const yhge::Json::Value& value);
+    
+    void addBattleProperty(GameEntity* entity);
+    
+    void addBattleProperty(GameEntity* entity,const yhge::Json::Value& value);
+    
+    void addBattleProperty(GameEntity* entity,int col,int row,int side,float scale);
+    
     /**
      * @brief 添加物体地图相关属性
      * 创建的属性没有被赋值
      */
-    void createMapProperties(GameEntity* entity);
+    void addMapProperties(GameEntity* entity);
     
     /**
      * @brief 添加物体战斗相关属性
      * 创建的属性没有被赋值
      */
-    void createBattleProperties(GameEntity* entity);
+    void addBattleProperties(GameEntity* entity);
+    
+    void addBattleProperties(GameEntity* entity,CCDictionary* params);
+    
+    void addBattleProperties(GameEntity* entity,const yhge::Json::Value& params);
+    
+    void setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& value);
+    
+    void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& value);
     
 };
 

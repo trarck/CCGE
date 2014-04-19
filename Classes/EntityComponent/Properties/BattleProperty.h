@@ -11,6 +11,15 @@ class BattleProperty : public yhge::Property
 {
 public:
     
+    inline BattleProperty()
+    :m_col(0)
+    ,m_row(0)
+    ,m_side(0)
+    ,m_scale(1.0f)
+    {
+        
+    }
+    
     inline void setRow(int row)
     {
         m_row = row;
@@ -40,12 +49,24 @@ public:
     {
         return m_side;
     }
+    
+    inline void setScale(float scale)
+    {
+        m_scale = scale;
+    }
+    
+    inline float getScale()
+    {
+        return m_scale;
+    }
 
 protected:
+    
     int m_row;
     int m_col;
     int m_side;
 
+    float m_scale;
 };
 
 NS_CC_GE_END

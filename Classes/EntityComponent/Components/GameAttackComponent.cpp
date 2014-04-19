@@ -41,11 +41,11 @@ void GameAttackComponent::cleanup()
 
 bool GameAttackComponent::registerMessages()
 {
-    if(AttackComponent::registerMessages()){
+    if(Component::registerMessages()){
     
-        yhge::MessageManager* messageManager=this->getMessageManager();
-        
-        messageManager->registerReceiver(m_owner, MSG_ANIMATION_COMPLETE, NULL, message_selector(GameAttackComponent::onAttackAnimationComplete),this);
+//        yhge::MessageManager* messageManager=this->getMessageManager();
+//        
+//        messageManager->registerReceiver(m_owner, MSG_ANIMATION_COMPLETE, NULL, message_selector(GameAttackComponent::onAttackAnimationComplete),this);
         
         return true;
     }
@@ -54,11 +54,11 @@ bool GameAttackComponent::registerMessages()
 
 void GameAttackComponent::cleanupMessages()
 {
-    yhge::MessageManager* messageManager=this->getMessageManager();
+//    yhge::MessageManager* messageManager=this->getMessageManager();
+//    
+//    messageManager->removeReceiver(m_owner, MSG_ANIMATION_COMPLETE);
     
-    messageManager->removeReceiver(m_owner, MSG_ANIMATION_COMPLETE);
-    
-    AttackComponent::cleanupMessages();
+    Component::cleanupMessages();
 }
 
 void GameAttackComponent::attack()
@@ -69,7 +69,7 @@ void GameAttackComponent::attack()
         moveToTargetFront();
         
         //显示攻击动画.移动的同时显示动画
-        showAttackAnimation();
+//        showAttackAnimation();
     }else {
         CCLOG("GameAttackComponent::startAttack no target");
     }
@@ -141,17 +141,21 @@ void GameAttackComponent::parseTargetDamage()
     
     CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
     
+    MessageManager* messageManager=this->getMessageManager();
+    
+    messageManager->dispatchMessage(kMSGAttackDamage,this,m_target,CCInteger::create(damage));
+    
     if (targetHp<=0) {
         targetHp=0;
         unitProperty->setHealth(targetHp);
-        this->getMessageManager()->dispatchMessage(kMSGEntityHealthChange, m_target, this->getMessageManager()->getGlobalObject(),CCFloat::create(targetHp));
+        messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
         
         //send target die message
-        this->getMessageManager()->dispatchMessage(MSG_ENTITY_DIE, m_target, this->getMessageManager()->getGlobalObject());
+        messageManager->dispatchMessage(MSG_ENTITY_DIE, m_target, messageManager->getGlobalObject());
         
     }else{
         unitProperty->setHealth(targetHp);
-        this->getMessageManager()->dispatchMessage(kMSGEntityHealthChange, m_target, this->getMessageManager()->getGlobalObject(),CCFloat::create(targetHp));
+        messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
     }
 }
 
@@ -176,14 +180,13 @@ void GameAttackComponent::onMoveToTargetFrontComplete()
 //    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
 //    int direction=battleProperty->getSide()-1;
     
-    CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create(CCGE_ANIMATION_BEATTACK), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+    MessageManager* messageManager=getMessageManager();
     
-    //目标做被攻击动画
-    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
+    messageManager->dispatchMessage(kMSGBattleMoveComplete,this,m_owner);
     
-    data->release();
+    messageManager->dispatchMessage(MSG_BEATTACK, this, m_target);
+    
+//    showTargetBeAttackAnimation();
     
 }
 
@@ -192,22 +195,23 @@ void GameAttackComponent::onMoveBackOriginComplete()
     CCLOG("GameAttackComponent::onMoveBackOriginComplete");
     
     //恢复空闲动画
-    showIdleAnimation();
+//    showIdleAnimation();
+    
+    MessageManager* messageManager=getMessageManager();
+    
+    messageManager->dispatchMessage(kMSGBattleMoveComplete,this,m_owner);
     
     //恢复目标动画
     //由位置决定人物朝向
 //    BattleProperty* battleProperty=static_cast<GameEntity*>(m_target)->getBattleProperty();
 //    int direction=battleProperty->getSide()-1;
     
-    CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
-    
-    data->release();
+    //本来应该在攻击动作完成后发送该消息，由于处理伤害被放在攻击动作完成，这里也做相应的推迟。
+    messageManager->dispatchMessage(MSG_BEATTACK_FINISH, this, m_target);
+//    showTargetIdleAnimation();
     
     //发送消息，本次攻击结束
-    getMessageManager()->dispatchMessage(kMSGEntityAttackComplete, this, m_owner);
+    messageManager->dispatchMessage(kMSGEntityAttackComplete, this, m_owner);
     
     //消除目标
     setTarget(NULL);
@@ -217,10 +221,12 @@ void GameAttackComponent::onAttackAnimationComplete(yhge::Message* message)
 {
     CCLOG("GameAttackComponent[%d]::onAttackAnimationComplete",m_uID);
     
-    //处理目标伤害
+    //处理目标伤害。应该放在攻击动画中。或者某一帧上标识，播放该帧时执行捐血操作。
     parseTargetDamage();
     
     moveBackOrigin();
+    
+    
 }
 
 void GameAttackComponent::showAttackAnimation()
@@ -241,6 +247,30 @@ void GameAttackComponent::showIdleAnimation()
     
     //执行攻击动画
     m_animationComponent->runAnimation(CCGE_ANIMATION_IDLE,kEightDirctionRightBottom,true);
+}
+
+void GameAttackComponent::showTargetBeAttackAnimation()
+{
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create(CCGE_ANIMATION_BEATTACK), CCGE_ANIMATION_NAME);
+    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+    
+    //目标做被攻击动画
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
+    
+    data->release();
+}
+
+/**
+ * @brief 显示对手空闲动画
+ */
+void GameAttackComponent::showTargetIdleAnimation()
+{
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
+    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_target, data);
+    data->release();
 }
 
 NS_CC_GE_END

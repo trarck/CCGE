@@ -1,6 +1,8 @@
 #include "EntityFactory.h"
 #include <yhge/yhge.h>
 #include "Consts/PropertyDefine.h"
+#include "Consts/GameDefine.h"
+#include "Consts/AnimationDefine.h"
 #include "Datas/DataFactory.h"
 
 #include "Properties/UnitProperty.h"
@@ -9,6 +11,8 @@
 #include "Components/GameAttackComponent.h"
 #include "Components/DieComponent.h"
 #include "Components/HealthBarComponent.h"
+#include "Components/HurtComponent.h"
+#include "Components/BattlePositionComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -19,6 +23,7 @@ static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
 
 EntityFactory::EntityFactory()
 :m_entityPropertyFactory(NULL)
+,m_entityComponentFactory(NULL)
 {
 
 }
@@ -26,6 +31,7 @@ EntityFactory::EntityFactory()
 EntityFactory::~EntityFactory()
 {
     CC_SAFE_RELEASE_NULL(m_entityPropertyFactory);
+    CC_SAFE_RELEASE_NULL(m_entityComponentFactory);
 }
 
 static EntityFactory* s_instance=NULL;
@@ -43,6 +49,9 @@ bool EntityFactory::init()
 {
     m_entityPropertyFactory=new EntityPropertyFactory();
     m_entityPropertyFactory->init();
+    
+    m_entityComponentFactory=new EntityComponentFactory();
+    m_entityComponentFactory->init();
     
     return true;
 }
@@ -89,7 +98,7 @@ GameEntity* EntityFactory::createEntityById(int entityId)
 /**
  * 创建一个人物
  */
-GameEntity* EntityFactory::createPlayer(int entityId,CCDictionary* param)
+GameEntity* EntityFactory::createPlayer(int entityId,CCDictionary* params)
 {
     GameEntity* player=GameEntity::create();
     player->setEntityId(entityId);
@@ -103,17 +112,27 @@ GameEntity* EntityFactory::createPlayer(int entityId,CCDictionary* param)
 /**
  * 创建战斗中的人物
  */
-GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* param)
+GameEntity* EntityFactory::createBattlePlayer(int entityId,CCDictionary* params)
 {
-    GameEntity* player=GameEntity::create();
-    player->setEntityId(entityId);
-
-    //战斗中的人物需要战斗相关的属性
+    GameEntity* player=createEntity(entityId);
     
     //添加属性
-    m_entityPropertyFactory->createBattleProperties(player);
+    m_entityPropertyFactory->addBattleProperties(player);
     
     //添加组件
+    addBattleComponentsProtogenic(player);
+    
+    return player;
+}
+
+GameEntity* EntityFactory::createBattlePlayer(int entityId,const yhge::Json::Value& params)
+{
+    GameEntity* player=createEntity(entityId);
+    
+    //添加属性
+    m_entityPropertyFactory->addBattleProperties(player,params);
+    
+    //添加组件.已经设置过属性，可以直接使用依赖属性版
     addBattleComponents(player);
     
     return player;
@@ -146,7 +165,7 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     //    player->setISOPositionComponent(isoPosition);
     
     //动画组件
-    AnimationComponent* animation=new AnimationComponent();
+    EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
@@ -175,10 +194,7 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     gridMove->release();
 }
 
-/**
- * @brief 给entity添加战斗相关组件
- */
-void EntityFactory::addBattleComponents(GameEntity* entity)
+void EntityFactory::addBattleComponentsProtogenic(GameEntity* entity)
 {
     //显示组件
     SpriteRendererComponent* renderer=new SpriteRendererComponent();
@@ -188,7 +204,7 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     entity->setRendererComponent(renderer);
     
     //动画组件
-    AnimationComponent* animation=new AnimationComponent();
+    EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
     AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
@@ -225,8 +241,50 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     entity->addComponent(healthBarComponent);
     healthBarComponent->release();
     entity->setHealthBarComponent(healthBarComponent);
+    
+    //伤害组件
+    HurtComponent* hurtComponent=new HurtComponent();
+    hurtComponent->init();
+    entity->addComponent(hurtComponent);
+    hurtComponent->release();
+    
+    //位置组件
+    BattlePositionComponent* battlePositionComponent=new BattlePositionComponent();
+    battlePositionComponent->init();
+    entity->addComponent(battlePositionComponent);
+    battlePositionComponent->release();
 
 }
+
+
+//给entity添加战斗相关组件
+//在添加组件的时候，已经设置了相关属性，可以从属性里取得值。
+void EntityFactory::addBattleComponents(GameEntity* entity)
+{
+    //显示组件
+    m_entityComponentFactory->addBattleRendererComponent(entity);
+    
+    //动画组件
+    m_entityComponentFactory->addBattleAnimationComponent(entity);
+    
+    //战斗组件
+    m_entityComponentFactory->addBattleComponent(entity);
+    
+    //死亡组件
+    m_entityComponentFactory->addDieComponent(entity);
+    
+    //血条组件
+    m_entityComponentFactory->addHealthBarComponent(entity);
+    //伤害组件
+    m_entityComponentFactory->addHurtComponent(entity);
+    
+    //位置组件
+    m_entityComponentFactory->addBattlePositionComponent(entity);
+    
+    //状态机组件
+    m_entityComponentFactory->addBattleStateMachineComponent(entity);
+}
+
 
 CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configData)
 {
@@ -238,7 +296,7 @@ CCArray* EntityFactory::createEightAnimations(const yhge::Json::Value& configDat
     int loops=configData.get("loops", -1).asInt();
     std::string frameIndexPrefix=configData["frame_index_prefix"].asString();
 
-    return AnimationComponent::createDirectionActionListWithResource(
+    return EightDirectionAnimationComponent::createDirectionActionListWithResource(
         ext.c_str(),frameIndexPrefix.c_str(),8,frameQuantity, frameDelay,loops);
 }
 
@@ -252,7 +310,7 @@ CCArray* EntityFactory::createTwoAnimations(const yhge::Json::Value& configData)
     int loops=configData.get("loops", -1).asInt();
     std::string frameIndexPrefix=configData["frame_index_prefix"].asString();
     
-    return AnimationComponent::createDirectionActionListWithResource(
+    return EightDirectionAnimationComponent::createDirectionActionListWithResource(
                                                                      ext.c_str(),frameIndexPrefix.c_str(),1,frameQuantity, frameDelay,loops);
 }
 

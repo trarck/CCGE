@@ -11,6 +11,16 @@ class UnitProperty : public yhge::Property
 {
 public:
     
+    inline void setUnitId(int unitId)
+    {
+        m_unitId = unitId;
+    }
+    
+    inline int getUnitId()
+    {
+        return m_unitId;
+    }
+    
     inline void setLevel(int level)
     {
         m_level = level;
@@ -80,9 +90,39 @@ public:
     {
         return m_damage;
     }
+    
+    inline void setAgility(float agility)
+    {
+        m_agility = agility;
+    }
+    
+    inline float getAgility()
+    {
+        return m_agility;
+    }
+    
+    inline void setAttackSpeed(float attackSpeed)
+    {
+        m_attackSpeed = attackSpeed;
+    }
+    
+    inline float getAttackSpeed()
+    {
+        return m_attackSpeed;
+    }
+    
+    inline void setBaseAttackSpeed(float baseAttackSpeed)
+    {
+        m_baseAttackSpeed = baseAttackSpeed;
+    }
+    
+    inline float getBaseAttackSpeed()
+    {
+        return m_baseAttackSpeed;
+    }
 
 protected:
-    
+    int m_unitId;
     int m_level;
     float m_health;
     float m_maxHealth;
@@ -90,7 +130,11 @@ protected:
     float m_maxMana;
     float m_defence;
     float m_damage;
-
+    float m_agility;
+    //整个攻击速度包含加成
+    float m_attackSpeed;
+    //基础攻击速度，固有的
+    float m_baseAttackSpeed;
 };
 
 NS_CC_GE_END
