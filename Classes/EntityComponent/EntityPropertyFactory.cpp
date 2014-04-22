@@ -138,6 +138,7 @@ void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yh
         property->setMaxMana(value[CCGE_UNIT_MANA].asDouble());
         property->setAgility(value[CCGE_UNIT_AGILITY].asDouble());
         property->setAttackSpeed(value[CCGE_UNIT_ATTACK_SPEED].asDouble());
+        property->setIcon(value[CCGE_UNIT_ICON].asString());
         
         property->setLevel(value[CCGE_UNIT_LEVEL].asInt());
     }

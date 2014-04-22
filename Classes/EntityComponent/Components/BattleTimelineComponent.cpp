@@ -13,6 +13,9 @@ static const float kBarHeight=4;
 BattleTimelineComponent::BattleTimelineComponent()
 :m_rendererComponent(NULL)
 ,Component("BattleTimelineComponent")
+,m_attackSpeed(1.0f)
+,m_attackDuration(1.0f)
+,m_attackScheduleStarted(false)
 {
     
 }
@@ -40,8 +43,11 @@ bool BattleTimelineComponent::registerMessages()
     
         yhge::MessageManager* messageManager=this->getMessageManager();
         
-        messageManager->registerReceiver(m_owner, kMSGAttackDamage, NULL,
-                                         message_selector(BattleTimelineComponent::onAttackDamage),this);
+        messageManager->registerReceiver(m_owner, kMSGAttackStart, NULL,
+                                         message_selector(BattleTimelineComponent::onAttackStart),this);
+        
+        messageManager->registerReceiver(m_owner, kMSGAttackStop, NULL,
+                                         message_selector(BattleTimelineComponent::onAttackStop),this);
         
         return true;
     }
@@ -52,44 +58,44 @@ void BattleTimelineComponent::cleanupMessages()
 {
     yhge::MessageManager* messageManager=this->getMessageManager();
     
-    messageManager->removeReceiver(messageManager->getGlobalObject(), kMSGAttackDamage, m_owner);
+    messageManager->removeReceiver(m_owner, kMSGAttackStart, message_selector(BattleTimelineComponent::onAttackStart));
+    messageManager->removeReceiver(m_owner, kMSGAttackStop, message_selector(BattleTimelineComponent::onAttackStop));
     
     Component::cleanupMessages();
 }
 
-void BattleTimelineComponent::onAttackDamage(yhge::Message* message)
+void BattleTimelineComponent::startAttackSchedule()
 {
+    if (!m_attackScheduleStarted) {
+        m_attackScheduleStarted=true;
+        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(BattleTimelineComponent::attackUpdate), this, m_attackDuration, false);
+    }
     
-    CCInteger* damageValue=static_cast<CCInteger*>(message->getData());
-    if (damageValue) {
-        
-        CCString* damageString=CCString::createWithFormat("-%d",damageValue->getValue());
-        
-        //show damage tip
-        CCLabelBMFont* label=CCLabelBMFont::create(damageString->getCString(), "fonts/Red_36.fnt");
-        
-        CCSize size=m_rendererComponent->getRenderer()->getContentSize();
-        CCPoint pos=CCPointZero;//m_rendererComponent->getRenderer()->getPosition();
-        
-//        label->setPosition(ccp(pos.x,pos.y+size.height+50));
-        
-        float scale=m_rendererComponent->getRenderer()->getScale();
-        
-        label->setPosition(ccp(size.width/(2*scale),pos.y+(size.height/scale)+40));
-        
-        label->setScale(1/scale);
-        
-        //action
-        CCAction* effect=CCSequence::createWithTwoActions(CCMoveBy::create(0.4f, ccp(0,40.0f)), CCRemoveSelf::create());
-        
-        //和renderer在一个结点。如果renderer移动，则显示会跟着移动，看起来真些。
-//        m_rendererComponent->getRenderer()->getParent()->addChild(label,1000);
-        m_rendererComponent->getRenderer()->addChild(label,1000);
-        
-        label->runAction(effect);
+}
+
+void BattleTimelineComponent::stopAttackSchedule()
+{
+    if (m_attackScheduleStarted) {
+        m_attackScheduleStarted=false;
+        CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(BattleTimelineComponent::attackUpdate), this);
     }
 }
 
+void BattleTimelineComponent::attackUpdate(float delta)
+{
+    //开始一轮攻击
+    getMessageManager()->dispatchMessage(kMSGTrunEntityAttack, this, m_owner);
+}
+
+void BattleTimelineComponent::onAttackStart(yhge::Message* message)
+{
+    startAttackSchedule();
+}
+
+void BattleTimelineComponent::onAttackStop(yhge::Message* message)
+{
+    stopAttackSchedule();
+}
 
 NS_CC_GE_END
 

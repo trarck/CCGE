@@ -16,6 +16,9 @@ static const float kBarHeight=4;
 BattlePositionComponent::BattlePositionComponent()
 :m_rendererComponent(NULL)
 ,Component("BattlePositionComponent")
+,m_rendererPosition(CCPointZero)
+,m_lastCol(-1)
+,m_lastRow(-1)
 {
     
 }
@@ -57,8 +60,9 @@ void BattlePositionComponent::cleanupMessages()
     Component::cleanupMessages();
 }
 
-void BattlePositionComponent::updateRendererPosition()
+CCPoint BattlePositionComponent::getPositionFromCell()
 {
+    
     GameEntity* entity=static_cast<GameEntity*>(m_owner);
     
     BattleProperty* battleProperty=entity->getBattleProperty();
@@ -69,6 +73,13 @@ void BattlePositionComponent::updateRendererPosition()
         
         int col=battleProperty->getCol();
         int row=battleProperty->getRow();
+        
+        if (m_lastCol==col && m_lastRow==row){
+            return m_rendererPosition;
+        }
+        
+        m_lastCol=col;
+        m_lastRow=row;
         
         int x=0,y=0;
         
@@ -100,10 +111,18 @@ void BattlePositionComponent::updateRendererPosition()
         CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y+0.5);
         pos.x+=offset.x+x*kBattleCellOffsetX;
         pos.y+=offset.y+y*kBattleCellOffsetY;
-                
-        m_rendererComponent->getRenderer()->setPosition(pos);
         
+        m_rendererPosition=pos;
+        
+        return pos;
     }
+    
+    return m_rendererPosition;
+}
+
+void BattlePositionComponent::updateRendererPosition()
+{
+    m_rendererComponent->getRenderer()->setPosition(getPositionFromCell());
 }
 
 void BattlePositionComponent::onUpdatePosition(yhge::Message* message)

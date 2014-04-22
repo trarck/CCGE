@@ -30,6 +30,9 @@ static const float kGameTileHeight=90;
 //static const float kGameTileWidth=120;
 //static const float kGameTileHeight=48;
 
+static const float kTimelineWidth=400;
+static const float kTimelineHeight=40;
+
 RealtimeBattleController::RealtimeBattleController(void)
 :m_mapId(0)
 ,m_zoneId(0)
@@ -40,6 +43,8 @@ RealtimeBattleController::RealtimeBattleController(void)
 ,m_battleEnd(false)
 ,m_win(false)
 ,m_battleWorld(NULL)
+,m_timelineNodes(NULL)
+,m_timelineLayer(NULL)
 {
     m_sName="RealtimeBattleController";
 }
@@ -47,13 +52,17 @@ RealtimeBattleController::RealtimeBattleController(void)
 RealtimeBattleController::~RealtimeBattleController(void)
 {
     CCLOG("RealtimeBattleController destroy");
-    
+
     CC_SAFE_RELEASE_NULL(m_battleWorld);
+    
+    CC_SAFE_RELEASE_NULL(m_timelineNodes);
 }
 
 bool RealtimeBattleController::init()
 {
     if (BaseController::init()) {
+        
+        m_timelineNodes=new CCArray(18);
         
         initTroops();
         
@@ -93,8 +102,11 @@ void RealtimeBattleController::viewDidLoad()
 
 void RealtimeBattleController::onViewEnter()
 {
-    Controller::onViewExit();
-    delayStart();
+    Controller::onViewEnter();
+    
+    createTroopsBattleTimeline();
+    
+    start();
 }
 
 void RealtimeBattleController::onViewExit()
@@ -128,9 +140,17 @@ void RealtimeBattleController::loadBattleGround()
 
 void RealtimeBattleController::loadBattleWorld()
 {
+    CCSize contentSize=getPreferredContentSize();
+    
     m_battleWorld=new CCLayer();
+    m_battleWorld->init();
     m_battleWorld->setPosition(ccp(0,100));
     m_view->addChild(m_battleWorld);
+    
+    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
+    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
+    m_view->addChild(m_timelineLayer);
+    
 }
 
 void RealtimeBattleController::showCoordinate()
@@ -680,7 +700,7 @@ void RealtimeBattleController::removeEntityFromTroops(int col,int row,int side)
 
 void RealtimeBattleController::delayStart()
 {
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(RealtimeBattleController::onDdelayStartUpdate), this, 1.0f, 0, 0.0, false);
+    
 }
 
 void RealtimeBattleController::onDdelayStartUpdate(float delta)
@@ -691,7 +711,10 @@ void RealtimeBattleController::onDdelayStartUpdate(float delta)
 void RealtimeBattleController::start()
 {
     m_battleEnd=false;
-    parseRound();
+    
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
+                                                                   schedule_selector(RealtimeBattleController::battleUpdate), this, 0.2f, false);
+//    parseRound();
 }
 
 void RealtimeBattleController::pause()
@@ -701,7 +724,136 @@ void RealtimeBattleController::pause()
 
 void RealtimeBattleController::stop()
 {
+    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(RealtimeBattleController::battleUpdate), this);
+}
+
+/**
+ * 开始战斗单位的，战斗时间线
+ */
+void RealtimeBattleController::createTroopsBattleTimeline()
+{
+    GameEntity* entity=NULL;
     
+    int k=0,l=0;
+    
+    float delay=0.5f;
+    
+    float sideDelay=0.5;
+    
+    //队伍的战斗时间线
+    for (int j=0; j<kBattleCellRow; ++j) {
+        for (int i=0; i<kBattleCellCol; ++i) {
+            
+            //己方
+            entity=m_selfTroops[j][i];
+            
+            if (entity) {
+                createEntityBattleTimeline(entity,-(k++*delay));
+            }
+            
+            //对方
+            entity=m_oppTroops[j][i];
+            if (entity) {
+                createEntityBattleTimeline(entity,-(l++*delay)-sideDelay);
+            }
+        }
+    }
+}
+
+/**
+ * 开启某个单位的战斗时间线
+ */
+void RealtimeBattleController::createEntityBattleTimeline(GameEntity* entity,float delay)
+{
+    UnitProperty* unitProperty=entity->getUnitProperty();
+    
+    TimelineNode* node=new TimelineNode();
+    node->setDuration(1/unitProperty->getAttackSpeed());
+    node->setGameEntity(entity);
+    node->setElapsed(delay);
+    
+    std::string icon=unitProperty->getIcon();
+    
+    CCLOG("timeline:%s,%f",icon.c_str(),node->getDuration());
+    
+    if (icon.empty()) {
+        icon="character_icon/1.png";
+    }
+    
+    CCSprite* sprite=CCSprite::create(icon.c_str());
+    node->setRenderer(sprite);
+    m_timelineLayer->addChild(sprite);
+    
+    
+    m_timelineNodes->addObject(node);
+    
+    node->release();
+}
+
+/**
+ * 停止某个单位的战斗时间线
+ */
+void RealtimeBattleController::removeEntityBattleTimeline(GameEntity* entity)
+{
+    CCObject* obj=NULL;
+    TimelineNode* node=NULL;
+    int i=0;
+    CCARRAY_FOREACH_REVERSE(m_timelineNodes, obj){
+        node=static_cast<TimelineNode*>(obj);
+        if (node->getGameEntity()==entity) {
+            m_timelineLayer->removeChild(node->getRenderer());
+            m_timelineNodes->removeObjectAtIndex(i);
+            break;
+        }
+        i++;
+    }
+}
+
+/**
+ * 显示所有战斗单位的战斗时间线
+ */
+void RealtimeBattleController::showBattleTimeline()
+{
+    
+}
+
+void RealtimeBattleController::showBattleTimeline(TimelineNode* node)
+{
+    
+    float posRate=node->getElapsed()/node->getDuration();
+    posRate=posRate>1?1:posRate;
+    
+    
+    CCSprite* renderer=node->getRenderer();
+    renderer->setPosition(ccp(posRate*kTimelineWidth,0));
+    
+}
+
+void RealtimeBattleController::battleUpdate(float delta)
+{
+    CCLOG("delta:%f",delta);
+    
+    CCObject* obj=NULL;
+    TimelineNode* node=NULL;
+    
+    CCARRAY_FOREACH_REVERSE(m_timelineNodes, obj){
+        node=static_cast<TimelineNode*>(obj);
+        
+        node->addElapsed(delta);
+        
+        showBattleTimeline(node);
+        
+        //这里不考虑超出好几个回合
+        if (node->isTurn()) {
+            
+            node->fixTurn();
+            
+            //start attack
+            entityAttack(node->getGameEntity());
+        }
+    }
+    
+    showBattleTimeline();
 }
 
 void RealtimeBattleController::parseRound()
@@ -769,10 +921,6 @@ bool RealtimeBattleController::trunOppStep()
 }
 
 
-void RealtimeBattleController::battleUpdate(float delta)
-{
-    
-}
 
 void RealtimeBattleController::parseNextStep()
 {
@@ -908,6 +1056,39 @@ void RealtimeBattleController::entityAttack(GameEntity* entity,int col,int row,i
     }
 }
 
+void RealtimeBattleController::entityAttack(GameEntity* entity)
+{
+    
+    BattleProperty* battleProperty=entity->getBattleProperty();
+    
+    int col=battleProperty->getCol();
+    int row=battleProperty->getRow();
+    int side=battleProperty->getSide();
+    
+    CCLOG("entityAttack:[%d],cell=%d,%d side=%d",entity->m_uID,col,row,side);
+    
+//    return;
+    
+    //取得普通攻击目标
+    
+    //取得对立的一方
+    int oppSide=getOtherSide(side);
+    
+    GameEntity* target=getAttackTarget(col, row, oppSide);
+    
+    if (target) {
+        MessageManager* messageManager=Game::getInstance()->getMessageManager();
+        
+        messageManager->registerReceiver(entity, kMSGEntityAttackComplete, NULL, message_selector(RealtimeBattleController::onEntityAttackComplete),this);
+        
+        messageManager->dispatchMessage(MSG_ATTACK, NULL, entity,target);
+        
+    }else{
+        //如果没有目标，说明对方已经打光。
+        doBattleEnd(side==kSelfSide);
+    }
+}
+
 /*取得攻击目标
   取得最前排的物体,满足以下条件。
        1.如果这一排和当前物体同列的物体不为空，则就是要找的物体。如果为空，则继续第2步。
@@ -992,13 +1173,13 @@ void RealtimeBattleController::onEntityAttackComplete(yhge::Message* message)
     
     GameEntity* entity=static_cast<GameEntity*>(message->getReceiver());
     
-    CCLOG("RealtimeBattleController::onEntityAttackComplete:%d",entity->m_uID);
+    CCLOG("RealtimeBattleController::onEntityAttackComplete:[%d]",entity->m_uID);
     
     Game::getInstance()->getMessageManager()->removeReceiver(entity, kMSGEntityAttackComplete);
     
-    //一步结束，中间有个小间隔，下个人物才开始行动
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
-            schedule_selector(RealtimeBattleController::onEntityAttackCompleteDelay), this, 0.5f, 0, 0.0f, false);
+//    //一步结束，中间有个小间隔，下个人物才开始行动
+//    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
+//            schedule_selector(RealtimeBattleController::onEntityAttackCompleteDelay), this, 0.5f, 0, 0.0f, false);
     
 }
 

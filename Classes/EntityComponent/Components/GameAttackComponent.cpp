@@ -4,6 +4,7 @@
 #include "Consts/GameDefine.h"
 #include "EntityComponent/GameEntity.h"
 #include "Formula/DamageFormula.h"
+#include "EntityComponent/States/BattleState.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -88,7 +89,7 @@ void GameAttackComponent::moveToTargetFront()
     
     GameEntity* target=static_cast<GameEntity*>(m_target);
     
-    CCPoint targetPosition=target->getRendererComponent()->getRenderer()->getPosition();
+    CCPoint targetPosition=target->getBattlePositionComponent()->getPositionFromCell();
 
     //根据目标对象，修正攻击方的位置
     BattleProperty* battleProperty=target->getBattleProperty();
@@ -129,33 +130,39 @@ void GameAttackComponent::moveBackOrigin()
 void GameAttackComponent::parseTargetDamage()
 {
     GameEntity* entity=static_cast<GameEntity*>(m_target);
-    UnitProperty* unitProperty=entity->getUnitProperty();
     
-    int targetHp=unitProperty->getHealth();
+    BattleState* battleState= static_cast<BattleState*>(entity->getBattleStateMachineComponent()->getFSMMachine()->getCurrentState());
     
-    int damage=this->calcDamage(unitProperty);
-    
-    CCLOG("GameAttackComponent::current target hp %d ",targetHp);
-    
-    targetHp=targetHp-damage;
-    
-    CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
-    
-    MessageManager* messageManager=this->getMessageManager();
-    
-    messageManager->dispatchMessage(kMSGAttackDamage,this,m_target,CCInteger::create(damage));
-    
-    if (targetHp<=0) {
-        targetHp=0;
-        unitProperty->setHealth(targetHp);
-        messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+    if (battleState->isNormalDamageable()) {
         
-        //send target die message
-        messageManager->dispatchMessage(MSG_ENTITY_DIE, m_target, messageManager->getGlobalObject());
+        UnitProperty* unitProperty=entity->getUnitProperty();
         
-    }else{
-        unitProperty->setHealth(targetHp);
-        messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+        int targetHp=unitProperty->getHealth();
+        
+        int damage=this->calcDamage(unitProperty);
+        
+        CCLOG("GameAttackComponent::current target hp %d ",targetHp);
+        
+        targetHp=targetHp-damage;
+        
+        CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
+        
+        MessageManager* messageManager=this->getMessageManager();
+        
+        messageManager->dispatchMessage(kMSGAttackDamage,this,m_target,CCInteger::create(damage));
+        
+        if (targetHp<=0) {
+            targetHp=0;
+            unitProperty->setHealth(targetHp);
+            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+            
+            //send target die message
+            messageManager->dispatchMessage(MSG_ENTITY_DIE, m_target, messageManager->getGlobalObject());
+            
+        }else{
+            unitProperty->setHealth(targetHp);
+            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+        }
     }
 }
 

@@ -9,6 +9,14 @@ enum GameMessage
 {
     //用户的message最好从一个大号开始，防止和系统冲突。
     kMSGEntityAttackComplete=100000,
+    
+    //某个entity可以攻击
+    kMSGTrunEntityAttack,
+    //开始攻击
+    kMSGAttackStart,
+    //结束攻击
+    kMSGAttackStop,
+    
     //用户血量改变
     kMSGEntityHealthChange,
     kMSGAttackDamage,

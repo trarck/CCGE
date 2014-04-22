@@ -93,7 +93,7 @@ void BattleController::viewDidLoad()
 
 void BattleController::onViewEnter()
 {
-    Controller::onViewExit();
+    Controller::onViewEnter();
     delayStart();
 }
 

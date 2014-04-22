@@ -33,6 +33,8 @@ public:
     
     virtual void cleanupMessages();
     
+    CCPoint getPositionFromCell();
+    
     void updateRendererPosition();
     
     void onUpdatePosition(yhge::Message* message);
@@ -41,6 +43,11 @@ protected:
     
     //保存对显示组件的引用
     yhge::SpriteRendererComponent* m_rendererComponent;
+    
+    CCPoint m_rendererPosition;
+    
+    int m_lastCol;
+    int m_lastRow;
     
 };
 
