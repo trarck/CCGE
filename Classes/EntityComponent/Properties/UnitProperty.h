@@ -121,6 +121,15 @@ public:
         return m_baseAttackSpeed;
     }
 
+    inline void setIcon(const std::string& icon)
+    {
+        m_icon = icon;
+    }
+    
+    inline const std::string& getIcon()
+    {
+        return m_icon;
+    }
 protected:
     int m_unitId;
     int m_level;
@@ -135,6 +144,8 @@ protected:
     float m_attackSpeed;
     //基础攻击速度，固有的
     float m_baseAttackSpeed;
+    //图标
+    std::string m_icon;
 };
 
 NS_CC_GE_END

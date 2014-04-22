@@ -79,6 +79,9 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     //attack speed
     unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(unitProperty->getBaseAttackSpeed(), 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
     
+    //icon
+    unitProperty->setIcon(entityConfig[CCGE_UNIT_ICON].asString());
+    
     unitProperty->autorelease();
     
     return unitProperty;
