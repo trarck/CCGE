@@ -34,6 +34,7 @@ CREATE TABLE "units" (
 	 "grow_damage" real NOT NULL DEFAULT '0',
 	 "grow_agility" real NOT NULL DEFAULT '0',
 	 "grow_type" integer NOT NULL DEFAULT '0',
+	 "icon" text NOT NULL DEFAULT '',
 	PRIMARY KEY("id")
 );
 

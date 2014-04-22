@@ -46,6 +46,8 @@
 #define CCGE_UNIT_AGILITY "agility"
 #define CCGE_UNIT_ATTACK_SPEED "attack_speed"
 
+#define CCGE_UNIT_ICON "icon"
+
 //monster
 #define CCGE_MONSTER_ID "id"
 #define CCGE_MONSTER_UNIT_ID "unit_id"
