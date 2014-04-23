@@ -61,6 +61,7 @@ bool BattleState::isNormalDamageable()
 
 void BattleIdleState::enter()
 {
+    CCLOG("BattleIdleState enter:[%d]",m_gameEntity->m_uID);
     BattleState::enter();
     
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
@@ -74,6 +75,8 @@ void BattleIdleState::enter()
 
 void BattleIdleState::exit()
 {
+    CCLOG("BattleIdleState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
 
     messageManager->removeReceiver(m_gameEntity, MSG_BEATTACK,message_selector(BattleIdleState::onBeAttack));
@@ -121,6 +124,8 @@ void BattleIdleState::showIdleAnimation()
 
 void BattleMoveState::enter()
 {
+    CCLOG("BattleMoveState enter:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, kMSGBattleMoveComplete, NULL,
@@ -135,6 +140,8 @@ void BattleMoveState::enter()
 
 void BattleMoveState::exit()
 {
+    CCLOG("BattleMoveState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, kMSGBattleMoveComplete,message_selector(BattleMoveState::onMoveComplete));
 }
@@ -166,6 +173,8 @@ bool BattleMoveState::isNormalDamageable()
 
 void BattleAttackState::enter()
 {
+    CCLOG("BattleAttackState enter:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, MSG_ANIMATION_COMPLETE, NULL, message_selector(BattleAttackState::onAttackAnimationComplete),this);
@@ -179,6 +188,8 @@ void BattleAttackState::enter()
 
 void BattleAttackState::exit()
 {
+    CCLOG("BattleAttackState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, MSG_ANIMATION_COMPLETE,message_selector(BattleAttackState::onAttackAnimationComplete));
 }
@@ -211,6 +222,8 @@ bool BattleAttackState::isNormalDamageable()
 
 void BattleBeAttackState::enter()
 {
+ 
+    CCLOG("BattleBeAttackState enter:[%d]",m_gameEntity->m_uID);
     
     BattleState::enter();
     
@@ -225,6 +238,8 @@ void BattleBeAttackState::enter()
 
 void BattleBeAttackState::exit()
 {
+    CCLOG("BattleBeAttackState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, MSG_BEATTACK_FINISH,message_selector(BattleBeAttackState::onBeAttackFinish));
     
