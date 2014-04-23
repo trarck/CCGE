@@ -247,7 +247,7 @@
 		57489DF518F536EC005F540E /* content in Resources */ = {isa = PBXBuildFile; fileRef = 57489DF418F536EC005F540E /* content */; };
 		57489DFB18F54CFB005F540E /* UnitService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DF918F54CFB005F540E /* UnitService.cpp */; };
 		57489DFE18F63871005F540E /* MonsterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFC18F63871005F540E /* MonsterData.cpp */; };
-		57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* PlayerData.cpp */; };
+		57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* CharacterData.cpp */; };
 		57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */; };
 		57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0518F67A22005F540E /* EntityComponentFactory.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
@@ -853,8 +853,8 @@
 		57489DFA18F54CFB005F540E /* UnitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitService.h; sourceTree = "<group>"; };
 		57489DFC18F63871005F540E /* MonsterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterData.cpp; sourceTree = "<group>"; };
 		57489DFD18F63871005F540E /* MonsterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterData.h; sourceTree = "<group>"; };
-		57489DFF18F63AAB005F540E /* PlayerData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerData.cpp; sourceTree = "<group>"; };
-		57489E0018F63AAB005F540E /* PlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerData.h; sourceTree = "<group>"; };
+		57489DFF18F63AAB005F540E /* CharacterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterData.cpp; sourceTree = "<group>"; };
+		57489E0018F63AAB005F540E /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePositionComponent.cpp; sourceTree = "<group>"; };
 		57489E0318F63EC3005F540E /* BattlePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePositionComponent.h; sourceTree = "<group>"; };
 		57489E0518F67A22005F540E /* EntityComponentFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponentFactory.cpp; sourceTree = "<group>"; };
@@ -2028,8 +2028,8 @@
 				574FE5C718DC16CA00490B18 /* MapData.h */,
 				57489DFC18F63871005F540E /* MonsterData.cpp */,
 				57489DFD18F63871005F540E /* MonsterData.h */,
-				57489DFF18F63AAB005F540E /* PlayerData.cpp */,
-				57489E0018F63AAB005F540E /* PlayerData.h */,
+				57489DFF18F63AAB005F540E /* CharacterData.cpp */,
+				57489E0018F63AAB005F540E /* CharacterData.h */,
 				57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */,
 				57243ECE18B45C1E0070163A /* RemoteCacheData.h */,
 				5726027618F4EA8D004C77A1 /* UnitData.cpp */,
@@ -2633,7 +2633,7 @@
 				379BB99A17F03F3700829B88 /* CCArmatureAnimation.cpp in Sources */,
 				379BB99B17F03F3700829B88 /* CCProcessBase.cpp in Sources */,
 				379BB99C17F03F3700829B88 /* CCTween.cpp in Sources */,
-				57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */,
+				57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */,
 				57243ED318B490BC0070163A /* PveBattleService.cpp in Sources */,
 				379BB99D17F03F3700829B88 /* CCArmature.cpp in Sources */,
 				379BB99E17F03F3700829B88 /* CCBone.cpp in Sources */,
