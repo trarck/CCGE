@@ -82,6 +82,8 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     //icon
     unitProperty->setIcon(entityConfig[CCGE_UNIT_ICON].asString());
     
+    unitProperty->setAttackType(entityConfig[CCGE_UNIT_ATTACK_TYPE].asInt());
+    
     unitProperty->autorelease();
     
     return unitProperty;

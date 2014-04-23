@@ -130,6 +130,17 @@ public:
     {
         return m_icon;
     }
+    
+    inline void setAttackType(int attackType)
+    {
+        m_attackType = attackType;
+    }
+    
+    inline int getAttackType()
+    {
+        return m_attackType;
+    }
+    
 protected:
     int m_unitId;
     int m_level;
@@ -146,6 +157,9 @@ protected:
     float m_baseAttackSpeed;
     //图标
     std::string m_icon;
+    
+    //攻击类型
+    int m_attackType;
 };
 
 NS_CC_GE_END
