@@ -35,6 +35,7 @@ CREATE TABLE "units" (
 	 "grow_agility" real NOT NULL DEFAULT '0',
 	 "grow_type" integer NOT NULL DEFAULT '0',
 	 "icon" text NOT NULL DEFAULT '',
+	 "attack_type" integer NOT NULL DEFAULT '0', --攻击类型。0--未知;1--近战;2--远程。
 	PRIMARY KEY("id")
 );
 
