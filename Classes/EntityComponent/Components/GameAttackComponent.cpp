@@ -11,7 +11,7 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-static const float kAttackKeepDisance=80.0f;
+static const float kAttackKeepDisance=140.0f;
 
 GameAttackComponent::GameAttackComponent()
 :m_damageFormulaParameterOne(400)

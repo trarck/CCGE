@@ -15,13 +15,13 @@ const int kBattleCellSize=9;
 const float kBattleCellOffsetX=0;
 const float kBattleCellOffsetY=20;
 
-const float kBattleSelfOffsetX=40;
+const float kBattleSelfOffsetX=60;
 const float kBattleSelfOffsetY=0;
 
-const float kBattleOppOffsetX=0;
+const float kBattleOppOffsetX=-40;
 const float kBattleOppOffsetY=0;
 
-const int kBattleOppOffsetCell=5;
+const int kBattleOppOffsetCell=4;
 
 enum BattleSide
 {

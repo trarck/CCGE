@@ -6,9 +6,9 @@
 
 NS_CC_GE_BEGIN
 
-static const float kMinAttackSpeed=0.2;
+static const float kMinAttackSpeed=0.05;
 static const float kMaxAttackSpeed=5;
-static const float kAgilityToAttackSpeedParam=0.02;
+static const float kAgilityToAttackSpeedParam=0.01;
 
 /**
  * 攻击速度的值越大，攻击的越快
@@ -28,7 +28,7 @@ public:
      攻击频率=1/攻击速度
             =1/(初始攻击速度*(1+加成))=(1/初始攻击速度)*(1/(1+加成))=初始攻击间隔/(1+加成)
      
-     加成=用户的速度属性*0.02
+     加成=用户的速度属性*转换率
 
      范围:
      0.2<=攻击速度<=5

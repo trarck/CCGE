@@ -81,7 +81,7 @@ void RealtimeBattleController::viewDidLoad()
     
     loadEntities();
     
-//    showCoordinate();
+    showCoordinate();
     
     //create test button
     
@@ -160,7 +160,7 @@ void RealtimeBattleController::showCoordinate()
     coordLayer->setMapWidth(20);
     coordLayer->setMapHeight(20);
     coordLayer->setAnchorPoint(ccp(0,0));
-    coordLayer->setPosition(ccp(0,1));
+    coordLayer->setPosition(ccp(0,100));
     
     m_view->addChild(coordLayer);
     
@@ -736,9 +736,9 @@ void RealtimeBattleController::createTroopsBattleTimeline()
     
     int k=0,l=0;
     
-    float delay=0.5f;
+    float delay=2.0f;
     
-    float sideDelay=0.5;
+    float sideDelay=2.5f;
     
     //队伍的战斗时间线
     for (int j=0; j<kBattleCellRow; ++j) {

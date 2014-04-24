@@ -108,7 +108,7 @@ CCPoint BattlePositionComponent::getPositionFromCell()
         }
         
         //y方向居中对齐，坐标要加0.5
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y+0.5);
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y);
         pos.x+=offset.x+x*kBattleCellOffsetX;
         pos.y+=offset.y+y*kBattleCellOffsetY;
         
