@@ -13,7 +13,7 @@
 #include "Components/DieComponent.h"
 #include "Components/HealthBarComponent.h"
 #include "Components/HurtComponent.h"
-#include "Components/BattlePositionComponent.h"
+#include "Components/Battles/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
 
 USING_NS_CC;

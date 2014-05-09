@@ -23,6 +23,11 @@ const float kBattleOppOffsetY=0;
 
 const int kBattleOppOffsetCell=4;
 
+//battle
+const float kFrameInterval=0.125;
+const float kBattleTime=90;
+const int kBattleTeamMaxCount=5;
+
 enum BattleSide
 {
     kSelfSide=1,

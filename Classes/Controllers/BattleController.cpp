@@ -452,7 +452,7 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);
@@ -505,7 +505,7 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);

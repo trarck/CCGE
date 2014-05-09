@@ -9,7 +9,7 @@
 #include "Properties/BattleProperty.h"
 #include "Components/GameAttackComponent.h"
 #include "Components/HealthBarComponent.h"
-#include "Components/BattlePositionComponent.h"
+#include "Components/Battles/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
 
 NS_CC_GE_BEGIN

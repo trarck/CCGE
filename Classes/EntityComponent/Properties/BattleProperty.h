@@ -16,26 +16,28 @@ public:
     ,m_row(0)
     ,m_side(0)
     ,m_scale(1.0f)
+    ,m_x(0)
+    ,m_y(0)
     {
         
     }
     
-    inline void setRow(int row)
+    inline void setRow(float row)
     {
         m_row = row;
     }
     
-    inline int getRow()
+    inline float getRow()
     {
         return m_row;
     }
     
-    inline void setCol(int col)
+    inline void setCol(float col)
     {
         m_col = col;
     }
     
-    inline int getCol()
+    inline float getCol()
     {
         return m_col;
     }
@@ -59,14 +61,37 @@ public:
     {
         return m_scale;
     }
+    
+    inline void setX(float x)
+    {
+        m_x = x;
+    }
+    
+    inline float getX()
+    {
+        return m_x;
+    }
+    
+    inline void setY(float y)
+    {
+        m_y = y;
+    }
+    
+    inline float getY()
+    {
+        return m_y;
+    }
 
 protected:
     
-    int m_row;
-    int m_col;
+    float m_row;
+    float m_col;
     int m_side;
 
     float m_scale;
+    
+    float m_x;
+    float m_y;
 };
 
 NS_CC_GE_END

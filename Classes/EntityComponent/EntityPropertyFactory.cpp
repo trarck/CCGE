@@ -77,7 +77,7 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,const yhge::Jso
     entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int side,float scale)
+void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int side,float scale,float x,float y)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
@@ -85,6 +85,8 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row
     battleProperty->setRow(row);
     battleProperty->setSide(side);
     battleProperty->setScale(scale);
+    battleProperty->setX(x);
+    battleProperty->setY(y);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
     battleProperty->release();

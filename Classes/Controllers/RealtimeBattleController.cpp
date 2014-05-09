@@ -199,13 +199,17 @@ void RealtimeBattleController::convertIndexToCell(int index,int* col,int* row)
 
 void RealtimeBattleController::convertCoord(int index,int* col,int* row,int* x,int* y)
 {
-    *col=index%kBattleCellCol;
-    *row=index/kBattleCellCol;
+    //index从0开始
+    if (index & 1) {
+        //奇数
+        *y=-40;
+        
+    }else{
+        //偶数
+        *y=40;
+    }
     
-    //x=kBattleCellCol-row-1
-    //y=kBattleCellRow-col-1;
-    *x=kBattleCellRow-*row-1;
-    *y=kBattleCellCol-*col-1;
+    *x=index*-80;
 }
 
 /*
@@ -221,13 +225,17 @@ void RealtimeBattleController::convertCoord(int index,int* col,int* row,int* x,i
  */
 void RealtimeBattleController::convertOppCoord(int index,int* col,int* row,int* x,int* y)
 {
-    *col=index%kBattleCellCol;
-    *row=index/kBattleCellCol;
+    //index从0开始
+    if (index & 1) {
+        //奇数
+        *y=-40;
+        
+    }else{
+        //偶数
+        *y=40;
+    }
     
-    //x=kBattleCellCol-row-1
-    //y=kBattleCellRow-col-1;
-    *x=*row;
-    *y=kBattleCellCol-*col-1;
+    *x=index*80;
 }
 
 void RealtimeBattleController::loadSelfEntities()
@@ -472,7 +480,7 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);
@@ -525,7 +533,7 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);
