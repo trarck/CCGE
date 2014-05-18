@@ -46,6 +46,9 @@
     <Filter Include="Classes\Services">
       <UniqueIdentifier>{a5157dc3-ef55-4c17-85d1-acd0074258aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\EntityComponent\States">
+      <UniqueIdentifier>{6f886904-2eae-499f-82a3-4c9e1d661b8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -206,6 +209,45 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Scenes\InitializeScene.cpp">
       <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\RealtimeBattleController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\RealtimeBattleScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\BaseState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\BattleState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\EntityState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\BattlePositionComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\BattleStateMachineComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\HurtComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\EntityComponentFactory.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\UnitService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\MonsterData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\PlayerData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\UnitData.cpp">
+      <Filter>Classes\Datas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +436,48 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\InitializeScene.h">
       <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\RealtimeBattleController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\RealtimeBattleScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\BaseState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\BattleState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\EntityState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattlePositionComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattleStateMachineComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattleTimelineComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\HurtComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\EntityComponentFactory.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\UnitService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\MonsterData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\PlayerData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\UnitData.h">
+      <Filter>Classes\Datas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
