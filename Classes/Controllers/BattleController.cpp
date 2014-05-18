@@ -93,7 +93,7 @@ void BattleController::viewDidLoad()
 
 void BattleController::onViewEnter()
 {
-    Controller::onViewExit();
+    Controller::onViewEnter();
     delayStart();
 }
 
@@ -430,13 +430,13 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     
     //设置实体属性
     
-    PlayerData* playerData=DataFactory::getInstance()->getPlayerData();
+    CharacterData* characterData=DataFactory::getInstance()->getCharacterData();
     
-    Json::Value playerConfig=playerData->getDataById(entityId);
+    Json::Value characterConfig=characterData->getDataById(entityId);
     
-    int unitId=playerConfig[CCGE_PLAYER_UNIT_ID].asInt();
-    float scale=playerConfig[CCGE_PLAYER_SCALE].asDouble();
-    int level=playerConfig[CCGE_PLAYER_LEVEL].asInt();
+    int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
+    float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
+    int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
     
     //取得配置
     UnitData* unitData=DataFactory::getInstance()->getUnitData();
@@ -452,7 +452,7 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);
@@ -505,7 +505,7 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale,x,y);
     
     //添加组件
     EntityFactory::getInstance()->addBattleComponents(entity);

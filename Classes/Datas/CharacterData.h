@@ -1,5 +1,5 @@
-#ifndef CCGE_DATAS_PLAYERDATA_H_
-#define CCGE_DATAS_PLAYERDATA_H_
+#ifndef CCGE_DATAS_CharacterData_H_
+#define CCGE_DATAS_CharacterData_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
@@ -10,13 +10,13 @@ NS_CC_GE_BEGIN
 /**
  * 玩家实体数据
  */
-class PlayerData:public yhge::SqliteDBData
+class CharacterData:public yhge::SqliteDBData
 {
 public:
     
-	PlayerData();
+	CharacterData();
     
-	~PlayerData();
+	~CharacterData();
     
     inline yhge::Json::Value getDataById(int playerId)
     {
@@ -35,4 +35,4 @@ protected:
 
 NS_CC_GE_END
 
-#endif //CCGE_DATAS_PLAYERDATA_H_
+#endif //CCGE_DATAS_CharacterData_H_

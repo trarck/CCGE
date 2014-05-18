@@ -1,5 +1,5 @@
-#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLEPOSITIONCOMPONENT_H_
-#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLEPOSITIONCOMPONENT_H_
+#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_BATTLEPOSITIONCOMPONENT_H_
+#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_BATTLEPOSITIONCOMPONENT_H_
 
 #include "cocos2d.h"
 #include <yhge/yhge.h>
@@ -8,8 +8,8 @@
 NS_CC_GE_BEGIN
 
 /**
- * 伤害组件
- * 主要显示伤害的数值
+ * 位置组件
+ * 主要处理地图位置到屏幕位置的转换
  */
 class BattlePositionComponent : public yhge::Component
 {
@@ -33,6 +33,8 @@ public:
     
     virtual void cleanupMessages();
     
+    CCPoint getPositionFromProperty();
+    
     CCPoint getPositionFromCell();
     
     void updateRendererPosition();
@@ -46,11 +48,15 @@ protected:
     
     CCPoint m_rendererPosition;
     
-    int m_lastCol;
-    int m_lastRow;
+    float m_lastCol;
+    float m_lastRow;
+    
+    float m_lastX;
+    
+    float m_lastY;
     
 };
 
 NS_CC_GE_END
 
-#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLEPOSITIONCOMPONENT_H_
+#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_BATTLEPOSITIONCOMPONENT_H_

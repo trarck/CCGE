@@ -1,5 +1,5 @@
 #include "BattlePositionComponent.h"
-#include "Consts/GameDefine.h"
+#include "GameDefine.h"
 #include "Consts/GameMessage.h"
 #include "Consts/PropertyDefine.h"
 #include "EntityComponent/GameEntity.h"
@@ -59,6 +59,33 @@ void BattlePositionComponent::cleanupMessages()
     
     Component::cleanupMessages();
 }
+
+CCPoint BattlePositionComponent::getPositionFromProperty()
+{
+    
+    GameEntity* entity=static_cast<GameEntity*>(m_owner);
+    
+    BattleProperty* battleProperty=entity->getBattleProperty();
+    
+    if(battleProperty){
+        
+        //通过战斗属性取得，物体所在的坐标
+        
+        float x=battleProperty->getX();
+        float y=battleProperty->getY();
+        
+        
+        //直接把坐标转成屏幕坐标，由于不是基于格子的不用管偏移
+        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y);
+
+        m_rendererPosition=pos;
+        
+        return pos;
+    }
+    
+    return m_rendererPosition;
+}
+
 
 CCPoint BattlePositionComponent::getPositionFromCell()
 {
@@ -122,7 +149,7 @@ CCPoint BattlePositionComponent::getPositionFromCell()
 
 void BattlePositionComponent::updateRendererPosition()
 {
-    m_rendererComponent->getRenderer()->setPosition(getPositionFromCell());
+    m_rendererComponent->getRenderer()->setPosition(getPositionFromProperty());
 }
 
 void BattlePositionComponent::onUpdatePosition(yhge::Message* message)

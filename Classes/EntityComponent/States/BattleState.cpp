@@ -10,12 +10,61 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 
-void BattleIdleState::enter()
+void BattleState::enter()
 {
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, MSG_ATTACK, NULL,
-                                     message_selector(BattleIdleState::onAttack),this);
+                                     message_selector(BattleState::onAttack),this);
+}
+
+void BattleState::exit()
+{
+    yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
+    messageManager->removeReceiver(m_gameEntity, MSG_ATTACK,message_selector(BattleState::onAttack));
+
+}
+
+void BattleState::onAttack(yhge::Message* message)
+{
+    Entity* target= static_cast<Entity*>(message->getData());
+    if(target){
+        CCLOG("onAttack:target[%d]",target->m_uID);
+        
+        m_gameEntity->getAttackComponent()->setTarget(target);
+        
+        //change state to move
+        BattleMoveState* state=static_cast<BattleMoveState*>(m_fSMMachine->getState(kMoveState));
+        state->setMoveType(BattleMoveState::kMoveToTarget);
+        m_fSMMachine->changeState(state);
+    }
+    //没有目标，什么都不做。
+    
+}
+
+//是否可以被普通攻击
+bool BattleState::isAttackable()
+{
+    return true;
+}
+
+//是否可以被技能攻击
+bool BattleState::isSkillAttackable()
+{
+    return true;
+}
+
+bool BattleState::isNormalDamageable()
+{
+    return true;
+}
+
+void BattleIdleState::enter()
+{
+    CCLOG("BattleIdleState enter:[%d]",m_gameEntity->m_uID);
+    BattleState::enter();
+    
+    yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, MSG_BEATTACK, NULL,
                                      message_selector(BattleIdleState::onBeAttack),this);
@@ -26,9 +75,13 @@ void BattleIdleState::enter()
 
 void BattleIdleState::exit()
 {
+    CCLOG("BattleIdleState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
-    messageManager->removeReceiver(m_gameEntity, MSG_ATTACK,message_selector(BattleIdleState::onAttack));
+
     messageManager->removeReceiver(m_gameEntity, MSG_BEATTACK,message_selector(BattleIdleState::onBeAttack));
+    
+    BattleState::exit();
 }
 
 void BattleIdleState::update(float delta)
@@ -43,19 +96,19 @@ void BattleIdleState::onMessage(yhge::Message* message)
     CCLOG("BattleIdleState msg:%d",msg);
 }
 
-void BattleIdleState::onAttack(yhge::Message* message)
-{
-    Entity* target= static_cast<Entity*>(message->getData());
-    if(target){
-        m_gameEntity->getAttackComponent()->setTarget(target);
-    }
-    
-    //change state to move
-    
-    BattleMoveState* state=static_cast<BattleMoveState*>(m_fSMMachine->getState(kMoveState));
-    state->setMoveType(BattleMoveState::kMoveToTarget);
-    m_fSMMachine->changeState(state);
-}
+//void BattleIdleState::onAttack(yhge::Message* message)
+//{
+//    Entity* target= static_cast<Entity*>(message->getData());
+//    if(target){
+//        m_gameEntity->getAttackComponent()->setTarget(target);
+//    }
+//    
+//    //change state to move
+//    
+//    BattleMoveState* state=static_cast<BattleMoveState*>(m_fSMMachine->getState(kMoveState));
+//    state->setMoveType(BattleMoveState::kMoveToTarget);
+//    m_fSMMachine->changeState(state);
+//}
 
 void BattleIdleState::onBeAttack(yhge::Message* message)
 {
@@ -68,8 +121,11 @@ void BattleIdleState::showIdleAnimation()
     m_gameEntity->getAttackComponent()->showIdleAnimation();
 }
 
+
 void BattleMoveState::enter()
 {
+    CCLOG("BattleMoveState enter:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, kMSGBattleMoveComplete, NULL,
@@ -84,6 +140,8 @@ void BattleMoveState::enter()
 
 void BattleMoveState::exit()
 {
+    CCLOG("BattleMoveState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, kMSGBattleMoveComplete,message_selector(BattleMoveState::onMoveComplete));
 }
@@ -102,25 +160,43 @@ void BattleMoveState::onMoveComplete(yhge::Message* message)
     }
 }
 
+
+bool BattleMoveState::isAttackable()
+{
+    return false;
+}
+
+bool BattleMoveState::isNormalDamageable()
+{
+    return false;
+}
+
 void BattleAttackState::enter()
 {
+    CCLOG("BattleAttackState enter:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, MSG_ANIMATION_COMPLETE, NULL, message_selector(BattleAttackState::onAttackAnimationComplete),this);
     
     //显示攻击动画
     showAttackAnimation();
+    
+    //处理伤害
+    m_gameEntity->getAttackComponent()->parseTargetDamage();
 }
 
 void BattleAttackState::exit()
 {
+    CCLOG("BattleAttackState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, MSG_ANIMATION_COMPLETE,message_selector(BattleAttackState::onAttackAnimationComplete));
 }
 
 void BattleAttackState::onAttackAnimationComplete(yhge::Message* message)
 {
-    m_gameEntity->getAttackComponent()->parseTargetDamage();
+//    m_gameEntity->getAttackComponent()->parseTargetDamage();
     
     //改变到移回去状态
     BattleMoveState* state=static_cast<BattleMoveState*>(m_fSMMachine->getState(kMoveState));
@@ -133,8 +209,24 @@ void BattleAttackState::showAttackAnimation()
     m_gameEntity->getAttackComponent()->showAttackAnimation();
 }
 
+//是否可以被普通攻击.正在普通攻击中不能被攻击。
+bool BattleAttackState::isAttackable()
+{
+    return false;
+}
+
+bool BattleAttackState::isNormalDamageable()
+{
+    return false;
+}
+
 void BattleBeAttackState::enter()
 {
+ 
+    CCLOG("BattleBeAttackState enter:[%d]",m_gameEntity->m_uID);
+    
+    BattleState::enter();
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     
     messageManager->registerReceiver(m_gameEntity, MSG_BEATTACK_FINISH, NULL,
@@ -146,8 +238,12 @@ void BattleBeAttackState::enter()
 
 void BattleBeAttackState::exit()
 {
+    CCLOG("BattleBeAttackState exit:[%d]",m_gameEntity->m_uID);
+    
     yhge::MessageManager* messageManager=Game::getInstance()->getMessageManager();
     messageManager->removeReceiver(m_gameEntity, MSG_BEATTACK_FINISH,message_selector(BattleBeAttackState::onBeAttackFinish));
+    
+    BattleState::exit();
 }
 
 void BattleBeAttackState::onBeAttackFinish(yhge::Message* message)

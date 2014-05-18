@@ -289,7 +289,7 @@ protected:
      * @param side 攻击方
      */
     void entityAttack(GameEntity* entity,int col,int row,int side);
-    
+        
     /**
      * @brief 取得攻击目标
      *

@@ -13,7 +13,7 @@
 #include "Components/DieComponent.h"
 #include "Components/HealthBarComponent.h"
 #include "Components/HurtComponent.h"
-#include "Components/BattlePositionComponent.h"
+#include "Components/Battles/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
 
 USING_NS_CC;
@@ -155,6 +155,8 @@ void EntityComponentFactory::addBattlePositionComponent(GameEntity* entity)
     entity->addComponent(battlePositionComponent);
     battlePositionComponent->release();
     battlePositionComponent->updateRendererPosition();
+    
+    entity->setBattlePositionComponent(battlePositionComponent);
 }
 
 void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
@@ -163,6 +165,8 @@ void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
     battleStateMachineComponent->init();
     entity->addComponent(battleStateMachineComponent);
     battleStateMachineComponent->release();
+    
+    entity->setBattleStateMachineComponent(battleStateMachineComponent);
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

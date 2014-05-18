@@ -24,7 +24,7 @@ HurtComponent::~HurtComponent()
 void HurtComponent::setup()
 {
     Component::setup();
-    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+    m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
     
 }
 
@@ -68,16 +68,19 @@ void HurtComponent::onAttackDamage(yhge::Message* message)
         //show damage tip
         CCLabelBMFont* label=CCLabelBMFont::create(damageString->getCString(), "fonts/Red_36.fnt");
         
-        CCSize size=m_rendererComponent->getRenderer()->getContentSize();
+        CCSize size=m_rendererComponent->getSpriteRenderer()->getContentSize();
         CCPoint pos=CCPointZero;//m_rendererComponent->getRenderer()->getPosition();
         
+//        CCLOG("size:%f,%f",size.width,size.height);
 //        label->setPosition(ccp(pos.x,pos.y+size.height+50));
         
         float scale=m_rendererComponent->getRenderer()->getScale();
         
-        label->setPosition(ccp(size.width/(2*scale),pos.y+(size.height/scale)+40));
+        label->setAlignment(kCCTextAlignmentCenter);
         
-        label->setScale(1/scale);
+        label->setPosition(ccp(size.width/(2*scale)-18,pos.y+size.height));
+        
+        label->setScale(1.5/scale);
         
         //action
         CCAction* effect=CCSequence::createWithTwoActions(CCMoveBy::create(0.4f, ccp(0,40.0f)), CCRemoveSelf::create());

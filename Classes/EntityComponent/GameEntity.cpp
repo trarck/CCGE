@@ -12,6 +12,8 @@ GameEntity::GameEntity()
 ,m_unitProperty(NULL)
 ,m_battleProperty(NULL)
 ,m_healthBarComponent(NULL)
+,m_battlePositionComponent(NULL)
+,m_battleStateMachineComponent(NULL)
 {
     
 }

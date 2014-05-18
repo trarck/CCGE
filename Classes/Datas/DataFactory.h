@@ -9,7 +9,7 @@
 #include "MapData.h"
 #include "UnitData.h"
 #include "MonsterData.h"
-#include "PlayerData.h"
+#include "CharacterData.h"
 
 NS_CC_GE_BEGIN
 
@@ -66,9 +66,9 @@ public:
         return m_monsterData;
     }
 
-    inline PlayerData* getPlayerData()
+    inline CharacterData* getCharacterData()
     {
-        return m_playerData;
+        return m_characterData;
     }
     
 protected:
@@ -96,7 +96,7 @@ protected:
     
     MonsterData* m_monsterData;
     
-    PlayerData* m_playerData;
+    CharacterData* m_characterData;
     
 };
 

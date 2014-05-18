@@ -26,6 +26,21 @@ public:
         kPrepareSkillState,
         kFireSkillState
     };
+    
+    virtual void enter();
+    
+    virtual void exit();
+    
+    //是否可以被普通攻击.如果允许移动，那么移动出去攻击别人就不能被攻击。
+    virtual bool isAttackable();
+    
+    //是否可以被技能攻击
+    virtual bool isSkillAttackable();
+    
+    //是否被普通攻击伤害.如果人物不在原来的位置，那么普通攻击伤害。
+    virtual bool isNormalDamageable();
+    
+    virtual void onAttack(yhge::Message* message);
 };
 
 /**
@@ -39,7 +54,7 @@ public:
     virtual void exit();
 	virtual void update(float delta);
     virtual void onMessage(yhge::Message* message);
-    virtual void onAttack(yhge::Message* message);
+//    virtual void onAttack(yhge::Message* message);
     virtual void onBeAttack(yhge::Message* message);
     
 protected:
@@ -72,6 +87,12 @@ public:
     
     virtual void onMoveComplete(yhge::Message* message);
 
+    //是否可以被普通攻击.移动中不能被攻击
+    virtual bool isAttackable();
+    
+    //是否被普通攻击伤害.移动中不受伤害。
+    virtual bool isNormalDamageable();
+    
     inline void setMoveType(int moveType)
     {
         m_moveType = moveType;
@@ -99,6 +120,12 @@ public:
     virtual void exit();
 
     virtual void onAttackAnimationComplete(yhge::Message* message);
+    
+    //是否可以被普通攻击.正在普通攻击中不能被攻击。
+    virtual bool isAttackable();
+    
+    //是否被普通攻击伤害.攻击中不受伤害。
+    virtual bool isNormalDamageable();
     
 protected:
     

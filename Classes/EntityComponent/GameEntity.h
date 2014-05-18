@@ -9,6 +9,8 @@
 #include "Properties/BattleProperty.h"
 #include "Components/GameAttackComponent.h"
 #include "Components/HealthBarComponent.h"
+#include "Components/Battles/BattlePositionComponent.h"
+#include "Components/BattleStateMachineComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -82,6 +84,26 @@ public:
         return m_healthBarComponent;
     }
     
+    inline void setBattlePositionComponent(BattlePositionComponent* battlePositionComponent)
+    {
+        m_battlePositionComponent = battlePositionComponent;
+    }
+    
+    inline BattlePositionComponent* getBattlePositionComponent()
+    {
+        return m_battlePositionComponent;
+    }
+
+    inline void setBattleStateMachineComponent(BattleStateMachineComponent* battleStateMachineComponent)
+    {
+        m_battleStateMachineComponent = battleStateMachineComponent;
+    }
+    
+    inline BattleStateMachineComponent* getBattleStateMachineComponent()
+    {
+        return m_battleStateMachineComponent;
+    }
+    
 private:
 
     yhge::RendererComponent* m_rendererComponent;
@@ -95,6 +117,10 @@ private:
     BattleProperty* m_battleProperty;
     
     HealthBarComponent* m_healthBarComponent;
+    
+    BattlePositionComponent* m_battlePositionComponent;
+    
+    BattleStateMachineComponent* m_battleStateMachineComponent;
 };
 
 NS_CC_GE_END

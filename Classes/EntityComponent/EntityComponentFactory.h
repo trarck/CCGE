@@ -32,7 +32,7 @@ public:
     void addHurtComponent(GameEntity* entity);
     
     void addBattlePositionComponent(GameEntity* entity);
-    
+        
     void addBattleStateMachineComponent(GameEntity* entity);
     
 protected:

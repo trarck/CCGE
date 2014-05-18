@@ -39,7 +39,7 @@ public:
 protected:
     
     //保存对显示组件的引用
-    yhge::RendererComponent* m_rendererComponent;
+    yhge::SpriteRendererComponent* m_rendererComponent;
     
 };
 

@@ -11,6 +11,92 @@
 
 NS_CC_GE_BEGIN
 
+class TimelineNode :public CCObject
+{
+public:
+    
+    TimelineNode()
+    :m_duration(0.0f)
+    ,m_elapsed(0.0f)
+    ,m_gameEntity(NULL)
+    ,m_renderer(NULL)
+    {
+        
+    }
+    
+    ~TimelineNode()
+    {
+        CC_SAFE_RELEASE_NULL(m_gameEntity);
+        CC_SAFE_RELEASE_NULL(m_renderer);
+    }
+    
+    inline bool isTurn(){
+        return m_elapsed>=m_duration;
+    }
+    
+    inline void fixTurn(){
+        
+        int loop=int (m_elapsed/m_duration);
+        
+        m_elapsed-=loop*m_duration;
+    }
+    
+    inline void addElapsed(float delta)
+    {
+        m_elapsed += delta;
+    }
+    
+    inline void setElapsed(float elapsed)
+    {
+        m_elapsed = elapsed;
+    }
+    
+    inline float getElapsed()
+    {
+        return m_elapsed;
+    }
+    
+    inline void setDuration(float duration)
+    {
+        m_duration = duration;
+    }
+    
+    inline float getDuration()
+    {
+        return m_duration;
+    }
+    
+    inline void setGameEntity(GameEntity* gameEntity)
+    {
+        CC_SAFE_RETAIN(gameEntity);
+        CC_SAFE_RELEASE(m_gameEntity);
+        m_gameEntity = gameEntity;
+    }
+    
+    inline GameEntity* getGameEntity()
+    {
+        return m_gameEntity;
+    }
+    
+    inline void setRenderer(CCSprite* renderer)
+    {
+        CC_SAFE_RETAIN(renderer);
+        CC_SAFE_RELEASE(m_renderer);
+        m_renderer = renderer;
+    }
+    
+    inline CCSprite* getRenderer()
+    {
+        return m_renderer;
+    }
+    
+protected:
+    float m_elapsed;
+    float m_duration;
+    GameEntity* m_gameEntity;
+    CCSprite* m_renderer;
+};
+
 /**
  * 战斗直接使用直角坐标系
  * 显示可以使用斜视角
@@ -133,7 +219,6 @@ public:
      */
     void removeEntityFromTroops(int col,int row,int side);
     
-    
     void delayStart();
     
     void onDdelayStartUpdate(float delta);
@@ -152,6 +237,28 @@ public:
      * @brief 停止战斗
      */
     void stop();
+    
+    /**
+     * 开始战斗单位的，战斗时间线
+     */
+    void createTroopsBattleTimeline();
+    
+    /**
+     * 开启某个单位的战斗时间线
+     */
+    void createEntityBattleTimeline(GameEntity* entity,float delay=0);
+    
+    /**
+     * 停止某个单位的战斗时间线
+     */
+    void removeEntityBattleTimeline(GameEntity* entity);
+    
+    /**
+     * 显示所有战斗单位的战斗时间线
+     */
+    void showBattleTimeline();
+    
+    void showBattleTimeline(TimelineNode* node);
     
     /**
      * @brief 处理一回合
@@ -289,6 +396,8 @@ protected:
      * @param side 攻击方
      */
     void entityAttack(GameEntity* entity,int col,int row,int side);
+    
+    void entityAttack(GameEntity* entity);
     
     /**
      * @brief 取得攻击目标
@@ -440,6 +549,9 @@ private:
     
     CCLayer* m_battleWorld;
 
+    CCArray* m_timelineNodes;
+    
+    CCLayer* m_timelineLayer;
     
 };
 NS_CC_GE_END

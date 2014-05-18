@@ -247,8 +247,7 @@
 		57489DF518F536EC005F540E /* content in Resources */ = {isa = PBXBuildFile; fileRef = 57489DF418F536EC005F540E /* content */; };
 		57489DFB18F54CFB005F540E /* UnitService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DF918F54CFB005F540E /* UnitService.cpp */; };
 		57489DFE18F63871005F540E /* MonsterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFC18F63871005F540E /* MonsterData.cpp */; };
-		57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* PlayerData.cpp */; };
-		57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */; };
+		57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* CharacterData.cpp */; };
 		57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0518F67A22005F540E /* EntityComponentFactory.cpp */; };
 		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
@@ -259,6 +258,9 @@
 		574FE62218E012F200490B18 /* InitializeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62018E012F200490B18 /* InitializeController.cpp */; };
 		574FE62518E014A300490B18 /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62318E014A300490B18 /* SimpleScene.cpp */; };
 		574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62618E01BD200490B18 /* InitializeScene.cpp */; };
+		574FF709191A2D3800DC1791 /* BattleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF707191A2D3800DC1791 /* BattleSystem.cpp */; };
+		574FF70D191B6AEA00DC1791 /* BattlePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF70B191B6AEA00DC1791 /* BattlePositionComponent.cpp */; };
+		574FF711191C7C6700DC1791 /* AIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF70F191C7C6700DC1791 /* AIComponent.cpp */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
@@ -853,10 +855,8 @@
 		57489DFA18F54CFB005F540E /* UnitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitService.h; sourceTree = "<group>"; };
 		57489DFC18F63871005F540E /* MonsterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterData.cpp; sourceTree = "<group>"; };
 		57489DFD18F63871005F540E /* MonsterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterData.h; sourceTree = "<group>"; };
-		57489DFF18F63AAB005F540E /* PlayerData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerData.cpp; sourceTree = "<group>"; };
-		57489E0018F63AAB005F540E /* PlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerData.h; sourceTree = "<group>"; };
-		57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePositionComponent.cpp; sourceTree = "<group>"; };
-		57489E0318F63EC3005F540E /* BattlePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePositionComponent.h; sourceTree = "<group>"; };
+		57489DFF18F63AAB005F540E /* CharacterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterData.cpp; sourceTree = "<group>"; };
+		57489E0018F63AAB005F540E /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		57489E0518F67A22005F540E /* EntityComponentFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponentFactory.cpp; sourceTree = "<group>"; };
 		57489E0618F67A22005F540E /* EntityComponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityComponentFactory.h; sourceTree = "<group>"; };
 		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
@@ -878,6 +878,12 @@
 		574FE62418E014A300490B18 /* SimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleScene.h; sourceTree = "<group>"; };
 		574FE62618E01BD200490B18 /* InitializeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitializeScene.cpp; sourceTree = "<group>"; };
 		574FE62718E01BD200490B18 /* InitializeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializeScene.h; sourceTree = "<group>"; };
+		574FF707191A2D3800DC1791 /* BattleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleSystem.cpp; sourceTree = "<group>"; };
+		574FF708191A2D3800DC1791 /* BattleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleSystem.h; sourceTree = "<group>"; };
+		574FF70B191B6AEA00DC1791 /* BattlePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePositionComponent.cpp; sourceTree = "<group>"; };
+		574FF70C191B6AEA00DC1791 /* BattlePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePositionComponent.h; sourceTree = "<group>"; };
+		574FF70F191C7C6700DC1791 /* AIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIComponent.cpp; sourceTree = "<group>"; };
+		574FF710191C7C6700DC1791 /* AIComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIComponent.h; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -1502,6 +1508,7 @@
 				57243EBC18B3551C0070163A /* Services */,
 				57704F8C18CDAC29006B8A62 /* SceneBuilder */,
 				57704F9A18CDAD72006B8A62 /* SceneDirector */,
+				574FF702191A2D1400DC1791 /* Systems */,
 				575D1505187C0827004E9958 /* Tests */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -2015,6 +2022,35 @@
 			path = ../Classes/Animations;
 			sourceTree = "<group>";
 		};
+		574FF702191A2D1400DC1791 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				574FF706191A2D3800DC1791 /* Battles */,
+			);
+			name = Systems;
+			path = ../Classes/Systems;
+			sourceTree = "<group>";
+		};
+		574FF706191A2D3800DC1791 /* Battles */ = {
+			isa = PBXGroup;
+			children = (
+				574FF707191A2D3800DC1791 /* BattleSystem.cpp */,
+				574FF708191A2D3800DC1791 /* BattleSystem.h */,
+			);
+			path = Battles;
+			sourceTree = "<group>";
+		};
+		574FF70A191B6AEA00DC1791 /* Battles */ = {
+			isa = PBXGroup;
+			children = (
+				574FF70F191C7C6700DC1791 /* AIComponent.cpp */,
+				574FF710191C7C6700DC1791 /* AIComponent.h */,
+				574FF70B191B6AEA00DC1791 /* BattlePositionComponent.cpp */,
+				574FF70C191B6AEA00DC1791 /* BattlePositionComponent.h */,
+			);
+			path = Battles;
+			sourceTree = "<group>";
+		};
 		57525CEE18AC6E9300166633 /* Datas */ = {
 			isa = PBXGroup;
 			children = (
@@ -2028,8 +2064,8 @@
 				574FE5C718DC16CA00490B18 /* MapData.h */,
 				57489DFC18F63871005F540E /* MonsterData.cpp */,
 				57489DFD18F63871005F540E /* MonsterData.h */,
-				57489DFF18F63AAB005F540E /* PlayerData.cpp */,
-				57489E0018F63AAB005F540E /* PlayerData.h */,
+				57489DFF18F63AAB005F540E /* CharacterData.cpp */,
+				57489E0018F63AAB005F540E /* CharacterData.h */,
 				57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */,
 				57243ECE18B45C1E0070163A /* RemoteCacheData.h */,
 				5726027618F4EA8D004C77A1 /* UnitData.cpp */,
@@ -2163,8 +2199,7 @@
 		5768C14518A8DA0E005123C5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */,
-				57489E0318F63EC3005F540E /* BattlePositionComponent.h */,
+				574FF70A191B6AEA00DC1791 /* Battles */,
 				57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */,
 				57F013441900C8F100CB32E9 /* BattleStateMachineComponent.h */,
 				57F0133D1900B6F300CB32E9 /* BattleTimelineComponent.cpp */,
@@ -2488,6 +2523,7 @@
 				15A3D99C1682F7F9002FB0C5 /* cpPinJoint.c in Sources */,
 				15A3D99D1682F7F9002FB0C5 /* cpPivotJoint.c in Sources */,
 				15A3D99E1682F7F9002FB0C5 /* cpRatchetJoint.c in Sources */,
+				574FF70D191B6AEA00DC1791 /* BattlePositionComponent.cpp in Sources */,
 				15A3D99F1682F7F9002FB0C5 /* cpRotaryLimitJoint.c in Sources */,
 				15A3D9A01682F7F9002FB0C5 /* cpSimpleMotor.c in Sources */,
 				15A3D9A11682F7F9002FB0C5 /* cpSlideJoint.c in Sources */,
@@ -2506,6 +2542,7 @@
 				15A3D9AA1682F7F9002FB0C5 /* cpShape.c in Sources */,
 				15A3D9AB1682F7F9002FB0C5 /* cpSpace.c in Sources */,
 				15A3D9AC1682F7F9002FB0C5 /* cpSpaceComponent.c in Sources */,
+				574FF711191C7C6700DC1791 /* AIComponent.cpp in Sources */,
 				15A3D9AD1682F7F9002FB0C5 /* cpSpaceHash.c in Sources */,
 				15A3D9AE1682F7F9002FB0C5 /* cpSpaceQuery.c in Sources */,
 				15A3D9AF1682F7F9002FB0C5 /* cpSpaceStep.c in Sources */,
@@ -2633,7 +2670,7 @@
 				379BB99A17F03F3700829B88 /* CCArmatureAnimation.cpp in Sources */,
 				379BB99B17F03F3700829B88 /* CCProcessBase.cpp in Sources */,
 				379BB99C17F03F3700829B88 /* CCTween.cpp in Sources */,
-				57489E0118F63AAB005F540E /* PlayerData.cpp in Sources */,
+				57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */,
 				57243ED318B490BC0070163A /* PveBattleService.cpp in Sources */,
 				379BB99D17F03F3700829B88 /* CCArmature.cpp in Sources */,
 				379BB99E17F03F3700829B88 /* CCBone.cpp in Sources */,
@@ -2657,10 +2694,10 @@
 				379BB9AE17F03F3700829B88 /* CCComAudio.cpp in Sources */,
 				379BB9AF17F03F3700829B88 /* CCComController.cpp in Sources */,
 				379BB9B017F03F3700829B88 /* CCComRender.cpp in Sources */,
+				574FF709191A2D3800DC1791 /* BattleSystem.cpp in Sources */,
 				575AD88D187BC54B00AA0477 /* HeaderController.cpp in Sources */,
 				379BB9B117F03F3700829B88 /* CCInputDelegate.cpp in Sources */,
 				379BB9B217F03F3700829B88 /* UIRootWidget.cpp in Sources */,
-				57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */,
 				379BB9B317F03F3700829B88 /* UIWidget.cpp in Sources */,
 				574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */,
 				5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */,

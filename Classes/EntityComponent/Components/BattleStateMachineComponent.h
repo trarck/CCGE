@@ -38,10 +38,7 @@ public:
     /**
      * 设置战斗中用到的状态
      */
-    void setupStates();
-    
-    void onAttackDamage(yhge::Message* message);
-    
+    void setupStates();    
     
 public:
     
