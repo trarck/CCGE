@@ -6,9 +6,9 @@
 
 NS_CC_GE_BEGIN
 
-static const float kMinAttackSpeed=0.2;
-static const float kMaxAttackSpeed=5;
-static const float kAgilityToAttackSpeedParam=0.02;
+static const float kMinAttackSpeed=0.2f;
+static const float kMaxAttackSpeed=5.0f;
+static const float kAgilityToAttackSpeedParam=0.02f;
 
 /**
  * 攻击速度的值越大，攻击的越快
