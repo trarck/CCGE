@@ -71,6 +71,9 @@ void BattleIdleState::enter()
 
     //显示空闲动画
     showIdleAnimation();
+    
+    //check update
+    //if not ai update then add
 }
 
 void BattleIdleState::exit()
@@ -184,6 +187,9 @@ void BattleAttackState::enter()
     
     //处理伤害
     m_gameEntity->getAttackComponent()->parseTargetDamage();
+    
+    //check update
+    //if have ai update then remove
 }
 
 void BattleAttackState::exit()

@@ -259,6 +259,11 @@
 		574FE62218E012F200490B18 /* InitializeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62018E012F200490B18 /* InitializeController.cpp */; };
 		574FE62518E014A300490B18 /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62318E014A300490B18 /* SimpleScene.cpp */; };
 		574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62618E01BD200490B18 /* InitializeScene.cpp */; };
+		574FF80D192DAAAA00DC1791 /* AIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF80B192DAAAA00DC1791 /* AIComponent.cpp */; };
+		574FF813192DD2BC00DC1791 /* BuffComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF811192DD2BC00DC1791 /* BuffComponent.cpp */; };
+		574FF816192DE52E00DC1791 /* ProjectileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */; };
+		574FF819192DE59B00DC1791 /* ChainComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF817192DE59B00DC1791 /* ChainComponent.cpp */; };
+		574FF81C192DE7BA00DC1791 /* SkillComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
@@ -291,6 +296,7 @@
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
 		57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57823C5018A9BF11005ACB35 /* UnitProperty.cpp */; };
 		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
+		57C45EA9192EF11500AF8E79 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */; };
 		57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E918AA07070085A22F /* DamageFormula.cpp */; };
 		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
 		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
@@ -878,6 +884,16 @@
 		574FE62418E014A300490B18 /* SimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleScene.h; sourceTree = "<group>"; };
 		574FE62618E01BD200490B18 /* InitializeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitializeScene.cpp; sourceTree = "<group>"; };
 		574FE62718E01BD200490B18 /* InitializeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializeScene.h; sourceTree = "<group>"; };
+		574FF80B192DAAAA00DC1791 /* AIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIComponent.cpp; sourceTree = "<group>"; };
+		574FF80C192DAAAA00DC1791 /* AIComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIComponent.h; sourceTree = "<group>"; };
+		574FF811192DD2BC00DC1791 /* BuffComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuffComponent.cpp; sourceTree = "<group>"; };
+		574FF812192DD2BC00DC1791 /* BuffComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuffComponent.h; sourceTree = "<group>"; };
+		574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectileComponent.cpp; sourceTree = "<group>"; };
+		574FF815192DE52E00DC1791 /* ProjectileComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileComponent.h; sourceTree = "<group>"; };
+		574FF817192DE59B00DC1791 /* ChainComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChainComponent.cpp; sourceTree = "<group>"; };
+		574FF818192DE59B00DC1791 /* ChainComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChainComponent.h; sourceTree = "<group>"; };
+		574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillComponent.cpp; sourceTree = "<group>"; };
+		574FF81B192DE7BA00DC1791 /* SkillComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillComponent.h; sourceTree = "<group>"; };
 		57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteScene.cpp; sourceTree = "<group>"; };
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
@@ -946,6 +962,8 @@
 		57823C5818A9C42C005ACB35 /* PropertyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyDefine.h; sourceTree = "<group>"; };
 		57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameActiveSortLayer.cpp; sourceTree = "<group>"; };
 		57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActiveSortLayer.h; sourceTree = "<group>"; };
+		57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
+		57C45EA8192EF11500AF8E79 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		57CF76E918AA07070085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
 		57CF76EA18AA07070085A22F /* DamageFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageFormula.h; sourceTree = "<group>"; };
 		57CF76F018AA0D5F0085A22F /* AnimationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDefine.h; sourceTree = "<group>"; };
@@ -2015,6 +2033,25 @@
 			path = ../Classes/Animations;
 			sourceTree = "<group>";
 		};
+		574FF80A192DAAAA00DC1791 /* Battles */ = {
+			isa = PBXGroup;
+			children = (
+				574FF80B192DAAAA00DC1791 /* AIComponent.cpp */,
+				574FF80C192DAAAA00DC1791 /* AIComponent.h */,
+				574FF811192DD2BC00DC1791 /* BuffComponent.cpp */,
+				574FF812192DD2BC00DC1791 /* BuffComponent.h */,
+				574FF817192DE59B00DC1791 /* ChainComponent.cpp */,
+				574FF818192DE59B00DC1791 /* ChainComponent.h */,
+				57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */,
+				57C45EA8192EF11500AF8E79 /* MoveComponent.h */,
+				574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */,
+				574FF815192DE52E00DC1791 /* ProjectileComponent.h */,
+				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
+				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
+			);
+			path = Battles;
+			sourceTree = "<group>";
+		};
 		57525CEE18AC6E9300166633 /* Datas */ = {
 			isa = PBXGroup;
 			children = (
@@ -2163,6 +2200,7 @@
 		5768C14518A8DA0E005123C5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				574FF80A192DAAAA00DC1791 /* Battles */,
 				57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */,
 				57489E0318F63EC3005F540E /* BattlePositionComponent.h */,
 				57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */,
@@ -2434,6 +2472,7 @@
 				15A3D9061682F7D5002FB0C5 /* b2TimeOfImpact.cpp in Sources */,
 				15A3D9071682F7D5002FB0C5 /* b2ChainShape.cpp in Sources */,
 				15A3D9081682F7D5002FB0C5 /* b2CircleShape.cpp in Sources */,
+				574FF81C192DE7BA00DC1791 /* SkillComponent.cpp in Sources */,
 				15A3D9091682F7D5002FB0C5 /* b2EdgeShape.cpp in Sources */,
 				15A3D90A1682F7D5002FB0C5 /* b2PolygonShape.cpp in Sources */,
 				15A3D90B1682F7D5002FB0C5 /* b2BlockAllocator.cpp in Sources */,
@@ -2547,6 +2586,7 @@
 				15A3DA471682F826002FB0C5 /* CCScrollViewLoader.cpp in Sources */,
 				15A3DA481682F826002FB0C5 /* CCSpriteLoader.cpp in Sources */,
 				57243EB218B33E050070163A /* ModelFactory.cpp in Sources */,
+				574FF813192DD2BC00DC1791 /* BuffComponent.cpp in Sources */,
 				15A3DA491682F826002FB0C5 /* CCControl.cpp in Sources */,
 				15A3DA4A1682F826002FB0C5 /* CCControlButton.cpp in Sources */,
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
@@ -2574,6 +2614,7 @@
 				15A3DA5A1682F826002FB0C5 /* CCSorting.cpp in Sources */,
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
 				15A3DA5C1682F826002FB0C5 /* CCTableViewCell.cpp in Sources */,
+				574FF80D192DAAAA00DC1791 /* AIComponent.cpp in Sources */,
 				57243ED618B49BE70070163A /* BattlePrepareScene.cpp in Sources */,
 				57F013421900C38300CB32E9 /* BattleState.cpp in Sources */,
 				575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */,
@@ -2639,6 +2680,7 @@
 				379BB99E17F03F3700829B88 /* CCBone.cpp in Sources */,
 				379BB99F17F03F3700829B88 /* CCDatas.cpp in Sources */,
 				379BB9A017F03F3700829B88 /* CCBatchNode.cpp in Sources */,
+				574FF816192DE52E00DC1791 /* ProjectileComponent.cpp in Sources */,
 				379BB9A117F03F3700829B88 /* CCDecorativeDisplay.cpp in Sources */,
 				379BB9A217F03F3700829B88 /* CCDisplayFactory.cpp in Sources */,
 				57704F9318CDAC29006B8A62 /* GameSceneBuilder.cpp in Sources */,
@@ -2648,6 +2690,7 @@
 				379BB9A617F03F3700829B88 /* CCArmatureDataManager.cpp in Sources */,
 				379BB9A717F03F3700829B88 /* CCArmatureDefine.cpp in Sources */,
 				379BB9A817F03F3700829B88 /* CCDataReaderHelper.cpp in Sources */,
+				57C45EA9192EF11500AF8E79 /* MoveComponent.cpp in Sources */,
 				57243ED918B49C1F0070163A /* BattlePrepareController.cpp in Sources */,
 				379BB9A917F03F3700829B88 /* CCSpriteFrameCacheHelper.cpp in Sources */,
 				379BB9AA17F03F3700829B88 /* CCTransformHelp.cpp in Sources */,
@@ -2665,6 +2708,7 @@
 				574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */,
 				5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */,
 				379BB9B417F03F3700829B88 /* Layout.cpp in Sources */,
+				574FF819192DE59B00DC1791 /* ChainComponent.cpp in Sources */,
 				379BB9B617F03F3700829B88 /* LayoutParameter.cpp in Sources */,
 				379BB9B717F03F3700829B88 /* UILayoutDefine.cpp in Sources */,
 				57243EB118B33E050070163A /* BaseModel.cpp in Sources */,

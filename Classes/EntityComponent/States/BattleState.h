@@ -45,11 +45,17 @@ public:
 
 /**
  * 空闲状态
+ * 当处于空闲状态的时候会去寻找目标
  */
 class BattleIdleState:public BattleState
 {
 public:
 
+    BattleIdleState()
+    {
+        m_type=kIdleState;
+    }
+    
     virtual void enter();
     virtual void exit();
 	virtual void update(float delta);
@@ -78,7 +84,7 @@ public:
     BattleMoveState()
     :m_moveType(kMoveToTarget)
     {
-        
+        m_type=kMoveState;
     }
   
     virtual void enter();
@@ -115,6 +121,11 @@ class BattleAttackState:public BattleState
 {
 public:
     
+    BattleAttackState()
+    {
+        m_type=kAttackState;
+    }
+    
     virtual void enter();
     
     virtual void exit();
@@ -139,6 +150,11 @@ class BattleBeAttackState:public BattleState
 {
 public:
     
+    BattleBeAttackState()
+    {
+        m_type=kBeAttackState;
+    }
+    
     virtual void enter();
     
     virtual void exit();
@@ -157,17 +173,24 @@ protected:
 class BattlePrepareSkillkState:public BattleState
 {
 public:
-    
+    BattlePrepareSkillkState()
+    {
+        m_type=kPrepareSkillState;
+    }
 };
 
 /**
  * 释放技能的施放阶段
- * 有些技能会施放一段时间，有些怪施放一次。
+ * 有些技能会施放一段时间，有些会瞬间释放。
  */
 class BattleFireSkillkState:public BattleState
 {
 public:
 
+    BattleFireSkillkState()
+    {
+        m_type=kFireSkillState;
+    }
 };
 
 NS_CC_GE_END
