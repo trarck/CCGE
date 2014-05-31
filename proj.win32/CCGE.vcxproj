@@ -149,7 +149,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClCompile Include="..\Classes\Datas\DataFactory.cpp" />
     <ClCompile Include="..\Classes\Datas\MapData.cpp" />
     <ClCompile Include="..\Classes\Datas\MonsterData.cpp" />
-    <ClCompile Include="..\Classes\Datas\PlayerData.cpp" />
     <ClCompile Include="..\Classes\Datas\RemoteCacheData.cpp" />
     <ClCompile Include="..\Classes\Datas\UnitData.cpp" />
     <ClCompile Include="..\Classes\Datas\ZoneData.cpp" />
@@ -220,7 +219,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClInclude Include="..\Classes\Datas\DataFactory.h" />
     <ClInclude Include="..\Classes\Datas\MapData.h" />
     <ClInclude Include="..\Classes\Datas\MonsterData.h" />
-    <ClInclude Include="..\Classes\Datas\PlayerData.h" />
     <ClInclude Include="..\Classes\Datas\RemoteCacheData.h" />
     <ClInclude Include="..\Classes\Datas\UnitData.h" />
     <ClInclude Include="..\Classes\Datas\ZoneData.h" />

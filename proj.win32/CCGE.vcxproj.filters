@@ -243,9 +243,6 @@
     <ClCompile Include="..\Classes\Datas\MonsterData.cpp">
       <Filter>Classes\Datas</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Datas\PlayerData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Datas\UnitData.cpp">
       <Filter>Classes\Datas</Filter>
     </ClCompile>
@@ -471,9 +468,6 @@
       <Filter>Classes\Services</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Datas\MonsterData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\PlayerData.h">
       <Filter>Classes\Datas</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Datas\UnitData.h">
