@@ -16,7 +16,6 @@ GotoSceneProxy::~GotoSceneProxy()
 
 void GotoSceneProxy::menuItemCallback(CCObject* pSender)
 {
-    std::vector<<#typename _Tp#>>
 	GameSceneDirector::getInstance()->pushScene(m_gotoSceneName);
 }
 
