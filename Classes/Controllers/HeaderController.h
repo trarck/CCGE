@@ -17,6 +17,8 @@ public:
 	void showUserInfoCallback(CCObject* pSender);
 
 	void setTitle(const std::string& title);
+    
+    CREATE_FUNC(HeaderController);
 
 private:
 	CCLabelTTF* m_title;

@@ -1,0 +1,40 @@
+{
+	"version":1,
+	"formate":1,
+	"graphData":{
+		"type":"Scene",
+		"properties":{
+			"name":"root",
+			"controllers":[
+				{
+					"type":"TestAnimationController",
+					"properties":{
+						"name":"one",
+						"x":0,
+						"y":120,
+						"view":{
+							"type":"MvcView",
+							"properties":{
+			
+							}
+						}
+					}
+				},
+				{
+					"type":"HeaderController",
+					"properties":{
+						"name":"header",
+						"x":0,
+						"y":580
+					}
+				},
+				{
+					"type":"FooterController",
+					"properties":{
+						"name":"footer"
+					}
+				}
+			]
+		}
+	}
+}

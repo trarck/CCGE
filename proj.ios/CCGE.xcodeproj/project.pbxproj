@@ -296,6 +296,8 @@
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
 		57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57823C5018A9BF11005ACB35 /* UnitProperty.cpp */; };
 		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
+		57B0CA65193D6A9F00098C22 /* TestAnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */; };
+		57B0CA83193DC61300098C22 /* FcaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA81193DC61300098C22 /* FcaInfo.cpp */; };
 		57C45EA9192EF11500AF8E79 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */; };
 		57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E918AA07070085A22F /* DamageFormula.cpp */; };
 		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
@@ -358,6 +360,27 @@
 			containerPortal = 575D151B187CEFB2004E9958 /* yhgui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 57B26176186818A200EFF1FD;
+			remoteInfo = yhgui;
+		};
+		57B0CA69193D78C700098C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 575D150C187C08AC004E9958 /* yhmvc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 57C664721867EBE600018691;
+			remoteInfo = yhmvc;
+		};
+		57B0CA6B193D78D100098C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 575AD861187BC3CB00AA0477 /* yhge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 578E5F5218680D830042319C;
+			remoteInfo = yhge;
+		};
+		57B0CA6D193D78D700098C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 575D151B187CEFB2004E9958 /* yhgui.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 57B26175186818A200EFF1FD;
 			remoteInfo = yhgui;
 		};
 /* End PBXContainerItemProxy section */
@@ -962,6 +985,10 @@
 		57823C5818A9C42C005ACB35 /* PropertyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyDefine.h; sourceTree = "<group>"; };
 		57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameActiveSortLayer.cpp; sourceTree = "<group>"; };
 		57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActiveSortLayer.h; sourceTree = "<group>"; };
+		57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAnimationController.cpp; sourceTree = "<group>"; };
+		57B0CA64193D6A9F00098C22 /* TestAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAnimationController.h; sourceTree = "<group>"; };
+		57B0CA81193DC61300098C22 /* FcaInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FcaInfo.cpp; sourceTree = "<group>"; };
+		57B0CA82193DC61300098C22 /* FcaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FcaInfo.h; sourceTree = "<group>"; };
 		57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
 		57C45EA8192EF11500AF8E79 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		57CF76E918AA07070085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
@@ -2028,6 +2055,8 @@
 			children = (
 				574A569E18B1A0B200518953 /* AnimationProvider.cpp */,
 				574A569F18B1A0B200518953 /* AnimationProvider.h */,
+				57B0CA81193DC61300098C22 /* FcaInfo.cpp */,
+				57B0CA82193DC61300098C22 /* FcaInfo.h */,
 			);
 			name = Animations;
 			path = ../Classes/Animations;
@@ -2111,6 +2140,8 @@
 				57F0133218FF6EFB00CB32E9 /* RealtimeBattleController.h */,
 				5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */,
 				5747634918D6F10B0031E2E0 /* StepGameWorldController.h */,
+				57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */,
+				57B0CA64193D6A9F00098C22 /* TestAnimationController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
 				575AD879187BC54B00AA0477 /* TestISOController.h */,
 				57525CC418AB6C7100166633 /* TestSqliteController.cpp */,
@@ -2329,6 +2360,9 @@
 			);
 			dependencies = (
 				15A3DA691682F881002FB0C5 /* PBXTargetDependency */,
+				57B0CA6C193D78D100098C22 /* PBXTargetDependency */,
+				57B0CA6E193D78D700098C22 /* PBXTargetDependency */,
+				57B0CA6A193D78C700098C22 /* PBXTargetDependency */,
 			);
 			name = CCGE;
 			productName = iphone;
@@ -2502,6 +2536,7 @@
 				57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */,
 				15A3D91E1682F7D5002FB0C5 /* b2PolygonAndCircleContact.cpp in Sources */,
 				15A3D91F1682F7D5002FB0C5 /* b2PolygonContact.cpp in Sources */,
+				57B0CA83193DC61300098C22 /* FcaInfo.cpp in Sources */,
 				57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */,
 				15A3D9201682F7D5002FB0C5 /* b2DistanceJoint.cpp in Sources */,
 				15A3D9211682F7D5002FB0C5 /* b2FrictionJoint.cpp in Sources */,
@@ -2727,6 +2762,7 @@
 				5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */,
 				379BB9C117F03F3700829B88 /* UICheckBox.cpp in Sources */,
 				5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */,
+				57B0CA65193D6A9F00098C22 /* TestAnimationController.cpp in Sources */,
 				379BB9C217F03F3700829B88 /* UIImageView.cpp in Sources */,
 				379BB9C317F03F3700829B88 /* UILabel.cpp in Sources */,
 				379BB9C417F03F3700829B88 /* UILabelAtlas.cpp in Sources */,
@@ -2752,6 +2788,21 @@
 			isa = PBXTargetDependency;
 			name = cocos2dx;
 			targetProxy = 15A3DA681682F881002FB0C5 /* PBXContainerItemProxy */;
+		};
+		57B0CA6A193D78C700098C22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = yhmvc;
+			targetProxy = 57B0CA69193D78C700098C22 /* PBXContainerItemProxy */;
+		};
+		57B0CA6C193D78D100098C22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = yhge;
+			targetProxy = 57B0CA6B193D78D100098C22 /* PBXContainerItemProxy */;
+		};
+		57B0CA6E193D78D700098C22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = yhgui;
+			targetProxy = 57B0CA6D193D78D700098C22 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

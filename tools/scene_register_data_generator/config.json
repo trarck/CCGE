@@ -10,7 +10,12 @@
 			"path":"Scenes/TestSqliteScene.h",
 			"creator":"TestSqliteScene::create"
 		},
-		"RealtimeBattleScene"
+		"RealtimeBattleScene",
+		{
+			"name":"TestAnimationScene",
+			"path":"SceneBuilder/GameSceneBuilder.h",
+			"creator":"GameSceneBuilder::buildScene"
+		}
 	]
 		
 	

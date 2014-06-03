@@ -11,8 +11,9 @@ static const char* kBattlePrepareScene="BattlePrepareScene";
 static const char* kInitializeScene="InitializeScene";
 static const char* kTestSqlite="Sqlite";
 static const char* kRealtimeBattleScene="RealtimeBattleScene";
+static const char* kTestAnimationScene="TestAnimationScene";
 
 
-#pragma unused(kMainScene,kTestISOScene,kMissionScene,kBattleScene,kBattlePrepareScene,kInitializeScene,kTestSqlite,kRealtimeBattleScene)
+#pragma unused(kMainScene,kTestISOScene,kMissionScene,kBattleScene,kBattlePrepareScene,kInitializeScene,kTestSqlite,kRealtimeBattleScene,kTestAnimationScene)
 
 #endif //CCGE_SCENEDIRECTOR_SCENEDIFINE_H_

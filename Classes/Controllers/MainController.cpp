@@ -46,6 +46,7 @@ void MainController::viewDidLoad()
 	m_proxys=new CCArray();
 	m_proxys->init();
 
+    
     createTestMenuItem("battle",kBattleScene,NULL);
     createTestMenuItem("realtime battle",kRealtimeBattleScene,NULL);
     createTestMenuItem("mission",kMissionScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
@@ -54,6 +55,7 @@ void MainController::viewDidLoad()
     createTestMenuItem("test iso batch",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     createTestMenuItem("test iso batch dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchDynamicLayerType));
     createTestMenuItem("test sqlite",kTestSqlite,NULL);
+    createTestMenuItem("test animation",kTestAnimationScene,NULL);
 
 	CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
 

@@ -25,6 +25,8 @@ public:
 	void hideBackButton(){
 		m_backButton->setVisible(false);
 	}
+    
+    CREATE_FUNC(FooterController);
 
 private:
 

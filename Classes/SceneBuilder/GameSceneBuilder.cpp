@@ -3,6 +3,9 @@
 #include "BuilderExternal.h"
 #include "BuilderDefine.h"
 #include "../SceneDirector/GameSceneDirector.h"
+#include "Controllers/HeaderController.h"
+#include "Controllers/FooterController.h"
+#include "Controllers/TestAnimationController.h"
 
 USING_NS_CC;
 USING_NS_CC_YHMVC;
@@ -45,7 +48,10 @@ void GameSceneBuilder::setupExtend()
     m_elementParserFactory->registerElementParser(kElementTypeScene, BaseSceneParser::create());
     
     //controllers creates
-    
+    GAMESCENEBUILDER_REGISTERCONTROLLER_T(HeaderController);
+    GAMESCENEBUILDER_REGISTERCONTROLLER_T(FooterController);
+    GAMESCENEBUILDER_REGISTERCONTROLLER_T(TestAnimationController);
+
 }
 
 void GameSceneBuilder::addController(const std::string& constroller,yhgui::ElementCreator* creator)
