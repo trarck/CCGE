@@ -46,6 +46,15 @@
     <Filter Include="Classes\Services">
       <UniqueIdentifier>{a5157dc3-ef55-4c17-85d1-acd0074258aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Animations">
+      <UniqueIdentifier>{c25e8302-0d9a-4dc0-9fd7-f689c7d79916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent\Components\Battles">
+      <UniqueIdentifier>{1f7de815-1f05-4fa5-bdb1-e6d046151de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\EntityComponent\States">
+      <UniqueIdentifier>{b70b986e-d199-4157-8b10-c41c73340a7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -207,6 +216,81 @@
     <ClCompile Include="..\Classes\Scenes\InitializeScene.cpp">
       <Filter>Classes\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\TestAnimationController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Services\UnitService.cpp">
+      <Filter>Classes\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Animations\AnimationProvider.cpp">
+      <Filter>Classes\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Animations\ChaReader.cpp">
+      <Filter>Classes\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Animations\FcaInfo.cpp">
+      <Filter>Classes\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\CharacterData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\MonsterData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\UnitData.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\EntityComponentFactory.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\BattlePositionComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\BattleStateMachineComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\BattleTimelineComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\HurtComponent.cpp">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\AIComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\BuffComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\ChainComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\MoveComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\ProjectileComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SkillComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\BaseState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\BattleState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\EntityState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\RealtimeBattleScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\SimpleScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\RealtimeBattleController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -237,12 +321,6 @@
       <Filter>Classes\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\MainScene.h">
-      <Filter>Classes\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Scenes\SceneDefine.h">
-      <Filter>Classes\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Scenes\SceneRegisterData.h">
       <Filter>Classes\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\TestISOScene.h">
@@ -394,6 +472,81 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Scenes\InitializeScene.h">
       <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\TestAnimationController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Services\UnitService.h">
+      <Filter>Classes\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Animations\AnimationProvider.h">
+      <Filter>Classes\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Animations\ChaReader.h">
+      <Filter>Classes\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Animations\FcaInfo.h">
+      <Filter>Classes\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\CharacterData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\MonsterData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\UnitData.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\EntityComponentFactory.h">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattlePositionComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattleStateMachineComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\BattleTimelineComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\HurtComponent.h">
+      <Filter>Classes\EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\AIComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\BuffComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\ChainComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\MoveComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\ProjectileComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SkillComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\BaseState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\BattleState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\EntityState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\RealtimeBattleScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\SimpleScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\RealtimeBattleController.h">
+      <Filter>Classes\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
