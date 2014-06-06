@@ -298,6 +298,7 @@
 		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
 		57B0CA65193D6A9F00098C22 /* TestAnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */; };
 		57B0CA83193DC61300098C22 /* FcaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA81193DC61300098C22 /* FcaInfo.cpp */; };
+		57B0CA86193EB8E200098C22 /* ChaReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA84193EB8E200098C22 /* ChaReader.cpp */; };
 		57C45EA9192EF11500AF8E79 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */; };
 		57CF76EB18AA07070085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E918AA07070085A22F /* DamageFormula.cpp */; };
 		57CF76F318AA11380085A22F /* BattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F118AA11380085A22F /* BattleController.cpp */; };
@@ -989,6 +990,8 @@
 		57B0CA64193D6A9F00098C22 /* TestAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAnimationController.h; sourceTree = "<group>"; };
 		57B0CA81193DC61300098C22 /* FcaInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FcaInfo.cpp; sourceTree = "<group>"; };
 		57B0CA82193DC61300098C22 /* FcaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FcaInfo.h; sourceTree = "<group>"; };
+		57B0CA84193EB8E200098C22 /* ChaReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChaReader.cpp; sourceTree = "<group>"; };
+		57B0CA85193EB8E200098C22 /* ChaReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaReader.h; sourceTree = "<group>"; };
 		57C45EA7192EF11500AF8E79 /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
 		57C45EA8192EF11500AF8E79 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		57CF76E918AA07070085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
@@ -2055,6 +2058,8 @@
 			children = (
 				574A569E18B1A0B200518953 /* AnimationProvider.cpp */,
 				574A569F18B1A0B200518953 /* AnimationProvider.h */,
+				57B0CA84193EB8E200098C22 /* ChaReader.cpp */,
+				57B0CA85193EB8E200098C22 /* ChaReader.h */,
 				57B0CA81193DC61300098C22 /* FcaInfo.cpp */,
 				57B0CA82193DC61300098C22 /* FcaInfo.h */,
 			);
@@ -2694,6 +2699,7 @@
 				1A8F3B7D175E05DA00049216 /* SkeletonData.cpp in Sources */,
 				575AD892187BC54B00AA0477 /* BaseScene.cpp in Sources */,
 				1A8F3B7E175E05DA00049216 /* SkeletonJson.cpp in Sources */,
+				57B0CA86193EB8E200098C22 /* ChaReader.cpp in Sources */,
 				1A8F3B7F175E05DA00049216 /* Skin.cpp in Sources */,
 				1A8F3B80175E05DA00049216 /* Slot.cpp in Sources */,
 				1A8F3B81175E05DA00049216 /* SlotData.cpp in Sources */,
