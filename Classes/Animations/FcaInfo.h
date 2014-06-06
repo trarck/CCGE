@@ -11,7 +11,7 @@ struct FcaElement
     std::string name;
     std::string textureKey;
     int index;
-    
+    CCSize size;
     
 };
 
@@ -45,6 +45,17 @@ struct FcaAction
 };
 
 
+class MySpriteFrameCache:public CCSpriteFrameCache
+{
+public:
+    
+    MySpriteFrameCache();
+    
+    ~MySpriteFrameCache();
+    
+};
+
+
 class FcaInfo:public CCObject
 {
 public:
@@ -55,10 +66,9 @@ public:
     
     bool init();
     
+    CCSpriteFrame* getSpriteFrame(const std::string& spriteName);
+    
     static FcaInfo* create(const std::string& fcaFile);
-    
-    
-    void readCha(unsigned char* data,size_t size);
     
 public:
     
@@ -93,7 +103,7 @@ public:
         return m_actions;
     }
     
-    inline void setSpriteFrameCache(CCSpriteFrameCache* spriteFrameCache)
+    inline void setSpriteFrameCache(MySpriteFrameCache* spriteFrameCache)
     {
         CC_SAFE_RETAIN(spriteFrameCache);
         CC_SAFE_RELEASE(m_spriteFrameCache);
@@ -110,7 +120,7 @@ protected:
     std::string m_name;
     std::vector<FcaElement> m_elements;
     std::vector<FcaAction> m_actions;
-    CCSpriteFrameCache* m_spriteFrameCache;
+    MySpriteFrameCache* m_spriteFrameCache;
 };
 
 NS_CC_GE_END

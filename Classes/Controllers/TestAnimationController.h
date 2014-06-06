@@ -6,6 +6,7 @@
 #include <yhge/isometric.h>
 #include "CCGEMacros.h"
 #include "BaseController.h"
+#include "Animations/FcaInfo.h"
 
 NS_CC_GE_BEGIN
 
@@ -27,6 +28,13 @@ public:
     CREATE_FUNC(TestAnimationController);
     
     void update(float delta);
+    
+    void showAction(FcaInfo* fcaInfo,const std::string& actionName);
+    
+    
+    void createTestMenu();
+    
+    void onNext(CCObject* target);
     
 private:
     
