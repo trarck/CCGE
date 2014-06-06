@@ -1,5 +1,5 @@
 #include "BattlePositionComponent.h"
-#include "GameDefine.h"
+#include "Consts/GameDefine.h"
 #include "Consts/GameMessage.h"
 #include "Consts/PropertyDefine.h"
 #include "EntityComponent/GameEntity.h"

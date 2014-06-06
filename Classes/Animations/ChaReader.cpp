@@ -11,7 +11,7 @@ std::string readString(InputStream* is)
 {
     int strLen=is->readInt32();
 
-    unsigned char* strBytes=new unsigned char(strLen);
+    unsigned char* strBytes=new unsigned char[strLen];
     
     is->readBytes(strBytes, strLen);
     

@@ -62,7 +62,7 @@ FcaInfo* FcaInfo::create(const std::string& fcaFile)
 
     fcaInfo->getSpriteFrameCache()->addSpriteFramesWithFile(plistFile.c_str());
     
-    size_t size=0;
+    unsigned long size=0;
     unsigned char* data=CCFileUtils::sharedFileUtils()->getFileData(chaFile.c_str(), "rb", &size);
     
     readCha(fcaInfo,data, size);
