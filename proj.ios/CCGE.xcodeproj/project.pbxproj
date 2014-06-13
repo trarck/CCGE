@@ -224,6 +224,7 @@
 		379BB9D117F03F3700829B88 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB98B17F03F3700829B88 /* json_writer.cpp */; };
 		379BB9D317F03F3700829B88 /* CCSGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99117F03F3700829B88 /* CCSGUIReader.cpp */; };
 		379BB9D417F03F3700829B88 /* CCSSceneReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99317F03F3700829B88 /* CCSSceneReader.cpp */; };
+		571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571393C6194597690028120A /* SimplePositionComponent.cpp */; };
 		57243EB118B33E050070163A /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAD18B33E050070163A /* BaseModel.cpp */; };
 		57243EB218B33E050070163A /* ModelFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAF18B33E050070163A /* ModelFactory.cpp */; };
 		57243EB818B33E870070163A /* BattleModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EB618B33E870070163A /* BattleModel.cpp */; };
@@ -837,6 +838,8 @@
 		379BB99217F03F3700829B88 /* CCSGUIReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSGUIReader.h; sourceTree = "<group>"; };
 		379BB99317F03F3700829B88 /* CCSSceneReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSSceneReader.cpp; sourceTree = "<group>"; };
 		379BB99417F03F3700829B88 /* CCSSceneReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSSceneReader.h; sourceTree = "<group>"; };
+		571393C6194597690028120A /* SimplePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePositionComponent.cpp; sourceTree = "<group>"; };
+		571393C7194597690028120A /* SimplePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePositionComponent.h; sourceTree = "<group>"; };
 		57243EAD18B33E050070163A /* BaseModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseModel.cpp; sourceTree = "<group>"; };
 		57243EAE18B33E050070163A /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		57243EAF18B33E050070163A /* ModelFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelFactory.cpp; sourceTree = "<group>"; };
@@ -2080,6 +2083,8 @@
 				57C45EA8192EF11500AF8E79 /* MoveComponent.h */,
 				574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */,
 				574FF815192DE52E00DC1791 /* ProjectileComponent.h */,
+				571393C6194597690028120A /* SimplePositionComponent.cpp */,
+				571393C7194597690028120A /* SimplePositionComponent.h */,
 				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
 			);
@@ -2609,6 +2614,7 @@
 				5726027818F4EA8D004C77A1 /* UnitData.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
+				571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */,
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
 				57243ECC18B45B580070163A /* RemoteCache.cpp in Sources */,

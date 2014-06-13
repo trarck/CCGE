@@ -7,6 +7,8 @@
 
 NS_CC_GE_BEGIN
 
+class EntityFactory;
+
 class EntityComponentFactory:public CCObject
 {
 public:
@@ -35,11 +37,31 @@ public:
     
     void addBattleStateMachineComponent(GameEntity* entity);
     
+    void addAIComponent(GameEntity* entity);
+    
+    void addPositionComponent(GameEntity* entity);
+    
+    void addMoveComponent(GameEntity* entity);
+    
+public:
+    inline void setEntityFactory(EntityFactory* entityFactory)
+    {
+        m_entityFactory = entityFactory;
+    }
+    
+    inline EntityFactory* getEntityFactory()
+    {
+        return m_entityFactory;
+    }
 protected:
     
     CCArray* createEightAnimations(const yhge::Json::Value& configData);
     
     CCArray* createTwoAnimations(const yhge::Json::Value& configData);
+    
+protected:
+    //对实体创建工厂的弱引用
+    EntityFactory* m_entityFactory;
 };
 
 NS_CC_GE_END

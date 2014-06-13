@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
+#include "SimplePositionComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -37,8 +38,37 @@ public:
     
     virtual void update(float delta);
     
+public:
+    
+    inline void setWalkVelocity(const CCPoint& walkVelocity)
+    {
+        m_walkVelocity = walkVelocity;
+    }
+    
+    inline const CCPoint& getWalkVelocity()
+    {
+        return m_walkVelocity;
+    }
+    
+    inline void setKnockupVelocity(const CCPoint& knockupVelocity)
+    {
+        m_knockupVelocity = knockupVelocity;
+    }
+    
+    inline const CCPoint& getKnockupVelocity()
+    {
+        return m_knockupVelocity;
+    }
+    
 protected:
     
+    //移动速度
+    CCPoint m_walkVelocity;
+    
+    //击退速度。有些技能有击退功能
+    CCPoint m_knockupVelocity;
+    
+    SimplePositionComponent* m_positionComponent;
 };
 
 NS_CC_GE_END

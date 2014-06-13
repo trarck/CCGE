@@ -52,6 +52,13 @@ enum BattleStateEvent
     
 };
 
+
+enum ComponentUpdatePriority
+{
+    kAIUpdate,
+    kMoveUpdate
+};
+
 NS_CC_GE_END
 
 #endif // CCGE_CONSTS_GAMEDEFINE_H_

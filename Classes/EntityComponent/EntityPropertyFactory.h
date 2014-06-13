@@ -8,6 +8,8 @@
 
 NS_CC_GE_BEGIN
 
+class EntityFactory;
+
 class EntityPropertyFactory:public CCObject
 {
 public:
@@ -50,10 +52,22 @@ public:
     
     void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& value);
     
+public:
+    inline void setEntityFactory(EntityFactory* entityFactory)
+    {
+        m_entityFactory = entityFactory;
+    }
+    
+    inline EntityFactory* getEntityFactory()
+    {
+        return m_entityFactory;
+    }
+protected:
+    //对实体创建工厂的弱引用
+    EntityFactory* m_entityFactory;
 };
 
 NS_CC_GE_END
-
 
 
 #endif // CCGE_ENTITYCOMPONENT_EntityPropertyFactory_H_

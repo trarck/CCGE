@@ -9,6 +9,9 @@ NS_CC_GE_BEGIN
 
 MoveComponent::MoveComponent()
 :Component("MoveComponent")
+,m_positionComponent(NULL)
+,m_walkVelocity(CCPointZero)
+,m_knockupVelocity(CCPointZero)
 {
     
 }
@@ -22,11 +25,13 @@ void MoveComponent::setup()
 {
     Component::setup();
 
+    m_positionComponent=static_cast<SimplePositionComponent*>(m_owner->getComponent("PositionComponent"));
 }
 
 void MoveComponent::cleanup()
 {
     Component::cleanup();
+    m_positionComponent=NULL;
 }
 
 bool MoveComponent::registerMessages()
@@ -53,7 +58,13 @@ void MoveComponent::cleanupMessages()
 
 void MoveComponent::update(float delta)
 {
-    
+    CCPoint pos=m_positionComponent->getPosition();
+
+    pos.x+=(m_walkVelocity.x+m_knockupVelocity.x)*delta;
+    pos.y+=(m_walkVelocity.y+m_knockupVelocity.y)*delta;
+
+    m_positionComponent->setPosition(pos);
+
 }
 
 NS_CC_GE_END

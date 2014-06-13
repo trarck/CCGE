@@ -16,12 +16,20 @@
 #include "Components/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
 
+#include "Components/Battles/AIComponent.h"
+#include "Components/Battles/SimplePositionComponent.h"
+#include "Components/Battles/MoveComponent.h"
+
+
+#include "EntityFactory.h"
+
 USING_NS_CC;
 USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
 EntityComponentFactory::EntityComponentFactory()
+:m_entityFactory(NULL)
 {
 
 }
@@ -167,6 +175,41 @@ void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
     battleStateMachineComponent->release();
     
     entity->setBattleStateMachineComponent(battleStateMachineComponent);
+}
+
+void EntityComponentFactory::addAIComponent(GameEntity* entity)
+{
+    AIComponent* aiComponent=new AIComponent();
+    aiComponent->init();
+    
+    entity->addComponent(aiComponent);
+    
+    m_entityFactory->getEngine()->getUpdateManager()->addUpdaterToGroup(entity->m_uID, aiComponent, schedule_selector(AIComponent::update),kAIUpdate);
+    
+    
+    aiComponent->release();
+}
+
+void EntityComponentFactory::addPositionComponent(GameEntity* entity)
+{
+    SimplePositionComponent* positionComponent=new SimplePositionComponent();
+    positionComponent->init();
+    
+    entity->addComponent(positionComponent);
+    
+    positionComponent->release();
+}
+
+void EntityComponentFactory::addMoveComponent(GameEntity* entity)
+{
+    MoveComponent* moveComponent=new MoveComponent();
+    moveComponent->init();
+    
+    entity->addComponent(moveComponent);
+    
+    m_entityFactory->getEngine()->getUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
+    
+    moveComponent->release();
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

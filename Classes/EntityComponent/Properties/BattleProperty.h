@@ -50,6 +50,26 @@ public:
         return m_side;
     }
     
+    inline void setX(float x)
+    {
+        m_x = x;
+    }
+    
+    inline float getX()
+    {
+        return m_x;
+    }
+    
+    inline void setY(float y)
+    {
+        m_y = y;
+    }
+    
+    inline float getY()
+    {
+        return m_y;
+    }
+    
     inline void setScale(float scale)
     {
         m_scale = scale;
@@ -66,6 +86,9 @@ protected:
     int m_col;
     int m_side;
 
+    float m_x;
+    float m_y;
+    
     float m_scale;
 };
 
