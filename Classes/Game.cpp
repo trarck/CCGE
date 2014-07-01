@@ -66,10 +66,11 @@ void Game::setup()
     dimetric::StaticTopViewCoordinateFormulae::initTileSize(tileWidth, topHeight);
     
     setupRandom();
-    
+ 
     setupGui();
     
     setupSceneDirector();
+
 }
 
 void Game::setupGui()
