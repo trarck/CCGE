@@ -35,6 +35,11 @@ public:
 	 */
     void setupSceneDirector();
     
+    /**
+	 * 设置引擎
+	 */
+    void setupEngine();
+    
 protected:
     
     void setupRandom();

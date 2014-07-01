@@ -199,13 +199,9 @@ void RealtimeBattleController::convertIndexToCell(int index,int* col,int* row)
 
 void RealtimeBattleController::convertCoord(int index,int* col,int* row,int* x,int* y)
 {
-    *col=index%kBattleCellCol;
-    *row=index/kBattleCellCol;
-    
-    //x=kBattleCellCol-row-1
-    //y=kBattleCellRow-col-1;
-    *x=kBattleCellRow-*row-1;
-    *y=kBattleCellCol-*col-1;
+
+    *x= index *-40;
+    *y=(index & 1)?-40:40;
 }
 
 /*
@@ -221,13 +217,8 @@ void RealtimeBattleController::convertCoord(int index,int* col,int* row,int* x,i
  */
 void RealtimeBattleController::convertOppCoord(int index,int* col,int* row,int* x,int* y)
 {
-    *col=index%kBattleCellCol;
-    *row=index/kBattleCellCol;
-    
-    //x=kBattleCellCol-row-1
-    //y=kBattleCellRow-col-1;
-    *x=*row;
-    *y=kBattleCellCol-*col-1;
+    *x= index * 40;
+    *y=(index & 1)?-40:40;
 }
 
 void RealtimeBattleController::loadSelfEntities()
@@ -475,7 +466,7 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
     
     //添加组件
-    EntityFactory::getInstance()->addBattleComponents(entity);
+    EntityFactory::getInstance()->addRealtimeBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
     m_battleWorld->addChild(rendererComponent->getRenderer());
@@ -712,8 +703,7 @@ void RealtimeBattleController::start()
 {
     m_battleEnd=false;
     
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
-                                                                   schedule_selector(RealtimeBattleController::battleUpdate), this, 0.2f, false);
+    //CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(RealtimeBattleController::battleUpdate), this, 0.2f, false);
 //    parseRound();
 }
 

@@ -95,6 +95,11 @@ void Game::setupSceneDirector()
     setSceneDirector(sceneDirector);
 }
 
+void setupEngine()
+{
+    
+}
+
 void Game::setupRandom()
 {
     struct timeval now;

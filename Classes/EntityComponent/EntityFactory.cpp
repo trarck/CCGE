@@ -49,9 +49,11 @@ bool EntityFactory::init()
 {
     m_entityPropertyFactory=new EntityPropertyFactory();
     m_entityPropertyFactory->init();
+    m_entityPropertyFactory->setEntityFactory(this);
     
     m_entityComponentFactory=new EntityComponentFactory();
     m_entityComponentFactory->init();
+    m_entityComponentFactory->setEntityFactory(this);
     
     return true;
 }
@@ -136,6 +138,22 @@ GameEntity* EntityFactory::createBattlePlayer(int entityId,const yhge::Json::Val
     addBattleComponents(player);
     
     return player;
+}
+
+/**
+ * 创建战斗中的人物
+ */
+GameEntity* EntityFactory::createBattleCharacter(int entityId,const yhge::Json::Value& params)
+{
+    GameEntity* character=createEntity(entityId);
+    
+    //添加属性
+    m_entityPropertyFactory->addBattleProperties(character);
+    
+    //添加组件.
+    addRealtimeBattleComponents(character);
+    
+    return character;
 }
 
 /**
@@ -283,6 +301,23 @@ void EntityFactory::addBattleComponents(GameEntity* entity)
     
     //状态机组件
     m_entityComponentFactory->addBattleStateMachineComponent(entity);
+}
+
+/**
+ * @brief 给entity添加实时战斗相关组件
+ */
+void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
+{
+    //注意有依赖关系组件的添加顺序
+    //显示组件
+    m_entityComponentFactory->addBattleRendererComponent(entity);
+    
+    //动画组件
+    m_entityComponentFactory->addBattleAnimationComponent(entity);
+    
+    m_entityComponentFactory->addPositionComponent(entity);
+    m_entityComponentFactory->addMoveComponent(entity);
+    m_entityComponentFactory->addAIComponent(entity);
 }
 
 

@@ -6,6 +6,7 @@
 
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"
+#include "EntityFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -13,6 +14,7 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 EntityPropertyFactory::EntityPropertyFactory()
+:m_entityFactory(NULL)
 {
 
 }

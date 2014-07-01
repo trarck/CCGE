@@ -8,6 +8,7 @@
 #include "EntityPropertyFactory.h"
 #include "EntityComponentFactory.h"
 
+
 NS_CC_GE_BEGIN
 
 class EntityFactory:public CCObject
@@ -53,6 +54,11 @@ public:
     GameEntity* createBattlePlayer(int entityId,const yhge::Json::Value& params);
     
     /**
+     * 创建战斗中的人物
+     */
+    GameEntity* createBattleCharacter(int entityId,const yhge::Json::Value& params);
+    
+    /**
      * @brief 给entity添加地图相关组件
      */
     void addMapComponents(GameEntity* entity);
@@ -63,6 +69,11 @@ public:
      * @brief 给entity添加战斗相关组件
      */
     void addBattleComponents(GameEntity* entity);
+    
+    /**
+     * @brief 给entity添加实时战斗相关组件
+     */
+    void addRealtimeBattleComponents(GameEntity* entity);
     
 public:
     
@@ -90,6 +101,16 @@ public:
         return m_entityComponentFactory;
     }
 
+    inline void setEngine(yhge::Engine* engine)
+    {
+        m_engine = engine;
+    }
+    
+    inline yhge::Engine* getEngine()
+    {
+        return m_engine;
+    }
+    
 protected:
 
     CCArray* createEightAnimations(const yhge::Json::Value& configData);
@@ -101,6 +122,9 @@ protected:
     EntityPropertyFactory* m_entityPropertyFactory;
     
     EntityComponentFactory* m_entityComponentFactory;
+    
+    //对引擎保持弱引用
+    yhge::Engine* m_engine;
 };
 
 NS_CC_GE_END
