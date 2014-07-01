@@ -294,6 +294,9 @@
     <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.cpp">
       <Filter>Classes\EntityComponent\Components\Battles</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\GameEngine.cpp">
+      <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.h">
       <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\GameEngine.h">
+      <Filter>Classes\EntityComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

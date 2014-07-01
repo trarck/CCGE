@@ -95,7 +95,7 @@ void Game::setupSceneDirector()
     setSceneDirector(sceneDirector);
 }
 
-void setupEngine()
+void Game::setupEngine()
 {
     
 }

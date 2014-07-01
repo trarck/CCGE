@@ -11,6 +11,8 @@
 
 NS_CC_GE_BEGIN
 
+class GameEngine;
+
 class EntityFactory:public CCObject
 {
 public:
@@ -101,12 +103,12 @@ public:
         return m_entityComponentFactory;
     }
 
-    inline void setEngine(yhge::Engine* engine)
+    inline void setEngine(GameEngine* engine)
     {
         m_engine = engine;
     }
     
-    inline yhge::Engine* getEngine()
+    inline GameEngine* getEngine()
     {
         return m_engine;
     }
@@ -124,7 +126,7 @@ protected:
     EntityComponentFactory* m_entityComponentFactory;
     
     //对引擎保持弱引用
-    yhge::Engine* m_engine;
+    GameEngine* m_engine;
 };
 
 NS_CC_GE_END
