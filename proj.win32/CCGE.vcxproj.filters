@@ -291,6 +291,9 @@
     <ClCompile Include="..\Classes\Controllers\RealtimeBattleController.cpp">
       <Filter>Classes\Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -547,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Controllers\RealtimeBattleController.h">
       <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
