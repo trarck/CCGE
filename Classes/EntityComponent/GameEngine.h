@@ -19,25 +19,25 @@ public:
     bool init();
     
     CREATE_FUNC(GameEngine);
-    
+
 public:
-    
-    inline void setEntityFactory(EntityFactory* entityFactory)
-    {
-        CC_SAFE_RETAIN(entityFactory);
-        CC_SAFE_RELEASE(m_entityFactory);
-        m_entityFactory = entityFactory;
-    }
-    
-    inline EntityFactory* getEntityFactory()
-    {
-        return m_entityFactory;
-    }
+	void setEntityFactory(EntityFactory* entityFactory)
+	{
+		CC_SAFE_RETAIN(entityFactory);
+		CC_SAFE_RELEASE(m_entityFactory);
+		m_entityFactory = entityFactory;
+		m_entityFactory->setEngine(this);
+	}
+
+	EntityFactory* getEntityFactory()
+	{
+		return m_entityFactory;
+	}
     
 private:
 
-    EntityFactory* m_entityFactory;
-
+	EntityFactory* m_entityFactory;
+ 
 };
 
 NS_CC_GE_END

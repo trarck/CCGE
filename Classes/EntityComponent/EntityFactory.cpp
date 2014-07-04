@@ -24,6 +24,7 @@ static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
 EntityFactory::EntityFactory()
 :m_entityPropertyFactory(NULL)
 ,m_entityComponentFactory(NULL)
+,m_engine(NULL)
 {
 
 }

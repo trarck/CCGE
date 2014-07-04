@@ -164,6 +164,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClCompile Include="..\Classes\EntityComponent\Components\Battles\ChainComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\Battles\MoveComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\Battles\ProjectileComponent.cpp" />
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SkillComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\BattleTimelineComponent.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Components\DieComponent.cpp" />
@@ -173,6 +174,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClCompile Include="..\Classes\EntityComponent\EntityComponentFactory.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\EntityFactory.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\EntityPropertyFactory.cpp" />
+    <ClCompile Include="..\Classes\EntityComponent\GameEngine.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\GameEntity.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Properties\BattleProperty.cpp" />
     <ClCompile Include="..\Classes\EntityComponent\Properties\UnitProperty.cpp" />
@@ -247,6 +249,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClInclude Include="..\Classes\EntityComponent\Components\Battles\ChainComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\Battles\MoveComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\Battles\ProjectileComponent.h" />
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SkillComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\BattleTimelineComponent.h" />
     <ClInclude Include="..\Classes\EntityComponent\Components\DieComponent.h" />
@@ -256,6 +259,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\sqlite3\libraries\win32\*.*" "$(OutD
     <ClInclude Include="..\Classes\EntityComponent\EntityComponentFactory.h" />
     <ClInclude Include="..\Classes\EntityComponent\EntityFactory.h" />
     <ClInclude Include="..\Classes\EntityComponent\EntityPropertyFactory.h" />
+    <ClInclude Include="..\Classes\EntityComponent\GameEngine.h" />
     <ClInclude Include="..\Classes\EntityComponent\GameEntity.h" />
     <ClInclude Include="..\Classes\EntityComponent\Properties\BattleProperty.h" />
     <ClInclude Include="..\Classes\EntityComponent\Properties\UnitProperty.h" />

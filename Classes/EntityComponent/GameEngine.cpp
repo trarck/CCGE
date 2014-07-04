@@ -29,6 +29,7 @@ bool GameEngine::init()
     }
     
     return false;
+    CCLOG("GameEntity destroy");
 }
 
 NS_CC_GE_END
