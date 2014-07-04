@@ -36,6 +36,7 @@ Game::Game()
 :m_interactiveOrganizer(NULL)
 ,m_sceneDirector(NULL)
 ,m_random(NULL)
+,m_engine(NULL)
 {
 
 }
@@ -45,6 +46,7 @@ Game::~Game()
     CC_SAFE_RELEASE_NULL(m_interactiveOrganizer);
     CC_SAFE_RELEASE_NULL(m_sceneDirector);
     CC_SAFE_DELETE(m_random);
+    CC_SAFE_RELEASE_NULL(m_engine);
 }
 
 /**
@@ -70,6 +72,8 @@ void Game::setup()
     setupGui();
     
     setupSceneDirector();
+    
+    setupEngine();
 }
 
 void Game::setupGui()
@@ -94,9 +98,10 @@ void Game::setupSceneDirector()
     setSceneDirector(sceneDirector);
 }
 
-void setupEngine()
+void Game::setupEngine()
 {
-    
+    m_engine=new yhge::Engine();
+    m_engine->init();
 }
 
 void Game::setupRandom()

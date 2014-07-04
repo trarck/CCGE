@@ -225,6 +225,7 @@
 		379BB9D317F03F3700829B88 /* CCSGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99117F03F3700829B88 /* CCSGUIReader.cpp */; };
 		379BB9D417F03F3700829B88 /* CCSSceneReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379BB99317F03F3700829B88 /* CCSSceneReader.cpp */; };
 		571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571393C6194597690028120A /* SimplePositionComponent.cpp */; };
+		571393D1194E97480028120A /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571393CF194E97480028120A /* GameEngine.cpp */; };
 		57243EB118B33E050070163A /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAD18B33E050070163A /* BaseModel.cpp */; };
 		57243EB218B33E050070163A /* ModelFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAF18B33E050070163A /* ModelFactory.cpp */; };
 		57243EB818B33E870070163A /* BattleModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EB618B33E870070163A /* BattleModel.cpp */; };
@@ -840,6 +841,8 @@
 		379BB99417F03F3700829B88 /* CCSSceneReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSSceneReader.h; sourceTree = "<group>"; };
 		571393C6194597690028120A /* SimplePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePositionComponent.cpp; sourceTree = "<group>"; };
 		571393C7194597690028120A /* SimplePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePositionComponent.h; sourceTree = "<group>"; };
+		571393CF194E97480028120A /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
+		571393D0194E97480028120A /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		57243EAD18B33E050070163A /* BaseModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseModel.cpp; sourceTree = "<group>"; };
 		57243EAE18B33E050070163A /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		57243EAF18B33E050070163A /* ModelFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelFactory.cpp; sourceTree = "<group>"; };
@@ -2231,6 +2234,8 @@
 				575E3FA01889344600E37B69 /* EntityFactory.h */,
 				5747634518D6D1940031E2E0 /* EntityPropertyFactory.cpp */,
 				5747634618D6D1940031E2E0 /* EntityPropertyFactory.h */,
+				571393CF194E97480028120A /* GameEngine.cpp */,
+				571393D0194E97480028120A /* GameEngine.h */,
 				575E3F9C18892DC100E37B69 /* GameEntity.cpp */,
 				575E3F9D18892DC100E37B69 /* GameEntity.h */,
 			);
@@ -2614,6 +2619,7 @@
 				5726027818F4EA8D004C77A1 /* UnitData.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
+				571393D1194E97480028120A /* GameEngine.cpp in Sources */,
 				571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */,
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,

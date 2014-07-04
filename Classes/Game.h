@@ -87,6 +87,8 @@ private:
     GameSceneDirector* m_sceneDirector;
     
     yhge::RandomMT* m_random;
+    
+    yhge::Engine*　m_engine;
 };
 
 NS_CC_GE_END
