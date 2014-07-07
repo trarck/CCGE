@@ -1,6 +1,5 @@
 #include "StepGameWorldController.h"
 #include "SceneDirector/GameSceneDirector.h"
-#include "EntityComponent/EntityFactory.h"
 #include "Layers/GameActiveSortLayer.h"
 
 USING_NS_CC;

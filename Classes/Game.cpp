@@ -37,6 +37,7 @@ Game::Game()
 ,m_sceneDirector(NULL)
 ,m_random(NULL)
 ,m_engine(NULL)
+,m_dataFactory(NULL)
 {
 
 }
@@ -47,6 +48,7 @@ Game::~Game()
     CC_SAFE_RELEASE_NULL(m_sceneDirector);
     CC_SAFE_DELETE(m_random);
     CC_SAFE_RELEASE_NULL(m_engine);
+    CC_SAFE_RELEASE_NULL(m_dataFactory);
 }
 
 /**
@@ -69,11 +71,19 @@ void Game::setup()
     
     setupRandom();
  
+    setupData();
+    
     setupGui();
     
     setupSceneDirector();
     
     setupEngine();
+}
+
+void Game::setupData()
+{
+    m_dataFactory=new DataFactory();
+    m_dataFactory->init();
 }
 
 void Game::setupGui()
@@ -100,7 +110,7 @@ void Game::setupSceneDirector()
 
 void Game::setupEngine()
 {
-    m_engine=new yhge::Engine();
+    m_engine=new GameEngine();
     m_engine->init();
 }
 

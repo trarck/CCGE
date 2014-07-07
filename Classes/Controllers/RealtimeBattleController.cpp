@@ -7,9 +7,7 @@
 #include "Consts/DataDefine.h"
 #include "Consts/GameMessage.h"
 #include "Consts/AnimationDefine.h"
-#include "EntityComponent/EntityFactory.h"
 #include "EntityComponent/Components/BattlePositionComponent.h"
-#include "Datas/DataFactory.h"
 #include "Services/ServiceFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Layers/DimetricCoordinateLayer.h"
@@ -437,11 +435,11 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
     
     //创建实体
-    GameEntity* entity=EntityFactory::getInstance()->createEntity(entityId);
+    GameEntity* entity=Game::getInstance()->getEngine()->getEntityFactory()->createEntity(entityId);
     
     //设置实体属性
     
-    CharacterData* characterData=DataFactory::getInstance()->getCharacterData();
+    CharacterData* characterData=Game::getInstance()->getDataFactory()->getCharacterData();
     
     Json::Value characterConfig=characterData->getDataById(entityId);
     
@@ -450,7 +448,7 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=DataFactory::getInstance()->getUnitData();
+    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
 
     Json::Value unitConfig=unitData->getDataById(unitId);
 
@@ -463,10 +461,10 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
     
     //添加组件
-    EntityFactory::getInstance()->addRealtimeBattleComponents(entity);
+    Game::getInstance()->getEngine()->getEntityFactory()->addRealtimeBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
     m_battleWorld->addChild(rendererComponent->getRenderer());
@@ -491,11 +489,11 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
     
     //创建实体
-    GameEntity* entity=EntityFactory::getInstance()->createEntity(entityId);
+    GameEntity* entity=Game::getInstance()->getEngine()->getEntityFactory()->createEntity(entityId);
     
     //设置实体属性
     
-    MonsterData* monsterData=DataFactory::getInstance()->getMonsterData();
+    MonsterData* monsterData=Game::getInstance()->getDataFactory()->getMonsterData();
     
     Json::Value monsterConfig=monsterData->getDataById(entityId);
     
@@ -504,7 +502,7 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     int level=monsterConfig[CCGE_MONSTER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=DataFactory::getInstance()->getUnitData();
+    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
     
     Json::Value unitConfig=unitData->getDataById(unitId);
     
@@ -516,10 +514,10 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    EntityFactory::getInstance()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
     
     //添加组件
-    EntityFactory::getInstance()->addBattleComponents(entity);
+    Game::getInstance()->getEngine()->getEntityFactory()->addBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
     m_battleWorld->addChild(rendererComponent->getRenderer());

@@ -1,8 +1,8 @@
 #include "GameWorldController.h"
+#include "Game.h"
 #include "SceneDirector/GameSceneDirector.h"
-#include "EntityComponent/EntityFactory.h"
 #include "Layers/GameActiveSortLayer.h"
-#include "Datas/DataFactory.h"
+
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -266,7 +266,7 @@ void GameWorldController::createActiveLayer(ISOActiveLayerInfo* activeLayerInfo)
 
 ISOMapInfo* GameWorldController::loadMapData()
 {
-    std::string mapFile=DataFactory::getInstance()->getMapData()->getDataById(m_mapId)["data_file"].asString();
+    std::string mapFile=Game::getInstance()->getDataFactory()->getMapData()->getDataById(m_mapId)["data_file"].asString();
     
     CCLOG("map file=%s",mapFile.c_str());
     
@@ -362,7 +362,7 @@ void GameWorldController::addPlayerAtCoord(CCPoint coord)
     CCPoint pos=ccp(visibleSize.width/2,visibleSize.height/2);
     pos=m_view->convertToWorldSpace(pos);
     
-    GameEntity* player=EntityFactory::getInstance()->createPlayer(2);
+    GameEntity* player=Game::getInstance()->getEngine()->getEntityFactory()->createPlayer(2);
     setPlayer(player);
     
     ISOPositionComponent* iosPositionComponent=static_cast<ISOPositionComponent*>(m_player->getComponent("ISOPositionComponent"));

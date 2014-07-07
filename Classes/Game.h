@@ -6,6 +6,9 @@
 #include <yhge/yhge.h>
 #include <yhgui/yhgui.h>
 
+#include "EntityComponent/GameEngine.h"
+#include "Datas/DataFactory.h"
+
 #include "SceneDirector/GameSceneDirector.h"
 
 NS_CC_GE_BEGIN
@@ -24,6 +27,11 @@ public:
      * 执行初始化的工作
      */
     void setup();
+    
+    /**
+     * 初始化数据
+     */
+    void setupData();
     
     /**
      * 初始化gui
@@ -80,6 +88,30 @@ public:
         return m_random;
     }
     
+    inline void setEngine(GameEngine* engine)
+    {
+        CC_SAFE_RETAIN(engine);
+        CC_SAFE_RELEASE(m_engine);
+        m_engine = engine;
+    }
+    
+    inline GameEngine* getEngine()
+    {
+        return m_engine;
+    }
+    
+    inline void setDataFactory(DataFactory* dataFactory)
+    {
+        CC_SAFE_RETAIN(dataFactory);
+        CC_SAFE_RELEASE(m_dataFactory);
+        m_dataFactory = dataFactory;
+    }
+    
+    inline DataFactory* getDataFactory()
+    {
+        return m_dataFactory;
+    }
+    
 private:
     
     yhgui::DocumentTreeOrganizer* m_interactiveOrganizer;
@@ -88,7 +120,9 @@ private:
     
     yhge::RandomMT* m_random;
     
-    yhge::Engine*　m_engine;
+    GameEngine*　m_engine;
+    
+    DataFactory* m_dataFactory;
 };
 
 NS_CC_GE_END

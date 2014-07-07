@@ -2,7 +2,6 @@
 #include <yhge/yhge.h>
 #include "Consts/PropertyDefine.h"
 #include "Consts/DataDefine.h"
-#include "Datas/DataFactory.h"
 
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"

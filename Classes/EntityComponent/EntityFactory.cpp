@@ -1,9 +1,9 @@
 #include "EntityFactory.h"
 #include <yhge/yhge.h>
+#include "Game.h"
 #include "Consts/PropertyDefine.h"
 #include "Consts/GameDefine.h"
 #include "Consts/AnimationDefine.h"
-#include "Datas/DataFactory.h"
 
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"
@@ -13,6 +13,7 @@
 #include "Components/HealthBarComponent.h"
 #include "Components/HurtComponent.h"
 #include "Components/BattlePositionComponent.h"
+#include "GameEngine.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -187,7 +188,7 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
-    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
     yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"move");
     
     //8方向空闲动画
@@ -226,7 +227,7 @@ void EntityFactory::addBattleComponentsProtogenic(GameEntity* entity)
     EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
-    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
     yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"battle");
     
     yhge::Json::Value::Members members=battleAnimationData.getMemberNames();

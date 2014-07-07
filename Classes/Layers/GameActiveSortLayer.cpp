@@ -1,6 +1,5 @@
 #include "GameActiveSortLayer.h"
 #include "Game.h"
-#include "EntityComponent/EntityFactory.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -302,7 +301,7 @@ int GameActiveSortLayer::getObjectType(ISOObjectInfo* mapObjectDef)
 //创建动态对象
 GameEntity* GameActiveSortLayer::createDynamicObject(int gid,const CCPoint& coord)
 {
-    GameEntity* gameObj=EntityFactory::getInstance()->createEntityById(gid);
+    GameEntity* gameObj=Game::getInstance()->getEngine()->getEntityFactory()->createEntityById(gid);
     
     return gameObj;
 }

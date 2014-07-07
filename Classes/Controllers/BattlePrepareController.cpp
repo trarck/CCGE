@@ -1,7 +1,6 @@
 #include "BattlePrepareController.h"
 #include "Game.h"
 #include "Consts/DataDefine.h"
-#include "EntityComponent/EntityFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Services/ServiceFactory.h"
 

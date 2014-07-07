@@ -1,10 +1,10 @@
 #include "EntityComponentFactory.h"
 #include <yhge/yhge.h>
+#include "Game.h"
 #include "Consts/PropertyDefine.h"
 #include "Consts/DataDefine.h"
 #include "Consts/GameDefine.h"
 #include "Consts/AnimationDefine.h"
-#include "Datas/DataFactory.h"
 
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"
@@ -83,7 +83,7 @@ void EntityComponentFactory::addBattleAnimationComponent(GameEntity* entity)
     animation->init();
     
     //从配置文件中取得动画数据
-    AnimationData* animationData=DataFactory::getInstance()->getAnimationData();
+    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
     yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(unitProperty->getUnitId(),CCGE_ANIMATION_TYPE_BATTLE);
     
     //把数据加入到动画组件里

@@ -21,6 +21,7 @@ public:
     CREATE_FUNC(GameEngine);
 
 public:
+    
 	void setEntityFactory(EntityFactory* entityFactory)
 	{
 		CC_SAFE_RETAIN(entityFactory);
