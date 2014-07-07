@@ -92,6 +92,20 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row
     entity->setBattleProperty(battleProperty);
 }
 
+void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int side,float scale)
+{
+    BattleProperty* battleProperty=new BattleProperty();
+    
+    battleProperty->setX(x);
+    battleProperty->setY(y);
+    battleProperty->setSide(side);
+    battleProperty->setScale(scale);
+    
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    battleProperty->release();
+    entity->setBattleProperty(battleProperty);
+}
+
 /**
  * @brief 添加物体地图相关属性
  */

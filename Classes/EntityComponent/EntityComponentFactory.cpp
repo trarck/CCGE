@@ -196,6 +196,7 @@ void EntityComponentFactory::addPositionComponent(GameEntity* entity)
     positionComponent->init();
     
     entity->addComponent(positionComponent);
+    positionComponent->updateRendererPosition();
     
     positionComponent->release();
 }

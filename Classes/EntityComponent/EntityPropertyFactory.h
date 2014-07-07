@@ -32,6 +32,8 @@ public:
     
     void addBattleProperty(GameEntity* entity,int col,int row,int side,float scale);
     
+    void addRealtimeBattleProperty(GameEntity* entity,float x,float y,int side,float scale);
+    
     /**
      * @brief 添加物体地图相关属性
      * 创建的属性没有被赋值

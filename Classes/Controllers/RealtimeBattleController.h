@@ -158,7 +158,9 @@ public:
     /**
      * @brief 添加到自己队伍
      */
-    void addEntityToSelfTroops(GameEntity* entity,int col,int row);
+    void addEntityToSelfTroops(GameEntity* entity,int index);
+    
+    void addEntityToSelfTroops(GameEntity* entity);
     
     /**
      * @brief 消除自己队伍里的成员
@@ -168,17 +170,18 @@ public:
     /**
      * @brief 消除自己队伍里的成员
      */
-    void removeEntityFromSelfTroops(int col,int row);
+    void removeEntityFromSelfTroops(int index);
     
     /**
      * @brief 取得自己队伍里的成员
      */
-    GameEntity* getEntityFromSelfTroops(int col,int row);
+    GameEntity* getEntityFromSelfTroops(int index);
     
     /**
      * @brief 添加到对方队伍
      */
-    void addEntityToOppTroops(GameEntity* entity,int col,int row);
+    void addEntityToOppTroops(GameEntity* entity,int index);
+    void addEntityToOppTroops(GameEntity* entity);
     
     /**
      * @brief 消除对方队伍里的成员
@@ -188,12 +191,12 @@ public:
     /**
      * @brief 消除对方队伍里的成员
      */
-    void removeEntityFromOppTroops(int col,int row);
+    void removeEntityFromOppTroops(int index);
 
     /**
      * @brief 取得对方队伍里的成员
      */
-    GameEntity* getEntityFromOppTroops(int col,int row);
+    GameEntity* getEntityFromOppTroops(int index);
     
     /**
      * @brief 取得队伍里的成员
@@ -202,12 +205,12 @@ public:
      * @param col 战斗行号
      * @param side 战斗一方
      */
-    GameEntity* getEntityFromTroops(int col,int row,int side);
+    GameEntity* getEntityFromTroops(int index,int side);
     
     /**
      * @brief 添加到队伍
      */
-    void addEntityToTroops(GameEntity* entity,int col,int row,int side);
+    void addEntityToTroops(GameEntity* entity,int index,int side);
     
     /**
      * @brief 消除对方队伍里的成员
@@ -217,7 +220,7 @@ public:
     /**
      * @brief 消除对方队伍里的成员
      */
-    void removeEntityFromTroops(int col,int row,int side);
+    void removeEntityFromTroops(int index,int side);
     
     void delayStart();
     
@@ -346,7 +349,7 @@ protected:
      * @param x   地图x坐标
      * @param y   地图y坐标
      */
-    void convertCoord(int index,int* col,int* row,int* x,int* y);
+    void convertCoord(int index,float* x,float* y);
     
     /**
      * @brief 把一维转成二维
@@ -357,7 +360,7 @@ protected:
      * @param x   地图x坐标
      * @param y   地图y坐标
      */
-    void convertOppCoord(int index,int* col,int* row,int* x,int* y);
+    void convertOppCoord(int index,float* x,float* y);
     
     /**
      * @brief 取得一个存在的队员
@@ -538,10 +541,10 @@ private:
     int m_oppStepIndex;
     
     //自己的队伍.3x3.这里直接使用固定大小的数组。也可以使用动态的一维数组。
-    GameEntity* m_selfTroops[kBattleCellRow][kBattleCellCol];
+    yhge::Vector<GameEntity*> m_selfTroops;
     
     //对手的队伍.3x3
-    GameEntity* m_oppTroops[kBattleCellRow][kBattleCellCol];
+    yhge::Vector<GameEntity*> m_oppTroops;
     
     bool m_battleEnd;
     

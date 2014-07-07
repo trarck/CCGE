@@ -183,39 +183,17 @@ void RealtimeBattleController::convertIndexToCell(int index,int* col,int* row)
     *row=index/kBattleCellCol;
 }
 
-/*
- 格子分布
- 
-      row
- 
- col  7   4   1 
- 
-      8   5   2 
-     
-      9   6   3
- */
-
-void RealtimeBattleController::convertCoord(int index,int* col,int* row,int* x,int* y)
+void RealtimeBattleController::convertCoord(int index,float* x,float* y)
 {
 
-    *x= index *-40;
+    *x= 100+index *-40;
     *y=(index & 1)?-40:40;
 }
 
-/*
- 格子分布
- 
-      row
- 
- col  1   4   7
- 
-      2   5   8
- 
-      3   6   9
- */
-void RealtimeBattleController::convertOppCoord(int index,int* col,int* row,int* x,int* y)
+
+void RealtimeBattleController::convertOppCoord(int index,float* x,float* y)
 {
-    *x= index * 40;
+    *x= 800+index * 40;
     *y=(index & 1)?-40:40;
 }
 
@@ -239,55 +217,6 @@ void RealtimeBattleController::loadSelfEntities()
             
             GameEntity* entity=createSelfTroopEntity(entityId,i);
             
-//            //取得坐标
-//            convertCoord(i, &col, &row, &x, &y);
-//            
-//            //创建对象
-//            GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(entityId);
-//            
-//            addEntityToSelfTroops(entity, col, row);
-//            
-//            //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
-//            UnitProperty* unitProperty=entity->getUnitProperty();
-//            unitProperty->setDamage(10);
-//            unitProperty->setDefence(10);
-//            unitProperty->setHealth(100);
-//            unitProperty->setMaxHealth(100);
-//            
-//            //set battle property
-//            BattleProperty* battleProperty=entity->getBattleProperty();
-//            battleProperty->setCol(col);
-//            battleProperty->setRow(row);
-//            battleProperty->setSide(kSelfSide);
-//            
-//            //set animation
-//            CCDictionary* data=new CCDictionary();
-//            data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-//            data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-//            MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
-//            
-//            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-//            CCNode* renderer=rendererComponent->getRenderer();
-//            renderer->setScale(1.5f);
-//            renderer->setZOrder(col);
-//            
-//            //设置坐标
-//            
-//            //y方向居中对齐，坐标要加0.5
-//            CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x,y+0.5);
-//            pos.x+=kBattleSelfOffsetX+x*kBattleCellOffsetX;
-//            pos.y+=kBattleSelfOffsetY+y*kBattleCellOffsetY;
-//            renderer->setPosition(pos);
-//            
-//            m_view->addChild(renderer);
-//            
-//            
-//            //血条
-//            HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
-//            healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
-//            healthBarComponent->setCurrentHp(unitProperty->getHealth());
-//            
-//            healthBarComponent->getHealthBar()->setPosition(ccp(0,85));
             
             registerEntityMessage(entity);
         }
@@ -304,11 +233,6 @@ void RealtimeBattleController::loadOppEntities()
     
     int teamSize=troops.size();
     
-//    int col=0;
-//    int row=0;
-//    int x=0;
-//    int y=0;
-    
     int entityId=0;
     
     for (int i=0; i<teamSize; ++i) {
@@ -319,62 +243,6 @@ void RealtimeBattleController::loadOppEntities()
             
             GameEntity* entity=createOppTroopEntity(entityId,i);
             
-//            //创建对象
-//            GameEntity* entity=EntityFactory::getInstance()->createBattlePlayer(entityId);
-//            
-//            //取得坐标
-//            convertOppCoord(i, &col, &row, &x, &y);
-//            
-//            
-//            addEntityToOppTroops(entity, col, row);
-//            
-//            //临时的。set unit property。应该在EntityFactory创建的时候从配置文件中设置相应值。如果是玩家数据，则要做相应设置
-//            UnitProperty* unitProperty=entity->getUnitProperty();
-//            unitProperty->setDamage(10);
-//            unitProperty->setDefence(10);
-//            
-//            if (i==1) {
-//                unitProperty->setHealth(9);
-//            }else{
-//                unitProperty->setHealth(30);
-//            }
-//            unitProperty->setMaxHealth(100);
-//            
-//            //set battle property
-//            BattleProperty* battleProperty=entity->getBattleProperty();
-//            battleProperty->setCol(col);
-//            battleProperty->setRow(row);
-//            battleProperty->setSide(kOppSide);
-//            
-//            //set animation
-//            CCDictionary* data=new CCDictionary();
-//            data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-//            data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-//            MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, entity,data);
-//            
-//            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-//            CCNode* renderer=rendererComponent->getRenderer();
-//            renderer->setScale(1.5f);
-//            renderer->setZOrder(col);
-//            static_cast<CCSprite*>(renderer)->setFlipX(true);
-//            
-//            //设置坐标
-//            //y方向居中对齐，坐标要加0.5
-//            CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+kBattleOppOffsetCell,y+0.5);
-//            pos.x+=kBattleOppOffsetX+x*kBattleCellOffsetX;
-//            pos.y+=kBattleOppOffsetY+y*kBattleCellOffsetY;
-//            renderer->setPosition(pos);
-//            
-//            m_view->addChild(renderer);
-//            
-//            //血条
-//            HealthBarComponent* healthBarComponent=entity->getHealthBarComponent();
-//            healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
-//            healthBarComponent->setCurrentHp(unitProperty->getHealth());
-//            
-//            //TODO load from config
-//            healthBarComponent->getHealthBar()->setPosition(ccp(15,85));
-            
             registerEntityMessage(entity);
         }
     }
@@ -383,12 +251,7 @@ void RealtimeBattleController::loadOppEntities()
 //初始化战斗双方的队伍
 void RealtimeBattleController::initTroops()
 {
-    for (int j=0; j<kBattleCellRow; ++j) {
-        for (int i=0; i<kBattleCellCol; ++i) {
-            m_selfTroops[j][i]=NULL;
-            m_oppTroops[j][i]=NULL;
-        }
-    }
+    
 }
 
 //消除战斗双方的队伍
@@ -396,24 +259,22 @@ void RealtimeBattleController::cleanTroops()
 {
     GameEntity* entity=NULL;
     
-    for (int j=0; j<kBattleCellRow; ++j) {
-        for (int i=0; i<kBattleCellCol; ++i) {
-            
-            entity=m_selfTroops[j][i];
-            if (entity) {
-                removeEntityMessage(entity);
-                entity->cleanup();
-                entity->release();
-            }
-            
-            entity=m_oppTroops[j][i];
-            if (entity) {
-                removeEntityMessage(entity);
-                entity->cleanup();
-                entity->release();
-            }
-        }
+    for (std::vector<GameEntity*>::iterator iter=m_selfTroops.begin(); iter!=m_selfTroops.end(); ++iter) {
+        entity=*iter;
+        entity->cleanup();
+        entity->release();
     }
+    
+    m_selfTroops.clear();
+    
+    for (std::vector<GameEntity*>::iterator iter=m_oppTroops.begin(); iter!=m_oppTroops.end(); ++iter) {
+        entity=*iter;
+        entity->cleanup();
+        entity->release();
+    }
+    
+    m_oppTroops.clear();
+    
 }
 
 //注意entityId和unitId是不同的.
@@ -424,22 +285,23 @@ void RealtimeBattleController::cleanTroops()
 GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int index)
 {
     
-    int col=0;
-    int row=0;
-    int x=0;
-    int y=0;
+    float x=0;
+    float y=0;
+    
+    EntityFactory* entityFactory=Game::getInstance()->getEngine()->getEntityFactory();
+    DataFactory* dataFactory=Game::getInstance()->getDataFactory();
     
     //取得坐标.index转化成9宫格的坐标
-    convertCoord(index, &col, &row, &x, &y);
+    convertCoord(index, &x, &y);
     
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
     
     //创建实体
-    GameEntity* entity=Game::getInstance()->getEngine()->getEntityFactory()->createEntity(entityId);
+    GameEntity* entity=entityFactory->createEntity(entityId);
     
     //设置实体属性
     
-    CharacterData* characterData=Game::getInstance()->getDataFactory()->getCharacterData();
+    CharacterData* characterData=dataFactory->getCharacterData();
     
     Json::Value characterConfig=characterData->getDataById(entityId);
     
@@ -448,52 +310,51 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
+    UnitData* unitData=dataFactory->getUnitData();
 
-    Json::Value unitConfig=unitData->getDataById(unitId);
+    Json::Value unitProto=unitData->getDataById(unitId);
 
     
     //设置单位属性
-    UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
+    UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitProto);
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     entity->setUnitProperty(unitProperty);
     
     CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale);
     
     //添加组件
-    Game::getInstance()->getEngine()->getEntityFactory()->addRealtimeBattleComponents(entity);
+    entityFactory->addRealtimeBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
     m_battleWorld->addChild(rendererComponent->getRenderer());
-    
-    
-    addEntityToSelfTroops(entity, col, row);
+        
+    addEntityToSelfTroops(entity);
     
     return entity;
 }
 
 GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int index)
 {
+    float x=0;
+    float y=0;
     
-    int col=0;
-    int row=0;
-    int x=0;
-    int y=0;
+    EntityFactory* entityFactory=Game::getInstance()->getEngine()->getEntityFactory();
+    DataFactory* dataFactory=Game::getInstance()->getDataFactory();
     
     //取得坐标.index转化成9宫格的坐标
-    convertOppCoord(index, &col, &row, &x, &y);
+    convertOppCoord(index,&x, &y);
     
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
     
     //创建实体
-    GameEntity* entity=Game::getInstance()->getEngine()->getEntityFactory()->createEntity(entityId);
+    GameEntity* entity=entityFactory->createEntity(entityId);
     
     //设置实体属性
     
-    MonsterData* monsterData=Game::getInstance()->getDataFactory()->getMonsterData();
+    MonsterData* monsterData=dataFactory->getMonsterData();
     
     Json::Value monsterConfig=monsterData->getDataById(entityId);
     
@@ -502,7 +363,7 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     int level=monsterConfig[CCGE_MONSTER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
+    UnitData* unitData=dataFactory->getUnitData();
     
     Json::Value unitConfig=unitData->getDataById(unitId);
     
@@ -514,121 +375,79 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
-    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale);
     
     //添加组件
-    Game::getInstance()->getEngine()->getEntityFactory()->addBattleComponents(entity);
+    entityFactory->addRealtimeBattleComponents(entity);
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
     m_battleWorld->addChild(rendererComponent->getRenderer());
     
-    addEntityToOppTroops(entity, col, row);
+    addEntityToOppTroops(entity);
     
     return entity;
 }
 
 
-void RealtimeBattleController::addEntityToSelfTroops(GameEntity* entity,int col,int row)
+void RealtimeBattleController::addEntityToSelfTroops(GameEntity* entity,int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    if (m_selfTroops[row][col]) {
-        m_selfTroops[row][col]->release();
-    }
-    m_selfTroops[row][col]=entity;
-    CC_SAFE_RETAIN(entity);
+    m_selfTroops.insert(index, entity);
 }
+
+void RealtimeBattleController::addEntityToSelfTroops(GameEntity* entity)
+{
+    m_selfTroops.push_back(entity);
+}
+
 
 void RealtimeBattleController::removeEntityFromSelfTroops(GameEntity* entity)
 {
-    if (!entity) return;
-    
-    for (int j=0; j<kBattleCellRow; ++j) {
-        for (int i=0; i<kBattleCellCol; ++i) {
-            
-            if (m_selfTroops[j][i]==entity) {
-                m_selfTroops[j][i]->release();
-                m_selfTroops[j][i]=NULL;
-            }
-        }
-    }
-
+    m_selfTroops.eraseObject(entity);
 }
 
-void RealtimeBattleController::removeEntityFromSelfTroops(int col,int row)
+void RealtimeBattleController::removeEntityFromSelfTroops(int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    if (m_selfTroops[row][col]) {
-        m_selfTroops[row][col]->release();
-        m_selfTroops[row][col]=NULL;
-    }
+    m_selfTroops.erase(index);
 }
 
-GameEntity* RealtimeBattleController::getEntityFromSelfTroops(int col,int row)
+GameEntity* RealtimeBattleController::getEntityFromSelfTroops(int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    return m_selfTroops[row][col];
+    return m_selfTroops.at(index);
 }
 
-void RealtimeBattleController::addEntityToOppTroops(GameEntity* entity,int col,int row)
+void RealtimeBattleController::addEntityToOppTroops(GameEntity* entity,int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    if (m_oppTroops[row][col]) {
-        m_oppTroops[row][col]->release();
-    }
-    m_oppTroops[row][col]=entity;
-    CC_SAFE_RETAIN(entity);
+    m_oppTroops.insert(index, entity);
+}
+
+void RealtimeBattleController::addEntityToOppTroops(GameEntity* entity)
+{
+    m_oppTroops.push_back(entity);
 }
 
 void RealtimeBattleController::removeEntityFromOppTroops(GameEntity* entity)
 {
-    if (!entity) return;
-    
-    for (int j=0; j<kBattleCellRow; ++j) {
-        for (int i=0; i<kBattleCellCol; ++i) {
-            
-            if (m_oppTroops[j][i]==entity) {
-                m_oppTroops[j][i]->release();
-                m_oppTroops[j][i]=NULL;
-            }
-        }
-    }
+    m_oppTroops.eraseObject(entity);
 }
 
-void RealtimeBattleController::removeEntityFromOppTroops(int col,int row)
+void RealtimeBattleController::removeEntityFromOppTroops(int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    if (m_oppTroops[row][col]) {
-        m_oppTroops[row][col]->release();
-        m_oppTroops[row][col]=NULL;
-    }
+    m_oppTroops.erase(index);
 }
 
-GameEntity* RealtimeBattleController::getEntityFromOppTroops(int col,int row)
+GameEntity* RealtimeBattleController::getEntityFromOppTroops(int index)
 {
-    CCAssert(col>=0 && col<kBattleCellCol, "RealtimeBattleController::addEntityToSelfTroops col out index");
-    CCAssert(row>=0 && row<kBattleCellRow, "RealtimeBattleController::addEntityToSelfTroops row out index");
-    
-    return m_oppTroops[row][col];
+    return m_oppTroops.at(index);
 }
 
-GameEntity* RealtimeBattleController::getEntityFromTroops(int col,int row,int side)
+GameEntity* RealtimeBattleController::getEntityFromTroops(int index,int side)
 {
     switch (side) {
         case kSelfSide:
-            return getEntityFromSelfTroops(col, row);
+            return getEntityFromSelfTroops(index);
             break;
         case kOppSide:
-            return getEntityFromOppTroops(col,row);
+            return getEntityFromOppTroops(index);
             break;
         default:
             return NULL;
@@ -639,14 +458,14 @@ GameEntity* RealtimeBattleController::getEntityFromTroops(int col,int row,int si
 /**
  * @brief 添加到队伍
  */
-void RealtimeBattleController::addEntityToTroops(GameEntity* entity,int col,int row,int side)
+void RealtimeBattleController::addEntityToTroops(GameEntity* entity,int index,int side)
 {
     switch (side) {
         case kSelfSide:
-            return addEntityToSelfTroops(entity, col, row);
+            return addEntityToSelfTroops(entity, index);
             break;
         case kOppSide:
-            return addEntityToOppTroops(entity, col, row);
+            return addEntityToOppTroops(entity, index);
             break;
         default:
             break;
@@ -673,14 +492,14 @@ void RealtimeBattleController::removeEntityFromTroops(GameEntity* entity,int sid
 /**
  * @brief 消除对方队伍里的成员
  */
-void RealtimeBattleController::removeEntityFromTroops(int col,int row,int side)
+void RealtimeBattleController::removeEntityFromTroops(int index,int side)
 {
     switch (side) {
         case kSelfSide:
-            return removeEntityFromSelfTroops(col,row);
+            return removeEntityFromSelfTroops(index);
             break;
         case kOppSide:
-            return removeEntityFromOppTroops(col,row);
+            return removeEntityFromOppTroops(index);
             break;
         default:
             break;
@@ -720,32 +539,32 @@ void RealtimeBattleController::stop()
  */
 void RealtimeBattleController::createTroopsBattleTimeline()
 {
-    GameEntity* entity=NULL;
-    
-    int k=0,l=0;
-    
-    float delay=2.0f;
-    
-    float sideDelay=2.5f;
-    
-    //队伍的战斗时间线
-    for (int j=0; j<kBattleCellRow; ++j) {
-        for (int i=0; i<kBattleCellCol; ++i) {
-            
-            //己方
-            entity=m_selfTroops[j][i];
-            
-            if (entity) {
-                createEntityBattleTimeline(entity,-(k++*delay));
-            }
-            
-            //对方
-            entity=m_oppTroops[j][i];
-            if (entity) {
-                createEntityBattleTimeline(entity,-(l++*delay)-sideDelay);
-            }
-        }
-    }
+//    GameEntity* entity=NULL;
+//    
+//    int k=0,l=0;
+//    
+//    float delay=2.0f;
+//    
+//    float sideDelay=2.5f;
+//    
+//    //队伍的战斗时间线
+//    for (int j=0; j<kBattleCellRow; ++j) {
+//        for (int i=0; i<kBattleCellCol; ++i) {
+//            
+//            //己方
+//            entity=m_selfTroops[j][i];
+//            
+//            if (entity) {
+//                createEntityBattleTimeline(entity,-(k++*delay));
+//            }
+//            
+//            //对方
+//            entity=m_oppTroops[j][i];
+//            if (entity) {
+//                createEntityBattleTimeline(entity,-(l++*delay)-sideDelay);
+//            }
+//        }
+//    }
 }
 
 /**
@@ -980,13 +799,9 @@ int RealtimeBattleController::getSelfExistEntity(int index,GameEntity** entity)
 {
     CCAssert(index>=0&& index<kBattleCellSize, "RealtimeBattleController::getSelfExistEntity index outside");
     
-    int col=0,row=0;
-    
     GameEntity* searchEntity=NULL;
     for (; index<kBattleCellSize; ++index) {
-        col=index%kBattleCellCol;
-        row=index/kBattleCellCol;
-        searchEntity=getEntityFromSelfTroops(col, row);
+        searchEntity=getEntityFromSelfTroops(index);
         if (searchEntity) {
             *entity=searchEntity;
             return index;
@@ -1002,13 +817,9 @@ int RealtimeBattleController::getOppExistEntity(int index,GameEntity** entity)
 {
     CCAssert(index>=0&& index<kBattleCellSize, "RealtimeBattleController::getSelfExistEntity index outside");
     
-    int col=0,row=0;
-    
     GameEntity* searchEntity=NULL;
     for (; index<kBattleCellSize; ++index) {
-        col=index%kBattleCellCol;
-        row=index/kBattleCellCol;
-        searchEntity=getEntityFromOppTroops(col, row);
+        searchEntity=getEntityFromOppTroops(index);
         if (searchEntity) {
             *entity=searchEntity;
             return index;
@@ -1084,28 +895,28 @@ void RealtimeBattleController::entityAttack(GameEntity* entity)
 */
 GameEntity* RealtimeBattleController::getAttackTarget(int col,int row,int side)
 {
-    GameEntity* firstEntity;
-    
-    //取得对方第一个不为空的物体。
-    int index=getExistEntityBySide(0,side, &firstEntity);
-    
-    if (index<kBattleCellSize) {
-        //计算第一个不为空的物体所在列。
-        int firstEntityCol=index%kBattleCellCol;
-        
-        //如果正好和当前物体同一列，即要找的物体
-        if (firstEntityCol==col) {
-            return firstEntity;
-        }else{
-            //如果不是，则检查那一排和当前列号相同的物体
-            int notEmptyRow=index/kBattleCellCol;
-            
-            GameEntity* sameColEntity=getEntityFromTroops(col, notEmptyRow,side);
-            
-            //如果找到，则直接返回。没有找到，则返回不为空的那一排的第一个元素。
-            return sameColEntity?sameColEntity:firstEntity;
-        }
-    }
+//    GameEntity* firstEntity;
+//    
+//    //取得对方第一个不为空的物体。
+//    int index=getExistEntityBySide(0,side, &firstEntity);
+//    
+//    if (index<kBattleCellSize) {
+//        //计算第一个不为空的物体所在列。
+//        int firstEntityCol=index%kBattleCellCol;
+//        
+//        //如果正好和当前物体同一列，即要找的物体
+//        if (firstEntityCol==col) {
+//            return firstEntity;
+//        }else{
+//            //如果不是，则检查那一排和当前列号相同的物体
+//            int notEmptyRow=index/kBattleCellCol;
+//            
+//            GameEntity* sameColEntity=getEntityFromTroops(col, notEmptyRow,side);
+//            
+//            //如果找到，则直接返回。没有找到，则返回不为空的那一排的第一个元素。
+//            return sameColEntity?sameColEntity:firstEntity;
+//        }
+//    }
     
     //对方队伍已经打光。
     return NULL;

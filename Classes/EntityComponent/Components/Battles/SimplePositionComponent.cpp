@@ -68,7 +68,7 @@ CCPoint SimplePositionComponent::getPositionFromProperty()
     
     float x=m_battleProperty->getX();
     float y=m_battleProperty->getY();
-    
+    CCLOG("pos:%f,%f",x,y);
     return ccp(x,y);
 }
 

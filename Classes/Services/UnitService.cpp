@@ -17,26 +17,26 @@ UnitService::~UnitService()
 
 }
 
-UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Json::Value& entityConfig)
+UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Json::Value& unitProto)
 {
     
     //根据属生成长计算某个等级的元素属性
-    int growType=entityConfig[CCGE_UNIT_GROW_TYPE].asInt();
+    int growType=unitProto[CCGE_UNIT_GROW_TYPE].asInt();
     
     float finalValue=0.0f;
     
     UnitProperty* unitProperty=new UnitProperty();
     
     //id
-    unitProperty->setUnitId(entityConfig[CCGE_UNIT_ID].asInt());
+    unitProperty->setUnitId(unitProto[CCGE_UNIT_ID].asInt());
     
     //level
     unitProperty->setLevel(level);
     
     //health
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_BASE_HEALTH].asDouble(),
-                              entityConfig[CCGE_UNIT_GROW_HEALTH].asDouble(),
+                              unitProto[CCGE_UNIT_BASE_HEALTH].asDouble(),
+                              unitProto[CCGE_UNIT_GROW_HEALTH].asDouble(),
                               level,growType);
     
     unitProperty->setHealth(finalValue);
@@ -45,8 +45,8 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //mana
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_BASE_MANA].asDouble(),
-                              entityConfig[CCGE_UNIT_GROW_MANA].asDouble(),
+                              unitProto[CCGE_UNIT_BASE_MANA].asDouble(),
+                              unitProto[CCGE_UNIT_GROW_MANA].asDouble(),
                               level,growType);
     unitProperty->setMana(finalValue);
     //max the same
@@ -54,35 +54,35 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //damage
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_BASE_DAMAGE].asDouble(),
-                              entityConfig[CCGE_UNIT_GROW_DAMAGE].asDouble(),
+                              unitProto[CCGE_UNIT_BASE_DAMAGE].asDouble(),
+                              unitProto[CCGE_UNIT_GROW_DAMAGE].asDouble(),
                               level,growType);
     unitProperty->setDamage(finalValue);
     
     //defence
     finalValue=calcGrow(
-                              entityConfig[CCGE_UNIT_BASE_DEFENCE].asDouble(),
-                              entityConfig[CCGE_UNIT_GROW_DEFENCE].asDouble(),
+                              unitProto[CCGE_UNIT_BASE_DEFENCE].asDouble(),
+                              unitProto[CCGE_UNIT_GROW_DEFENCE].asDouble(),
                               level,growType);
     unitProperty->setDefence(finalValue);
     
     //agility
     finalValue=calcGrow(
-                        entityConfig[CCGE_UNIT_BASE_AGILITY].asDouble(),
-                        entityConfig[CCGE_UNIT_GROW_AGILITY].asDouble(),
+                        unitProto[CCGE_UNIT_BASE_AGILITY].asDouble(),
+                        unitProto[CCGE_UNIT_GROW_AGILITY].asDouble(),
                         level,growType);
     unitProperty->setAgility(finalValue);
     
     //base attack speed
-    unitProperty->setBaseAttackSpeed(entityConfig[CCGE_UNIT_BASE_ATTACK_SPEED].asDouble());
+    unitProperty->setBaseAttackSpeed(unitProto[CCGE_UNIT_BASE_ATTACK_SPEED].asDouble());
     
     //attack speed
     unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(unitProperty->getBaseAttackSpeed(), 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
     
     //icon
-    unitProperty->setIcon(entityConfig[CCGE_UNIT_ICON].asString());
+    unitProperty->setIcon(unitProto[CCGE_UNIT_ICON].asString());
     
-    unitProperty->setAttackType(entityConfig[CCGE_UNIT_ATTACK_TYPE].asInt());
+    unitProperty->setAttackType(unitProto[CCGE_UNIT_ATTACK_TYPE].asInt());
     
     unitProperty->autorelease();
     

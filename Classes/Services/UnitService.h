@@ -22,7 +22,7 @@ public:
      * 这里只计算unit的基础属性，不算其它。比如装备，长时间加成。
      * 其它属性由具体的server处理。
      */
-    UnitProperty* createUnitPropertyFromLevel(int level,const yhge::Json::Value& entityConfig);
+    UnitProperty* createUnitPropertyFromLevel(int level,const yhge::Json::Value& unitProto);
     
     inline static float calcGrow(float baseValue,float growValue,int level,int type)
     {
