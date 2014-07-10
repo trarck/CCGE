@@ -5,6 +5,8 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "EntityFactory.h"
+#include "Managers/BattleUpdateManager.h"
+#include "Managers/BattleManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -17,6 +19,8 @@ public:
 	~GameEngine();
     
     bool init();
+    
+    void setupManagers();
     
     CREATE_FUNC(GameEngine);
 
@@ -35,9 +39,38 @@ public:
 		return m_entityFactory;
 	}
     
-private:
+    inline void setBattleUpdateManager(BattleUpdateManager* battleUpdateManager)
+    {
+        CC_SAFE_RETAIN(battleUpdateManager);
+        CC_SAFE_RELEASE(m_battleUpdateManager);
+        m_battleUpdateManager = battleUpdateManager;
+    }
+    
+    inline BattleUpdateManager* getBattleUpdateManager()
+    {
+        return m_battleUpdateManager;
+    }
+    
+    inline void setBattleManager(BattleManager* battleManager)
+    {
+        CC_SAFE_RETAIN(battleManager);
+        CC_SAFE_RELEASE(m_battleManager);
+        m_battleManager = battleManager;
+    }
+    
+    inline BattleManager* getBattleManager()
+    {
+        return m_battleManager;
+    }
+    
+protected:
 
 	EntityFactory* m_entityFactory;
+    
+    BattleUpdateManager* m_battleUpdateManager;
+    
+    //战斗管理
+    BattleManager* m_battleManager;
  
 };
 

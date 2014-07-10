@@ -58,6 +58,7 @@ void MoveComponent::cleanupMessages()
 
 void MoveComponent::update(float delta)
 {
+    CCLOG("MoveComponent::update:%d,%f",this,delta);
     CCPoint pos=m_positionComponent->getPosition();
 
     pos.x+=(m_walkVelocity.x+m_knockupVelocity.x)*delta;

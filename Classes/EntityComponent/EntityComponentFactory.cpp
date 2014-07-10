@@ -184,7 +184,7 @@ void EntityComponentFactory::addAIComponent(GameEntity* entity)
     
     entity->addComponent(aiComponent);
     
-    m_entityFactory->getEngine()->getUpdateManager()->addUpdaterToGroup(entity->m_uID, aiComponent, schedule_selector(AIComponent::update),kAIUpdate);
+    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, aiComponent, schedule_selector(AIComponent::update),kAIUpdate);
     
     
     aiComponent->release();
@@ -208,7 +208,7 @@ void EntityComponentFactory::addMoveComponent(GameEntity* entity)
     
     entity->addComponent(moveComponent);
     
-    m_entityFactory->getEngine()->getUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
+    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
     
     moveComponent->release();
 }

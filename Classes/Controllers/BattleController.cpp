@@ -223,9 +223,7 @@ void BattleController::loadSelfEntities()
         entityId=troops[i];
         
         if (entityId) {
-            
-            CCLOG("entity id:%d",entityId);
-            
+                        
             GameEntity* entity=createSelfTroopEntity(entityId,i);
             
 //            //取得坐标

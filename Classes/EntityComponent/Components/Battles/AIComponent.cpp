@@ -53,6 +53,11 @@ void AIComponent::cleanupMessages()
 
 void AIComponent::update(float delta)
 {
+    CCLOG("AIComponent::update:%d,%f",this,delta);
+}
+
+void AIComponent::searchTarget()
+{
     
 }
 

@@ -270,6 +270,8 @@
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
 		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
 		5755C7161884CB6800213F7C /* GameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5755C7141884CB6800213F7C /* GameWorldController.cpp */; };
+		57564160196B994800AA1194 /* BattleUpdateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5756415E196B994800AA1194 /* BattleUpdateManager.cpp */; };
+		57564163196BD23A00AA1194 /* BattleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57564161196BD23A00AA1194 /* BattleManager.cpp */; };
 		575AD88C187BC54B00AA0477 /* FooterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD872187BC54B00AA0477 /* FooterController.cpp */; };
 		575AD88D187BC54B00AA0477 /* HeaderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD874187BC54B00AA0477 /* HeaderController.cpp */; };
 		575AD88E187BC54B00AA0477 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575AD876187BC54B00AA0477 /* MainController.cpp */; };
@@ -932,6 +934,10 @@
 		57525CF018AC6E9300166633 /* AnimationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationData.h; sourceTree = "<group>"; };
 		5755C7141884CB6800213F7C /* GameWorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorldController.cpp; sourceTree = "<group>"; };
 		5755C7151884CB6800213F7C /* GameWorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldController.h; sourceTree = "<group>"; };
+		5756415E196B994800AA1194 /* BattleUpdateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleUpdateManager.cpp; sourceTree = "<group>"; };
+		5756415F196B994800AA1194 /* BattleUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleUpdateManager.h; sourceTree = "<group>"; };
+		57564161196BD23A00AA1194 /* BattleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleManager.cpp; sourceTree = "<group>"; };
+		57564162196BD23A00AA1194 /* BattleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleManager.h; sourceTree = "<group>"; };
 		575AD861187BC3CB00AA0477 /* yhge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yhge.xcodeproj; path = ../../yhge/proj.ios/yhge.xcodeproj; sourceTree = "<group>"; };
 		575AD870187BC54B00AA0477 /* CCGEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCGEMacros.h; path = ../Classes/CCGEMacros.h; sourceTree = "<group>"; };
 		575AD872187BC54B00AA0477 /* FooterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FooterController.cpp; sourceTree = "<group>"; };
@@ -2120,6 +2126,17 @@
 			path = ../Classes/Datas;
 			sourceTree = "<group>";
 		};
+		5756415D196B994800AA1194 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				57564161196BD23A00AA1194 /* BattleManager.cpp */,
+				57564162196BD23A00AA1194 /* BattleManager.h */,
+				5756415E196B994800AA1194 /* BattleUpdateManager.cpp */,
+				5756415F196B994800AA1194 /* BattleUpdateManager.h */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		575AD862187BC3CB00AA0477 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2226,6 +2243,7 @@
 			isa = PBXGroup;
 			children = (
 				5768C14518A8DA0E005123C5 /* Components */,
+				5756415D196B994800AA1194 /* Managers */,
 				57823C4F18A9BF11005ACB35 /* Properties */,
 				5747633A18D68AFC0031E2E0 /* States */,
 				57489E0518F67A22005F540E /* EntityComponentFactory.cpp */,
@@ -2591,6 +2609,7 @@
 				575AD891187BC54B00AA0477 /* Game.cpp in Sources */,
 				15A3D9A71682F7F9002FB0C5 /* cpCollision.c in Sources */,
 				15A3D9A81682F7F9002FB0C5 /* cpHashSet.c in Sources */,
+				57564163196BD23A00AA1194 /* BattleManager.cpp in Sources */,
 				15A3D9A91682F7F9002FB0C5 /* cpPolyShape.c in Sources */,
 				15A3D9AA1682F7F9002FB0C5 /* cpShape.c in Sources */,
 				15A3D9AB1682F7F9002FB0C5 /* cpSpace.c in Sources */,
@@ -2623,6 +2642,7 @@
 				571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */,
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
+				57564160196B994800AA1194 /* BattleUpdateManager.cpp in Sources */,
 				57243ECC18B45B580070163A /* RemoteCache.cpp in Sources */,
 				57704FA218CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp in Sources */,
 				15A3DA3F1682F826002FB0C5 /* CCLayerLoader.cpp in Sources */,

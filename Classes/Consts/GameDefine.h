@@ -23,6 +23,12 @@ const float kBattleOppOffsetY=0;
 
 const int kBattleOppOffsetCell=4;
 
+const float kBattleUpdateInterval=0.125f;
+
+const int kCampPlayer=1;
+const int kCampEnemy=-1;
+const int kCampBoth=0;
+
 enum BattleSide
 {
     kSelfSide=1,

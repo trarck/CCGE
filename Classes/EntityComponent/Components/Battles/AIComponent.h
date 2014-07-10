@@ -37,6 +37,8 @@ public:
     
     virtual void update(float delta);
     
+    void searchTarget();
+    
 protected:
     
 };

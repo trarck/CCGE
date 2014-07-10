@@ -43,6 +43,7 @@ RealtimeBattleController::RealtimeBattleController(void)
 ,m_battleWorld(NULL)
 ,m_timelineNodes(NULL)
 ,m_timelineLayer(NULL)
+,m_battleManager(NULL)
 {
     m_sName="RealtimeBattleController";
 }
@@ -72,6 +73,8 @@ bool RealtimeBattleController::init()
 
 void RealtimeBattleController::viewDidLoad()
 {
+    m_battleManager=Game::getInstance()->getEngine()->getBattleManager();
+    
     loadBattleGround();
     
     //create battle layer
@@ -212,8 +215,6 @@ void RealtimeBattleController::loadSelfEntities()
         entityId=troops[i];
         
         if (entityId) {
-            
-            CCLOG("entity id:%d",entityId);
             
             GameEntity* entity=createSelfTroopEntity(entityId,i);
             

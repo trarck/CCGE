@@ -8,6 +8,7 @@
 #include "BaseController.h"
 #include "Consts/GameDefine.h"
 #include "EntityComponent/GameEntity.h"
+#include "EntityComponent/Managers/BattleManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -555,6 +556,9 @@ private:
     CCArray* m_timelineNodes;
     
     CCLayer* m_timelineLayer;
+    
+    //weak refrence;
+    BattleManager* m_battleManager;
     
 };
 NS_CC_GE_END

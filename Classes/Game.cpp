@@ -112,6 +112,7 @@ void Game::setupEngine()
 {
     m_engine=new GameEngine();
     m_engine->init();
+    m_engine->setup();
 }
 
 void Game::setupRandom()
