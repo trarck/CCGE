@@ -120,7 +120,7 @@ private:
     
     yhge::RandomMT* m_random;
     
-    GameEngine*　m_engine;
+    GameEngine*	m_engine;
     
     DataFactory* m_dataFactory;
 };
