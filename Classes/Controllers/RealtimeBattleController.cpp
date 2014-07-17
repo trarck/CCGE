@@ -861,12 +861,8 @@ void RealtimeBattleController::entityAttack(GameEntity* entity)
     
     BattleProperty* battleProperty=entity->getBattleProperty();
     
-    int col=battleProperty->getCol();
-    int row=battleProperty->getRow();
     int side=battleProperty->getSide();
-    
-    CCLOG("entityAttack:[%d],cell=%d,%d side=%d",entity->m_uID,col,row,side);
-    
+
 //    return;
     
     //取得普通攻击目标
@@ -874,7 +870,7 @@ void RealtimeBattleController::entityAttack(GameEntity* entity)
     //取得对立的一方
     int oppSide=getOtherSide(side);
     
-    GameEntity* target=getAttackTarget(col, row, oppSide);
+    GameEntity* target=NULL;//getAttackTarget(col, row, oppSide);
     
     if (target) {
         MessageManager* messageManager=Game::getInstance()->getMessageManager();
