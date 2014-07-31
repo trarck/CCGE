@@ -333,6 +333,7 @@
 		57F0133F1900B6F300CB32E9 /* BattleTimelineComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133D1900B6F300CB32E9 /* BattleTimelineComponent.cpp */; };
 		57F013421900C38300CB32E9 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F013401900C38300CB32E9 /* BattleState.cpp */; };
 		57F013451900C8F100CB32E9 /* BattleStateMachineComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */; };
+		57FFB52A198A13F500C74089 /* SkillProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57FFB528198A13F500C74089 /* SkillProperty.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -1085,6 +1086,8 @@
 		57F013411900C38300CB32E9 /* BattleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleState.h; sourceTree = "<group>"; };
 		57F013431900C8F100CB32E9 /* BattleStateMachineComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleStateMachineComponent.cpp; sourceTree = "<group>"; };
 		57F013441900C8F100CB32E9 /* BattleStateMachineComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleStateMachineComponent.h; sourceTree = "<group>"; };
+		57FFB528198A13F500C74089 /* SkillProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillProperty.cpp; sourceTree = "<group>"; };
+		57FFB529198A13F500C74089 /* SkillProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillProperty.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -2551,6 +2554,8 @@
 			children = (
 				57704FAC18CFFCF6006B8A62 /* BattleProperty.cpp */,
 				57704FAD18CFFCF6006B8A62 /* BattleProperty.h */,
+				57FFB528198A13F500C74089 /* SkillProperty.cpp */,
+				57FFB529198A13F500C74089 /* SkillProperty.h */,
 				57823C5018A9BF11005ACB35 /* UnitProperty.cpp */,
 				57823C5118A9BF11005ACB35 /* UnitProperty.h */,
 			);
@@ -2958,6 +2963,7 @@
 				15A3DA551682F826002FB0C5 /* CCEditBox.cpp in Sources */,
 				15A3DA571682F826002FB0C5 /* CCEditBoxImplIOS.mm in Sources */,
 				5756434E1977B36100AA1194 /* ObjectFactory.cpp in Sources */,
+				57FFB52A198A13F500C74089 /* SkillProperty.cpp in Sources */,
 				15A3DA591682F826002FB0C5 /* CCScrollView.cpp in Sources */,
 				57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */,
 				15A3DA5A1682F826002FB0C5 /* CCSorting.cpp in Sources */,

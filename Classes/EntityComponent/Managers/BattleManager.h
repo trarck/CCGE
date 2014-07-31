@@ -63,6 +63,25 @@ public:
      */
     void enterExcavate(GameEntityVector& heroList,GameEntityVector& enemyList,bool enemyisBot,yhge::Json::Value& selfDynaList,yhge::Json::Value& enemyDynaList,int stageId);
     
+    /**
+     * @brief 初始化己方战斗单位
+     */
+    void setupSelfEntities(GameEntityVector& heroList,bool isBot);
+    
+    /**
+     * @brief 初始化敌方战斗单位
+     */
+    void setupEnemyEntities(GameEntityVector& heroList);
+    
+    /**
+     * @brief 初始化英雄
+     */
+    void setupHeros();
+    
+protected:
+    
+    GameEntityVector sortEntity(const GameEntityVector& entityList);
+    
 public:
     
     inline void setAliveAllianceCount( int aliveAllianceCount)

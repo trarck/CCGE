@@ -102,9 +102,63 @@ void BattleManager::addUnit(GameEntity* entity)
     }
 }
 
+//进入关卡
 void BattleManager::enterStage(yhge::Json::Value& stageInfo,GameEntityVector& heroList,bool isBot,int startWaveId)
+{
+    resetStage();
+    
+    setupSelfEntities(heroList,isBot);
+    
+}
+
+//进入竞技场
+void BattleManager::enterArena(GameEntityVector& heroList,GameEntityVector& enemyList,bool heroIsBot,bool enemyIsBot)
 {
     
 }
 
+//进入远程
+
+void BattleManager::enterCrusade(GameEntityVector& heroList,GameEntityVector& enemyList,bool enemyisBot,yhge::Json::Value& selfCrusade,yhge::Json::Value& enemyCrusade,int stageId)
+{
+    
+}
+
+//进入矿场
+void BattleManager::enterExcavate(GameEntityVector& heroList,GameEntityVector& enemyList,bool enemyisBot,yhge::Json::Value& selfDynaList,yhge::Json::Value& enemyDynaList,int stageId)
+{
+    
+}
+
+//初始化己方战斗单位
+void BattleManager::setupSelfEntities(GameEntityVector& heroList,bool isBot)
+{
+    //short hero by attack range
+    
+    for (GameEntityVector::iterator iter=heroList.begin(); iter!=heroList.end(); ++iter) {
+        
+    }
+}
+
+// 初始化敌方战斗单位
+void BattleManager::setupEnemyEntities(GameEntityVector& heroList)
+{
+    
+}
+
+GameEntityVector BattleManager::sortEntity(const GameEntityVector& entityList)
+{
+    GameEntityVector sortedList;
+    
+    GameEntity* entity=NULL;
+    
+    for (GameEntityVector::const_iterator iter=entityList.begin();iter!=entityList.end(); ++iter) {
+        
+        entity=*iter;
+        
+        entity->getUnitProperty()->getatt
+    }
+    
+    return sortedList;
+}
 NS_CC_GE_END
