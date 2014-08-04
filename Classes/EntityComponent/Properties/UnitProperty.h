@@ -237,16 +237,6 @@ public:
         return m_mainAttribute;
     }
     
-    inline void setWalkSpeed(float walkSpeed)
-    {
-        m_walkSpeed = walkSpeed;
-    }
-    
-    inline float getWalkSpeed()
-    {
-        return m_walkSpeed;
-    }
-    
     inline void setHit(float hit)
     {
         m_hit = hit;
@@ -337,6 +327,56 @@ public:
         return m_manaCostReduced;
     }
     
+    inline void setPhysicalImmune(int physicalImmune)
+    {
+        m_physicalImmune = physicalImmune;
+    }
+    
+    inline int getPhysicalImmune()
+    {
+        return m_physicalImmune;
+    }
+    
+    inline void setMagicImmune(int magicImmune)
+    {
+        m_magicImmune = magicImmune;
+    }
+    
+    inline int getMagicImmune()
+    {
+        return m_magicImmune;
+    }
+    
+    inline void setSkillLevelAddition(int skillLevelAddition)
+    {
+        m_skillLevelAddition = skillLevelAddition;
+    }
+    
+    inline int getSkillLevelAddition()
+    {
+        return m_skillLevelAddition;
+    }
+    
+    inline void setSilenceResistance(float silenceResistance)
+    {
+        m_silenceResistance = silenceResistance;
+    }
+    
+    inline float getSilenceResistance()
+    {
+        return m_silenceResistance;
+    }
+    
+    inline void setWalkSpeed(float walkSpeed)
+    {
+        m_walkSpeed = walkSpeed;
+    }
+    
+    inline float getWalkSpeed()
+    {
+        return m_walkSpeed;
+    }
+    
     inline void setBasicSkill(int basicSkill)
     {
         m_basicSkill = basicSkill;
@@ -416,46 +456,62 @@ protected:
     float m_agility;
     //智力 INT
     float m_intellect;
+    //主属性 0--力量,1--敏捷,2--智力
+    int m_mainAttribute;
+    
     //物理护甲 ARM
     float m_armor;
     //魔法抗性 MR
     float m_magicResistance;
-    //物理攻击
+    //物理攻击 AD
     float m_attackDamage;
-    //魔法强度
+    //魔法强度 AP
     float m_abilityPower;
-    //攻击速度
+    //攻击速度 HAST。攻击频率不受减速效果影响。
     float m_attackSpeed;
     //物理暴击 CRIT
     float m_crit;
     //魔法暴击 MCRIT
     float m_magicCrit;
-    //护甲穿透
+    //护甲穿透 ARMP
     float m_armorPenetrate;
-    //忽视魔法抗性
+    //忽视魔法抗性 MRI
     float m_magicResistanceIgnore;
-    //主属性 0--力量,1--敏捷,2--智力
-    int m_mainAttribute;
+    //命中 HIT
+    float m_hit;
+    //闪避 DODG
+    float m_dodg;
+    //实时生命回复。HPS 每秒回多少。
+    float m_healthRegenerate;
+    //实时魔法回复。MPS 每秒回多少。
+    float m_manaRegenerate;
+    //战斗结束生命回复 HPR 每场 回合制特有
+    float m_healthRecovery;
+    //战斗结束能量回复 MPR 每场 回合制特有
+    float m_manaRecovery;
+    //治疗效果 HEAL
+    float m_heal;
+    //吸血 LFS
+    float m_lifeDrain;
+    //魔法消耗减少 CDR
+    float m_manaCostReduced;
+    
+    //物理免疫
+    int m_physicalImmune;
+    //魔法免疫
+    int m_magicImmune;
+    
+    //技能等级加成 SKL
+    int m_skillLevelAddition;
+    //抵抗沉默几率 SILR
+    float m_silenceResistance;
+    
     //行走速度
     float m_walkSpeed;
-    //命中
-    float m_hit;
-    //闪避
-    float m_dodg;
-    //战斗结束生命回复 HPS
-    float m_healthRecovery;
-    //战斗结束能量回复 MPS
-    float m_manaRecovery;
-    //实时生命回复。HPR 每秒回多少。
-    float m_healthRegenerate;
-    //实时魔法回复。MPR 每秒回多少。
-    float m_manaRegenerate;
-    //治疗效果
-    float m_heal;
-    //吸血
-    float m_lifeDrain;
-    //魔法消耗减少
-    float m_manaCostReduced;
+    
+    //模型速度。MSPD.主要影响移动速度和模型动画的更新速度，对技能的更新cd无影响。比如中了小黑的冰箭。
+    float m_modelSpeeder;
+    
     //普通攻击技能
     int m_basicSkill;
     //最大星级
