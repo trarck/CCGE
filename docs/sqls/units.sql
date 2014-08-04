@@ -15,7 +15,7 @@ CREATE TABLE "units" (
 	 "magic_resistance" real NOT NULL DEFAULT '0',--魔法抗性 对魔法伤害类型的抵抗，即对魔法伤害的值的减少
 	 "attack_damage" real NOT NULL DEFAULT '0', --物理攻击力 初始的
 	 "ability_power" real NOT NULL DEFAULT '0' , --法术强度   初始的
-	 "attack_speed" real NOT NULL DEFAULT '0',  --攻击速度
+	 "attack_speed" real NOT NULL DEFAULT '0',  --攻击速度 HAST[haste]
 	 "crit" real NOT NULL DEFAULT '0',  --物理暴击
 	 "magic_crit" real NOT NULL DEFAULT '0',  --魔法暴击
 	 "armor_penetrate" real NOT NULL DEFAULT '0',  --穿透物理护甲
