@@ -93,7 +93,7 @@ void GameAttackComponent::moveToTargetFront()
 
     //根据目标对象，修正攻击方的位置
     BattleProperty* battleProperty=target->getBattleProperty();
-    if (battleProperty->getSide()==kSelfSide) {
+    if (battleProperty->getCamp()==kSelfSide) {
         targetPosition.x+=kAttackKeepDisance;
     }else{
         targetPosition.x-=kAttackKeepDisance;
@@ -176,7 +176,7 @@ int GameAttackComponent::calcDamage(UnitProperty* targetUnitProperty)
     UnitProperty* ownerUnitProperty=ownerEntity->getUnitProperty();
     
     //TODO:攻击相克
-    return DamageFormula::calcDamage(ownerUnitProperty->getDamage(), targetUnitProperty->getDefence(), m_damageFormulaParameterOne);
+    return DamageFormula::calcDamage(ownerUnitProperty->getAttackDamage(), targetUnitProperty->getArmor(), m_damageFormulaParameterOne);
 }
 
 void GameAttackComponent::onMoveToTargetFrontComplete()

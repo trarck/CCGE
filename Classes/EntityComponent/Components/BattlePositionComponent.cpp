@@ -87,7 +87,7 @@ CCPoint BattlePositionComponent::getPositionFromCell()
         
         int offsetCell=0;
         
-        switch (battleProperty->getSide()) {
+        switch (battleProperty->getCamp()) {
             case kSelfSide:{
                 x=kBattleCellRow-row-1;
                 y=kBattleCellCol-col-1;

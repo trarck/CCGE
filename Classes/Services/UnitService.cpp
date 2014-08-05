@@ -57,14 +57,14 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
                               unitProto[CCGE_UNIT_BASE_DAMAGE].asDouble(),
                               unitProto[CCGE_UNIT_GROW_DAMAGE].asDouble(),
                               level,growType);
-    unitProperty->setDamage(finalValue);
+    unitProperty->setAttackDamage(finalValue);
     
     //defence
     finalValue=calcGrow(
                               unitProto[CCGE_UNIT_BASE_DEFENCE].asDouble(),
                               unitProto[CCGE_UNIT_GROW_DEFENCE].asDouble(),
                               level,growType);
-    unitProperty->setDefence(finalValue);
+    unitProperty->setArmor(finalValue);
     
     //agility
     finalValue=calcGrow(
@@ -74,16 +74,13 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     unitProperty->setAgility(finalValue);
     
     //base attack speed
-    unitProperty->setBaseAttackSpeed(unitProto[CCGE_UNIT_BASE_ATTACK_SPEED].asDouble());
     
     //attack speed
-    unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(unitProperty->getBaseAttackSpeed(), 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
+    unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(0, 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
     
     //icon
     unitProperty->setIcon(unitProto[CCGE_UNIT_ICON].asString());
-    
-    unitProperty->setAttackType(unitProto[CCGE_UNIT_ATTACK_TYPE].asInt());
-    
+        
     unitProperty->autorelease();
     
     return unitProperty;
