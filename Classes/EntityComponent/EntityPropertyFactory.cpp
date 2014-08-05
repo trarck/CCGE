@@ -82,8 +82,8 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row
 {
     BattleProperty* battleProperty=new BattleProperty();
     
-    battleProperty->setCol(col);
-    battleProperty->setRow(row);
+    //battleProperty->setCol(col);
+    //battleProperty->setRow(row);
     battleProperty->setSide(side);
     battleProperty->setScale(scale);
     
@@ -164,8 +164,8 @@ void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,cons
 {
     if (!value.isNull()) {
         
-        property->setCol(value[CCGE_BATTLE_CELL_COL].asInt());
-        property->setRow(value[CCGE_BATTLE_CELL_ROW].asInt());
+        //property->setCol(value[CCGE_BATTLE_CELL_COL].asInt());
+        //property->setRow(value[CCGE_BATTLE_CELL_ROW].asInt());
         property->setSide(value[CCGE_BATTLE_CELL_SIDE].asInt());
         property->setScale(value[CCGE_BATTLE_CELL_SCALE].asDouble());
     }

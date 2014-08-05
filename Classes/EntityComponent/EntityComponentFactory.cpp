@@ -64,7 +64,7 @@ void EntityComponentFactory::addBattleRendererComponent(GameEntity* entity)
     
     CCNode* renderer=rendererComponent->getRenderer();
     renderer->setScale(battleProperty->getScale());
-    renderer->setZOrder(battleProperty->getCol());
+    //renderer->setZOrder(battleProperty->getCol());
     
     //目前的人物是朝向右，对手要做镜像
     rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getSide()==kOppSide);

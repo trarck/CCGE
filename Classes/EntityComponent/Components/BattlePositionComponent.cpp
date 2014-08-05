@@ -71,8 +71,8 @@ CCPoint BattlePositionComponent::getPositionFromCell()
         
         //通过战斗属性取得，物体所在的坐标
         
-        int col=battleProperty->getCol();
-        int row=battleProperty->getRow();
+        int col=0;//battleProperty->getCol();
+        int row=0;//battleProperty->getRow();
         
         if (m_lastCol==col && m_lastRow==row){
             return m_rendererPosition;
