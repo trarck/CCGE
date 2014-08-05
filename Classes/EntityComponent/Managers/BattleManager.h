@@ -11,6 +11,8 @@ NS_CC_GE_BEGIN
 
 typedef yhge::Vector<GameEntity*> GameEntityVector;
 
+typedef std::vector<yhge::Json::Value> HeroVector;
+
 struct ManualOpration
 {
     int wave;
@@ -46,32 +48,32 @@ public:
     /**
      * @brief 进入关卡
      */
-    void enterStage(yhge::Json::Value& stageInfo,GameEntityVector& heroList,bool isBot,int startWaveId=1);
+    void enterStage(yhge::Json::Value& stageInfo,HeroVector& heroList,bool isBot,int startWaveId=1);
     
     /**
      * @brief 进入竞技场
      */
-    void enterArena(GameEntityVector& heroList,GameEntityVector& enemyList,bool heroIsBot,bool enemyIsBot);
+    void enterArena(HeroVector& heroList,HeroVector& enemyList,bool heroIsBot,bool enemyIsBot);
     
     /**
      * @brief 进入远程
      */
-    void enterCrusade(GameEntityVector& heroList,GameEntityVector& enemyList,bool enemyisBot,yhge::Json::Value& selfCrusade,yhge::Json::Value& enemyCrusade,int stageId);
+    void enterCrusade(HeroVector& heroList,HeroVector& enemyList,bool enemyisBot,yhge::Json::Value& selfCrusade,yhge::Json::Value& enemyCrusade,int stageId);
     
     /**
      * @brief 进入矿场
      */
-    void enterExcavate(GameEntityVector& heroList,GameEntityVector& enemyList,bool enemyisBot,yhge::Json::Value& selfDynaList,yhge::Json::Value& enemyDynaList,int stageId);
+    void enterExcavate(HeroVector& heroList,HeroVector& enemyList,bool enemyisBot,yhge::Json::Value& selfDynaList,yhge::Json::Value& enemyDynaList,int stageId);
     
     /**
      * @brief 初始化己方战斗单位
      */
-    void setupSelfEntities(GameEntityVector& heroList,bool isBot);
+    void setupSelfEntities(HeroVector& heroList,bool isBot);
     
     /**
      * @brief 初始化敌方战斗单位
      */
-    void setupEnemyEntities(GameEntityVector& heroList);
+    void setupEnemyEntities(HeroVector& heroList);
     
     /**
      * @brief 初始化英雄
@@ -80,7 +82,9 @@ public:
     
 protected:
     
-    GameEntityVector sortEntity(const GameEntityVector& entityList);
+    HeroVector sortEntity(const HeroVector& entityList);
+    
+    GameEntity* createEntity(yhge::Json::Value& hero);
     
 public:
     

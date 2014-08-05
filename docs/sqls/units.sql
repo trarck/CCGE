@@ -33,10 +33,23 @@ CREATE TABLE "units" (
 	 --"level" integer NOT NULL DEFAULT '0',
 	 "description" text NOT NULL DEFAULT '',
 	 "icon" text NOT NULL DEFAULT '',
+	 "unit_type" integer NOT NULL DEFAULT '0', --单位类型 0-未确定,1-英雄(Hero),2-怪物(Monster)
+	 "gender" integer NOT NULL DEFAULT '0', --姓别 0-待定,1-男,2-女
 	 --extend property
 	 "basic_skill" integer NOT NULL DEFAULT '0', --普通攻击
 	 "flyable" integer NOT NULL DEFAULT '0',
 	 "max_stars" integer NOT NULL DEFAULT '0', --最大星级
 	 "initial_stars" integer NOT NULL DEFAULT '0', --初始星级
+	 "dps_statistics_ratio" real NOT NULL DEFAULT '1',  --伤害统计比率
+	 "script" text NOT NULL DEFAULT '',--英雄脚本
+	 "puppet" text NOT NULL DEFAULT '',--英雄动画
+	 "art" text NOT NULL DEFAULT '',--卡牌大图
+	 "portrait" text NOT NULL DEFAULT '',--卡牌缩略图
+	 "puppet_switch" text NOT NULL DEFAULT '',--英雄动画反转
+	 "art_switch" text NOT NULL DEFAULT '',--卡牌反转大图
+	 "portrait_switch" text NOT NULL DEFAULT '',--卡牌反转缩略图
+	 
+	 "mp_type" integer NOT NULL DEFAULT '0',--能量条类型
+	 
 	PRIMARY KEY("id")
 );

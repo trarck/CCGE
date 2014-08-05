@@ -78,13 +78,13 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,const yhge::Jso
     entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int side,float scale)
+void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int camp,float scale)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
 //    battleProperty->setCol(col);
 //    battleProperty->setRow(row);
-    battleProperty->setSide(side);
+    battleProperty->setCamp(camp);
     battleProperty->setScale(scale);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
@@ -92,13 +92,13 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row
     entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int side,float scale)
+void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int camp,float scale)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
     battleProperty->setX(x);
     battleProperty->setY(y);
-    battleProperty->setSide(side);
+    battleProperty->setCamp(camp);
     battleProperty->setScale(scale);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
@@ -145,8 +145,8 @@ void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yh
         
         property->setUnitId(value[CCGE_UNIT_ID].asInt());
         
-        property->setDamage(value[CCGE_UNIT_DAMAGE].asDouble());
-        property->setDefence(value[CCGE_UNIT_DEFENCE].asDouble());
+        property->setAttackDamage(value[CCGE_UNIT_DAMAGE].asDouble());
+        property->setArmor(value[CCGE_UNIT_DEFENCE].asDouble());
         property->setHealth(value[CCGE_UNIT_HEALTH].asDouble());
         property->setMaxHealth(value[CCGE_UNIT_HEALTH].asDouble());
         property->setMana(value[CCGE_UNIT_MANA].asDouble());
@@ -154,7 +154,6 @@ void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yh
         property->setAgility(value[CCGE_UNIT_AGILITY].asDouble());
         property->setAttackSpeed(value[CCGE_UNIT_ATTACK_SPEED].asDouble());
         property->setIcon(value[CCGE_UNIT_ICON].asString());
-        property->setAttackType(value[CCGE_UNIT_ATTACK_TYPE].asInt());
         
         property->setLevel(value[CCGE_UNIT_LEVEL].asInt());
     }
@@ -166,7 +165,7 @@ void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,cons
         
 //        property->setCol(value[CCGE_BATTLE_CELL_COL].asInt());
 //        property->setRow(value[CCGE_BATTLE_CELL_ROW].asInt());
-        property->setSide(value[CCGE_BATTLE_CELL_SIDE].asInt());
+        property->setCamp(value[CCGE_BATTLE_CELL_SIDE].asInt());
         property->setScale(value[CCGE_BATTLE_CELL_SCALE].asDouble());
     }
 }

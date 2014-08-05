@@ -67,7 +67,7 @@ void EntityComponentFactory::addBattleRendererComponent(GameEntity* entity)
 //    renderer->setZOrder(battleProperty->getCol());
     
     //目前的人物是朝向右，对手要做镜像
-    rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getSide()==kOppSide);
+    rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getCamp()==kOppSide);
     
     entity->addComponent(rendererComponent);
     rendererComponent->release();

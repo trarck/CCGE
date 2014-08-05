@@ -73,31 +73,32 @@ bool RealtimeBattleController::init()
 
 void RealtimeBattleController::viewDidLoad()
 {
+    loadBattleGround();
+    
     m_battleManager=Game::getInstance()->getEngine()->getBattleManager();
     
-    loadBattleGround();
     
     //create battle layer
     loadBattleWorld();
     
-    loadEntities();
+//    loadEntities();
     
-    showCoordinate();
+//    showCoordinate();
     
     //create test button
     
-    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 34),
-                                                   this,
-                                                   menu_selector(RealtimeBattleController::onSkip));
-    
-    CCMenuItemLabel *startBtn=CCMenuItemLabel::create(CCLabelTTF::create("start", "Arial", 34),
-                                                     this,
-                                                     menu_selector(RealtimeBattleController::onStart));
-
-    CCMenu* menu=CCMenu::create(skipBtn,startBtn,NULL);
-    menu->alignItemsHorizontally();
-    
-    m_view->addChild(menu);
+//    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 34),
+//                                                   this,
+//                                                   menu_selector(RealtimeBattleController::onSkip));
+//    
+//    CCMenuItemLabel *startBtn=CCMenuItemLabel::create(CCLabelTTF::create("start", "Arial", 34),
+//                                                     this,
+//                                                     menu_selector(RealtimeBattleController::onStart));
+//
+//    CCMenu* menu=CCMenu::create(skipBtn,startBtn,NULL);
+//    menu->alignItemsHorizontally();
+//    
+//    m_view->addChild(menu);
     
 }
 
@@ -148,9 +149,49 @@ void RealtimeBattleController::loadBattleWorld()
     m_battleWorld->setPosition(ccp(0,100));
     m_view->addChild(m_battleWorld);
     
-    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
-    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
-    m_view->addChild(m_timelineLayer);
+//    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
+//    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
+//    m_view->addChild(m_timelineLayer);
+    
+    Json::Value stageInfo;
+    HeroVector heroList;
+    
+    //add test data
+    Json::Value hero;
+    
+    hero["id"]=1;
+    hero["position_x"]=0;
+    hero["position_y"]=40;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=1;
+    hero["position_x"]=-80;
+    hero["position_y"]=-40;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=1;
+    hero["position_x"]=-180;
+    hero["position_y"]=40;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=1;
+    hero["position_x"]=-240;
+    hero["position_y"]=-40;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=1;
+    hero["position_x"]=-320;
+    hero["position_y"]=40;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    m_battleManager->enterStage(stageInfo, heroList, true);
+    
+    
     
 }
 
@@ -321,8 +362,6 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     entity->setUnitProperty(unitProperty);
     
-    CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
-    
     //设置战斗属性
     entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale);
     
@@ -372,8 +411,6 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     entity->setUnitProperty(unitProperty);
-    
-    CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
     entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale);
@@ -861,7 +898,7 @@ void RealtimeBattleController::entityAttack(GameEntity* entity)
     
     BattleProperty* battleProperty=entity->getBattleProperty();
     
-    int side=battleProperty->getSide();
+    int side=battleProperty->getCamp();
 
 //    return;
     
@@ -994,7 +1031,7 @@ void RealtimeBattleController::onEntityDie(yhge::Message* message)
     //entity数据
 
     BattleProperty* battleProperty=entity->getBattleProperty();
-    int side=battleProperty->getSide();
+    int side=battleProperty->getCamp();
     
     //从战斗队列中移除
     removeEntityFromTroops(entity, side);

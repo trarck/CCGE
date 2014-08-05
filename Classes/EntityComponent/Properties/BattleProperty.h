@@ -12,24 +12,13 @@ class BattleProperty : public yhge::Property
 public:
     
     inline BattleProperty()
-    :m_side(0)
-    ,m_scale(1.0f)
+    :m_scale(1.0f)
     ,m_x(0.0f)
     ,m_y(0.0f)
     ,m_camp(0)
     ,m_alive(true)
     {
         
-    }
-    
-    inline void setSide(int side)
-    {
-        m_side = side;
-    }
-    
-    inline int getSide()
-    {
-        return m_side;
     }
     
     
@@ -84,8 +73,6 @@ public:
     }
 
 protected:
-
-    int m_side;
     
     //缩放
     float m_scale;

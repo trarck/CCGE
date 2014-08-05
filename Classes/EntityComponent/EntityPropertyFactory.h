@@ -30,9 +30,9 @@ public:
     
     void addBattleProperty(GameEntity* entity,const yhge::Json::Value& value);
     
-    void addBattleProperty(GameEntity* entity,int col,int row,int side,float scale);
+    void addBattleProperty(GameEntity* entity,int col,int row,int camp,float scale);
     
-    void addRealtimeBattleProperty(GameEntity* entity,float x,float y,int side,float scale);
+    void addRealtimeBattleProperty(GameEntity* entity,float x,float y,int camp,float scale);
     
     /**
      * @brief 添加物体地图相关属性

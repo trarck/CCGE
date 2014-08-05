@@ -445,8 +445,6 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     entity->setUnitProperty(unitProperty);
     
-    CCLOG("level:%d,damage:%f",level,unitProperty->getDamage());
-    
     //设置战斗属性
     Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
     
@@ -497,8 +495,6 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     entity->setUnitProperty(unitProperty);
-    
-    CCLOG("opp level:%d,damage:%f",level,unitProperty->getDamage());
     
     //设置战斗属性
     Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
@@ -1013,7 +1009,7 @@ void BattleController::onEntityDie(yhge::Message* message)
     //entity数据
 
     BattleProperty* battleProperty=entity->getBattleProperty();
-    int side=battleProperty->getSide();
+    int side=battleProperty->getCamp();
     
     //从战斗队列中移除
     removeEntityFromTroops(entity, side);
