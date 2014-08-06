@@ -81,7 +81,7 @@ void RealtimeBattleController::viewDidLoad()
     //create battle layer
     loadBattleWorld();
     
-//    loadEntities();
+    loadEntities();
     
 //    showCoordinate();
     
@@ -211,13 +211,26 @@ void RealtimeBattleController::showCoordinate()
 
 void RealtimeBattleController::loadEntities()
 {
-    //加载自己
-    this->loadSelfEntities();
+    //把entity加入显示列表
     
-    //加载对方
-    this->loadOppEntities();
+    std::map<int, GameEntityVector > aliveUnits=m_battleManager->getAliveUnits();
     
-
+    //self camp
+    GameEntityVector selfUnits=aliveUnits[kCampPlayer];
+    GameEntityVector enemyUnits=aliveUnits[kCampEnemy];
+    
+    GameEntity* entity=NULL;
+    
+    for (std::map<int, GameEntityVector >::iterator campIter=aliveUnits.begin(); campIter!=aliveUnits.end(); ++campIter) {
+        for (GameEntityVector::iterator iter=campIter->second.begin(); iter!=campIter->second.end(); ++iter) {
+            
+            entity=*iter;
+            
+            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
+            m_battleWorld->addChild(rendererComponent->getRenderer());
+            
+        }
+    }    
 }
 
 

@@ -43,7 +43,7 @@ void GameEngine::setupManagers()
     //set battle updater
     m_battleUpdateManager=new BattleUpdateManager();
     m_battleUpdateManager->init();
-    m_battleManager->setEngine(this);
+    m_battleUpdateManager->setEngine(this);
     m_battleUpdateManager->setInterval(kBattleUpdateInterval);
     
     m_scheduler->registerUpdate(m_battleUpdateManager, schedule_selector(BattleUpdateManager::update), 0);

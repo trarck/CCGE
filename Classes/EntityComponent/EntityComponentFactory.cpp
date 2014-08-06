@@ -86,6 +86,8 @@ void EntityComponentFactory::addBattleAnimationComponent(GameEntity* entity)
     AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
     yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(unitProperty->getUnitId(),CCGE_ANIMATION_TYPE_BATTLE);
     
+    CCAssert(!battleAnimationData.isNull(), "no animation data");
+    
     //把数据加入到动画组件里
     yhge::Json::Value::Members members=battleAnimationData.getMemberNames();
     CCArray* twoAnimations=NULL;

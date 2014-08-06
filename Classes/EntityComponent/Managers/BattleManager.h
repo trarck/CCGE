@@ -198,6 +198,16 @@ public:
         return m_oprationList;
     }
     
+    inline GameEntityVector& getUnits()
+    {
+        return m_units;
+    }
+    
+    inline std::map<int, GameEntityVector >& getAliveUnits()
+    {
+        return m_aliveUnits;
+    }
+    
 protected:
     
     GameEntityVector m_units;
