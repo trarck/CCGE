@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
+#include "MoveComponent.h"
+
 
 NS_CC_GE_BEGIN
 
@@ -41,6 +43,10 @@ public:
     
 protected:
     
+    float m_temp;
+    int m_state;
+    
+    MoveComponent* m_moveComponent;
 };
 
 NS_CC_GE_END

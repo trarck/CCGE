@@ -165,29 +165,29 @@ void RealtimeBattleController::loadBattleWorld()
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-    hero["id"]=1;
-    hero["position_x"]=-80;
-    hero["position_y"]=-40;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=1;
-    hero["position_x"]=-180;
-    hero["position_y"]=40;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=1;
-    hero["position_x"]=-240;
-    hero["position_y"]=-40;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=1;
-    hero["position_x"]=-320;
-    hero["position_y"]=40;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
+//    hero["id"]=1;
+//    hero["position_x"]=-80;
+//    hero["position_y"]=-40;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
+//    
+//    hero["id"]=1;
+//    hero["position_x"]=-180;
+//    hero["position_y"]=40;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
+//    
+//    hero["id"]=1;
+//    hero["position_x"]=-240;
+//    hero["position_y"]=-40;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
+//    
+//    hero["id"]=1;
+//    hero["position_x"]=-320;
+//    hero["position_y"]=40;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
     
     m_battleManager->enterStage(stageInfo, heroList, true);
     

@@ -23,7 +23,7 @@ const float kBattleOppOffsetY=0;
 
 const int kBattleOppOffsetCell=4;
 
-const float kBattleUpdateInterval=0.125f;
+const float kBattleUpdateInterval=0.125f;//1.0f/60.0f;
 
 const int kCampPlayer=1;
 const int kCampEnemy=-1;

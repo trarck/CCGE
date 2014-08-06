@@ -5,6 +5,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "SimplePositionComponent.h"
+#include "EntityComponent/Properties/UnitProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -38,6 +39,12 @@ public:
     
     virtual void update(float delta);
     
+    virtual void tinyUpdate(float delta);
+    
+    virtual void startMove(int direction);
+    
+    virtual void stopMove();
+    
 public:
     
     inline void setWalkVelocity(const CCPoint& walkVelocity)
@@ -68,7 +75,16 @@ protected:
     //击退速度。有些技能有击退功能
     CCPoint m_knockupVelocity;
     
+    BattleProperty* m_battleProperty;
+    
+    UnitProperty* m_unitProperty;
+    
     SimplePositionComponent* m_positionComponent;
+    yhge::SpriteRendererComponent* m_rendererComponent;
+    
+    bool m_moveable;
+    
+    int m_moveDirection;
 };
 
 NS_CC_GE_END

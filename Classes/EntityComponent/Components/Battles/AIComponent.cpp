@@ -9,6 +9,8 @@ NS_CC_GE_BEGIN
 
 AIComponent::AIComponent()
 :Component("AIComponent")
+,m_temp(0)
+,m_state(0)
 {
     
 }
@@ -21,6 +23,8 @@ AIComponent::~AIComponent()
 void AIComponent::setup()
 {
     Component::setup();
+    
+    m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
 
 }
 
@@ -53,7 +57,33 @@ void AIComponent::cleanupMessages()
 
 void AIComponent::update(float delta)
 {
-    CCLOG("AIComponent::update:%d,%f",this,delta);
+//    CCLOG("AIComponent::update:%d,%f",this,delta);
+    
+    if (m_state==0) {
+        m_moveComponent->startMove(1);
+        m_state=1;
+    }else if(m_state==1){
+        m_temp+=delta;
+        if (m_temp>6) {
+            m_moveComponent->stopMove();
+            m_temp=0;
+            m_state=2;
+        }
+    }else if(m_state==2){
+        m_temp+=delta;
+        if (m_temp>3) {
+            m_moveComponent->startMove(-1);
+            m_temp=0;
+            m_state=3;
+        }
+    }else if(m_state==3){
+        m_temp+=delta;
+        if (m_temp>6) {
+            m_moveComponent->stopMove();
+            m_temp=0;
+            m_state=0;
+        }
+    }
 }
 
 void AIComponent::searchTarget()

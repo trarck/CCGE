@@ -36,6 +36,17 @@
 				"frame_index_prefix":"0649-3ea35add-%02d%03d.png",
                 "ext":"characters/2/0.plist"
             },
+            "move":{
+                "flag":1,
+                "frame_quantity":8,
+                "frame_width":74,
+                "frame_height":93,
+                "frame_delay":0.1,
+                "frame_index":0,
+                "frame_digit":5,
+				"frame_index_prefix":"2154-e1380841-%02d%03d.png",
+                "ext":"characters/2/1.plist"
+            },
             "die":{
                 "flag":1,
                 "frame_quantity":11,
@@ -122,6 +133,17 @@
                 "frame_digit":5,
 				"frame_index_prefix":"0485-3072aab6-%02d%03d.png",
                 "ext":"characters/3/0.plist"
+            },
+            "move":{
+                "flag":1,
+                "frame_quantity":8,
+                "frame_width":74,
+                "frame_height":93,
+                "frame_delay":0.1,
+                "frame_index":0,
+                "frame_digit":5,
+				"frame_index_prefix":"0289-1d6c9873-%02d%03d.png",
+                "ext":"characters/3/1.plist"
             },
             "attack":{
                 "flag":1,
