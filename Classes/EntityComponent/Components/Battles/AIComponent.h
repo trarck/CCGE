@@ -41,9 +41,14 @@ public:
     
     void searchTarget();
     
+    void walkTo(const CCPoint& dest);
+    
+    void walkStop();
+    
 protected:
     
     float m_temp;
+    
     int m_state;
     
     MoveComponent* m_moveComponent;

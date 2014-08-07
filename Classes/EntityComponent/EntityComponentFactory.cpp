@@ -19,6 +19,7 @@
 #include "Components/Battles/AIComponent.h"
 #include "Components/Battles/SimplePositionComponent.h"
 #include "Components/Battles/MoveComponent.h"
+#include "Components/Battles/VisibleMoveComponent.h"
 
 
 #include "EntityFactory.h"
@@ -213,6 +214,15 @@ void EntityComponentFactory::addMoveComponent(GameEntity* entity)
 //    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
     
     moveComponent->release();
+}
+
+void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)
+{
+    VisibleMoveComponent* visibleMoveComponent=new VisibleMoveComponent();
+    visibleMoveComponent->init();
+    
+    entity->addComponent(visibleMoveComponent);
+    visibleMoveComponent->release();
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

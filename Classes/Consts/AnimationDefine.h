@@ -18,6 +18,7 @@
 #define CCGE_ANIMATION_DIE "die"
 #define CCGE_ANIMATION_BEATTACK "beAttack"
 #define CCGE_ANIMATION_USE_SKILL "useSkill"
+#define CCGE_ANIMATION_MOVE "move"
 
 /*
  

@@ -26,7 +26,15 @@ public:
     
     void onInsertTable(yhge::Event* event);
     
-    void onShowTable(yhge::Event* event);   
+    void onShowTable(yhge::Event* event);
+    
+    void update1(float delta);
+    
+    void update2(float delta);
+    
+    void update3(float delta);
+    
+    void update4(float delta);
     
 private:
     
@@ -39,6 +47,10 @@ private:
 private:
     
     yhge::sqlite::SqliteDriver* m_sqliteDriver;
+    
+    yhge::UpdateManager* m_um;
+    
+    int m_tt;
 };
 NS_CC_GE_END
 

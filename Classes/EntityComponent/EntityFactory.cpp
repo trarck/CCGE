@@ -320,6 +320,7 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
     m_entityComponentFactory->addPositionComponent(entity);
     m_entityComponentFactory->addMoveComponent(entity);
     m_entityComponentFactory->addAIComponent(entity);
+    m_entityComponentFactory->addVisibleMoveComponent(entity);
 }
 
 

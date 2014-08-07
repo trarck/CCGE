@@ -1,12 +1,11 @@
-#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_MOVECOMPONENT_H_
-#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_MOVECOMPONENT_H_
+#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_VisibleMOVECOMPONENT_H_
+#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_VisibleMOVECOMPONENT_H_
 
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
-#include "SimplePositionComponent.h"
+#include "MoveComponent.h"
 #include "EntityComponent/Properties/UnitProperty.h"
-#include "EntityComponent/Properties/BattleProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -16,13 +15,13 @@ class GameEntity;
  * 移动组件
  * 处理单位移动逻辑
  */
-class MoveComponent : public yhge::Component
+class VisibleMoveComponent : public yhge::Component
 {
 public:
     
-    MoveComponent();
+    VisibleMoveComponent();
     
-    ~MoveComponent();
+    ~VisibleMoveComponent();
     
     /**
      * 设置
@@ -40,9 +39,13 @@ public:
     
     virtual void update(float delta);
         
-    virtual void moveTo(const CCPoint& dest);
+    virtual void startMove(int direction);
     
     virtual void stopMove();
+    
+    void onMoveTo(yhge::Message* message);
+    
+    void onMoveStop(yhge::Message* message);
     
 public:
     
@@ -56,36 +59,36 @@ public:
         return m_walkVelocity;
     }
     
-    inline void setKnockupVelocity(const CCPoint& knockupVelocity)
+    inline void setPosition(const CCPoint& position)
     {
-        m_knockupVelocity = knockupVelocity;
+        m_position = position;
     }
     
-    inline const CCPoint& getKnockupVelocity()
+    inline const CCPoint& getPosition()
     {
-        return m_knockupVelocity;
+        return m_position;
     }
+    
+protected:
+    void syncProperty();
     
 protected:
     
     //移动速度
     CCPoint m_walkVelocity;
     
-    //击退速度。有些技能有击退功能
-    CCPoint m_knockupVelocity;
-        
-    bool m_moveable;
+    CCPoint m_position;
     
-    CCPoint m_direction;
+    int m_tick;
     
-    UnitProperty* m_unitProperty;
     BattleProperty* m_battleProperty;
     
-    SimplePositionComponent* m_positionComponent;
+    UnitProperty* m_unitProperty;
+    
+    MoveComponent* m_moveComponent;
     yhge::SpriteRendererComponent* m_rendererComponent;
-
 };
 
 NS_CC_GE_END
 
-#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_MOVECOMPONENT_H_
+#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_VisibleMOVECOMPONENT_H_

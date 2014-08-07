@@ -58,11 +58,21 @@ enum BattleStateEvent
     
 };
 
+enum GroupUpdatePriority
+{
+    kUnitUpdate,
+    kProjectileUpdate,
+    kNpcUpdate,
+    
+    kRendererMoveUpdate,
+};
 
 enum ComponentUpdatePriority
 {
+    kMoveUpdate,
+    kSkillUpdate,
     kAIUpdate,
-    kMoveUpdate
+    kBuffUpdate,
 };
 
 NS_CC_GE_END

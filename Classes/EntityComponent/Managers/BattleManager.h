@@ -6,6 +6,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "../GameEntity.h"
+#include "BattleUpdateManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -223,7 +224,6 @@ protected:
     int m_deadAllianceCount;
     //敌方死亡的单位数量
     int m_deadEnemyCount;
-    
     
     
     //战斗模式

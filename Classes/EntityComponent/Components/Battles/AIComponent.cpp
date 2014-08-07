@@ -60,26 +60,26 @@ void AIComponent::update(float delta)
 //    CCLOG("AIComponent::update:%d,%f",this,delta);
     
     if (m_state==0) {
-        m_moveComponent->startMove(1);
+        walkTo(ccp(600,0));
         m_state=1;
     }else if(m_state==1){
         m_temp+=delta;
         if (m_temp>6) {
-            m_moveComponent->stopMove();
+            walkStop();
             m_temp=0;
             m_state=2;
         }
     }else if(m_state==2){
         m_temp+=delta;
         if (m_temp>3) {
-            m_moveComponent->startMove(-1);
+            walkTo(ccp(0,0));
             m_temp=0;
             m_state=3;
         }
     }else if(m_state==3){
         m_temp+=delta;
         if (m_temp>6) {
-            m_moveComponent->stopMove();
+            walkStop();
             m_temp=0;
             m_state=0;
         }
@@ -89,6 +89,18 @@ void AIComponent::update(float delta)
 void AIComponent::searchTarget()
 {
     
+}
+
+void AIComponent::walkTo(const CCPoint& dest)
+{
+    m_moveComponent->moveTo(dest);
+    this->getMessageManager()->dispatchMessage(MSG_MOVE_TO, this, m_owner,CCPointValue::create(dest));
+}
+
+void AIComponent::walkStop()
+{
+    m_moveComponent->stopMove();
+    this->getMessageManager()->dispatchMessage(MSG_MOVE_STOP, this, m_owner);
 }
 
 NS_CC_GE_END

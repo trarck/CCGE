@@ -44,10 +44,22 @@ public:
         return m_interval;
     }
     
+    inline void setTicks(int ticks)
+    {
+        m_ticks = ticks;
+    }
+    
+    inline int getTicks()
+    {
+        return m_ticks;
+    }
+    
 protected:
     
     float m_elapsed;
     float m_interval;
+    
+    int m_ticks;
     
 };
 

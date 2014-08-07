@@ -78,6 +78,9 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     //attack speed
     unitProperty->setAttackSpeed(AttackSpeedFormula::calcAttackSpeed(0, 0, unitProperty->getAgility(), kAgilityToAttackSpeedParam));
     
+    //walk speed
+    unitProperty->setWalkSpeed(unitProto[CCGE_UNIT_WALK_SPEED].asDouble());
+    
     //icon
     unitProperty->setIcon(unitProto[CCGE_UNIT_ICON].asString());
         

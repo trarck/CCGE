@@ -9,6 +9,7 @@ NS_CC_GE_BEGIN
 BattleUpdateManager::BattleUpdateManager()
 :m_elapsed(0)
 ,m_interval(0)
+,m_ticks(0)
 {
     YHDEBUG("UpdateManager create");
 }
@@ -28,7 +29,7 @@ void BattleUpdateManager::update(float delta)
     if (m_elapsed>=m_interval) {
         
         UpdateManager::update(m_interval);
-        
+        ++m_ticks;
         while (m_elapsed>=m_interval) {
             m_elapsed-=m_interval;
         }

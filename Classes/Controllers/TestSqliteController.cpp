@@ -79,6 +79,19 @@ void TestSqliteController::viewDidLoad()
     
     m_sqliteDriver->connect(dbPath,SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE);
 
+    m_tt=0;
+    
+    m_um=new UpdateManager();
+    m_um->init();
+    
+    m_um->addUpdater(this, schedule_selector(TestSqliteController::update1), 1);
+    m_um->addUpdater(this, schedule_selector(TestSqliteController::update2), 2);
+    m_um->addUpdater(this, schedule_selector(TestSqliteController::update3), 3);
+    m_um->addUpdater(this, schedule_selector(TestSqliteController::update4), 4);
+    
+    m_um->update(1.0f);
+    
+    m_um->update(1.0f);
 }
 
 
@@ -150,6 +163,31 @@ void TestSqliteController::onShowTable(yhge::Event* event)
 {
     CCLOG("####show table#####");
     showTable();
+}
+
+void TestSqliteController::update1(float delta)
+{
+    CCLOG("update1");
+
+}
+
+void TestSqliteController::update2(float delta)
+{
+    CCLOG("update2");
+    if (m_tt==0) {
+        m_um->removeUpdater(this,schedule_selector(TestSqliteController::update3));
+    }
+    ++m_tt;
+}
+
+void TestSqliteController::update3(float delta)
+{
+    CCLOG("update3");
+}
+
+void TestSqliteController::update4(float delta)
+{
+    CCLOG("update4");
 }
 
 NS_CC_GE_END
