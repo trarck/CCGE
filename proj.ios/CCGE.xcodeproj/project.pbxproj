@@ -327,6 +327,7 @@
 		57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76F418AA18450085A22F /* BattleScene.cpp */; };
 		57CF771018AB6B120085A22F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CF770F18AB6B120085A22F /* libsqlite3.dylib */; };
 		57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */; };
+		57E4662819931756001B2A6E /* VisibleMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */; };
 		57F0133318FF6EFB00CB32E9 /* RealtimeBattleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */; };
 		57F0133918FF70D400CB32E9 /* RealtimeBattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */; };
 		57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F0133A18FF87E500CB32E9 /* AttackSpeedFormula.cpp */; };
@@ -1075,6 +1076,8 @@
 		57CF770F18AB6B120085A22F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HurtComponent.cpp; sourceTree = "<group>"; };
 		57E2C2BE18F3A0A300124DF1 /* HurtComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HurtComponent.h; sourceTree = "<group>"; };
+		57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisibleMoveComponent.cpp; sourceTree = "<group>"; };
+		57E4662719931756001B2A6E /* VisibleMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisibleMoveComponent.h; sourceTree = "<group>"; };
 		57F0133118FF6EFB00CB32E9 /* RealtimeBattleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtimeBattleController.cpp; sourceTree = "<group>"; };
 		57F0133218FF6EFB00CB32E9 /* RealtimeBattleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeBattleController.h; sourceTree = "<group>"; };
 		57F0133718FF70D400CB32E9 /* RealtimeBattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtimeBattleScene.cpp; sourceTree = "<group>"; };
@@ -1860,6 +1863,8 @@
 				571393C7194597690028120A /* SimplePositionComponent.h */,
 				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
+				57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */,
+				57E4662719931756001B2A6E /* VisibleMoveComponent.h */,
 			);
 			path = Battles;
 			sourceTree = "<group>";
@@ -2761,6 +2766,7 @@
 				575643061977B36000AA1194 /* CCActionFrame.cpp in Sources */,
 				57704F9F18CDAD72006B8A62 /* GameSceneDirector.cpp in Sources */,
 				15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */,
+				57E4662819931756001B2A6E /* VisibleMoveComponent.cpp in Sources */,
 				575643411977B36100AA1194 /* CheckBoxReader.cpp in Sources */,
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
