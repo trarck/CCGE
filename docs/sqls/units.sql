@@ -51,5 +51,7 @@ CREATE TABLE "units" (
 	 
 	 "mp_type" integer NOT NULL DEFAULT '0',--能量条类型
 	 
+	 "puppet_id" integer NOT NULL DEFAULT '0', --元素动画id
+	 
 	PRIMARY KEY("id")
 );
