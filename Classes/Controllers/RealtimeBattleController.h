@@ -136,6 +136,11 @@ public:
     void loadEntities();
     
     /**
+     * @brief 卸载战斗单元
+     */
+    void unloadEntities();
+    
+    /**
      * @brief 加载自己
      */
     void loadSelfEntities();

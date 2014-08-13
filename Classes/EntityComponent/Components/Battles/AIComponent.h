@@ -5,6 +5,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "MoveComponent.h"
+#include "EntityComponent/Properties/BattleProperty.h"
 
 
 NS_CC_GE_BEGIN
@@ -39,19 +40,42 @@ public:
     
     virtual void update(float delta);
     
-    void searchTarget();
+    GameEntity* searchTarget();
+    
+    void walkTo(GameEntity* dest);
     
     void walkTo(const CCPoint& dest);
     
     void walkStop();
     
-protected:
+public:
     
-    float m_temp;
+    void setTarget(GameEntity* target);
+    
+    inline GameEntity* getTarget()
+    {
+        return m_target;
+    }
+    
+    void setDestination(GameEntity* destination);
+    
+    inline GameEntity* getDestination()
+    {
+        return m_destination;
+    }
+    
+protected:
     
     int m_state;
     
+    GameEntity* m_target;
+    
+    GameEntity* m_destination;
+    
     MoveComponent* m_moveComponent;
+    
+    float m_temp;
+
 };
 
 NS_CC_GE_END

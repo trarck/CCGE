@@ -168,6 +168,7 @@ void TestSqliteController::onShowTable(yhge::Event* event)
 void TestSqliteController::update1(float delta)
 {
     CCLOG("update1");
+//    m_um->removeUpdater(this);
 
 }
 
@@ -175,6 +176,7 @@ void TestSqliteController::update2(float delta)
 {
     CCLOG("update2");
     if (m_tt==0) {
+        m_um->removeUpdater(this,schedule_selector(TestSqliteController::update2));
         m_um->removeUpdater(this,schedule_selector(TestSqliteController::update3));
     }
     ++m_tt;

@@ -39,7 +39,7 @@ public:
     
     virtual void update(float delta);
         
-    virtual void startMove(int direction);
+    virtual void startMove();
     
     virtual void stopMove();
     
@@ -80,6 +80,8 @@ protected:
     CCPoint m_position;
     
     int m_tick;
+    
+    bool m_moving;
     
     BattleProperty* m_battleProperty;
     

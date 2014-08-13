@@ -115,6 +115,8 @@ void RealtimeBattleController::onViewExit()
 {
     CCLOG("RealtimeBattleController::onViewExit %d",this->retainCount());
     
+    unloadEntities();
+    
     CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     Controller::onViewExit();
@@ -160,20 +162,14 @@ void RealtimeBattleController::loadBattleWorld()
     Json::Value hero;
     
     hero["id"]=1;
-    hero["position_x"]=0;
-    hero["position_y"]=40;
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-    hero["id"]=1;
-    hero["position_x"]=-80;
-    hero["position_y"]=-40;
+    hero["id"]=2;
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-    hero["id"]=1;
-    hero["position_x"]=-180;
-    hero["position_y"]=40;
+    hero["id"]=3;
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
 //
@@ -189,7 +185,23 @@ void RealtimeBattleController::loadBattleWorld()
 //    hero["camp"]=kCampPlayer;
 //    heroList.push_back(hero);
     
-    m_battleManager->enterStage(stageInfo, heroList, true);
+    HeroVector enemyList;
+    Json::Value enemy;
+    
+    enemy["id"]=6;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
+    
+    enemy["id"]=5;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
+    
+    enemy["id"]=4;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
+    
+//    m_battleManager->enterStage(stageInfo, heroList, true);
+    m_battleManager->enterArena(heroList, enemyList, false, false);
     
     
     
@@ -214,11 +226,7 @@ void RealtimeBattleController::loadEntities()
     //把entity加入显示列表
     
     std::map<int, GameEntityVector > aliveUnits=m_battleManager->getAliveUnits();
-    
-    //self camp
-    GameEntityVector selfUnits=aliveUnits[kCampPlayer];
-    GameEntityVector enemyUnits=aliveUnits[kCampEnemy];
-    
+        
     GameEntity* entity=NULL;
     
     for (std::map<int, GameEntityVector >::iterator campIter=aliveUnits.begin(); campIter!=aliveUnits.end(); ++campIter) {
@@ -233,6 +241,25 @@ void RealtimeBattleController::loadEntities()
     }    
 }
 
+void RealtimeBattleController::unloadEntities()
+{
+    std::map<int, GameEntityVector > aliveUnits=m_battleManager->getAliveUnits();
+    
+    GameEntity* entity=NULL;
+    
+    for (std::map<int, GameEntityVector >::iterator campIter=aliveUnits.begin(); campIter!=aliveUnits.end(); ++campIter) {
+        for (GameEntityVector::iterator iter=campIter->second.begin(); iter!=campIter->second.end(); ++iter) {
+            
+            entity=*iter;
+            
+            entity->cleanup();
+            
+        }
+    }
+    
+    m_battleWorld->removeAllChildrenWithCleanup(true);
+    
+}
 
 void RealtimeBattleController::convertIndexToCell(int index,int* col,int* row)
 {
@@ -376,7 +403,7 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale,10.0f);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);
@@ -426,7 +453,7 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale,10.0f);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);

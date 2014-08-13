@@ -92,7 +92,7 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row
     entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int camp,float scale)
+void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int camp,float scale,float attackRange)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
@@ -100,6 +100,7 @@ void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x
     battleProperty->setY(y);
     battleProperty->setCamp(camp);
     battleProperty->setScale(scale);
+    battleProperty->setAttackRange(attackRange);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
     battleProperty->release();

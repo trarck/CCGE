@@ -42,6 +42,7 @@ public:
     ,m_maxStars(0)
     ,m_stars(0)
     ,m_flyable(false)
+    ,m_puppetId(0)
     {
         
     }
@@ -437,6 +438,26 @@ public:
         return m_icon;
     }
     
+    inline void setPuppetId(int puppetId)
+    {
+        m_puppetId = puppetId;
+    }
+    
+    inline int getPuppetId()
+    {
+        return m_puppetId;
+    }
+    
+    inline void setProto(const yhge::Json::Value& proto)
+    {
+        m_proto = proto;
+    }
+    
+    inline const yhge::Json::Value& getProto()
+    {
+        return m_proto;
+    }
+    
 protected:
     //配置表里的unitId
     int m_unitId;
@@ -524,6 +545,10 @@ protected:
     std::string m_description;
     //图标
     std::string m_icon;
+    //动画id
+    int m_puppetId;
+    
+    yhge::Json::Value m_proto;
 };
 
 NS_CC_GE_END

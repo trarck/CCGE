@@ -91,18 +91,27 @@ void MoveComponent::moveTo(const CCPoint& dest)
     
     pos=ccpSub(dest, pos);
     
-    pos=ccpNormalize(pos);
+    if (pos.x==0 and pos.y==0) {
+        m_walkVelocity=CCPointZero;
+    }else{
+        pos=ccpNormalize(pos);
     
-    m_walkVelocity=ccpMult(pos, m_unitProperty->getWalkSpeed());
+        m_walkVelocity=ccpMult(pos, m_unitProperty->getWalkSpeed());
+    }
     
-    Game::getInstance()->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(m_owner->m_uID, this, schedule_selector(MoveComponent::update),kMoveUpdate);
+    if(!m_moveable){
+        Game::getInstance()->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(m_owner->m_uID, this, schedule_selector(MoveComponent::update),kMoveUpdate);
+        m_moveable=true;
+    }
 }
 
 void MoveComponent::stopMove()
 {
     m_walkVelocity=CCPointZero;
-    
-    Game::getInstance()->getEngine()->getBattleUpdateManager()->removeUpdaterFromGroup(m_owner->m_uID, this);
+    if (m_moveable) {
+        Game::getInstance()->getEngine()->getBattleUpdateManager()->removeUpdaterFromGroup(m_owner->m_uID, this);
+        m_moveable=false;
+    }
 }
 
 NS_CC_GE_END

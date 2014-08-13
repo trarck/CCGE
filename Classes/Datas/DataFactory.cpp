@@ -18,6 +18,7 @@ DataFactory::DataFactory()
 ,m_unitData(NULL)
 ,m_monsterData(NULL)
 ,m_characterData(NULL)
+,m_skillData(NULL)
 {
 
 }
@@ -31,6 +32,7 @@ DataFactory::~DataFactory()
     CC_SAFE_RELEASE_NULL(m_unitData);
     CC_SAFE_RELEASE_NULL(m_monsterData);
     CC_SAFE_RELEASE_NULL(m_characterData);
+    CC_SAFE_RELEASE_NULL(m_skillData);
 }
 
 bool DataFactory::init()
@@ -89,6 +91,9 @@ void DataFactory::setupData()
     
     m_characterData=new CharacterData();
     m_characterData->init(m_gameDao,"characters");
+    
+    m_skillData=new SkillData();
+    m_skillData->init(m_gameDao,"skills");
     
 }
 

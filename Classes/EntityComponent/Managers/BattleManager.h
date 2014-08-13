@@ -74,7 +74,7 @@ public:
     /**
      * @brief 初始化敌方战斗单位
      */
-    void setupEnemyEntities(HeroVector& heroList);
+    void setupEnemyEntities(HeroVector& heroList,bool isBot);
     
     /**
      * @brief 初始化英雄

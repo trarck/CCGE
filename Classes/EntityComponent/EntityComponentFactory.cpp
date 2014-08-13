@@ -68,7 +68,7 @@ void EntityComponentFactory::addBattleRendererComponent(GameEntity* entity)
 //    renderer->setZOrder(battleProperty->getCol());
     
     //目前的人物是朝向右，对手要做镜像
-    rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getCamp()==kOppSide);
+    rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getCamp()==kCampEnemy);
     
     entity->addComponent(rendererComponent);
     rendererComponent->release();
@@ -85,8 +85,8 @@ void EntityComponentFactory::addBattleAnimationComponent(GameEntity* entity)
     
     //从配置文件中取得动画数据
     AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
-    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(unitProperty->getUnitId(),CCGE_ANIMATION_TYPE_BATTLE);
-    
+    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(unitProperty->getPuppetId(),CCGE_ANIMATION_TYPE_BATTLE);
+
     CCAssert(!battleAnimationData.isNull(), "no animation data");
     
     //把数据加入到动画组件里

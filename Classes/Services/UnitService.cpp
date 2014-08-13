@@ -83,6 +83,8 @@ UnitProperty* UnitService::createUnitPropertyFromLevel(int level,const yhge::Jso
     
     //icon
     unitProperty->setIcon(unitProto[CCGE_UNIT_ICON].asString());
+    
+    unitProperty->setPuppetId(unitProto[CCGE_UNIT_PUPPET_ID].asInt());
         
     unitProperty->autorelease();
     

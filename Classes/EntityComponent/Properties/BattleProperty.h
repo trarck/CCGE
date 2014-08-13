@@ -13,10 +13,10 @@ public:
     
     inline BattleProperty()
     :m_scale(1.0f)
-    ,m_x(0.0f)
-    ,m_y(0.0f)
+    ,m_position(CCPointZero)
     ,m_camp(0)
     ,m_alive(true)
+    ,m_attackRange(false)
     {
         
     }
@@ -34,23 +34,34 @@ public:
     
     inline void setX(float x)
     {
-        m_x = x;
+        m_position.x = x;
     }
     
     inline float getX()
     {
-        return m_x;
+        return m_position.x;
     }
     
     inline void setY(float y)
     {
-        m_y = y;
+        m_position.y = y;
     }
     
     inline float getY()
     {
-        return m_y;
+        return m_position.y;
     }
+    
+    inline void setPosition(const CCPoint& position)
+    {
+        m_position = position;
+    }
+    
+    inline const CCPoint& getPosition()
+    {
+        return m_position;
+    }
+    
 
     inline void setCamp(int camp)
     {
@@ -72,20 +83,32 @@ public:
         return m_alive;
     }
 
+    inline void setAttackRange(float attackRange)
+    {
+        m_attackRange = attackRange;
+    }
+    
+    inline float getAttackRange()
+    {
+        return m_attackRange;
+    }
+    
 protected:
     
     //缩放
     float m_scale;
 
     //坐标
-    float m_x;
-    float m_y;
+    CCPoint m_position;
     
     //阵营
     int m_camp;
     
     //是否活着
     bool m_alive;
+    
+    //攻击距离
+    float m_attackRange;
     
     
 };

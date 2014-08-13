@@ -10,7 +10,6 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-
 BattleManager::BattleManager()
 :m_aliveAllianceCount(0)
 ,m_aliveEnemyCount(0)
@@ -118,7 +117,11 @@ void BattleManager::enterStage(yhge::Json::Value& stageInfo,HeroVector& heroList
 //进入竞技场
 void BattleManager::enterArena(HeroVector& heroList,HeroVector& enemyList,bool heroIsBot,bool enemyIsBot)
 {
+    resetStage();
     
+    setupSelfEntities(heroList,heroIsBot);
+    
+    setupEnemyEntities(enemyList, enemyIsBot);
 }
 
 //进入远程
@@ -138,8 +141,21 @@ void BattleManager::enterExcavate(HeroVector& heroList,HeroVector& enemyList,boo
 void BattleManager::setupSelfEntities(HeroVector& heroList,bool isBot)
 {
     //short hero by attack range
+    heroList=sortEntity(heroList);
+    
+    int i=0;
+    float x=0,y=0;
     
     for (HeroVector::iterator iter=heroList.begin(); iter!=heroList.end(); ++iter) {
+        x=i*-80;
+        y=i&1?-40:40;
+        (*iter)["position_x"]=x;
+        
+        (*iter)["position_y"]=y;
+        
+//        CCLOG("pos:%d,%f,%f",i,x,y);
+        
+        ++i;
         
         GameEntity* heroEntity=createEntity(*iter);
         
@@ -155,19 +171,88 @@ void BattleManager::setupSelfEntities(HeroVector& heroList,bool isBot)
 }
 
 // 初始化敌方战斗单位
-void BattleManager::setupEnemyEntities(HeroVector& heroList)
+void BattleManager::setupEnemyEntities(HeroVector& heroList,bool isBot)
 {
+    heroList=sortEntity(heroList);
     
+    int i=0;
+    for (HeroVector::iterator iter=heroList.begin(); iter!=heroList.end(); ++iter) {
+
+        (*iter)["position_x"]=800+i*80;
+        
+        (*iter)["position_y"]=i&1?-40:40;
+        
+        ++i;
+        
+        GameEntity* heroEntity=createEntity(*iter);
+        
+        if (heroEntity) {
+            
+            addUnit(heroEntity);
+        
+        }else{
+            CCAssert(false, "BattleManager::setupSelfEntities create entity faile");
+        }
+    }
 }
+
 
 HeroVector BattleManager::sortEntity(const HeroVector& entityList)
 {
     HeroVector sortedList;
 
+    DataFactory* dataFactory=Game::getInstance()->getDataFactory();
+    UnitData* unitData=dataFactory->getUnitData();
+    SkillData* skillData=dataFactory->getSkillData();
+    CharacterData* characterData=dataFactory->getCharacterData();
+    
+    int entityId=0;
+    
+    //calc attack range
+    std::map<int, float> entityRange;
+    
     for (HeroVector::const_iterator iter=entityList.begin();iter!=entityList.end(); ++iter) {
         
+        entityId=(*iter)["id"].asInt();
         
-        //look up skill table
+        Json::Value characterConfig=characterData->getDataById(entityId);
+        
+        int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
+        
+        Json::Value unitProto=unitData->getDataById(unitId);
+
+        
+        int baseSkillId=unitProto["basic_skill"].asInt();
+        Json::Value skillProto=skillData->getDataById(baseSkillId);
+        float attackRange=skillProto["max_range"].asDouble();
+        
+        entityRange[entityId]=attackRange;
+    }
+    
+    int innerEntityId=0;
+    float attackRange=0,innerAttackRange=0;
+    bool haveInserted=false;
+    
+    for (HeroVector::const_iterator iter=entityList.begin();iter!=entityList.end(); ++iter) {
+        
+        entityId=(*iter)["id"].asInt();
+        attackRange=entityRange[entityId];
+        haveInserted=false;
+        
+        for (HeroVector::iterator inner=sortedList.begin(); inner!=sortedList.end(); ++inner) {
+            innerEntityId=(*inner)["id"].asInt();
+            innerAttackRange=entityRange[innerEntityId];
+            
+            if (attackRange<innerAttackRange) {
+                sortedList.insert(inner, *iter);
+                haveInserted=true;
+                break;
+            }
+        }
+        
+        if (!haveInserted) {
+            sortedList.push_back(*iter);
+        }
     }
     
     return sortedList;
@@ -181,6 +266,10 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     DataFactory* dataFactory=Game::getInstance()->getDataFactory();
     
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
+    CharacterData* characterData=dataFactory->getCharacterData();
+    
+    UnitData* unitData=dataFactory->getUnitData();
+    SkillData* skillData=dataFactory->getSkillData();
     
     int entityId=hero["id"].asInt();
     
@@ -190,7 +279,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     
     entity=entityFactory->createEntity(entityId);
     
-    CharacterData* characterData=dataFactory->getCharacterData();
+
     
     Json::Value characterConfig=characterData->getDataById(entityId);
     
@@ -198,7 +287,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
 
-    UnitData* unitData=dataFactory->getUnitData();
+    
     
     Json::Value unitProto=unitData->getDataById(unitId);
     
@@ -208,7 +297,12 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     entity->setUnitProperty(unitProperty);
 
     //设置战斗属性
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,camp,scale);
+    //get attack range
+    int baseSkillId=unitProto["basic_skill"].asInt();
+    Json::Value skillProto=skillData->getDataById(baseSkillId);
+    float attackRange=skillProto["max_range"].asDouble();
+    CCLOG("range[%d]:%d,%f",entityId,baseSkillId,attackRange);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,camp,scale,attackRange);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);

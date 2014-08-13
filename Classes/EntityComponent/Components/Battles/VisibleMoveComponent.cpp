@@ -21,6 +21,7 @@ VisibleMoveComponent::VisibleMoveComponent()
 ,m_moveComponent(NULL)
 ,m_rendererComponent(NULL)
 ,m_tick(-1)
+,m_moving(false)
 {
     
 }
@@ -103,12 +104,11 @@ void VisibleMoveComponent::syncProperty()
     m_position.y=m_battleProperty->getY();
 }
 
-void VisibleMoveComponent::startMove(int direction)
+void VisibleMoveComponent::startMove()
 {
     syncProperty();
 
     m_rendererComponent->getRenderer()->setPosition(m_position);
-    
     
     //改变角色动作
     CCDictionary* data=new CCDictionary();
@@ -116,16 +116,26 @@ void VisibleMoveComponent::startMove(int direction)
     data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
     MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
     
+    int direction=m_walkVelocity.x;//*m_battleProperty->getCamp();
+    
     //改变人物朝向
     if(m_rendererComponent)
         m_rendererComponent->getSpriteRenderer()->setFlipX(direction<0);
     
-    Game::getInstance()->getEngine()->getUpdateManager()->addUpdater(this, schedule_selector(VisibleMoveComponent::update),kRendererMoveUpdate);
+    if(!m_moving){
+        CCLOG("startMove[%p]",this);
+        Game::getInstance()->getEngine()->getUpdateManager()->addUpdater(this, schedule_selector(VisibleMoveComponent::update),kRendererMoveUpdate);
+        m_moving=true;
+    }
 }
 
 void VisibleMoveComponent::stopMove()
 {
-    Game::getInstance()->getEngine()->getUpdateManager()->removeUpdater(this);
+    if (m_moving) {
+        CCLOG("stopMove[%p]",this);
+        Game::getInstance()->getEngine()->getUpdateManager()->removeUpdater(this);
+        m_moving=false;
+    }
     
     CCDictionary* data=new CCDictionary();
     data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
@@ -135,11 +145,8 @@ void VisibleMoveComponent::stopMove()
 
 void VisibleMoveComponent::onMoveTo(yhge::Message* message)
 {
-    CCPointValue* positionValue=static_cast<CCPointValue*>(message->getData());
-    
     //clac direction
-    int direction=(int)(positionValue->getPoint().x-m_battleProperty->getX());
-    startMove(direction);
+    startMove();
 }
 
 void VisibleMoveComponent::onMoveStop(yhge::Message* message)

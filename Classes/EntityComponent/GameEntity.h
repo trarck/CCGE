@@ -105,16 +105,16 @@ public:
     }
     
 private:
-
+    
+    UnitProperty* m_unitProperty;
+    
+    BattleProperty* m_battleProperty;
+    
     yhge::RendererComponent* m_rendererComponent;
 
     yhge::ISOPositionComponent* m_isoPositionComponent;
     
     GameAttackComponent* m_attackComponent;
-    
-    UnitProperty* m_unitProperty;
-    
-    BattleProperty* m_battleProperty;
     
     HealthBarComponent* m_healthBarComponent;
     

@@ -15,12 +15,12 @@ GameEntity::GameEntity()
 ,m_battlePositionComponent(NULL)
 ,m_battleStateMachineComponent(NULL)
 {
-    
+    CCLOG("GameEntity create[%d]",m_uID);
 }
 
 GameEntity::~GameEntity()
 {
-    CCLOG("GameEntity destroy");
+    CCLOG("GameEntity destroy[%d]",m_uID);
 }
 
 NS_CC_GE_END

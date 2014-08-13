@@ -7,7 +7,7 @@
  */
 #define CCGE_PROPERTY_UNIT "UnitProperty"
 
-#define CCGE_PROPERTY_BATTLECELL "BattleCellProperty"
+#define CCGE_PROPERTY_BATTLECELL "BattleProperty"
 
 
 #endif /* defined(CCGE_CONSTS_PROPERTYDEFINE_H_) */

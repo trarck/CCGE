@@ -10,6 +10,7 @@
 #include "UnitData.h"
 #include "MonsterData.h"
 #include "CharacterData.h"
+#include "SkillData.h"
 
 NS_CC_GE_BEGIN
 
@@ -71,6 +72,11 @@ public:
         return m_characterData;
     }
     
+    inline SkillData* getSkillData()
+    {
+        return m_skillData;
+    }
+    
 protected:
 
     /**
@@ -97,6 +103,8 @@ protected:
     MonsterData* m_monsterData;
     
     CharacterData* m_characterData;
+    
+    SkillData* m_skillData;
     
 };
 
