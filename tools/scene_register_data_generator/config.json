@@ -15,7 +15,8 @@
 			"name":"TestAnimationScene",
 			"path":"SceneBuilder/GameSceneBuilder.h",
 			"creator":"GameSceneBuilder::buildScene"
-		}
+		},
+		"TestMsgScene"
 	]
 		
 	

@@ -56,6 +56,7 @@ void MainController::viewDidLoad()
     createTestMenuItem("test iso batch dynamic",kTestISOScene,CCInteger::create(ISOTileMapBuilder::BatchDynamicLayerType));
     createTestMenuItem("test sqlite",kTestSqlite,NULL);
     createTestMenuItem("test animation",kTestAnimationScene,NULL);
+    createTestMenuItem("test msg",kTestMsgScene,NULL);
 
 	CCSize screenSize=CCDirector::sharedDirector()->getWinSize();
 
