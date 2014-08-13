@@ -183,6 +183,8 @@
 		5726027818F4EA8D004C77A1 /* UnitData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5726027618F4EA8D004C77A1 /* UnitData.cpp */; };
 		573D940D1999F1A100F47394 /* SkillData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D940B1999F1A100F47394 /* SkillData.cpp */; };
 		573D94101999F24600F47394 /* BaseSqlData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D940E1999F24600F47394 /* BaseSqlData.cpp */; };
+		573D9413199B06C600F47394 /* TestMsgScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9411199B06C600F47394 /* TestMsgScene.cpp */; };
+		573D9416199B070100F47394 /* TestMsgController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9414199B070100F47394 /* TestMsgController.cpp */; };
 		5747632418D186800031E2E0 /* DieComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632218D186800031E2E0 /* DieComponent.cpp */; };
 		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
@@ -769,6 +771,10 @@
 		573D940C1999F1A100F47394 /* SkillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillData.h; sourceTree = "<group>"; };
 		573D940E1999F24600F47394 /* BaseSqlData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSqlData.cpp; sourceTree = "<group>"; };
 		573D940F1999F24600F47394 /* BaseSqlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSqlData.h; sourceTree = "<group>"; };
+		573D9411199B06C600F47394 /* TestMsgScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMsgScene.cpp; sourceTree = "<group>"; };
+		573D9412199B06C600F47394 /* TestMsgScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMsgScene.h; sourceTree = "<group>"; };
+		573D9414199B070100F47394 /* TestMsgController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMsgController.cpp; sourceTree = "<group>"; };
+		573D9415199B070100F47394 /* TestMsgController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMsgController.h; sourceTree = "<group>"; };
 		5747632218D186800031E2E0 /* DieComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DieComponent.cpp; sourceTree = "<group>"; };
 		5747632318D186800031E2E0 /* DieComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieComponent.h; sourceTree = "<group>"; };
 		5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthBarComponent.cpp; sourceTree = "<group>"; };
@@ -2419,6 +2425,8 @@
 				57B0CA64193D6A9F00098C22 /* TestAnimationController.h */,
 				575AD878187BC54B00AA0477 /* TestISOController.cpp */,
 				575AD879187BC54B00AA0477 /* TestISOController.h */,
+				573D9414199B070100F47394 /* TestMsgController.cpp */,
+				573D9415199B070100F47394 /* TestMsgController.h */,
 				57525CC418AB6C7100166633 /* TestSqliteController.cpp */,
 				57525CC518AB6C7100166633 /* TestSqliteController.h */,
 				575AD87A187BC54B00AA0477 /* ThreeSegmentController.cpp */,
@@ -2449,6 +2457,8 @@
 				574FE62418E014A300490B18 /* SimpleScene.h */,
 				575AD888187BC54B00AA0477 /* TestISOScene.cpp */,
 				575AD889187BC54B00AA0477 /* TestISOScene.h */,
+				573D9411199B06C600F47394 /* TestMsgScene.cpp */,
+				573D9412199B06C600F47394 /* TestMsgScene.h */,
 				57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */,
 				57525CBF18AB6C4800166633 /* TestSqliteScene.h */,
 				575AD88A187BC54B00AA0477 /* ThreeSegmentScene.cpp */,
@@ -2777,6 +2787,7 @@
 				57704F9F18CDAD72006B8A62 /* GameSceneDirector.cpp in Sources */,
 				15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */,
 				57E4662819931756001B2A6E /* VisibleMoveComponent.cpp in Sources */,
+				573D9413199B06C600F47394 /* TestMsgScene.cpp in Sources */,
 				575643411977B36100AA1194 /* CheckBoxReader.cpp in Sources */,
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
@@ -3029,6 +3040,7 @@
 				1A8F3B6E175E05DA00049216 /* Animation.cpp in Sources */,
 				1A8F3B6F175E05DA00049216 /* AnimationState.cpp in Sources */,
 				1A8F3B70175E05DA00049216 /* AnimationStateData.cpp in Sources */,
+				573D9416199B070100F47394 /* TestMsgController.cpp in Sources */,
 				575643471977B36100AA1194 /* ListViewReader.cpp in Sources */,
 				57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */,
 				1A8F3B71175E05DA00049216 /* Atlas.cpp in Sources */,
