@@ -1,4 +1,4 @@
-#include "ZoneData.h"
+#include "UnitDAO.h"
 #include <yhge/yhge.h>
 
 USING_NS_CC;
@@ -6,12 +6,12 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-ZoneData::ZoneData()
+UnitDAO::UnitDAO()
 {
 
 }
 
-ZoneData::~ZoneData()
+UnitDAO::~UnitDAO()
 {
 
 }

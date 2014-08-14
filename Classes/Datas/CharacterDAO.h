@@ -1,22 +1,22 @@
-#ifndef CCGE_DATAS_CharacterData_H_
-#define CCGE_DATAS_CharacterData_H_
+#ifndef CCGE_DATAS_CHARACTERDAO_H_
+#define CCGE_DATAS_CHARACTERDAO_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
-#include <yhge/yhge.h>
+#include "BaseSqlDAO.h"
 
 NS_CC_GE_BEGIN
 
 /**
  * 玩家实体数据
  */
-class CharacterData:public yhge::SqliteDBData
+class CharacterDAO:public BaseSqlDAO
 {
 public:
     
-	CharacterData();
+	CharacterDAO();
     
-	~CharacterData();
+	~CharacterDAO();
     
     inline yhge::Json::Value getDataById(int playerId)
     {
@@ -35,4 +35,4 @@ protected:
 
 NS_CC_GE_END
 
-#endif //CCGE_DATAS_CharacterData_H_
+#endif //CCGE_DATAS_CHARACTERDAO_H_

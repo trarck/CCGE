@@ -266,7 +266,7 @@ void GameWorldController::createActiveLayer(ISOActiveLayerInfo* activeLayerInfo)
 
 ISOMapInfo* GameWorldController::loadMapData()
 {
-    std::string mapFile=Game::getInstance()->getDataFactory()->getMapData()->getDataById(m_mapId)["data_file"].asString();
+    std::string mapFile=Game::getInstance()->getDataFactory()->getMapDAO()->getDataById(m_mapId)["data_file"].asString();
     
     CCLOG("map file=%s",mapFile.c_str());
     

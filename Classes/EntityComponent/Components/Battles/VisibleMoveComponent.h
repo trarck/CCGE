@@ -4,18 +4,15 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
-#include "MoveComponent.h"
-#include "EntityComponent/Properties/UnitProperty.h"
+#include "../GameComponent.h"
 
 NS_CC_GE_BEGIN
-
-class GameEntity;
 
 /**
  * 移动组件
  * 处理单位移动逻辑
  */
-class VisibleMoveComponent : public yhge::Component
+class VisibleMoveComponent : public GameComponent
 {
 public:
     
@@ -83,11 +80,6 @@ protected:
     
     bool m_moving;
     
-    BattleProperty* m_battleProperty;
-    
-    UnitProperty* m_unitProperty;
-    
-    MoveComponent* m_moveComponent;
     yhge::SpriteRendererComponent* m_rendererComponent;
 };
 

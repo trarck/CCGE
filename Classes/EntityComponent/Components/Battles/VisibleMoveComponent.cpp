@@ -13,12 +13,9 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 VisibleMoveComponent::VisibleMoveComponent()
-:Component("VisibleMoveComponent")
+:GameComponent("VisibleMoveComponent")
 ,m_walkVelocity(CCPointZero)
 ,m_position(CCPointZero)
-,m_battleProperty(NULL)
-,m_unitProperty(NULL)
-,m_moveComponent(NULL)
 ,m_rendererComponent(NULL)
 ,m_tick(-1)
 ,m_moving(false)
@@ -33,25 +30,14 @@ VisibleMoveComponent::~VisibleMoveComponent()
 
 void VisibleMoveComponent::setup()
 {
-    Component::setup();
+    GameComponent::setup();
 
-    m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
     m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
-    
-    GameEntity* entity=static_cast<GameEntity*>(m_owner);
-    
-    m_battleProperty=entity->getBattleProperty();
-    
-    m_unitProperty=entity->getUnitProperty();
-    
-    //for test
-    m_walkVelocity=ccp(70, 0);
 }
 
 void VisibleMoveComponent::cleanup()
 {
-    Component::cleanup();
-    m_moveComponent=NULL;
+    GameComponent::cleanup();
     m_rendererComponent=NULL;
 }
 
@@ -99,9 +85,8 @@ void VisibleMoveComponent::syncProperty()
 {
     m_tick=Game::getInstance()->getEngine()->getBattleUpdateManager()->getTicks();
     
-    m_walkVelocity=m_moveComponent->getWalkVelocity();
-    m_position.x=m_battleProperty->getX();
-    m_position.y=m_battleProperty->getY();
+    m_walkVelocity=m_entityOwner->getBattleProperty()->getWalkVelocity();
+    m_position=m_entityOwner->getBattleProperty()->getPosition();
 }
 
 void VisibleMoveComponent::startMove()

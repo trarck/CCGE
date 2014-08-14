@@ -41,8 +41,8 @@ CREATE TABLE "skills" (
 	 "tile_piercing" integer NOT NULL DEFAULT '0', --子弹是否穿透
 	 "tile_distance" real NOT NULL DEFAULT '0', --子弹的攻击距离 0-无限大
 	 "aim_target" integer NOT NULL DEFAULT '0',--是否瞄准目标
-	 "puppet_actions" integer NOT NULL DEFAULT '0',--一群子弹动画名。
-	 "puppet_action" text NOT NULL DEFAULT '', --子弹动画名。
+	 
+	 "action_id" integer NOT NULL DEFAULT '0',--主角在施放技能执行的动画名称。通常只有一个动作，但有的会有多个，通过映射表来取
 	 
 	 --效果
 	 "x_shift" real NOT NULL DEFAULT '0',--技能效果播放的x轴偏移

@@ -9,11 +9,12 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 AIComponent::AIComponent()
-:Component("AIComponent")
+:GameComponent("AIComponent")
 ,m_state(0)
 ,m_target(NULL)
-,m_destination(NULL)
+//,m_destination(NULL)
 ,m_moveComponent(NULL)
+,m_willCastManualSkill(true)
 {
     
 }
@@ -21,19 +22,19 @@ AIComponent::AIComponent()
 AIComponent::~AIComponent()
 {
     CC_SAFE_RELEASE_NULL(m_target);
-    CC_SAFE_RELEASE_NULL(m_destination);
+//    CC_SAFE_RELEASE_NULL(m_destination);
 }
 
 void AIComponent::setup()
 {
-    Component::setup();
+    GameComponent::setup();
     m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
 
 }
 
 void AIComponent::cleanup()
 {
-    Component::cleanup();
+    GameComponent::cleanup();
 }
 
 bool AIComponent::registerMessages()
@@ -61,49 +62,33 @@ void AIComponent::cleanupMessages()
 void AIComponent::update(float delta)
 {
 //    CCLOG("AIComponent::update:%d,%f",this,delta);
+    CCAssert(m_entityOwner!=NULL, "AIComponent::update owner is null");
+    
+    //减少公司cd时间
+    m_entityOwner->getBattleProperty()->addGlobalCd(-delta);
     
     GameEntity* target=searchTarget();
     if (target) {
         setTarget(target);
         
-        //work to target
-        walkTo(target);
+        SkillComponent* skill=findSkillToCast();
+        if (skill) {
+            //TODO cast skill
+            walkStop();
+            
+            skill->cast(target);
+            
+        }else{
+            //work to target
+            walkTo(target);
+        }
         
-        
-    }else if(m_destination){
-        walkTo(m_destination);
+//    }else if(m_destination){
+//        walkTo(m_destination);
     }else{
         //idle
         
     }
-    
-    
-    
-//    if (m_state==0) {
-//        walkTo(ccp(600,0));
-//        m_state=1;
-//    }else if(m_state==1){
-//        m_temp+=delta;
-//        if (m_temp>6) {
-//            walkStop();
-//            m_temp=0;
-//            m_state=2;
-//        }
-//    }else if(m_state==2){
-//        m_temp+=delta;
-//        if (m_temp>3) {
-//            walkTo(ccp(0,0));
-//            m_temp=0;
-//            m_state=3;
-//        }
-//    }else if(m_state==3){
-//        m_temp+=delta;
-//        if (m_temp>6) {
-//            walkStop();
-//            m_temp=0;
-//            m_state=0;
-//        }
-//    }
 }
 
 GameEntity* AIComponent::searchTarget()
@@ -147,6 +132,35 @@ GameEntity* AIComponent::searchTarget()
     return target;
 }
 
+SkillComponent* AIComponent::findSkillToCast()
+{
+    GameEntity* owner=static_cast<GameEntity*>(m_owner);
+    
+//    CCLOG("gcd:%f",owner->getBattleProperty()->getGlobalCd());
+    //如果技能公用cd没结束，则不能施放技能
+    if (owner->getBattleProperty()->getGlobalCd()>0) {
+        return NULL;
+    }
+    
+    std::vector<SkillComponent*> skills=owner->getSkillComponents();
+    
+    SkillComponent* skill=NULL;
+    
+    for(std::vector<SkillComponent*>::iterator iter=skills.begin();iter!=skills.end();++iter){
+        skill=*iter;
+        if (skill->isUpdate() && (m_willCastManualSkill || !skill->isManual())) {
+            
+            bool cast=skill->canCastWithTarget(m_target);
+            
+            if (cast && skill->willCast()) {
+                return skill;
+            }
+        }
+    }
+    
+    return NULL;
+}
+
 void AIComponent::walkTo(GameEntity* dest)
 {
     CCPoint destPos=dest->getBattleProperty()->getPosition();
@@ -187,12 +201,12 @@ void AIComponent::setTarget(GameEntity* target)
     m_target = target;
 }
 
-inline void AIComponent::setDestination(GameEntity* destination)
-{
-    CC_SAFE_RETAIN(destination);
-    CC_SAFE_RELEASE(m_destination);
-    m_destination = destination;
-}
+//inline void AIComponent::setDestination(GameEntity* destination)
+//{
+//    CC_SAFE_RETAIN(destination);
+//    CC_SAFE_RELEASE(m_destination);
+//    m_destination = destination;
+//}
 
 NS_CC_GE_END
 

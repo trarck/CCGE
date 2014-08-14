@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "CCGEMacros.h"
 #include "GameEntity.h"
+#include "Properties/SkillProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -53,6 +54,8 @@ public:
     void setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& value);
     
     void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& value);
+    
+    void setSkillPropertyValue(SkillProperty* property,const yhge::Json::Value& value);
     
 public:
     inline void setEntityFactory(EntityFactory* entityFactory)

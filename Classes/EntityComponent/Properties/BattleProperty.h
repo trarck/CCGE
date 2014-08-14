@@ -17,6 +17,10 @@ public:
     ,m_camp(0)
     ,m_alive(true)
     ,m_attackRange(false)
+    ,m_globalCd(0)
+    ,m_state(0)
+    ,m_walkVelocity(CCPointZero)
+    ,m_knockupVelocity(CCPointZero)
     {
         
     }
@@ -93,6 +97,51 @@ public:
         return m_attackRange;
     }
     
+    inline void setGlobalCd(float globalCd)
+    {
+        m_globalCd = globalCd;
+    }
+    
+    inline float getGlobalCd()
+    {
+        return m_globalCd;
+    }
+    
+    inline void addGlobalCd(float delta)
+    {
+        m_globalCd+=delta;
+    }
+    
+    inline void setState(int state)
+    {
+        m_state = state;
+    }
+    
+    inline int getState()
+    {
+        return m_state;
+    }
+    
+    inline void setWalkVelocity(const CCPoint& walkVelocity)
+    {
+        m_walkVelocity = walkVelocity;
+    }
+    
+    inline const CCPoint& getWalkVelocity()
+    {
+        return m_walkVelocity;
+    }
+    
+    inline void setKnockupVelocity(const CCPoint& knockupVelocity)
+    {
+        m_knockupVelocity = knockupVelocity;
+    }
+    
+    inline const CCPoint& getKnockupVelocity()
+    {
+        return m_knockupVelocity;
+    }
+
 protected:
     
     //缩放
@@ -110,7 +159,16 @@ protected:
     //攻击距离
     float m_attackRange;
     
+    //释放技能的间隔cd
+    float m_globalCd;
     
+    int m_state;
+    
+    //移动速度
+    CCPoint m_walkVelocity;
+    
+    //击退速度。有些技能有击退功能
+    CCPoint m_knockupVelocity;
 };
 
 NS_CC_GE_END

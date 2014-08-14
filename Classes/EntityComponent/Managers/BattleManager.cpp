@@ -202,9 +202,9 @@ HeroVector BattleManager::sortEntity(const HeroVector& entityList)
     HeroVector sortedList;
 
     DataFactory* dataFactory=Game::getInstance()->getDataFactory();
-    UnitData* unitData=dataFactory->getUnitData();
-    SkillData* skillData=dataFactory->getSkillData();
-    CharacterData* characterData=dataFactory->getCharacterData();
+    UnitDAO* unitDAO=dataFactory->getUnitDAO();
+    SkillDAO* skillDAO=dataFactory->getSkillDAO();
+    CharacterDAO* characterDAO=dataFactory->getCharacterDAO();
     
     int entityId=0;
     
@@ -215,15 +215,15 @@ HeroVector BattleManager::sortEntity(const HeroVector& entityList)
         
         entityId=(*iter)["id"].asInt();
         
-        Json::Value characterConfig=characterData->getDataById(entityId);
+        Json::Value characterConfig=characterDAO->getDataById(entityId);
         
         int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
         
-        Json::Value unitProto=unitData->getDataById(unitId);
+        Json::Value unitProto=unitDAO->getDataById(unitId);
 
         
         int baseSkillId=unitProto["basic_skill"].asInt();
-        Json::Value skillProto=skillData->getDataById(baseSkillId);
+        Json::Value skillProto=skillDAO->getDataById(baseSkillId);
         float attackRange=skillProto["max_range"].asDouble();
         
         entityRange[entityId]=attackRange;
@@ -266,10 +266,10 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     DataFactory* dataFactory=Game::getInstance()->getDataFactory();
     
     UnitService* unitService=ServiceFactory::getInstance()->getUnitService();
-    CharacterData* characterData=dataFactory->getCharacterData();
+    CharacterDAO* characterDAO=dataFactory->getCharacterDAO();
     
-    UnitData* unitData=dataFactory->getUnitData();
-    SkillData* skillData=dataFactory->getSkillData();
+    UnitDAO* unitDAO=dataFactory->getUnitDAO();
+    SkillDAO* skillDAO=dataFactory->getSkillDAO();
     
     int entityId=hero["id"].asInt();
     
@@ -281,7 +281,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     
 
     
-    Json::Value characterConfig=characterData->getDataById(entityId);
+    Json::Value characterConfig=characterDAO->getDataById(entityId);
     
     int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
     float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
@@ -289,7 +289,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
 
     
     
-    Json::Value unitProto=unitData->getDataById(unitId);
+    Json::Value unitProto=unitDAO->getDataById(unitId);
     
     //设置单位属性
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitProto);
@@ -299,7 +299,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     //设置战斗属性
     //get attack range
     int baseSkillId=unitProto["basic_skill"].asInt();
-    Json::Value skillProto=skillData->getDataById(baseSkillId);
+    Json::Value skillProto=skillDAO->getDataById(baseSkillId);
     float attackRange=skillProto["max_range"].asDouble();
     CCLOG("range[%d]:%d,%f",entityId,baseSkillId,attackRange);
     entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,camp,scale,attackRange);

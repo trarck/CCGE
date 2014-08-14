@@ -171,4 +171,13 @@ void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,cons
     }
 }
 
+void EntityPropertyFactory::setSkillPropertyValue(SkillProperty* property,const yhge::Json::Value& value)
+{
+    CCAssert(property!=NULL, "EntityPropertyFactory::setSkillPropertyValue property is null");
+    
+    if (!value.isNull()) {
+
+    }
+}
+
 NS_CC_GE_END

@@ -1,10 +1,9 @@
-#ifndef CCGE_DATAS_ANIMATIONDATA_H_
-#define CCGE_DATAS_ANIMATIONDATA_H_
+#ifndef CCGE_DATAS_REMOTECACHEDAO_H_
+#define CCGE_DATAS_REMOTECACHEDAO_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
-#include <yhge/Jsoncpp/json.h>
-#include <yhge/Datas/JSONData.h>
+#include <yhge/yhge.h>
 #include "Consts/DataDefine.h"
 
 NS_CC_GE_BEGIN
@@ -12,13 +11,13 @@ NS_CC_GE_BEGIN
 /**
  * 远程数据缓存
  */
-class RemoteCacheData:public yhge::JSONData
+class RemoteCacheDAO:public yhge::data::JSONDataDAO
 {
 public:
     
-	RemoteCacheData();
+	RemoteCacheDAO();
     
-	~RemoteCacheData();
+	~RemoteCacheDAO();
     
     
     /**
@@ -43,4 +42,4 @@ protected:
 };
 
 NS_CC_GE_END
-#endif //CCGE_DATAS_ANIMATIONDATA_H_
+#endif //CCGE_DATAS_REMOTECACHEDAO_H_

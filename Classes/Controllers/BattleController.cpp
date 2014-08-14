@@ -426,18 +426,18 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     
     //设置实体属性
     
-    CharacterData* characterData=Game::getInstance()->getDataFactory()->getCharacterData();
+    CharacterDAO* characterDAO=Game::getInstance()->getDataFactory()->getCharacterDAO();
     
-    Json::Value characterConfig=characterData->getDataById(entityId);
+    Json::Value characterConfig=characterDAO->getDataById(entityId);
     
     int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
     float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
+    UnitDAO* unitDAO=Game::getInstance()->getDataFactory()->getUnitDAO();
 
-    Json::Value unitConfig=unitData->getDataById(unitId);
+    Json::Value unitConfig=unitDAO->getDataById(unitId);
 
     
     //设置单位属性
@@ -478,18 +478,18 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     
     //设置实体属性
     
-    MonsterData* monsterData=Game::getInstance()->getDataFactory()->getMonsterData();
+    MonsterDAO* monsterDAO=Game::getInstance()->getDataFactory()->getMonsterDAO();
     
-    Json::Value monsterConfig=monsterData->getDataById(entityId);
+    Json::Value monsterConfig=monsterDAO->getDataById(entityId);
     
     int unitId=monsterConfig[CCGE_MONSTER_UNIT_ID].asInt();
     float scale=monsterConfig[CCGE_MONSTER_SCALE].asDouble();
     int level=monsterConfig[CCGE_MONSTER_LEVEL].asInt();
     
     //取得配置
-    UnitData* unitData=Game::getInstance()->getDataFactory()->getUnitData();
+    UnitDAO* unitDAO=Game::getInstance()->getDataFactory()->getUnitDAO();
     
-    Json::Value unitConfig=unitData->getDataById(unitId);
+    Json::Value unitConfig=unitDAO->getDataById(unitId);
     
     //设置单位属性
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);

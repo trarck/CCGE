@@ -19,6 +19,7 @@
 #include "Components/Battles/AIComponent.h"
 #include "Components/Battles/SimplePositionComponent.h"
 #include "Components/Battles/MoveComponent.h"
+#include "Components/Battles/SkillComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
 
 
@@ -84,8 +85,8 @@ void EntityComponentFactory::addBattleAnimationComponent(GameEntity* entity)
     animation->init();
     
     //从配置文件中取得动画数据
-    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
-    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(unitProperty->getPuppetId(),CCGE_ANIMATION_TYPE_BATTLE);
+    AnimationDAO* animationDAO=Game::getInstance()->getDataFactory()->getAnimationDAO();
+    yhge::Json::Value battleAnimationData=animationDAO->getEntityAnimateData(unitProperty->getPuppetId(),CCGE_ANIMATION_TYPE_BATTLE);
 
     CCAssert(!battleAnimationData.isNull(), "no animation data");
     
@@ -214,6 +215,59 @@ void EntityComponentFactory::addMoveComponent(GameEntity* entity)
 //    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
     
     moveComponent->release();
+}
+
+void EntityComponentFactory::addSkillComponents(GameEntity* entity)
+{
+    //get skill data from table
+    BaseSqlDAO* skillGroupDAO=Game::getInstance()->getDataFactory()->getSkillGroupDAO();
+    SkillDAO* skillDAO=Game::getInstance()->getDataFactory()->getSkillDAO();
+    
+    UnitProperty* unitProperty=entity->getUnitProperty();
+    
+    int unitId=unitProperty->getUnitId();
+    
+    Json::Value skillGroupInfo=skillGroupDAO->findAll("caster_id",unitId);
+    
+    int skillCount=skillGroupInfo.size();
+    
+    for (int i=0; i<skillCount; ++i) {
+        
+        Json::Value skillInfo=skillDAO->getDataById(skillGroupInfo[i]["skill_id"].asInt());
+        
+        SkillComponent* skillComponent=new SkillComponent();
+        skillComponent->init();
+        
+        skillComponent->setProto(skillInfo);
+        
+        if (!skillInfo[CCGE_SKILL_INIT_CD].isNull()) {
+            skillComponent->setCdRemaining(skillInfo[CCGE_SKILL_INIT_CD].asDouble());
+        }
+        
+        float maxRange=skillInfo[CCGE_SKILL_MAX_RANGE].asDouble();
+        skillComponent->setMaxRangeSq(maxRange* maxRange);
+        
+        float minRange=skillInfo[CCGE_SKILL_MIN_RANGE].asDouble();
+        skillComponent->setMinRangeSq(minRange*minRange);
+        
+        entity->addComponent(skillComponent);
+        
+        entity->addSkillComponent(skillComponent, 0);
+        
+        m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, skillComponent, schedule_selector(SkillComponent::update),kSkillUpdate);
+        
+        skillComponent->release();
+    }
+}
+
+void EntityComponentFactory::addSkillComponent(GameEntity* entity)
+{
+    SkillComponent* skillComponent=new SkillComponent();
+    skillComponent->init();
+    
+    entity->addComponent(skillComponent);
+    
+    skillComponent->release();
 }
 
 void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)

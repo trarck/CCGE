@@ -1,11 +1,9 @@
-#ifndef CCGE_DATAS_ANIMATIONDATA_H_
-#define CCGE_DATAS_ANIMATIONDATA_H_
+#ifndef CCGE_DATAS_ANIMATIONDAO_H_
+#define CCGE_DATAS_ANIMATIONDAO_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
-#include <yhge/Jsoncpp/json.h>
-#include <yhge/Datas/CocosData.h>
-#include <yhge/Datas/JSONData.h>
+#include <yhge/yhge.h>
 
 NS_CC_GE_BEGIN
 
@@ -13,13 +11,13 @@ NS_CC_GE_BEGIN
  * 动画数据
  * id.key
  */
-class AnimationData:public yhge::JSONData
+class AnimationDAO:public yhge::data::JSONDataDAO
 {
 public:
     
-	AnimationData();
+	AnimationDAO();
     
-	~AnimationData();
+	~AnimationDAO();
     
     inline const yhge::Json::Value& getEntityAnimateData(int entityId)
     {
@@ -41,4 +39,4 @@ protected:
 };
 
 NS_CC_GE_END
-#endif //CCGE_DATAS_ANIMATIONDATA_H_
+#endif //CCGE_DATAS_ANIMATIONDAO_H_

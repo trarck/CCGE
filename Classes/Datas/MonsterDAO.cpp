@@ -1,4 +1,4 @@
-#include "MonsterData.h"
+#include "MonsterDAO.h"
 #include <yhge/yhge.h>
 
 USING_NS_CC;
@@ -6,20 +6,20 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
-MonsterData::MonsterData()
+MonsterDAO::MonsterDAO()
 {
 
 }
 
-MonsterData::~MonsterData()
+MonsterDAO::~MonsterDAO()
 {
 
 }
 
-int MonsterData::getUnitId(int monsterId)
+int MonsterDAO::getUnitId(int monsterId)
 {
     std::string sql="SELECT unit_id FROM "+m_table+" WHERE "+m_key+" = ?";
-    return m_dao->fetchNumber(sql);
+    return fetchNumber(sql);
 }
 
 NS_CC_GE_END

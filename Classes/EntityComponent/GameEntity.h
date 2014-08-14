@@ -11,6 +11,8 @@
 #include "Components/HealthBarComponent.h"
 #include "Components/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
+#include "Components/Battles/SkillComponent.h"
+#include "Components/Battles/MoveComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -104,6 +106,21 @@ public:
         return m_battleStateMachineComponent;
     }
     
+    inline void setSkillComponents(std::vector<SkillComponent*>& skillComponents)
+    {
+        m_skillComponents = skillComponents;
+    }
+    
+    inline std::vector<SkillComponent*>& getSkillComponents()
+    {
+        return m_skillComponents;
+    }
+    
+    inline void addSkillComponent(SkillComponent* skillComponent,int index)
+    {
+        m_skillComponents.insert(m_skillComponents.begin()+index, skillComponent);
+    }
+    
 private:
     
     UnitProperty* m_unitProperty;
@@ -121,6 +138,8 @@ private:
     BattlePositionComponent* m_battlePositionComponent;
     
     BattleStateMachineComponent* m_battleStateMachineComponent;
+    
+    std::vector<SkillComponent*> m_skillComponents;
 };
 
 NS_CC_GE_END

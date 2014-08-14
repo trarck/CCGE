@@ -1,6 +1,13 @@
 #ifndef CCGE_CONSTS_DATADEFINE_H_
 #define CCGE_CONSTS_DATADEFINE_H_
 
+/**
+ * table名称
+ */
+#define CCGE_TABLE_SKILLS "skills"
+#define CCGE_TABLE_SKILL_ACTINS "skill_actins"
+#define CCGE_TABLE_UNITS "units"
+#define CCGE_TABLE_BUFFS "buffs"
 
 /**
  * data名称
@@ -51,6 +58,64 @@
 #define CCGE_UNIT_ICON "icon"
 
 #define CCGE_UNIT_PUPPET_ID "puppet_id"
+
+//skill
+#define CCGE_SKILL_ID "id"
+#define CCGE_SKILL_NAME "name"
+#define CCGE_SKILL_ATTACK_TYPE "attack_type"
+#define CCGE_SKILL_DAMAGE_TYPE "damage_type"
+#define CCGE_SKILL_TARGET_TYPE "target_type"
+#define CCGE_SKILL_TARGET_CAMP "target_camp"
+#define CCGE_SKILL_MAX_RANGE "max_range"
+#define CCGE_SKILL_MIN_RANGE "min_range"
+#define CCGE_SKILL_INIT_CD "init_cd"
+#define CCGE_SKILL_GLOBAL_CD "global_cd"
+#define CCGE_SKILL_CD "cd"
+#define CCGE_SKILL_MANUAL "manual"
+#define CCGE_SKILL_COST_MP "cost_mp"
+#define CCGE_SKILL_ACTIVE_TYPE "active_type"
+#define CCGE_SKILL_KNOCK_UP "knock_up"
+#define CCGE_SKILL_KNOCK_BACK "knock_back"
+#define CCGE_SKILL_MOVE_FORWARD "move_forward"
+#define CCGE_SKILL_AFFECTED_CAMP "affected_camp"
+#define CCGE_SKILL_AFFECT_FIELD "affect_field"
+#define CCGE_SKILL_GAIN_MP "gain_mp"
+#define CCGE_SKILL_LEVEL "level"
+#define CCGE_SKILL_BUFF_ID "buff_id"
+#define CCGE_SKILL_LIFE_DRAIN_RATIO "life_drain_ratio"
+#define CCGE_SKILL_CRIT_RATIO "crit_ratio"
+#define CCGE_SKILL_OUTSIDE_SCREEN "outside_screen"
+#define CCGE_SKILL_BASIC_NUM "basic_num"
+#define CCGE_SKILL_PASSIVE_ATTR "passive_attr"
+#define CCGE_SKILL_PLUS_ATTR "plus_attr"
+#define CCGE_SKILL_PLUS_RATIO "plus_ratio"
+#define CCGE_SKILL_CHAIN_GAP "chain_gap"
+#define CCGE_SKILL_CHAIN_JUMPS "chain_jumps"
+#define CCGE_SKILL_TILE_GRAVITY "tile_gravity"
+#define CCGE_SKILL_TILE_XY_SPEED "tile_xy_speed"
+#define CCGE_SKILL_TILE_Z_SPEED "tile_z_speed"
+#define CCGE_SKILL_TILE_OTT_HEIGHT "tile_ott_height"
+#define CCGE_SKILL_TILE_PIERCING "tile_piercing"
+#define CCGE_SKILL_TILE_DISTANCE "tile_distance"
+#define CCGE_SKILL_AIM_TARGET "aim_target"
+#define CCGE_SKILL_ACTION_ID "action_id"
+#define CCGE_SKILL_ACTIONS "actions"
+#define CCGE_SKILL_X_SHIFT "x_shift"
+#define CCGE_SKILL_LAUNCH_EFFECT "launch_effect"
+#define CCGE_SKILL_IMPACT_EFFECT "impact_effect"
+#define CCGE_SKILL_IMPACT_ZORDER "impact_zorder"
+#define CCGE_SKILL_POINT_EFFECT "point_effect"
+#define CCGE_SKILL_POINT_ZORDER "point_zorder"
+#define CCGE_SKILL_AOE_SHAPE "aoe_shape"
+#define CCGE_SKILL_SHAPE_ARG1 "shape_arg1"
+#define CCGE_SKILL_SHAPE_ARG2 "shape_arg2"
+#define CCGE_SKILL_SCRIPT_ARG1 "script_arg1"
+#define CCGE_SKILL_SCRIPT_ARG2 "script_arg2"
+#define CCGE_SKILL_SCRIPT_ARG3 "script_arg3"
+#define CCGE_SKILL_SCRIPT_ARG4 "script_arg4"
+#define CCGE_SKILL_SCRIPT_ARG5 "script_arg5"
+#define CCGE_SKILL_SCRIPT_ARG6 "script_arg6"
+#define CCGE_SKILL_DESCRIPTION "description"
 
 //monster
 #define CCGE_MONSTER_ID "id"

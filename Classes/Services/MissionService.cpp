@@ -113,7 +113,7 @@ void MissionService::completeMap(int mapId)
     //消除地图数据
     cleanupMapStepEvents(mapId);
     
-    Json::Value mapData=Game::getInstance()->getDataFactory()->getMapData()->getDataById(mapId);
+    Json::Value mapData=Game::getInstance()->getDataFactory()->getMapDAO()->getDataById(mapId);
     
     int nextMapId=mapData["next_map"].asInt();
     
@@ -123,7 +123,7 @@ void MissionService::completeMap(int mapId)
         m_lastMapStepIndex=0;
     }else{
         //此区域已经完成，进行下一个区域
-        Json::Value zoneData=Game::getInstance()->getDataFactory()->getZoneData()->getDataById(m_currentZone);
+        Json::Value zoneData=Game::getInstance()->getDataFactory()->getZoneDAO()->getDataById(m_currentZone);
         int nextZoneId=mapData["next_zone"].asInt();
         if (nextZoneId) {
             m_currentZone=nextZoneId;

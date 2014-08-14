@@ -11,28 +11,30 @@ static const char* kGameDB="game.db";
 static DataFactory* s_dataFactoryInstance=NULL;
 
 DataFactory::DataFactory()
-:m_gameDao(NULL)
-,m_animationData(NULL)
-,m_mapData(NULL)
-,m_zoneData(NULL)
-,m_unitData(NULL)
-,m_monsterData(NULL)
-,m_characterData(NULL)
-,m_skillData(NULL)
+:m_driver(NULL)
+,m_animationDAO(NULL)
+,m_mapDAO(NULL)
+,m_zoneDAO(NULL)
+,m_unitDAO(NULL)
+,m_monsterDAO(NULL)
+,m_characterDAO(NULL)
+,m_skillDAO(NULL)
+,m_skillGroupDAO(NULL)
 {
 
 }
 
 DataFactory::~DataFactory()
 {
-    CC_SAFE_RELEASE_NULL(m_gameDao);
-    CC_SAFE_RELEASE_NULL(m_animationData);
-    CC_SAFE_RELEASE_NULL(m_mapData);
-    CC_SAFE_RELEASE_NULL(m_zoneData);
-    CC_SAFE_RELEASE_NULL(m_unitData);
-    CC_SAFE_RELEASE_NULL(m_monsterData);
-    CC_SAFE_RELEASE_NULL(m_characterData);
-    CC_SAFE_RELEASE_NULL(m_skillData);
+    CC_SAFE_RELEASE_NULL(m_driver);
+    CC_SAFE_RELEASE_NULL(m_animationDAO);
+    CC_SAFE_RELEASE_NULL(m_mapDAO);
+    CC_SAFE_RELEASE_NULL(m_zoneDAO);
+    CC_SAFE_RELEASE_NULL(m_unitDAO);
+    CC_SAFE_RELEASE_NULL(m_monsterDAO);
+    CC_SAFE_RELEASE_NULL(m_characterDAO);
+    CC_SAFE_RELEASE_NULL(m_skillDAO);
+    CC_SAFE_RELEASE_NULL(m_skillGroupDAO);
 }
 
 bool DataFactory::init()
@@ -53,47 +55,55 @@ DataFactory* DataFactory::getInstance()
 
 void DataFactory::setup()
 {
-    setupDao();
-    setupData();
+    setupDriver();
+    setupDAO();
 }
 
 
-void DataFactory::setupDao()
+void DataFactory::setupDriver()
 {
-    m_gameDao=new JSONDAO();
     //game db里面的内容是不可写的。
     //game db会随着发布放在app里，而app里的内容是不可改变的。
     //就算放在Document或Cache目录下，也没有写的需要，通常是在开发的时候生成好的。
     //所以game db无法做增量更新，只能更新整个DB.当然放在可写目录可以考增量，但复杂度大大增加。
     //如果需要可写的DB，保存一些零时信息，可以考虑创建一个DB
-    m_gameDao->init(getDataFilePath(kGameDB), SQLITE_OPEN_READONLY);
+
+    sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
+    
+    m_driver=new yhge::data::CocosSqliteDriver(sqliteDriver);
+    
+    sqliteDriver->connect(getDataFilePath(kGameDB), SQLITE_OPEN_READONLY);
+
 }
 
-void DataFactory::setupData()
+void DataFactory::setupDAO()
 {
-    m_animationData=new AnimationData();
-    m_animationData->init();
-    m_animationData->loadFromFile(getDataFilePath("animation.json"));
+    m_animationDAO=new AnimationDAO();
+    m_animationDAO->init();
+    m_animationDAO->loadFromFile(getDataFilePath("animation.json"));
     
-    m_mapData=new MapData();
-    m_mapData->init();
-    m_mapData->loadFromFile(getDataFilePath("map.json"));
+    m_mapDAO=new MapDAO();
+    m_mapDAO->init();
+    m_mapDAO->loadFromFile(getDataFilePath("map.json"));
     
-    m_zoneData=new BaseData();
-    m_zoneData->init();
-    m_zoneData->loadFromFile(getDataFilePath("zone.json"));
+    m_zoneDAO=new BaseDAO();
+    m_zoneDAO->init();
+    m_zoneDAO->loadFromFile(getDataFilePath("zone.json"));
     
-    m_unitData=new UnitData();
-    m_unitData->init(m_gameDao,"units");
+    m_unitDAO=new UnitDAO();
+    m_unitDAO->init(m_driver,"units");
     
-    m_monsterData=new MonsterData();
-    m_monsterData->init(m_gameDao,"monsters");
+    m_monsterDAO=new MonsterDAO();
+    m_monsterDAO->init(m_driver,"monsters");
     
-    m_characterData=new CharacterData();
-    m_characterData->init(m_gameDao,"characters");
+    m_characterDAO=new CharacterDAO();
+    m_characterDAO->init(m_driver,"characters");
     
-    m_skillData=new SkillData();
-    m_skillData->init(m_gameDao,"skills");
+    m_skillDAO=new SkillDAO();
+    m_skillDAO->init(m_driver,"skills");
+    
+    m_skillGroupDAO=new BaseSqlDAO();
+    m_skillGroupDAO->init(m_driver,"skill_groups");
     
 }
 

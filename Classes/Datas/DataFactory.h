@@ -4,13 +4,14 @@
 #include "cocos2d.h"
 #include "CCGEMacros.h"
 #include <yhge/yhge.h>
-#include "BaseData.h"
-#include "AnimationData.h"
-#include "MapData.h"
-#include "UnitData.h"
-#include "MonsterData.h"
-#include "CharacterData.h"
-#include "SkillData.h"
+#include "BaseDAO.h"
+#include "BaseSqlDAO.h"
+#include "AnimationDAO.h"
+#include "MapDAO.h"
+#include "UnitDAO.h"
+#include "MonsterDAO.h"
+#include "CharacterDAO.h"
+#include "SkillDAO.h"
 
 NS_CC_GE_BEGIN
 
@@ -31,50 +32,55 @@ public:
     
     void setup();
     
-    void setupDao();
+    void setupDriver();
     
-    void setupData();
+    void setupDAO();
 
 public:
     
-    inline yhge::JSONDAO* getGameDao()
+    inline yhge::data::CocosSqliteDriver* getDriver()
     {
-        return m_gameDao;
+        return m_driver;
     }
     
-    inline AnimationData* getAnimationData()
+    inline AnimationDAO* getAnimationDAO()
     {
-        return m_animationData;
+        return m_animationDAO;
     }
     
-    inline MapData* getMapData()
+    inline MapDAO* getMapDAO()
     {
-        return m_mapData;
+        return m_mapDAO;
     }
     
-    inline BaseData* getZoneData()
+    inline BaseDAO* getZoneDAO()
     {
-        return m_zoneData;
+        return m_zoneDAO;
     }
     
-    inline UnitData* getUnitData()
+    inline UnitDAO* getUnitDAO()
     {
-        return m_unitData;
+        return m_unitDAO;
     }
     
-    inline MonsterData* getMonsterData()
+    inline MonsterDAO* getMonsterDAO()
     {
-        return m_monsterData;
+        return m_monsterDAO;
     }
 
-    inline CharacterData* getCharacterData()
+    inline CharacterDAO* getCharacterDAO()
     {
-        return m_characterData;
+        return m_characterDAO;
     }
     
-    inline SkillData* getSkillData()
+    inline SkillDAO* getSkillDAO()
     {
-        return m_skillData;
+        return m_skillDAO;
+    }
+    
+    inline BaseSqlDAO* getSkillGroupDAO()
+    {
+        return m_skillGroupDAO;
     }
     
 protected:
@@ -88,23 +94,25 @@ protected:
 
 protected:
     
-    yhge::JSONDAO* m_gameDao;
+    yhge::data::CocosSqliteDriver* m_driver;
     
     //动画数据
-    AnimationData* m_animationData;
+    AnimationDAO* m_animationDAO;
     
     //地图数据
-    MapData* m_mapData;
+    MapDAO* m_mapDAO;
     
-    BaseData* m_zoneData;
+    BaseDAO* m_zoneDAO;
     
-    UnitData* m_unitData;
+    UnitDAO* m_unitDAO;
     
-    MonsterData* m_monsterData;
+    MonsterDAO* m_monsterDAO;
     
-    CharacterData* m_characterData;
+    CharacterDAO* m_characterDAO;
     
-    SkillData* m_skillData;
+    SkillDAO* m_skillDAO;
+    
+    BaseSqlDAO* m_skillGroupDAO;
     
 };
 

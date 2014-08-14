@@ -1,22 +1,23 @@
-#ifndef CCGE_DATAS_MONSTERDATA_H_
-#define CCGE_DATAS_MONSTERDATA_H_
+#ifndef CCGE_DATAS_MONSTERDAO_H_
+#define CCGE_DATAS_MONSTERDAO_H_
 
 #include "cocos2d.h"
 #include "CCGEMacros.h"
 #include <yhge/yhge.h>
+#include "BaseSqlDAO.h"
 
 NS_CC_GE_BEGIN
 
 /**
  * 怪物数据
  */
-class MonsterData:public yhge::SqliteDBData
+class MonsterDAO:public BaseSqlDAO
 {
 public:
     
-	MonsterData();
+	MonsterDAO();
     
-	~MonsterData();
+	~MonsterDAO();
     
     inline yhge::Json::Value getDataById(int monsterId)
     {
@@ -34,4 +35,4 @@ protected:
 };
 
 NS_CC_GE_END
-#endif //CCGE_DATAS_MONSTERDATA_H_
+#endif //CCGE_DATAS_MONSTERDAO_H_

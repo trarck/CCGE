@@ -13,15 +13,9 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 MoveComponent::MoveComponent()
-:Component("MoveComponent")
-,m_walkVelocity(CCPointZero)
-,m_knockupVelocity(CCPointZero)
+:GameComponent("MoveComponent")
 ,m_moveable(false)
 ,m_direction(CCPointZero)
-,m_battleProperty(NULL)
-,m_unitProperty(NULL)
-,m_positionComponent(NULL)
-,m_rendererComponent(NULL)
 {
     
 }
@@ -33,21 +27,13 @@ MoveComponent::~MoveComponent()
 
 void MoveComponent::setup()
 {
-    Component::setup();
+    GameComponent::setup();
 
-    GameEntity* entity=static_cast<GameEntity*>(m_owner);
-    
-    m_battleProperty=entity->getBattleProperty();
-    m_unitProperty=entity->getUnitProperty();
-    
-    //for test
-    m_walkVelocity=ccp(70, 0);
 }
 
 void MoveComponent::cleanup()
 {
-    Component::cleanup();
-    m_positionComponent=NULL;
+    GameComponent::cleanup();
 }
 
 bool MoveComponent::registerMessages()
@@ -74,29 +60,29 @@ void MoveComponent::cleanupMessages()
 
 void MoveComponent::update(float delta)
 {
-
-    float x=m_battleProperty->getX();
-    float y=m_battleProperty->getY();
+    BattleProperty* battleProperty=m_entityOwner->getBattleProperty();
     
-    x+=m_walkVelocity.x*delta;
-    y+=m_walkVelocity.y*delta;
+    CCPoint pos=battleProperty->getPosition();
     
-    m_battleProperty->setX(x);
-    m_battleProperty->setY(y);
+    CCPoint walkVelocity=battleProperty->getWalkVelocity();
+    
+    pos.x+=walkVelocity.x*delta;
+    pos.y+=walkVelocity.y*delta;
+    
+    battleProperty->setPosition(pos);
 }
 
 void MoveComponent::moveTo(const CCPoint& dest)
 {
-    CCPoint pos=ccp(m_battleProperty->getX(),m_battleProperty->getY());
+    CCPoint pos=m_entityOwner->getBattleProperty()->getPosition();
     
     pos=ccpSub(dest, pos);
     
     if (pos.x==0 and pos.y==0) {
-        m_walkVelocity=CCPointZero;
+        m_entityOwner->getBattleProperty()->setWalkVelocity(CCPointZero);
     }else{
         pos=ccpNormalize(pos);
-    
-        m_walkVelocity=ccpMult(pos, m_unitProperty->getWalkSpeed());
+        m_entityOwner->getBattleProperty()->setWalkVelocity(ccpMult(pos, m_entityOwner->getUnitProperty()->getWalkSpeed()));
     }
     
     if(!m_moveable){
@@ -107,7 +93,7 @@ void MoveComponent::moveTo(const CCPoint& dest)
 
 void MoveComponent::stopMove()
 {
-    m_walkVelocity=CCPointZero;
+    m_entityOwner->getBattleProperty()->setWalkVelocity(CCPointZero);
     if (m_moveable) {
         Game::getInstance()->getEngine()->getBattleUpdateManager()->removeUpdaterFromGroup(m_owner->m_uID, this);
         m_moveable=false;

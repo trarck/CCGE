@@ -73,32 +73,31 @@ bool RealtimeBattleController::init()
 
 void RealtimeBattleController::viewDidLoad()
 {
-    loadBattleGround();
-    
     m_battleManager=Game::getInstance()->getEngine()->getBattleManager();
     
+    loadBattleGround();
     
     //create battle layer
     loadBattleWorld();
     
     loadEntities();
     
-//    showCoordinate();
+    showCoordinate();
     
     //create test button
     
-//    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 34),
-//                                                   this,
-//                                                   menu_selector(RealtimeBattleController::onSkip));
-//    
-//    CCMenuItemLabel *startBtn=CCMenuItemLabel::create(CCLabelTTF::create("start", "Arial", 34),
-//                                                     this,
-//                                                     menu_selector(RealtimeBattleController::onStart));
-//
-//    CCMenu* menu=CCMenu::create(skipBtn,startBtn,NULL);
-//    menu->alignItemsHorizontally();
-//    
-//    m_view->addChild(menu);
+    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 34),
+                                                   this,
+                                                   menu_selector(RealtimeBattleController::onSkip));
+    
+    CCMenuItemLabel *startBtn=CCMenuItemLabel::create(CCLabelTTF::create("start", "Arial", 34),
+                                                     this,
+                                                     menu_selector(RealtimeBattleController::onStart));
+
+    CCMenu* menu=CCMenu::create(skipBtn,startBtn,NULL);
+    menu->alignItemsHorizontally();
+    
+    m_view->addChild(menu);
     
 }
 
@@ -114,8 +113,6 @@ void RealtimeBattleController::onViewEnter()
 void RealtimeBattleController::onViewExit()
 {
     CCLOG("RealtimeBattleController::onViewExit %d",this->retainCount());
-    
-    unloadEntities();
     
     CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
@@ -151,59 +148,9 @@ void RealtimeBattleController::loadBattleWorld()
     m_battleWorld->setPosition(ccp(0,100));
     m_view->addChild(m_battleWorld);
     
-//    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
-//    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
-//    m_view->addChild(m_timelineLayer);
-    
-    Json::Value stageInfo;
-    HeroVector heroList;
-    
-    //add test data
-    Json::Value hero;
-    
-    hero["id"]=1;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=2;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=3;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-//
-//    hero["id"]=1;
-//    hero["position_x"]=-240;
-//    hero["position_y"]=-40;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
-//    
-//    hero["id"]=1;
-//    hero["position_x"]=-320;
-//    hero["position_y"]=40;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
-    
-    HeroVector enemyList;
-    Json::Value enemy;
-    
-    enemy["id"]=6;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
-    
-    enemy["id"]=5;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
-    
-    enemy["id"]=4;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
-    
-//    m_battleManager->enterStage(stageInfo, heroList, true);
-    m_battleManager->enterArena(heroList, enemyList, false, false);
-    
-    
+    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
+    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
+    m_view->addChild(m_timelineLayer);
     
 }
 
@@ -223,43 +170,15 @@ void RealtimeBattleController::showCoordinate()
 
 void RealtimeBattleController::loadEntities()
 {
-    //把entity加入显示列表
+    //加载自己
+    this->loadSelfEntities();
     
-    std::map<int, GameEntityVector > aliveUnits=m_battleManager->getAliveUnits();
-        
-    GameEntity* entity=NULL;
+    //加载对方
+    this->loadOppEntities();
     
-    for (std::map<int, GameEntityVector >::iterator campIter=aliveUnits.begin(); campIter!=aliveUnits.end(); ++campIter) {
-        for (GameEntityVector::iterator iter=campIter->second.begin(); iter!=campIter->second.end(); ++iter) {
-            
-            entity=*iter;
-            
-            RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
-            m_battleWorld->addChild(rendererComponent->getRenderer());
-            
-        }
-    }    
+
 }
 
-void RealtimeBattleController::unloadEntities()
-{
-    std::map<int, GameEntityVector > aliveUnits=m_battleManager->getAliveUnits();
-    
-    GameEntity* entity=NULL;
-    
-    for (std::map<int, GameEntityVector >::iterator campIter=aliveUnits.begin(); campIter!=aliveUnits.end(); ++campIter) {
-        for (GameEntityVector::iterator iter=campIter->second.begin(); iter!=campIter->second.end(); ++iter) {
-            
-            entity=*iter;
-            
-            entity->cleanup();
-            
-        }
-    }
-    
-    m_battleWorld->removeAllChildrenWithCleanup(true);
-    
-}
 
 void RealtimeBattleController::convertIndexToCell(int index,int* col,int* row)
 {
@@ -383,18 +302,18 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     
     //设置实体属性
     
-    CharacterDAO* characterDAO=dataFactory->getCharacterDAO();
+    CharacterData* characterData=dataFactory->getCharacterData();
     
-    Json::Value characterConfig=characterDAO->getDataById(entityId);
+    Json::Value characterConfig=characterData->getDataById(entityId);
     
     int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
     float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
     
     //取得配置
-    UnitDAO* unitDAO=dataFactory->getUnitDAO();
+    UnitData* unitData=dataFactory->getUnitData();
 
-    Json::Value unitProto=unitDAO->getDataById(unitId);
+    Json::Value unitProto=unitData->getDataById(unitId);
 
     
     //设置单位属性
@@ -403,7 +322,7 @@ GameEntity* RealtimeBattleController::createSelfTroopEntity(int entityId,int ind
     entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale,10.0f);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kSelfSide,scale);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);
@@ -434,18 +353,18 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     
     //设置实体属性
     
-    MonsterDAO* monsterDAO=dataFactory->getMonsterDAO();
+    MonsterData* monsterData=dataFactory->getMonsterData();
     
-    Json::Value monsterConfig=monsterDAO->getDataById(entityId);
+    Json::Value monsterConfig=monsterData->getDataById(entityId);
     
     int unitId=monsterConfig[CCGE_MONSTER_UNIT_ID].asInt();
     float scale=monsterConfig[CCGE_MONSTER_SCALE].asDouble();
     int level=monsterConfig[CCGE_MONSTER_LEVEL].asInt();
     
     //取得配置
-    UnitDAO* unitDAO=dataFactory->getUnitDAO();
+    UnitData* unitData=dataFactory->getUnitData();
     
-    Json::Value unitConfig=unitDAO->getDataById(unitId);
+    Json::Value unitConfig=unitData->getDataById(unitId);
     
     //设置单位属性
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
@@ -453,7 +372,7 @@ GameEntity* RealtimeBattleController::createOppTroopEntity(int entityId,int inde
     entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale,10.0f);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,kOppSide,scale);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);
@@ -938,7 +857,7 @@ void RealtimeBattleController::entityAttack(GameEntity* entity)
     
     BattleProperty* battleProperty=entity->getBattleProperty();
     
-    int side=battleProperty->getCamp();
+    int side=battleProperty->getSide();
 
 //    return;
     
@@ -1071,7 +990,7 @@ void RealtimeBattleController::onEntityDie(yhge::Message* message)
     //entity数据
 
     BattleProperty* battleProperty=entity->getBattleProperty();
-    int side=battleProperty->getCamp();
+    int side=battleProperty->getSide();
     
     //从战斗队列中移除
     removeEntityFromTroops(entity, side);

@@ -188,15 +188,15 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
-    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
-    yhge::Json::Value moveAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"move");
+    AnimationDAO* animationData=Game::getInstance()->getDataFactory()->getAnimationDAO();
+    yhge::Json::Value moveAnimationDAO=animationData->getEntityAnimateData(entity->getEntityId(),"move");
     
     //8方向空闲动画
-    CCArray* idleEightAnimations=createEightAnimations(moveAnimationData["idle"]);
+    CCArray* idleEightAnimations=createEightAnimations(moveAnimationDAO["idle"]);
     animation->addAnimationList(idleEightAnimations,"idle");
     
     //8方向移动动画
-    CCArray* moveEightAnimations=createEightAnimations(moveAnimationData["move"]);
+    CCArray* moveEightAnimations=createEightAnimations(moveAnimationDAO["move"]);
     animation->addAnimationList(moveEightAnimations,"move");
     
     entity->addComponent(animation);
@@ -227,14 +227,14 @@ void EntityFactory::addBattleComponentsProtogenic(GameEntity* entity)
     EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
-    AnimationData* animationData=Game::getInstance()->getDataFactory()->getAnimationData();
-    yhge::Json::Value battleAnimationData=animationData->getEntityAnimateData(entity->getEntityId(),"battle");
+    AnimationDAO* animationData=Game::getInstance()->getDataFactory()->getAnimationDAO();
+    yhge::Json::Value battleAnimationDAO=animationData->getEntityAnimateData(entity->getEntityId(),"battle");
     
-    yhge::Json::Value::Members members=battleAnimationData.getMemberNames();
+    yhge::Json::Value::Members members=battleAnimationDAO.getMemberNames();
     
     CCArray* twoAnimations=NULL;
     for (yhge::Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-        twoAnimations=createTwoAnimations(battleAnimationData[*iter]);
+        twoAnimations=createTwoAnimations(battleAnimationDAO[*iter]);
         animation->addAnimationList(twoAnimations,*iter);
     }
     
@@ -319,6 +319,7 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
     
     m_entityComponentFactory->addPositionComponent(entity);
     m_entityComponentFactory->addMoveComponent(entity);
+    m_entityComponentFactory->addSkillComponents(entity);
     m_entityComponentFactory->addAIComponent(entity);
     m_entityComponentFactory->addVisibleMoveComponent(entity);
 }
