@@ -176,15 +176,24 @@
 		57243EC718B3551C0070163A /* ServiceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EC118B3551C0070163A /* ServiceFactory.cpp */; };
 		57243EC818B3551C0070163A /* UserService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EC318B3551C0070163A /* UserService.cpp */; };
 		57243ECC18B45B580070163A /* RemoteCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ECA18B45B580070163A /* RemoteCache.cpp */; };
-		57243ECF18B45C1E0070163A /* RemoteCacheData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */; };
 		57243ED318B490BC0070163A /* PveBattleService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ED118B490BC0070163A /* PveBattleService.cpp */; };
 		57243ED618B49BE70070163A /* BattlePrepareScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ED418B49BE70070163A /* BattlePrepareScene.cpp */; };
 		57243ED918B49C1F0070163A /* BattlePrepareController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243ED718B49C1F0070163A /* BattlePrepareController.cpp */; };
-		5726027818F4EA8D004C77A1 /* UnitData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5726027618F4EA8D004C77A1 /* UnitData.cpp */; };
-		573D940D1999F1A100F47394 /* SkillData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D940B1999F1A100F47394 /* SkillData.cpp */; };
-		573D94101999F24600F47394 /* BaseSqlData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D940E1999F24600F47394 /* BaseSqlData.cpp */; };
 		573D9413199B06C600F47394 /* TestMsgScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9411199B06C600F47394 /* TestMsgScene.cpp */; };
 		573D9416199B070100F47394 /* TestMsgController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9414199B070100F47394 /* TestMsgController.cpp */; };
+		573D9442199B6CE500F47394 /* AnimationDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D942C199B6CE500F47394 /* AnimationDAO.cpp */; };
+		573D9443199B6CE500F47394 /* BaseDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D942E199B6CE500F47394 /* BaseDAO.cpp */; };
+		573D9444199B6CE500F47394 /* BaseSqlDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9430199B6CE500F47394 /* BaseSqlDAO.cpp */; };
+		573D9445199B6CE500F47394 /* CharacterDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9432199B6CE500F47394 /* CharacterDAO.cpp */; };
+		573D9446199B6CE500F47394 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9434199B6CE500F47394 /* DataFactory.cpp */; };
+		573D9447199B6CE500F47394 /* MapDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9436199B6CE500F47394 /* MapDAO.cpp */; };
+		573D9448199B6CE500F47394 /* MonsterDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9438199B6CE500F47394 /* MonsterDAO.cpp */; };
+		573D9449199B6CE500F47394 /* RemoteCacheDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D943A199B6CE500F47394 /* RemoteCacheDAO.cpp */; };
+		573D944A199B6CE500F47394 /* SkillDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D943C199B6CE500F47394 /* SkillDAO.cpp */; };
+		573D944B199B6CE500F47394 /* UnitDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D943E199B6CE500F47394 /* UnitDAO.cpp */; };
+		573D944C199B6CE500F47394 /* ZoneDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9440199B6CE500F47394 /* ZoneDAO.cpp */; };
+		573D944F199C58EB00F47394 /* CommonTableDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D944D199C58EB00F47394 /* CommonTableDAO.cpp */; };
+		573D9452199CA27700F47394 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9450199CA27700F47394 /* GameComponent.cpp */; };
 		5747632418D186800031E2E0 /* DieComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632218D186800031E2E0 /* DieComponent.cpp */; };
 		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
@@ -193,16 +202,10 @@
 		5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747634818D6F10B0031E2E0 /* StepGameWorldController.cpp */; };
 		57489DF518F536EC005F540E /* content in Resources */ = {isa = PBXBuildFile; fileRef = 57489DF418F536EC005F540E /* content */; };
 		57489DFB18F54CFB005F540E /* UnitService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DF918F54CFB005F540E /* UnitService.cpp */; };
-		57489DFE18F63871005F540E /* MonsterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFC18F63871005F540E /* MonsterData.cpp */; };
-		57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489DFF18F63AAB005F540E /* CharacterData.cpp */; };
 		57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */; };
 		57489E0718F67A22005F540E /* EntityComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57489E0518F67A22005F540E /* EntityComponentFactory.cpp */; };
-		574A569918B19D7F00518953 /* DataFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569718B19D7F00518953 /* DataFactory.cpp */; };
 		574A56A018B1A0B200518953 /* AnimationProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A569E18B1A0B200518953 /* AnimationProvider.cpp */; };
 		574FE4DC18D97C3200490B18 /* MissionService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4DA18D97C3200490B18 /* MissionService.cpp */; };
-		574FE5CA18DC16CA00490B18 /* MapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE5C618DC16CA00490B18 /* MapData.cpp */; };
-		574FE5CB18DC16CA00490B18 /* ZoneData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE5C818DC16CA00490B18 /* ZoneData.cpp */; };
-		574FE61F18DFE4EC00490B18 /* BaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61D18DFE4EC00490B18 /* BaseData.cpp */; };
 		574FE62218E012F200490B18 /* InitializeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62018E012F200490B18 /* InitializeController.cpp */; };
 		574FE62518E014A300490B18 /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62318E014A300490B18 /* SimpleScene.cpp */; };
 		574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE62618E01BD200490B18 /* InitializeScene.cpp */; };
@@ -213,7 +216,6 @@
 		574FF81C192DE7BA00DC1791 /* SkillComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */; };
 		57525CC018AB6C4800166633 /* TestSqliteScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CBE18AB6C4800166633 /* TestSqliteScene.cpp */; };
 		57525CC618AB6C7100166633 /* TestSqliteController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CC418AB6C7100166633 /* TestSqliteController.cpp */; };
-		57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CEF18AC6E9300166633 /* AnimationData.cpp */; };
 		5755C7161884CB6800213F7C /* GameWorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5755C7141884CB6800213F7C /* GameWorldController.cpp */; };
 		57564160196B994800AA1194 /* BattleUpdateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5756415E196B994800AA1194 /* BattleUpdateManager.cpp */; };
 		57564163196BD23A00AA1194 /* BattleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57564161196BD23A00AA1194 /* BattleManager.cpp */; };
@@ -756,8 +758,6 @@
 		57243EC418B3551C0070163A /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
 		57243ECA18B45B580070163A /* RemoteCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteCache.cpp; sourceTree = "<group>"; };
 		57243ECB18B45B580070163A /* RemoteCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteCache.h; sourceTree = "<group>"; };
-		57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteCacheData.cpp; sourceTree = "<group>"; };
-		57243ECE18B45C1E0070163A /* RemoteCacheData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteCacheData.h; sourceTree = "<group>"; };
 		57243ED018B45CF40070163A /* DataDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataDefine.h; sourceTree = "<group>"; };
 		57243ED118B490BC0070163A /* PveBattleService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PveBattleService.cpp; sourceTree = "<group>"; };
 		57243ED218B490BC0070163A /* PveBattleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PveBattleService.h; sourceTree = "<group>"; };
@@ -765,16 +765,36 @@
 		57243ED518B49BE70070163A /* BattlePrepareScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePrepareScene.h; sourceTree = "<group>"; };
 		57243ED718B49C1F0070163A /* BattlePrepareController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePrepareController.cpp; sourceTree = "<group>"; };
 		57243ED818B49C1F0070163A /* BattlePrepareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePrepareController.h; sourceTree = "<group>"; };
-		5726027618F4EA8D004C77A1 /* UnitData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitData.cpp; sourceTree = "<group>"; };
-		5726027718F4EA8D004C77A1 /* UnitData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitData.h; sourceTree = "<group>"; };
-		573D940B1999F1A100F47394 /* SkillData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillData.cpp; sourceTree = "<group>"; };
-		573D940C1999F1A100F47394 /* SkillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillData.h; sourceTree = "<group>"; };
-		573D940E1999F24600F47394 /* BaseSqlData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSqlData.cpp; sourceTree = "<group>"; };
-		573D940F1999F24600F47394 /* BaseSqlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSqlData.h; sourceTree = "<group>"; };
 		573D9411199B06C600F47394 /* TestMsgScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMsgScene.cpp; sourceTree = "<group>"; };
 		573D9412199B06C600F47394 /* TestMsgScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMsgScene.h; sourceTree = "<group>"; };
 		573D9414199B070100F47394 /* TestMsgController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMsgController.cpp; sourceTree = "<group>"; };
 		573D9415199B070100F47394 /* TestMsgController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMsgController.h; sourceTree = "<group>"; };
+		573D942C199B6CE500F47394 /* AnimationDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDAO.cpp; sourceTree = "<group>"; };
+		573D942D199B6CE500F47394 /* AnimationDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDAO.h; sourceTree = "<group>"; };
+		573D942E199B6CE500F47394 /* BaseDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseDAO.cpp; sourceTree = "<group>"; };
+		573D942F199B6CE500F47394 /* BaseDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDAO.h; sourceTree = "<group>"; };
+		573D9430199B6CE500F47394 /* BaseSqlDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSqlDAO.cpp; sourceTree = "<group>"; };
+		573D9431199B6CE500F47394 /* BaseSqlDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSqlDAO.h; sourceTree = "<group>"; };
+		573D9432199B6CE500F47394 /* CharacterDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDAO.cpp; sourceTree = "<group>"; };
+		573D9433199B6CE500F47394 /* CharacterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDAO.h; sourceTree = "<group>"; };
+		573D9434199B6CE500F47394 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
+		573D9435199B6CE500F47394 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
+		573D9436199B6CE500F47394 /* MapDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapDAO.cpp; sourceTree = "<group>"; };
+		573D9437199B6CE500F47394 /* MapDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDAO.h; sourceTree = "<group>"; };
+		573D9438199B6CE500F47394 /* MonsterDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterDAO.cpp; sourceTree = "<group>"; };
+		573D9439199B6CE500F47394 /* MonsterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDAO.h; sourceTree = "<group>"; };
+		573D943A199B6CE500F47394 /* RemoteCacheDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteCacheDAO.cpp; sourceTree = "<group>"; };
+		573D943B199B6CE500F47394 /* RemoteCacheDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteCacheDAO.h; sourceTree = "<group>"; };
+		573D943C199B6CE500F47394 /* SkillDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillDAO.cpp; sourceTree = "<group>"; };
+		573D943D199B6CE500F47394 /* SkillDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDAO.h; sourceTree = "<group>"; };
+		573D943E199B6CE500F47394 /* UnitDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitDAO.cpp; sourceTree = "<group>"; };
+		573D943F199B6CE500F47394 /* UnitDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitDAO.h; sourceTree = "<group>"; };
+		573D9440199B6CE500F47394 /* ZoneDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneDAO.cpp; sourceTree = "<group>"; };
+		573D9441199B6CE500F47394 /* ZoneDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneDAO.h; sourceTree = "<group>"; };
+		573D944D199C58EB00F47394 /* CommonTableDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonTableDAO.cpp; sourceTree = "<group>"; };
+		573D944E199C58EB00F47394 /* CommonTableDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableDAO.h; sourceTree = "<group>"; };
+		573D9450199CA27700F47394 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
+		573D9451199CA27700F47394 /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
 		5747632218D186800031E2E0 /* DieComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DieComponent.cpp; sourceTree = "<group>"; };
 		5747632318D186800031E2E0 /* DieComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieComponent.h; sourceTree = "<group>"; };
 		5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthBarComponent.cpp; sourceTree = "<group>"; };
@@ -790,27 +810,15 @@
 		57489DF418F536EC005F540E /* content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = content; sourceTree = "<group>"; };
 		57489DF918F54CFB005F540E /* UnitService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitService.cpp; sourceTree = "<group>"; };
 		57489DFA18F54CFB005F540E /* UnitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitService.h; sourceTree = "<group>"; };
-		57489DFC18F63871005F540E /* MonsterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterData.cpp; sourceTree = "<group>"; };
-		57489DFD18F63871005F540E /* MonsterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterData.h; sourceTree = "<group>"; };
-		57489DFF18F63AAB005F540E /* CharacterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterData.cpp; sourceTree = "<group>"; };
-		57489E0018F63AAB005F540E /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		57489E0218F63EC3005F540E /* BattlePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlePositionComponent.cpp; sourceTree = "<group>"; };
 		57489E0318F63EC3005F540E /* BattlePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlePositionComponent.h; sourceTree = "<group>"; };
 		57489E0518F67A22005F540E /* EntityComponentFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponentFactory.cpp; sourceTree = "<group>"; };
 		57489E0618F67A22005F540E /* EntityComponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityComponentFactory.h; sourceTree = "<group>"; };
-		574A569718B19D7F00518953 /* DataFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataFactory.cpp; sourceTree = "<group>"; };
-		574A569818B19D7F00518953 /* DataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFactory.h; sourceTree = "<group>"; };
 		574A569E18B1A0B200518953 /* AnimationProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationProvider.cpp; sourceTree = "<group>"; };
 		574A569F18B1A0B200518953 /* AnimationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationProvider.h; sourceTree = "<group>"; };
 		574A56B118B3101B00518953 /* GameDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDefine.h; sourceTree = "<group>"; };
 		574FE4DA18D97C3200490B18 /* MissionService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionService.cpp; sourceTree = "<group>"; };
 		574FE4DB18D97C3200490B18 /* MissionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionService.h; sourceTree = "<group>"; };
-		574FE5C618DC16CA00490B18 /* MapData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapData.cpp; sourceTree = "<group>"; };
-		574FE5C718DC16CA00490B18 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapData.h; sourceTree = "<group>"; };
-		574FE5C818DC16CA00490B18 /* ZoneData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneData.cpp; sourceTree = "<group>"; };
-		574FE5C918DC16CA00490B18 /* ZoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneData.h; sourceTree = "<group>"; };
-		574FE61D18DFE4EC00490B18 /* BaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseData.cpp; sourceTree = "<group>"; };
-		574FE61E18DFE4EC00490B18 /* BaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseData.h; sourceTree = "<group>"; };
 		574FE62018E012F200490B18 /* InitializeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitializeController.cpp; sourceTree = "<group>"; };
 		574FE62118E012F200490B18 /* InitializeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializeController.h; sourceTree = "<group>"; };
 		574FE62318E014A300490B18 /* SimpleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleScene.cpp; sourceTree = "<group>"; };
@@ -831,8 +839,6 @@
 		57525CBF18AB6C4800166633 /* TestSqliteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteScene.h; sourceTree = "<group>"; };
 		57525CC418AB6C7100166633 /* TestSqliteController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSqliteController.cpp; sourceTree = "<group>"; };
 		57525CC518AB6C7100166633 /* TestSqliteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSqliteController.h; sourceTree = "<group>"; };
-		57525CEF18AC6E9300166633 /* AnimationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationData.cpp; sourceTree = "<group>"; };
-		57525CF018AC6E9300166633 /* AnimationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationData.h; sourceTree = "<group>"; };
 		5755C7141884CB6800213F7C /* GameWorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorldController.cpp; sourceTree = "<group>"; };
 		5755C7151884CB6800213F7C /* GameWorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldController.h; sourceTree = "<group>"; };
 		5756415E196B994800AA1194 /* BattleUpdateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleUpdateManager.cpp; sourceTree = "<group>"; };
@@ -868,7 +874,7 @@
 		575642541977B35E00AA1194 /* CCProcessBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCProcessBase.h; sourceTree = "<group>"; };
 		575642551977B35E00AA1194 /* CCTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTween.cpp; sourceTree = "<group>"; };
 		575642561977B35E00AA1194 /* CCTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTween.h; sourceTree = "<group>"; };
-		575642571977B35E00AA1194 /* CCArmature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCArmature.cpp; sourceTree = "<group>"; };
+		575642571977B35E00AA1194 /* CCArmature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = CCArmature.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		575642581977B35E00AA1194 /* CCArmature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCArmature.h; sourceTree = "<group>"; };
 		575642591977B35E00AA1194 /* CCBone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBone.cpp; sourceTree = "<group>"; };
 		5756425A1977B35F00AA1194 /* CCBone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBone.h; sourceTree = "<group>"; };
@@ -1884,28 +1890,30 @@
 		57525CEE18AC6E9300166633 /* Datas */ = {
 			isa = PBXGroup;
 			children = (
-				57525CEF18AC6E9300166633 /* AnimationData.cpp */,
-				57525CF018AC6E9300166633 /* AnimationData.h */,
-				574FE61D18DFE4EC00490B18 /* BaseData.cpp */,
-				574FE61E18DFE4EC00490B18 /* BaseData.h */,
-				573D940E1999F24600F47394 /* BaseSqlData.cpp */,
-				573D940F1999F24600F47394 /* BaseSqlData.h */,
-				57489DFF18F63AAB005F540E /* CharacterData.cpp */,
-				57489E0018F63AAB005F540E /* CharacterData.h */,
-				574A569718B19D7F00518953 /* DataFactory.cpp */,
-				574A569818B19D7F00518953 /* DataFactory.h */,
-				574FE5C618DC16CA00490B18 /* MapData.cpp */,
-				574FE5C718DC16CA00490B18 /* MapData.h */,
-				57489DFC18F63871005F540E /* MonsterData.cpp */,
-				57489DFD18F63871005F540E /* MonsterData.h */,
-				57243ECD18B45C1E0070163A /* RemoteCacheData.cpp */,
-				57243ECE18B45C1E0070163A /* RemoteCacheData.h */,
-				573D940B1999F1A100F47394 /* SkillData.cpp */,
-				573D940C1999F1A100F47394 /* SkillData.h */,
-				5726027618F4EA8D004C77A1 /* UnitData.cpp */,
-				5726027718F4EA8D004C77A1 /* UnitData.h */,
-				574FE5C818DC16CA00490B18 /* ZoneData.cpp */,
-				574FE5C918DC16CA00490B18 /* ZoneData.h */,
+				573D942C199B6CE500F47394 /* AnimationDAO.cpp */,
+				573D942D199B6CE500F47394 /* AnimationDAO.h */,
+				573D942E199B6CE500F47394 /* BaseDAO.cpp */,
+				573D942F199B6CE500F47394 /* BaseDAO.h */,
+				573D9430199B6CE500F47394 /* BaseSqlDAO.cpp */,
+				573D9431199B6CE500F47394 /* BaseSqlDAO.h */,
+				573D9432199B6CE500F47394 /* CharacterDAO.cpp */,
+				573D9433199B6CE500F47394 /* CharacterDAO.h */,
+				573D944D199C58EB00F47394 /* CommonTableDAO.cpp */,
+				573D944E199C58EB00F47394 /* CommonTableDAO.h */,
+				573D9434199B6CE500F47394 /* DataFactory.cpp */,
+				573D9435199B6CE500F47394 /* DataFactory.h */,
+				573D9436199B6CE500F47394 /* MapDAO.cpp */,
+				573D9437199B6CE500F47394 /* MapDAO.h */,
+				573D9438199B6CE500F47394 /* MonsterDAO.cpp */,
+				573D9439199B6CE500F47394 /* MonsterDAO.h */,
+				573D943A199B6CE500F47394 /* RemoteCacheDAO.cpp */,
+				573D943B199B6CE500F47394 /* RemoteCacheDAO.h */,
+				573D943C199B6CE500F47394 /* SkillDAO.cpp */,
+				573D943D199B6CE500F47394 /* SkillDAO.h */,
+				573D943E199B6CE500F47394 /* UnitDAO.cpp */,
+				573D943F199B6CE500F47394 /* UnitDAO.h */,
+				573D9440199B6CE500F47394 /* ZoneDAO.cpp */,
+				573D9441199B6CE500F47394 /* ZoneDAO.h */,
 			);
 			name = Datas;
 			path = ../Classes/Datas;
@@ -2530,6 +2538,8 @@
 				5747632318D186800031E2E0 /* DieComponent.h */,
 				5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */,
 				5768C14718A8DA0E005123C5 /* GameAttackComponent.h */,
+				573D9450199CA27700F47394 /* GameComponent.cpp */,
+				573D9451199CA27700F47394 /* GameComponent.h */,
 				5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */,
 				5747632F18D1AB7A0031E2E0 /* HealthBarComponent.h */,
 				57E2C2BD18F3A0A300124DF1 /* HurtComponent.cpp */,
@@ -2798,8 +2808,6 @@
 				15A3D9041682F7D5002FB0C5 /* b2Distance.cpp in Sources */,
 				575643241977B36100AA1194 /* CCComAudio.cpp in Sources */,
 				5747634318D68DBE0031E2E0 /* BaseState.cpp in Sources */,
-				57243ECF18B45C1E0070163A /* RemoteCacheData.cpp in Sources */,
-				574FE5CB18DC16CA00490B18 /* ZoneData.cpp in Sources */,
 				57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */,
 				15A3D9051682F7D5002FB0C5 /* b2DynamicTree.cpp in Sources */,
 				15A3D9061682F7D5002FB0C5 /* b2TimeOfImpact.cpp in Sources */,
@@ -2807,6 +2815,7 @@
 				15A3D9081682F7D5002FB0C5 /* b2CircleShape.cpp in Sources */,
 				574FF81C192DE7BA00DC1791 /* SkillComponent.cpp in Sources */,
 				575643131977B36000AA1194 /* CCArmature.cpp in Sources */,
+				573D9452199CA27700F47394 /* GameComponent.cpp in Sources */,
 				15A3D9091682F7D5002FB0C5 /* b2EdgeShape.cpp in Sources */,
 				15A3D90A1682F7D5002FB0C5 /* b2PolygonShape.cpp in Sources */,
 				15A3D90B1682F7D5002FB0C5 /* b2BlockAllocator.cpp in Sources */,
@@ -2852,7 +2861,6 @@
 				15A3D91E1682F7D5002FB0C5 /* b2PolygonAndCircleContact.cpp in Sources */,
 				15A3D91F1682F7D5002FB0C5 /* b2PolygonContact.cpp in Sources */,
 				57B0CA83193DC61300098C22 /* FcaInfo.cpp in Sources */,
-				57525CF118AC6E9300166633 /* AnimationData.cpp in Sources */,
 				5756433C1977B36100AA1194 /* CocoLoader.cpp in Sources */,
 				15A3D9201682F7D5002FB0C5 /* b2DistanceJoint.cpp in Sources */,
 				15A3D9211682F7D5002FB0C5 /* b2FrictionJoint.cpp in Sources */,
@@ -2871,10 +2879,10 @@
 				15A3D9951682F7F9002FB0C5 /* chipmunk.c in Sources */,
 				57F013451900C8F100CB32E9 /* BattleStateMachineComponent.cpp in Sources */,
 				15A3D9971682F7F9002FB0C5 /* cpConstraint.c in Sources */,
-				574FE61F18DFE4EC00490B18 /* BaseData.cpp in Sources */,
 				15A3D9981682F7F9002FB0C5 /* cpDampedRotarySpring.c in Sources */,
 				15A3D9991682F7F9002FB0C5 /* cpDampedSpring.c in Sources */,
 				15A3D99A1682F7F9002FB0C5 /* cpGearJoint.c in Sources */,
+				573D944B199B6CE500F47394 /* UnitDAO.cpp in Sources */,
 				15A3D99B1682F7F9002FB0C5 /* cpGrooveJoint.c in Sources */,
 				15A3D99C1682F7F9002FB0C5 /* cpPinJoint.c in Sources */,
 				15A3D99D1682F7F9002FB0C5 /* cpPivotJoint.c in Sources */,
@@ -2919,12 +2927,12 @@
 				15A3DA321682F826002FB0C5 /* CCBFileLoader.cpp in Sources */,
 				15A3DA331682F826002FB0C5 /* CCBKeyframe.cpp in Sources */,
 				15A3DA341682F826002FB0C5 /* CCBReader.cpp in Sources */,
-				57489DFE18F63871005F540E /* MonsterData.cpp in Sources */,
 				15A3DA351682F826002FB0C5 /* CCBSequence.cpp in Sources */,
 				15A3DA361682F826002FB0C5 /* CCBSequenceProperty.cpp in Sources */,
 				57243EB818B33E870070163A /* BattleModel.cpp in Sources */,
 				5756430A1977B36000AA1194 /* CCActionObject.cpp in Sources */,
 				575643461977B36100AA1194 /* LayoutReader.cpp in Sources */,
+				573D9448199B6CE500F47394 /* MonsterDAO.cpp in Sources */,
 				5756432C1977B36100AA1194 /* CocosGUI.cpp in Sources */,
 				15A3DA371682F826002FB0C5 /* CCBValue.cpp in Sources */,
 				5756434A1977B36100AA1194 /* ScrollViewReader.cpp in Sources */,
@@ -2935,10 +2943,9 @@
 				15A3DA391682F826002FB0C5 /* CCControlLoader.cpp in Sources */,
 				575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */,
 				15A3DA3A1682F826002FB0C5 /* CCData.cpp in Sources */,
-				573D94101999F24600F47394 /* BaseSqlData.cpp in Sources */,
 				575643181977B36000AA1194 /* CCDisplayFactory.cpp in Sources */,
-				5726027818F4EA8D004C77A1 /* UnitData.cpp in Sources */,
 				575643081977B36000AA1194 /* CCActionManager.cpp in Sources */,
+				573D9446199B6CE500F47394 /* DataFactory.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
 				571393D1194E97480028120A /* GameEngine.cpp in Sources */,
@@ -2953,6 +2960,7 @@
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
 				15A3DA411682F826002FB0C5 /* CCMenuItemLoader.cpp in Sources */,
 				15A3DA421682F826002FB0C5 /* CCNode+CCBRelativePositioning.cpp in Sources */,
+				573D944F199C58EB00F47394 /* CommonTableDAO.cpp in Sources */,
 				15A3DA431682F826002FB0C5 /* CCNodeLoader.cpp in Sources */,
 				15A3DA441682F826002FB0C5 /* CCNodeLoaderLibrary.cpp in Sources */,
 				5756432A1977B36100AA1194 /* UILayoutDefine.cpp in Sources */,
@@ -2987,9 +2995,11 @@
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
 				57243EBB18B33EC10070163A /* UserModel.cpp in Sources */,
 				575643401977B36100AA1194 /* ButtonReader.cpp in Sources */,
+				573D944A199B6CE500F47394 /* SkillDAO.cpp in Sources */,
 				15A3DA501682F826002FB0C5 /* CCControlStepper.cpp in Sources */,
 				575AD88E187BC54B00AA0477 /* MainController.cpp in Sources */,
 				15A3DA511682F826002FB0C5 /* CCControlSwitch.cpp in Sources */,
+				573D944C199B6CE500F47394 /* ZoneDAO.cpp in Sources */,
 				15A3DA521682F826002FB0C5 /* CCControlUtils.cpp in Sources */,
 				15A3DA531682F826002FB0C5 /* CCInvocation.cpp in Sources */,
 				15A3DA541682F826002FB0C5 /* CCScale9Sprite.cpp in Sources */,
@@ -3000,6 +3010,7 @@
 				57FFB52A198A13F500C74089 /* SkillProperty.cpp in Sources */,
 				15A3DA591682F826002FB0C5 /* CCScrollView.cpp in Sources */,
 				57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */,
+				573D9447199B6CE500F47394 /* MapDAO.cpp in Sources */,
 				15A3DA5A1682F826002FB0C5 /* CCSorting.cpp in Sources */,
 				575643101977B36000AA1194 /* CCArmatureAnimation.cpp in Sources */,
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
@@ -3047,13 +3058,16 @@
 				1A8F3B72175E05DA00049216 /* AtlasAttachmentLoader.cpp in Sources */,
 				1A8F3B73175E05DA00049216 /* Attachment.cpp in Sources */,
 				5756431B1977B36000AA1194 /* CCColliderDetector.cpp in Sources */,
+				573D9443199B6CE500F47394 /* BaseDAO.cpp in Sources */,
 				1A8F3B74175E05DA00049216 /* AttachmentLoader.cpp in Sources */,
 				1A8F3B75175E05DA00049216 /* Bone.cpp in Sources */,
 				1A8F3B76175E05DA00049216 /* BoneData.cpp in Sources */,
 				1A8F3B77175E05DA00049216 /* CCSkeleton.cpp in Sources */,
+				573D9449199B6CE500F47394 /* RemoteCacheDAO.cpp in Sources */,
 				5756431E1977B36000AA1194 /* CCDataReaderHelper.cpp in Sources */,
 				575AD896187BC54B00AA0477 /* ThreeSegmentScene.cpp in Sources */,
 				1A8F3B78175E05DA00049216 /* CCSkeletonAnimation.cpp in Sources */,
+				573D9444199B6CE500F47394 /* BaseSqlDAO.cpp in Sources */,
 				1A8F3B79175E05DA00049216 /* extension.cpp in Sources */,
 				5756433B1977B36100AA1194 /* UITextField.cpp in Sources */,
 				1A8F3B7A175E05DA00049216 /* Json.cpp in Sources */,
@@ -3071,15 +3085,12 @@
 				1A8F3B7F175E05DA00049216 /* Skin.cpp in Sources */,
 				1A8F3B80175E05DA00049216 /* Slot.cpp in Sources */,
 				575643261977B36100AA1194 /* CCComRender.cpp in Sources */,
-				573D940D1999F1A100F47394 /* SkillData.cpp in Sources */,
 				1A8F3B81175E05DA00049216 /* SlotData.cpp in Sources */,
 				575643441977B36100AA1194 /* LabelBMFontReader.cpp in Sources */,
 				1A8F3B82175E05DA00049216 /* spine-cocos2dx.cpp in Sources */,
 				5756430B1977B36000AA1194 /* CCActionTimeline.cpp in Sources */,
-				574FE5CA18DC16CA00490B18 /* MapData.cpp in Sources */,
 				5755C7161884CB6800213F7C /* GameWorldController.cpp in Sources */,
 				57F0133F1900B6F300CB32E9 /* BattleTimelineComponent.cpp in Sources */,
-				57489E0118F63AAB005F540E /* CharacterData.cpp in Sources */,
 				57243ED318B490BC0070163A /* PveBattleService.cpp in Sources */,
 				574FF816192DE52E00DC1791 /* ProjectileComponent.cpp in Sources */,
 				57704F9318CDAC29006B8A62 /* GameSceneBuilder.cpp in Sources */,
@@ -3089,13 +3100,14 @@
 				57489E0418F63EC3005F540E /* BattlePositionComponent.cpp in Sources */,
 				574FE62818E01BD200490B18 /* InitializeScene.cpp in Sources */,
 				5747634A18D6F10B0031E2E0 /* StepGameWorldController.cpp in Sources */,
+				573D9442199B6CE500F47394 /* AnimationDAO.cpp in Sources */,
 				575643371977B36100AA1194 /* UILabelBMFont.cpp in Sources */,
 				574FF819192DE59B00DC1791 /* ChainComponent.cpp in Sources */,
 				57243EB118B33E050070163A /* BaseModel.cpp in Sources */,
 				57704F9218CDAC29006B8A62 /* BuilderExternal.cpp in Sources */,
 				575643421977B36100AA1194 /* ImageViewReader.cpp in Sources */,
+				573D9445199B6CE500F47394 /* CharacterDAO.cpp in Sources */,
 				575AD88C187BC54B00AA0477 /* FooterController.cpp in Sources */,
-				574A569918B19D7F00518953 /* DataFactory.cpp in Sources */,
 				575643301977B36100AA1194 /* UIPageView.cpp in Sources */,
 				5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */,
 				5747634718D6D1940031E2E0 /* EntityPropertyFactory.cpp in Sources */,
