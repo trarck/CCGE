@@ -165,7 +165,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571393C6194597690028120A /* SimplePositionComponent.cpp */; };
 		571393D1194E97480028120A /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571393CF194E97480028120A /* GameEngine.cpp */; };
 		57243EB118B33E050070163A /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAD18B33E050070163A /* BaseModel.cpp */; };
 		57243EB218B33E050070163A /* ModelFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EAF18B33E050070163A /* ModelFactory.cpp */; };
@@ -194,6 +193,8 @@
 		573D944C199B6CE500F47394 /* ZoneDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9440199B6CE500F47394 /* ZoneDAO.cpp */; };
 		573D944F199C58EB00F47394 /* CommonTableDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D944D199C58EB00F47394 /* CommonTableDAO.cpp */; };
 		573D9452199CA27700F47394 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9450199CA27700F47394 /* GameComponent.cpp */; };
+		573D945919A1A49D00F47394 /* SkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D945719A1A49D00F47394 /* SkillManager.cpp */; };
+		573D946119A1D4BE00F47394 /* MoveProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D945F19A1D4BE00F47394 /* MoveProperty.cpp */; };
 		5747632418D186800031E2E0 /* DieComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632218D186800031E2E0 /* DieComponent.cpp */; };
 		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
@@ -736,8 +737,6 @@
 		1D6058910D05DD3D006BFB54 /* CCGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		571393C6194597690028120A /* SimplePositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePositionComponent.cpp; sourceTree = "<group>"; };
-		571393C7194597690028120A /* SimplePositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePositionComponent.h; sourceTree = "<group>"; };
 		571393CF194E97480028120A /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		571393D0194E97480028120A /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		57243EAD18B33E050070163A /* BaseModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseModel.cpp; sourceTree = "<group>"; };
@@ -795,6 +794,10 @@
 		573D944E199C58EB00F47394 /* CommonTableDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableDAO.h; sourceTree = "<group>"; };
 		573D9450199CA27700F47394 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		573D9451199CA27700F47394 /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
+		573D945719A1A49D00F47394 /* SkillManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillManager.cpp; sourceTree = "<group>"; };
+		573D945819A1A49D00F47394 /* SkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillManager.h; sourceTree = "<group>"; };
+		573D945F19A1D4BE00F47394 /* MoveProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveProperty.cpp; sourceTree = "<group>"; };
+		573D946019A1D4BE00F47394 /* MoveProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveProperty.h; sourceTree = "<group>"; };
 		5747632218D186800031E2E0 /* DieComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DieComponent.cpp; sourceTree = "<group>"; };
 		5747632318D186800031E2E0 /* DieComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieComponent.h; sourceTree = "<group>"; };
 		5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthBarComponent.cpp; sourceTree = "<group>"; };
@@ -1877,8 +1880,6 @@
 				57C45EA8192EF11500AF8E79 /* MoveComponent.h */,
 				574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */,
 				574FF815192DE52E00DC1791 /* ProjectileComponent.h */,
-				571393C6194597690028120A /* SimplePositionComponent.cpp */,
-				571393C7194597690028120A /* SimplePositionComponent.h */,
 				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
 				57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */,
@@ -1926,6 +1927,8 @@
 				57564162196BD23A00AA1194 /* BattleManager.h */,
 				5756415E196B994800AA1194 /* BattleUpdateManager.cpp */,
 				5756415F196B994800AA1194 /* BattleUpdateManager.h */,
+				573D945719A1A49D00F47394 /* SkillManager.cpp */,
+				573D945819A1A49D00F47394 /* SkillManager.h */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2594,6 +2597,8 @@
 				57704FAD18CFFCF6006B8A62 /* BattleProperty.h */,
 				57FFB52B198F3BA900C74089 /* BuffProperty.cpp */,
 				57FFB52C198F3BA900C74089 /* BuffProperty.h */,
+				573D945F19A1D4BE00F47394 /* MoveProperty.cpp */,
+				573D946019A1D4BE00F47394 /* MoveProperty.h */,
 				57FFB528198A13F500C74089 /* SkillProperty.cpp */,
 				57FFB529198A13F500C74089 /* SkillProperty.h */,
 				57823C5018A9BF11005ACB35 /* UnitProperty.cpp */,
@@ -2800,6 +2805,7 @@
 				573D9413199B06C600F47394 /* TestMsgScene.cpp in Sources */,
 				575643411977B36100AA1194 /* CheckBoxReader.cpp in Sources */,
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
+				573D946119A1D4BE00F47394 /* MoveProperty.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
 				15A3D9031682F7D5002FB0C5 /* b2Collision.cpp in Sources */,
 				57704FAE18CFFCF6006B8A62 /* BattleProperty.cpp in Sources */,
@@ -2822,6 +2828,7 @@
 				57243EC718B3551C0070163A /* ServiceFactory.cpp in Sources */,
 				5756433F1977B36100AA1194 /* SceneReader.cpp in Sources */,
 				575643341977B36100AA1194 /* UIImageView.cpp in Sources */,
+				573D945919A1A49D00F47394 /* SkillManager.cpp in Sources */,
 				15A3D90C1682F7D5002FB0C5 /* b2Draw.cpp in Sources */,
 				15A3D90D1682F7D5002FB0C5 /* b2Math.cpp in Sources */,
 				57CF76F618AA18450085A22F /* BattleScene.cpp in Sources */,
@@ -2949,7 +2956,6 @@
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
 				571393D1194E97480028120A /* GameEngine.cpp in Sources */,
-				571393C8194597690028120A /* SimplePositionComponent.cpp in Sources */,
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
 				57564160196B994800AA1194 /* BattleUpdateManager.cpp in Sources */,
