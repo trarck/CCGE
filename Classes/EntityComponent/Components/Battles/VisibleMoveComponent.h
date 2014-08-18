@@ -5,6 +5,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "../GameComponent.h"
+#include "EntityComponent/Properties/MoveProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -46,14 +47,14 @@ public:
     
 public:
     
-    inline void setWalkVelocity(const CCPoint& walkVelocity)
+    inline void setVelocity(const CCPoint& velocity)
     {
-        m_walkVelocity = walkVelocity;
+        m_velocity = velocity;
     }
     
-    inline const CCPoint& getWalkVelocity()
+    inline const CCPoint& getVelocity()
     {
-        return m_walkVelocity;
+        return m_velocity;
     }
     
     inline void setPosition(const CCPoint& position)
@@ -72,13 +73,17 @@ protected:
 protected:
     
     //移动速度
-    CCPoint m_walkVelocity;
+    CCPoint m_velocity;
     
     CCPoint m_position;
     
     int m_tick;
     
     bool m_moving;
+    
+    int m_direction;
+    
+    MoveProperty* m_moveProperty;
     
     yhge::SpriteRendererComponent* m_rendererComponent;
 };

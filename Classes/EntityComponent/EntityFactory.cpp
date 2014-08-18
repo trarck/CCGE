@@ -90,7 +90,7 @@ GameEntity* EntityFactory::createEntityById(int entityId)
     UnitProperty* unitProperty=new UnitProperty();
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();
-    entity->setUnitProperty(unitProperty);
+//    entity->setUnitProperty(unitProperty);
     
     //添加组件
     
@@ -175,7 +175,7 @@ void EntityFactory::addMapComponents(GameEntity* entity)
     isoPosition->init();
     entity->addComponent(isoPosition);
     isoPosition->release();
-    entity->setISOPositionComponent(isoPosition);
+//    entity->setISOPositionComponent(isoPosition);
     
     //    //使用自动排序的位置组件
     //    ISOAutoZOrderPositionComponent* isoPosition=new ISOAutoZOrderPositionComponent();
@@ -247,7 +247,7 @@ void EntityFactory::addBattleComponentsProtogenic(GameEntity* entity)
     attackComponent->init();
     entity->addComponent(attackComponent);
     attackComponent->release();
-    entity->setAttackComponent(attackComponent);
+//    entity->setAttackComponent(attackComponent);
     
     //死亡组件
     DieComponent* dieComponent=new DieComponent();
@@ -260,7 +260,7 @@ void EntityFactory::addBattleComponentsProtogenic(GameEntity* entity)
     healthBarComponent->init();
     entity->addComponent(healthBarComponent);
     healthBarComponent->release();
-    entity->setHealthBarComponent(healthBarComponent);
+//    entity->setHealthBarComponent(healthBarComponent);
     
     //伤害组件
     HurtComponent* hurtComponent=new HurtComponent();
@@ -317,10 +317,30 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
     //动画组件
     m_entityComponentFactory->addBattleAnimationComponent(entity);
     
-    m_entityComponentFactory->addPositionComponent(entity);
     m_entityComponentFactory->addMoveComponent(entity);
+    
     m_entityComponentFactory->addSkillComponents(entity);
+    
     m_entityComponentFactory->addAIComponent(entity);
+    
+    m_entityComponentFactory->addVisibleMoveComponent(entity);
+}
+
+void EntityFactory::addRealtimeBattleComponents(GameEntity* entity,const yhge::Json::Value& config)
+{
+    //注意有依赖关系组件的添加顺序
+    //显示组件
+    m_entityComponentFactory->addBattleRendererComponent(entity);
+    
+    //动画组件
+    m_entityComponentFactory->addBattleAnimationComponent(entity);
+    
+    m_entityComponentFactory->addMoveComponent(entity);
+    
+    m_entityComponentFactory->addSkillComponents(entity);
+    
+    m_entityComponentFactory->addAIComponent(entity);
+    
     m_entityComponentFactory->addVisibleMoveComponent(entity);
 }
 

@@ -5,7 +5,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "../GameComponent.h"
-
+#include "EntityComponent/Properties/MoveProperty.h"
 
 NS_CC_GE_BEGIN
 
@@ -35,6 +35,10 @@ public:
     
     virtual void cleanupMessages();
     
+    /**
+     * 位置更新
+     * 必须一直开着，有可能被击退或击飞
+     */
     virtual void update(float delta);
         
     virtual void moveTo(const CCPoint& dest);
@@ -45,7 +49,7 @@ protected:
     
     bool m_moveable;
     
-    CCPoint m_direction;
+    MoveProperty* m_moveProperty;
 
 };
 

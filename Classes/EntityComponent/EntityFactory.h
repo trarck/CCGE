@@ -77,6 +77,8 @@ public:
      */
     void addRealtimeBattleComponents(GameEntity* entity);
     
+    void addRealtimeBattleComponents(GameEntity* entity,const yhge::Json::Value& config);
+    
 public:
     
     inline void setEntityPropertyFactory(EntityPropertyFactory* entityPropertyFactory)

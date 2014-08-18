@@ -63,59 +63,59 @@ void BattlePositionComponent::cleanupMessages()
 CCPoint BattlePositionComponent::getPositionFromCell()
 {
     
-    GameEntity* entity=static_cast<GameEntity*>(m_owner);
-    
-    BattleProperty* battleProperty=entity->getBattleProperty();
-    
-    if(battleProperty){
-        
-        //通过战斗属性取得，物体所在的坐标
-        
-        int col=0;//battleProperty->getCol();
-        int row=0;//battleProperty->getRow();
-        
-        if (m_lastCol==col && m_lastRow==row){
-            return m_rendererPosition;
-        }
-        
-        m_lastCol=col;
-        m_lastRow=row;
-        
-        int x=0,y=0;
-        
-        CCPoint offset;
-        
-        int offsetCell=0;
-        
-        switch (battleProperty->getCamp()) {
-            case kSelfSide:{
-                x=kBattleCellRow-row-1;
-                y=kBattleCellCol-col-1;
-                offset.x=kBattleSelfOffsetX;
-                offset.y=kBattleSelfOffsetY;
-                break;
-            }
-            case kOppSide:{
-                x=row;
-                y=kBattleCellCol-col-1;
-                offset.x=kBattleOppOffsetX;
-                offset.y=kBattleOppOffsetY;
-                offsetCell=kBattleOppOffsetCell;
-                break;
-            }
-            default:
-                break;
-        }
-        
-        //y方向居中对齐，坐标要加0.5
-        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y);
-        pos.x+=offset.x+x*kBattleCellOffsetX;
-        pos.y+=offset.y+y*kBattleCellOffsetY;
-        
-        m_rendererPosition=pos;
-        
-        return pos;
-    }
+//    GameEntity* entity=static_cast<GameEntity*>(m_owner);
+//    
+//    BattleProperty* battleProperty=entity->getBattleProperty();
+//    
+//    if(battleProperty){
+//        
+//        //通过战斗属性取得，物体所在的坐标
+//        
+//        int col=0;//battleProperty->getCol();
+//        int row=0;//battleProperty->getRow();
+//        
+//        if (m_lastCol==col && m_lastRow==row){
+//            return m_rendererPosition;
+//        }
+//        
+//        m_lastCol=col;
+//        m_lastRow=row;
+//        
+//        int x=0,y=0;
+//        
+//        CCPoint offset;
+//        
+//        int offsetCell=0;
+//        
+//        switch (battleProperty->getCamp()) {
+//            case kSelfSide:{
+//                x=kBattleCellRow-row-1;
+//                y=kBattleCellCol-col-1;
+//                offset.x=kBattleSelfOffsetX;
+//                offset.y=kBattleSelfOffsetY;
+//                break;
+//            }
+//            case kOppSide:{
+//                x=row;
+//                y=kBattleCellCol-col-1;
+//                offset.x=kBattleOppOffsetX;
+//                offset.y=kBattleOppOffsetY;
+//                offsetCell=kBattleOppOffsetCell;
+//                break;
+//            }
+//            default:
+//                break;
+//        }
+//        
+//        //y方向居中对齐，坐标要加0.5
+//        CCPoint pos=dimetric::StaticTopViewCoordinateFormulae::gameToView2F(x+offsetCell,y);
+//        pos.x+=offset.x+x*kBattleCellOffsetX;
+//        pos.y+=offset.y+y*kBattleCellOffsetY;
+//        
+//        m_rendererPosition=pos;
+//        
+//        return pos;
+//    }
     
     return m_rendererPosition;
 }

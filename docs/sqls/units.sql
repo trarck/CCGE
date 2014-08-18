@@ -25,8 +25,8 @@ CREATE TABLE "units" (
 	 "walk_speed" real NOT NULL DEFAULT '0',  --行走速度
 	 "hit"  real NOT NULL DEFAULT '0',  --命中
 	 "dodg" real NOT NULL DEFAULT '0',  --闪避
-	 "health_recovery" real NOT NULL DEFAULT '0',  --生命回复
-	 "mana_recovery" real NOT NULL DEFAULT '0',  --魔法值回复
+	 "health_regenerate" real NOT NULL DEFAULT '0',  --生命回复
+	 "mana_regenerate" real NOT NULL DEFAULT '0',  --魔法值回复
 	 "heal" real NOT NULL DEFAULT '0',  --治疗效果提高
 	 "life_drain" real NOT NULL DEFAULT '0',  --吸血等级 表示吸血的能力
 	 "mana_cost_reduced" real NOT NULL DEFAULT '0',  --魔法消耗降低
@@ -52,6 +52,7 @@ CREATE TABLE "units" (
 	 "mp_type" integer NOT NULL DEFAULT '0',--能量条类型
 	 
 	 "puppet_id" integer NOT NULL DEFAULT '0', --元素动画id
+	 "collide_radius" real NOT NULL DEFAULT '0',  --碰撞半径
 	 
 	PRIMARY KEY("id")
 );

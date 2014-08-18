@@ -29,6 +29,10 @@ const int kCampPlayer=1;
 const int kCampEnemy=-1;
 const int kCampBoth=0;
 
+const CCRect kStageRect=CCRect(0, -120, 800, 240);
+
+const float kStageSideDistanceX=50.0f;
+
 enum BattleSide
 {
     kSelfSide=1,

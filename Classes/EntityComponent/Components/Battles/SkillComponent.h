@@ -5,6 +5,11 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "EntityComponent/Managers/BattleUpdateManager.h"
+
+#include "EntityComponent/Properties/BattleProperty.h"
+#include "EntityComponent/Properties/UnitProperty.h"
+#include "EntityComponent/Properties/MoveProperty.h"
+
 #include "../GameComponent.h"
 
 NS_CC_GE_BEGIN
@@ -218,7 +223,9 @@ protected:
     
     BattleUpdateManager* m_battleUpdateManager;
     
-    
+    BattleProperty* m_battleProperty;
+    UnitProperty* m_unitProperty;
+    MoveProperty* m_moveProperty;
 };
 
 NS_CC_GE_END

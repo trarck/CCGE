@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Consts/GameMessage.h"
 #include "Consts/DataDefine.h"
+#include "Consts/PropertyDefine.h"
 #include "EntityComponent/GameEntity.h"
 
 
@@ -27,6 +28,9 @@ SkillComponent::SkillComponent()
 ,m_canCast(false)
 ,m_canCastTick(-1)
 ,m_battleUpdateManager(NULL)
+,m_battleProperty(NULL)
+,m_unitProperty(NULL)
+,m_moveProperty(NULL)
 {
     
 }
@@ -45,6 +49,10 @@ void SkillComponent::setup()
     }
     
     m_battleUpdateManager=Game::getInstance()->getEngine()->getBattleUpdateManager();
+    
+    m_battleProperty=static_cast<BattleProperty*>(m_owner->getProperty(CCGE_PROPERTY_BATTLE));
+    m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
+    m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
 }
 
 void SkillComponent::cleanup()
@@ -95,7 +103,7 @@ bool SkillComponent::canCastWithTarget(GameEntity* target)
     
     m_canCast=false;
     
-    if (m_proto[CCGE_SKILL_COST_MP].asDouble()>m_entityOwner->getUnitProperty()->getMana()) {
+    if (m_proto[CCGE_SKILL_COST_MP].asDouble()>m_unitProperty->getMana()) {
         return false;
     }
     
@@ -106,10 +114,13 @@ bool SkillComponent::canCastWithTarget(GameEntity* target)
     //TODO check buff
     
     //check distance
-    float distanceSQ=(target->getBattleProperty()->getPosition()-m_entityOwner->getBattleProperty()->getPosition()).getLengthSq();
+    MoveProperty* targetMoveProperty=static_cast<MoveProperty*>(target->getProperty(CCGE_PROPERTY_MOVE));
+    
+    float distanceSQ=(targetMoveProperty->getPosition()-m_moveProperty->getPosition()).getLengthSq();
     if (distanceSQ>m_maxRangeSq) {
         return false;
     }
+    
     if (distanceSQ<m_minRangeSq) {
         return false;
     }
@@ -147,12 +158,12 @@ void SkillComponent::start(GameEntity* target)
     m_casting=true;
     m_attackCounter=0;
     m_update=true;
-    m_entityOwner->getBattleProperty()->setGlobalCd(m_proto[CCGE_SKILL_GLOBAL_CD].asDouble());
+    m_unitProperty->setGlobalCd(m_proto[CCGE_SKILL_GLOBAL_CD].asDouble());
     
-    float mp=m_entityOwner->getUnitProperty()->getMana();
+    float mp=m_unitProperty->getMana();
     
     //TODO use reduce cost mp
-    m_entityOwner->getUnitProperty()->setMana(mp-m_proto[CCGE_SKILL_COST_MP].asDouble());
+    m_unitProperty->setMana(mp-m_proto[CCGE_SKILL_COST_MP].asDouble());
     
     //TODO run launch effect
     

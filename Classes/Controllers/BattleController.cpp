@@ -443,10 +443,10 @@ GameEntity* BattleController::createSelfTroopEntity(int entityId,int index)
     //设置单位属性
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
-    entity->setUnitProperty(unitProperty);
+//    entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
+//    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kSelfSide,scale);
     
     //添加组件
     Game::getInstance()->getEngine()->getEntityFactory()->addBattleComponents(entity);
@@ -494,10 +494,10 @@ GameEntity* BattleController::createOppTroopEntity(int entityId,int index)
     //设置单位属性
     UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitConfig);
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
-    entity->setUnitProperty(unitProperty);
+//    entity->setUnitProperty(unitProperty);
     
     //设置战斗属性
-    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
+//    Game::getInstance()->getEngine()->getEntityFactory()->getEntityPropertyFactory()->addBattleProperty(entity,col,row,kOppSide,scale);
     
     //添加组件
     Game::getInstance()->getEngine()->getEntityFactory()->addBattleComponents(entity);
@@ -1008,14 +1008,14 @@ void BattleController::onEntityDie(yhge::Message* message)
     
     //entity数据
 
-    BattleProperty* battleProperty=entity->getBattleProperty();
-    int side=battleProperty->getCamp();
-    
-    //从战斗队列中移除
-    removeEntityFromTroops(entity, side);
-    
-    //移除消息处理
-    removeEntityMessage(entity);
+//    BattleProperty* battleProperty=static_cast<BattleProperty*>(entity->getProperty(CCGE_PROPERTY_BATTLE));
+//    int side=battleProperty->getCamp();
+//    
+//    //从战斗队列中移除
+//    removeEntityFromTroops(entity, side);
+//    
+//    //移除消息处理
+//    removeEntityMessage(entity);
     
 //    //从显示队列里移除
 //    entity->getRendererComponent()->getRenderer()->removeFromParent();

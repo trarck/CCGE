@@ -542,7 +542,7 @@ void  GameWorldController::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 		 //如果player正在移动，则此时取到的坐标和最终停下来的不一致。
 //		 CCPoint from=m_pPlayer->getCoordinate();
 //    
-         ISOPositionComponent* isoPosition=m_player->getISOPositionComponent();
+        ISOPositionComponent* isoPosition=static_cast<ISOPositionComponent*>(m_player->getComponent("ISOPositionComponent"));// m_player->getISOPositionComponent();
 
 		 CCArray* paths=searchPathsFrom(ccp(isoPosition->getX(),isoPosition->getY()),to);
 		 if(paths){

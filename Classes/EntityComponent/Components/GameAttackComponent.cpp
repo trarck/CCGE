@@ -85,30 +85,30 @@ void GameAttackComponent::attackWithSkillId(int skillId)
 
 void GameAttackComponent::moveToTargetFront()
 {
-    m_originalPosition=m_rendererComponent->getRenderer()->getPosition();
-    
-    GameEntity* target=static_cast<GameEntity*>(m_target);
-    
-    CCPoint targetPosition=target->getBattlePositionComponent()->getPositionFromCell();
-
-    //根据目标对象，修正攻击方的位置
-    BattleProperty* battleProperty=target->getBattleProperty();
-    if (battleProperty->getCamp()==kSelfSide) {
-        targetPosition.x+=kAttackKeepDisance;
-    }else{
-        targetPosition.x-=kAttackKeepDisance;
-    }
-    
-    
-    CCLOG("GameAttackComponent::moveTo:%f,%f from:%f,%f",targetPosition.x,targetPosition.y,m_originalPosition.x,m_originalPosition.y);
-    
-    CCMoveTo* moveToAction=CCMoveTo::create(0.04f, targetPosition);
-    
-    CCFiniteTimeAction*  action = CCSequence::create(moveToAction,
-                                                     CCCallFunc::create(this, callfunc_selector(GameAttackComponent::onMoveToTargetFrontComplete)),
-                                                     NULL);
-    
-    m_rendererComponent->getRenderer()->runAction(action);
+//    m_originalPosition=m_rendererComponent->getRenderer()->getPosition();
+//    
+//    GameEntity* target=static_cast<GameEntity*>(m_target);
+//    
+//    CCPoint targetPosition=target->getBattlePositionComponent()->getPositionFromCell();
+//
+//    //根据目标对象，修正攻击方的位置
+//    BattleProperty* battleProperty=target->getBattleProperty();
+//    if (battleProperty->getCamp()==kSelfSide) {
+//        targetPosition.x+=kAttackKeepDisance;
+//    }else{
+//        targetPosition.x-=kAttackKeepDisance;
+//    }
+//    
+//    
+//    CCLOG("GameAttackComponent::moveTo:%f,%f from:%f,%f",targetPosition.x,targetPosition.y,m_originalPosition.x,m_originalPosition.y);
+//    
+//    CCMoveTo* moveToAction=CCMoveTo::create(0.04f, targetPosition);
+//    
+//    CCFiniteTimeAction*  action = CCSequence::create(moveToAction,
+//                                                     CCCallFunc::create(this, callfunc_selector(GameAttackComponent::onMoveToTargetFrontComplete)),
+//                                                     NULL);
+//    
+//    m_rendererComponent->getRenderer()->runAction(action);
 }
 
 void GameAttackComponent::moveBackOrigin()
@@ -129,41 +129,41 @@ void GameAttackComponent::moveBackOrigin()
  */
 void GameAttackComponent::parseTargetDamage()
 {
-    GameEntity* entity=static_cast<GameEntity*>(m_target);
-    
-    BattleState* battleState= static_cast<BattleState*>(entity->getBattleStateMachineComponent()->getFSMMachine()->getCurrentState());
-    
-    if (battleState->isNormalDamageable()) {
-        
-        UnitProperty* unitProperty=entity->getUnitProperty();
-        
-        int targetHp=unitProperty->getHealth();
-        
-        int damage=this->calcDamage(unitProperty);
-        
-        CCLOG("GameAttackComponent::current target hp %d ",targetHp);
-        
-        targetHp=targetHp-damage;
-        
-        CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
-        
-        MessageManager* messageManager=this->getMessageManager();
-        
-        messageManager->dispatchMessage(kMSGAttackDamage,this,m_target,CCInteger::create(damage));
-        
-        if (targetHp<=0) {
-            targetHp=0;
-            unitProperty->setHealth(targetHp);
-            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
-            
-            //send target die message
-            messageManager->dispatchMessage(MSG_ENTITY_DIE, m_target, messageManager->getGlobalObject());
-            
-        }else{
-            unitProperty->setHealth(targetHp);
-            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
-        }
-    }
+//    GameEntity* entity=static_cast<GameEntity*>(m_target);
+//    
+//    BattleState* battleState= static_cast<BattleState*>(entity->getBattleStateMachineComponent()->getFSMMachine()->getCurrentState());
+//    
+//    if (battleState->isNormalDamageable()) {
+//        
+//        UnitProperty* unitProperty=entity->getUnitProperty();
+//        
+//        int targetHp=unitProperty->getHealth();
+//        
+//        int damage=this->calcDamage(unitProperty);
+//        
+//        CCLOG("GameAttackComponent::current target hp %d ",targetHp);
+//        
+//        targetHp=targetHp-damage;
+//        
+//        CCLOG("GameAttackComponent::afeter target hp %d ",targetHp);
+//        
+//        MessageManager* messageManager=this->getMessageManager();
+//        
+//        messageManager->dispatchMessage(kMSGAttackDamage,this,m_target,CCInteger::create(damage));
+//        
+//        if (targetHp<=0) {
+//            targetHp=0;
+//            unitProperty->setHealth(targetHp);
+//            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+//            
+//            //send target die message
+//            messageManager->dispatchMessage(MSG_ENTITY_DIE, m_target, messageManager->getGlobalObject());
+//            
+//        }else{
+//            unitProperty->setHealth(targetHp);
+//            messageManager->dispatchMessage(kMSGEntityHealthChange, m_target, messageManager->getGlobalObject(),CCFloat::create(targetHp));
+//        }
+//    }
 }
 
 /**
@@ -172,11 +172,11 @@ void GameAttackComponent::parseTargetDamage()
  */
 int GameAttackComponent::calcDamage(UnitProperty* targetUnitProperty)
 {
-    GameEntity* ownerEntity=static_cast<GameEntity*>(m_owner);
-    UnitProperty* ownerUnitProperty=ownerEntity->getUnitProperty();
-    
-    //TODO:攻击相克
-    return DamageFormula::calcDamage(ownerUnitProperty->getAttackDamage(), targetUnitProperty->getArmor(), m_damageFormulaParameterOne);
+//    GameEntity* ownerEntity=static_cast<GameEntity*>(m_owner);
+//    UnitProperty* ownerUnitProperty=ownerEntity->getUnitProperty();
+//    
+//    //TODO:攻击相克
+//    return DamageFormula::calcDamage(ownerUnitProperty->getAttackDamage(), targetUnitProperty->getArmor(), m_damageFormulaParameterOne);
 }
 
 void GameAttackComponent::onMoveToTargetFrontComplete()

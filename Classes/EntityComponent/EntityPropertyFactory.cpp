@@ -45,18 +45,16 @@ void EntityPropertyFactory::addUnitProperty(GameEntity* entity)
     
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();
-    entity->setUnitProperty(unitProperty);
 }
 
-void EntityPropertyFactory::addUnitProperty(GameEntity* entity,const yhge::Json::Value& value)
+void EntityPropertyFactory::addUnitProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& info)
 {
     UnitProperty* unitProperty=new UnitProperty();
     
-    setUnitPropertyValue(unitProperty, value);
+    setUnitPropertyValue(unitProperty, config,info);
     
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();
-    entity->setUnitProperty(unitProperty);
 }
 
 void EntityPropertyFactory::addBattleProperty(GameEntity* entity)
@@ -64,47 +62,36 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity)
     BattleProperty* battleProperty=new BattleProperty();
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
     battleProperty->release();
-    entity->setBattleProperty(battleProperty);
 }
 
 void EntityPropertyFactory::addBattleProperty(GameEntity* entity,const yhge::Json::Value& value)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
-    setBattlePropertyValue(battleProperty, value);
+//    setBattlePropertyValue(battleProperty, value);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
     battleProperty->release();
-    entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addBattleProperty(GameEntity* entity,int col,int row,int camp,float scale)
+void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
-//    battleProperty->setCol(col);
-//    battleProperty->setRow(row);
-    battleProperty->setCamp(camp);
-    battleProperty->setScale(scale);
+    setBattlePropertyValue(battleProperty, config,unitInfo);
     
-    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
+    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLE);
     battleProperty->release();
-    entity->setBattleProperty(battleProperty);
 }
 
-void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,float x,float y,int camp,float scale,float attackRange)
+void EntityPropertyFactory::addMoveProperty(GameEntity* entity,const yhge::Json::Value& config)
 {
-    BattleProperty* battleProperty=new BattleProperty();
+    MoveProperty* moveProperty=new MoveProperty();
     
-    battleProperty->setX(x);
-    battleProperty->setY(y);
-    battleProperty->setCamp(camp);
-    battleProperty->setScale(scale);
-    battleProperty->setAttackRange(attackRange);
+    setMovePropertyValue(moveProperty, config);
     
-    entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLECELL);
-    battleProperty->release();
-    entity->setBattleProperty(battleProperty);
+    entity->addProperty(moveProperty, CCGE_PROPERTY_MOVE);
+    moveProperty->release();
 }
 
 /**
@@ -133,41 +120,102 @@ void EntityPropertyFactory::addBattleProperties(GameEntity* entity,CCDictionary*
 void EntityPropertyFactory::addBattleProperties(GameEntity* entity,const yhge::Json::Value& params)
 {
     //unit property
-    addUnitProperty(entity,params[CCGE_DATA_PROPERTY_CONFIG_ENTITY]);
+    addUnitProperty(entity,params[CCGE_DATA_PROPERTY_CONFIG],params[CCGE_DATA_PROPERTY_CONFIG_ENTITY]);
     
     //battle property
     addBattleProperty(entity, params[CCGE_DATA_PROPERTY_CONFIG_BATTLE]);
 
 }
 
-void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& value)
+void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& info)
 {    
-    if (!value.isNull()) {
+    if (!config.isNull()) {
         
-        property->setUnitId(value[CCGE_UNIT_ID].asInt());
+        property->setUnitId(info[CCGE_UNIT_ID].asInt());
         
-        property->setAttackDamage(value[CCGE_UNIT_DAMAGE].asDouble());
-        property->setArmor(value[CCGE_UNIT_DEFENCE].asDouble());
-        property->setHealth(value[CCGE_UNIT_HEALTH].asDouble());
-        property->setMaxHealth(value[CCGE_UNIT_HEALTH].asDouble());
-        property->setMana(value[CCGE_UNIT_MANA].asDouble());
-        property->setMaxMana(value[CCGE_UNIT_MANA].asDouble());
-        property->setAgility(value[CCGE_UNIT_AGILITY].asDouble());
-        property->setAttackSpeed(value[CCGE_UNIT_ATTACK_SPEED].asDouble());
-        property->setIcon(value[CCGE_UNIT_ICON].asString());
+        property->setCamp(config[CCGE_UNIT_CAMP].asInt());
+        property->setFoecamp(-property->getCamp());
         
-        property->setLevel(value[CCGE_UNIT_LEVEL].asInt());
+        property->setHealth(info[CCGE_UNIT_HEALTH].asDouble());
+        property->setMana(info[CCGE_UNIT_MANA].asDouble());
+        property->setRadius(info[CCGE_UNIT_COLLIDE_RADIUS].asDouble());
+        
+        if (!config[CCGE_UNIT_SIZE_MOD].isNull()) {
+            property->setSizeMod(config[CCGE_UNIT_SIZE_MOD].asDouble());
+        }
+        
+        property->setLevel(config[CCGE_COMMON_LEVEL].asInt());
+        property->setRank(config[CCGE_COMMON_RANK].asInt());
+        property->setStars(config[CCGE_COMMON_STARS].asInt());
+        property->setAttackRange(config[CCGE_UNIT_ATTACK_RANGE].asDouble());
+        
+        property->setSizeMod(config[CCGE_UNIT_SIZE_MOD].asDouble());
+        
+        property->setInfo(info);
     }
 }
 
-void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& value)
+void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo)
 {
-    if (!value.isNull()) {
+    if (!config.isNull()) {
         
-//        property->setCol(value[CCGE_BATTLE_CELL_COL].asInt());
-//        property->setRow(value[CCGE_BATTLE_CELL_ROW].asInt());
-        property->setCamp(value[CCGE_BATTLE_CELL_SIDE].asInt());
-        property->setScale(value[CCGE_BATTLE_CELL_SCALE].asDouble());
+        property->setHealth(unitInfo[CCGE_UNIT_HEALTH].asDouble());
+        property->setMana(unitInfo[CCGE_UNIT_MANA].asDouble());
+        property->setArmor(unitInfo[CCGE_UNIT_ARMOR].asDouble());
+        property->setMagicResistance(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE].asDouble());
+        property->setAttackDamage(unitInfo[CCGE_UNIT_ATTACK_DAMAGE].asDouble());
+        property->setAbilityPower(unitInfo[CCGE_UNIT_ABILITY_POWER].asDouble());
+        property->setAttackSpeed(unitInfo[CCGE_UNIT_ATTACK_SPEED].asDouble());
+        property->setCrit(unitInfo[CCGE_UNIT_CRIT].asDouble());
+        property->setMagicCrit(unitInfo[CCGE_UNIT_MAGIC_CRIT].asDouble());
+        property->setArmorPenetrate(unitInfo[CCGE_UNIT_ARMOR_PENETRATE].asDouble());
+        property->setMagicResistanceIgnore(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE_IGNORE].asDouble());
+        property->setHit(unitInfo[CCGE_UNIT_HIT].asDouble());
+        property->setDodg(unitInfo[CCGE_UNIT_DODG].asDouble());
+        property->setHealthRegenerate(unitInfo[CCGE_UNIT_HEALTH_REGENERATE].asDouble());
+        property->setManaRegenerate(unitInfo[CCGE_UNIT_MANA_REGENERATE].asDouble());
+        property->setHeal(unitInfo[CCGE_UNIT_HEAL].asDouble());
+        property->setLifeDrain(unitInfo[CCGE_UNIT_LIFE_DRAIN].asDouble());
+        property->setManaCostReduced(unitInfo[CCGE_UNIT_MANA_COST_REDUCED].asDouble());
+
+        int level=config[CCGE_COMMON_LEVEL].asInt();
+        int stars=config[CCGE_COMMON_STARS].asInt();
+        int rank=config[CCGE_COMMON_RANK].asInt();
+        
+        float baseValue;
+        float growValue;
+        
+        //str
+        baseValue=unitInfo[CCGE_UNIT_BASE_STRENGTH].asDouble();
+        growValue=unitInfo[CCGE_UNIT_GROW_STRENGTH].asDouble();
+        property->setStrength(baseValue+growValue*stars*level);
+        
+        //agi
+        baseValue=unitInfo[CCGE_UNIT_BASE_AGILITY].asDouble();
+        growValue=unitInfo[CCGE_UNIT_GROW_AGILITY].asDouble();
+        property->setAgility(baseValue+growValue*stars*level);
+        
+        //int
+        baseValue=unitInfo[CCGE_UNIT_BASE_INTELLECT].asDouble();
+        growValue=unitInfo[CCGE_UNIT_GROW_INTELLECT].asDouble();
+        property->setIntellect(baseValue+growValue*stars*level);
+        
+        //TODO add rank property
+        
+        //TODO add equip property
+    }
+}
+
+void EntityPropertyFactory::setMovePropertyValue(MoveProperty* property,const yhge::Json::Value& config)
+{
+    if (!config.isNull()) {
+        CCPoint pos;
+        pos.x=config[CCGE_COMMON_X].asDouble();
+        pos.y=config[CCGE_COMMON_Y].asDouble();
+        
+        property->setPosition(pos);
+        
+        property->setDirection(config[CCGE_UNIT_CAMP].asInt());
     }
 }
 

@@ -31,7 +31,7 @@ void BattleState::onAttack(yhge::Message* message)
     if(target){
         CCLOG("onAttack:target[%d]",target->m_uID);
         
-        m_gameEntity->getAttackComponent()->setTarget(target);
+//        m_gameEntity->getAttackComponent()->setTarget(target);
         
         //change state to move
         BattleMoveState* state=static_cast<BattleMoveState*>(m_fSMMachine->getState(kMoveState));
@@ -121,7 +121,7 @@ void BattleIdleState::onBeAttack(yhge::Message* message)
 
 void BattleIdleState::showIdleAnimation()
 {
-    m_gameEntity->getAttackComponent()->showIdleAnimation();
+//    m_gameEntity->getAttackComponent()->showIdleAnimation();
 }
 
 
@@ -135,9 +135,9 @@ void BattleMoveState::enter()
                                      message_selector(BattleMoveState::onMoveComplete),this);
     
     if (m_moveType==kMoveToTarget) {
-        m_gameEntity->getAttackComponent()->moveToTargetFront();
+//        m_gameEntity->getAttackComponent()->moveToTargetFront();
     }else{
-        m_gameEntity->getAttackComponent()->moveBackOrigin();
+//        m_gameEntity->getAttackComponent()->moveBackOrigin();
     }
 }
 
@@ -186,7 +186,7 @@ void BattleAttackState::enter()
     showAttackAnimation();
     
     //处理伤害
-    m_gameEntity->getAttackComponent()->parseTargetDamage();
+//    m_gameEntity->getAttackComponent()->parseTargetDamage();
     
     //check update
     //if have ai update then remove
@@ -212,7 +212,7 @@ void BattleAttackState::onAttackAnimationComplete(yhge::Message* message)
 
 void BattleAttackState::showAttackAnimation()
 {
-    m_gameEntity->getAttackComponent()->showAttackAnimation();
+//    m_gameEntity->getAttackComponent()->showAttackAnimation();
 }
 
 //是否可以被普通攻击.正在普通攻击中不能被攻击。

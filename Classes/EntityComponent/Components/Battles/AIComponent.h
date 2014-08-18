@@ -6,6 +6,8 @@
 #include "CCGEMacros.h"
 #include "MoveComponent.h"
 #include "EntityComponent/Properties/BattleProperty.h"
+#include "EntityComponent/Properties/UnitProperty.h"
+#include "EntityComponent/Properties/MoveProperty.h"
 #include "EntityComponent/Components/GameComponent.h"
 #include "SkillComponent.h"
 
@@ -83,7 +85,8 @@ protected:
     
     GameEntity* m_target;
     
-//    GameEntity* m_destination;
+    UnitProperty* m_unitProperty;
+    MoveProperty* m_moveProperty;
     
     MoveComponent* m_moveComponent;
     

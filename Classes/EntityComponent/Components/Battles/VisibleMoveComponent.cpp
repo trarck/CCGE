@@ -14,11 +14,13 @@ NS_CC_GE_BEGIN
 
 VisibleMoveComponent::VisibleMoveComponent()
 :GameComponent("VisibleMoveComponent")
-,m_walkVelocity(CCPointZero)
+,m_velocity(CCPointZero)
 ,m_position(CCPointZero)
 ,m_rendererComponent(NULL)
 ,m_tick(-1)
 ,m_moving(false)
+,m_direction(0)
+,m_moveProperty(NULL)
 {
     
 }
@@ -31,7 +33,7 @@ VisibleMoveComponent::~VisibleMoveComponent()
 void VisibleMoveComponent::setup()
 {
     GameComponent::setup();
-
+    m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
     m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
 }
 
@@ -73,8 +75,8 @@ void VisibleMoveComponent::update(float delta)
         syncProperty();
         
     }else{
-        m_position.x+=m_walkVelocity.x*delta;
-        m_position.y+=m_walkVelocity.y*delta;
+        m_position.x+=m_velocity.x*delta;
+        m_position.y+=m_velocity.y*delta;
     }
     
     m_rendererComponent->getRenderer()->setPosition(m_position);
@@ -85,8 +87,9 @@ void VisibleMoveComponent::syncProperty()
 {
     m_tick=Game::getInstance()->getEngine()->getBattleUpdateManager()->getTicks();
     
-    m_walkVelocity=m_entityOwner->getBattleProperty()->getWalkVelocity();
-    m_position=m_entityOwner->getBattleProperty()->getPosition();
+    m_direction=m_moveProperty->getDirection();
+    m_velocity=m_moveProperty->getVelocity();
+    m_position=m_moveProperty->getPosition();
 }
 
 void VisibleMoveComponent::startMove()
@@ -101,11 +104,9 @@ void VisibleMoveComponent::startMove()
     data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
     MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
     
-    int direction=m_walkVelocity.x;//*m_battleProperty->getCamp();
-    
     //改变人物朝向
     if(m_rendererComponent)
-        m_rendererComponent->getSpriteRenderer()->setFlipX(direction<0);
+        m_rendererComponent->getSpriteRenderer()->setFlipX(m_direction<0);
     
     if(!m_moving){
         CCLOG("startMove[%p]",this);

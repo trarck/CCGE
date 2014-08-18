@@ -86,11 +86,11 @@ void BattleManager::addUnit(GameEntity* entity)
     m_units.push_back(entity);
     
     //TODO if alive then add to alive list
-    BattleProperty* battleProperty=entity->getBattleProperty();
-    int camp=battleProperty->getCamp();
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
+    int camp=unitProperty->getCamp();
     
-    if(battleProperty->isAlive()){
-        m_aliveUnits[battleProperty->getCamp()].push_back(entity);
+    if(unitProperty->isAlive()){
+        m_aliveUnits[camp].push_back(entity);
         if (camp==kCampPlayer) {
             ++m_aliveAllianceCount;
         }else if (camp==kCampEnemy){
@@ -286,23 +286,42 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     int unitId=characterConfig[CCGE_PLAYER_UNIT_ID].asInt();
     float scale=characterConfig[CCGE_PLAYER_SCALE].asDouble();
     int level=characterConfig[CCGE_PLAYER_LEVEL].asInt();
+    int rank=2;
+    int stars=3;
 
-    
-    
-    Json::Value unitProto=unitDAO->getDataById(unitId);
-    
     //设置单位属性
-    UnitProperty* unitProperty=unitService->createUnitPropertyFromLevel(level, unitProto);
-    entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
-    entity->setUnitProperty(unitProperty);
+    Json::Value unitConfig;
+    Json::Value unitInfo=unitDAO->getDataById(unitId);
+    
+    unitConfig[CCGE_UNIT_CAMP]=camp;
+    unitConfig[CCGE_COMMON_LEVEL]=level;
+    unitConfig[CCGE_COMMON_RANK]=rank;
+    unitConfig[CCGE_COMMON_STARS]=stars;
+    unitConfig[CCGE_UNIT_SIZE_MOD]=scale;
+    
+    //get attack range for sort hero
+    int baseSkillId=unitInfo[CCGE_UNIT_BASIC_SKILL].asInt();
+    Json::Value skillProto=skillDAO->getDataById(baseSkillId);
+    float attackRange=skillProto[CCGE_SKILL_MAX_RANGE].asDouble();
+    unitConfig[CCGE_UNIT_ATTACK_SPEED]=attackRange;
+    
+    entityFactory->getEntityPropertyFactory()->addUnitProperty(entity, unitConfig, unitInfo);
 
     //设置战斗属性
-    //get attack range
-    int baseSkillId=unitProto["basic_skill"].asInt();
-    Json::Value skillProto=skillDAO->getDataById(baseSkillId);
-    float attackRange=skillProto["max_range"].asDouble();
-    CCLOG("range[%d]:%d,%f",entityId,baseSkillId,attackRange);
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,x,y,camp,scale,attackRange);
+    Json::Value battleConfig;
+    battleConfig[CCGE_COMMON_LEVEL]=level;
+    battleConfig[CCGE_COMMON_RANK]=rank;
+    battleConfig[CCGE_COMMON_STARS]=stars;
+    
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,battleConfig,unitInfo);
+    
+    //设置移动属性
+    Json::Value moveConfig;
+    moveConfig[CCGE_COMMON_X]=x;
+    moveConfig[CCGE_COMMON_Y]=y;
+    moveConfig[CCGE_UNIT_CAMP]=camp;
+    
+    entityFactory->getEntityPropertyFactory()->addMoveProperty(entity, moveConfig);
     
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);

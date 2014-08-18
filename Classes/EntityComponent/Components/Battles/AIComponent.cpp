@@ -1,6 +1,7 @@
 #include "AIComponent.h"
 #include "Game.h"
 #include "Consts/GameMessage.h"
+#include "Consts/PropertyDefine.h"
 #include "EntityComponent/GameEntity.h"
 
 USING_NS_CC;
@@ -12,7 +13,8 @@ AIComponent::AIComponent()
 :GameComponent("AIComponent")
 ,m_state(0)
 ,m_target(NULL)
-//,m_destination(NULL)
+,m_unitProperty(NULL)
+,m_moveProperty(NULL)
 ,m_moveComponent(NULL)
 ,m_willCastManualSkill(true)
 {
@@ -28,6 +30,10 @@ AIComponent::~AIComponent()
 void AIComponent::setup()
 {
     GameComponent::setup();
+    
+    m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
+    m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
+    
     m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
 
 }
@@ -64,8 +70,8 @@ void AIComponent::update(float delta)
 //    CCLOG("AIComponent::update:%d,%f",this,delta);
     CCAssert(m_entityOwner!=NULL, "AIComponent::update owner is null");
     
-    //减少公司cd时间
-    m_entityOwner->getBattleProperty()->addGlobalCd(-delta);
+    //减少技能公用cd时间
+    m_unitProperty->addGlobalCd(-delta);
     
     GameEntity* target=searchTarget();
     if (target) {
@@ -99,13 +105,13 @@ GameEntity* AIComponent::searchTarget()
     
     std::map<int, GameEntityVector > aliveUnits=battleManager->getAliveUnits();
     
-    int oppCamp=-owner->getBattleProperty()->getCamp();
+    int foecamp=m_unitProperty->getFoecamp();
     
-    GameEntityVector unitList=aliveUnits[oppCamp];
+    GameEntityVector unitList=aliveUnits[foecamp];
     
 
 
-    CCPoint pos=owner->getBattleProperty()->getPosition();
+    CCPoint pos=m_moveProperty->getPosition();
     
     CCPoint oppPos;
     GameEntity* entity=NULL;
@@ -117,9 +123,11 @@ GameEntity* AIComponent::searchTarget()
     for (GameEntityVector::iterator iter=unitList.begin(); iter!=unitList.end(); ++iter) {
         
         entity=*iter;
+        
+        MoveProperty* moveProperty=static_cast<MoveProperty*>(entity->getProperty(CCGE_PROPERTY_MOVE));
         //TODO use buff property checkable
         if (entity!=m_owner) {
-            oppPos=entity->getBattleProperty()->getPosition();
+            oppPos=moveProperty->getPosition();
             
             distanceSQ=ccpDistanceSQ(pos, oppPos);
             if(minDistanSQ>distanceSQ){
@@ -138,7 +146,7 @@ SkillComponent* AIComponent::findSkillToCast()
     
 //    CCLOG("gcd:%f",owner->getBattleProperty()->getGlobalCd());
     //如果技能公用cd没结束，则不能施放技能
-    if (owner->getBattleProperty()->getGlobalCd()>0) {
+    if (m_unitProperty->getGlobalCd()>0) {
         return NULL;
     }
     
@@ -163,19 +171,16 @@ SkillComponent* AIComponent::findSkillToCast()
 
 void AIComponent::walkTo(GameEntity* dest)
 {
-    CCPoint destPos=dest->getBattleProperty()->getPosition();
+    MoveProperty* moveProperty=static_cast<MoveProperty*>(dest->getProperty(CCGE_PROPERTY_MOVE));
+    CCPoint destPos=moveProperty->getPosition();
     walkTo(destPos);
 }
 
 void AIComponent::walkTo(const CCPoint& dest)
 {
-    GameEntity* owner=static_cast<GameEntity*>(m_owner);
+    CCPoint pos=m_moveProperty->getPosition();
     
-    BattleProperty* battleProperty=owner->getBattleProperty();
-    
-    CCPoint pos=battleProperty->getPosition();
-    
-    float attackRange=battleProperty->getAttackRange();
+    float attackRange=m_unitProperty->getAttackRange();
     float distanceSQ=(pos-dest).getLengthSq();
 //    CCLOG("dis[%d]:%f,%f,%f:%f,%f",m_uID,dest.x,pos.x,dest.x-pos.x,distanceSQ,attackRange*attackRange);
     if (distanceSQ<=attackRange*attackRange) {

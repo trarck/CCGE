@@ -190,7 +190,9 @@ void GameActiveSortLayer::update()
 void GameActiveSortLayer::addDynamicObject(GameEntity* obj)
 {
     RendererComponent* renderer=obj->getRendererComponent();
-    ISOPositionComponent* positionComponent=obj->getISOPositionComponent();
+    
+    
+    ISOPositionComponent* positionComponent=static_cast<ISOPositionComponent*>(obj->getComponent("ISOPositionComponent"));
     
     CCRect rect=CCRectMake(positionComponent->getX(),positionComponent->getY(), 1, 1);
     
@@ -313,7 +315,7 @@ void GameActiveSortLayer::updateDynamicObjectZIndexNode(GameEntity* obj)
     if (node) {
         //只更新结点的rect
         CCRect rect= node->getRect();
-        ISOPositionComponent* positionComponent=obj->getISOPositionComponent();
+        ISOPositionComponent* positionComponent=static_cast<ISOPositionComponent*>(obj->getComponent("ISOPositionComponent"));
         rect.origin=ccp(positionComponent->getX(),positionComponent->getY());
         node->setRect(rect);
         m_occlusionDirty=true;

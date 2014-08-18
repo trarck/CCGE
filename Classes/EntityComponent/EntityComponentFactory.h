@@ -42,7 +42,7 @@ public:
     void addPositionComponent(GameEntity* entity);
     
     void addMoveComponent(GameEntity* entity);
-    
+        
     void addSkillComponents(GameEntity* entity);
     
     void addSkillComponent(GameEntity* entity);

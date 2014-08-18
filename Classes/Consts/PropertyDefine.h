@@ -9,5 +9,9 @@
 
 #define CCGE_PROPERTY_BATTLECELL "BattleProperty"
 
+#define CCGE_PROPERTY_BATTLE "BattleProperty"
+
+#define CCGE_PROPERTY_MOVE "MoveProperty"
+
 
 #endif /* defined(CCGE_CONSTS_PROPERTYDEFINE_H_) */

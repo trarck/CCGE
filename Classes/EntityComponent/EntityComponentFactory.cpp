@@ -17,7 +17,6 @@
 #include "Components/BattleStateMachineComponent.h"
 
 #include "Components/Battles/AIComponent.h"
-#include "Components/Battles/SimplePositionComponent.h"
 #include "Components/Battles/MoveComponent.h"
 #include "Components/Battles/SkillComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
@@ -59,17 +58,17 @@ bool EntityComponentFactory::init()
 
 void EntityComponentFactory::addBattleRendererComponent(GameEntity* entity)
 {
-    BattleProperty* battleProperty=entity->getBattleProperty();
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
     
     SpriteRendererComponent* rendererComponent=new SpriteRendererComponent();
     rendererComponent->init();
     
     CCNode* renderer=rendererComponent->getRenderer();
-    renderer->setScale(battleProperty->getScale());
+    renderer->setScale(unitProperty->getSizeMod());
 //    renderer->setZOrder(battleProperty->getCol());
     
     //目前的人物是朝向右，对手要做镜像
-    rendererComponent->getSpriteRenderer()->setFlipX(battleProperty->getCamp()==kCampEnemy);
+    rendererComponent->getSpriteRenderer()->setFlipX(unitProperty->getCamp()==kCampEnemy);
     
     entity->addComponent(rendererComponent);
     rendererComponent->release();
@@ -79,14 +78,14 @@ void EntityComponentFactory::addBattleRendererComponent(GameEntity* entity)
 
 void EntityComponentFactory::addBattleAnimationComponent(GameEntity* entity)
 {
-    UnitProperty* unitProperty=entity->getUnitProperty();
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
     
     EightDirectionAnimationComponent* animation=new EightDirectionAnimationComponent();
     animation->init();
     
     //从配置文件中取得动画数据
     AnimationDAO* animationDAO=Game::getInstance()->getDataFactory()->getAnimationDAO();
-    yhge::Json::Value battleAnimationData=animationDAO->getEntityAnimateData(unitProperty->getPuppetId(),CCGE_ANIMATION_TYPE_BATTLE);
+    yhge::Json::Value battleAnimationData=animationDAO->getEntityAnimateData(unitProperty->getPuppetIdFromInfo(),CCGE_ANIMATION_TYPE_BATTLE);
 
     CCAssert(!battleAnimationData.isNull(), "no animation data");
     
@@ -115,7 +114,6 @@ void EntityComponentFactory::addBattleComponent(GameEntity* entity)
     attackComponent->init();
     entity->addComponent(attackComponent);
     attackComponent->release();
-    entity->setAttackComponent(attackComponent);
 }
 
 void EntityComponentFactory::addDieComponent(GameEntity* entity)
@@ -128,16 +126,16 @@ void EntityComponentFactory::addDieComponent(GameEntity* entity)
 
 void EntityComponentFactory::addHealthBarComponent(GameEntity* entity)
 {
-    UnitProperty* unitProperty=entity->getUnitProperty();
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
+    BattleProperty* battleProperty=static_cast<BattleProperty*>(entity->getProperty(CCGE_PROPERTY_BATTLE));
         
     HealthBarComponent* healthBarComponent=new HealthBarComponent();
     healthBarComponent->init();
     
     entity->addComponent(healthBarComponent);
     healthBarComponent->release();
-    entity->setHealthBarComponent(healthBarComponent);
     
-    healthBarComponent->setMaxHp(unitProperty->getMaxHealth());
+    healthBarComponent->setMaxHp(battleProperty->getHealth());
     healthBarComponent->setCurrentHp(unitProperty->getHealth());
     
     //设置血条显示在人物上面
@@ -167,8 +165,7 @@ void EntityComponentFactory::addBattlePositionComponent(GameEntity* entity)
     entity->addComponent(battlePositionComponent);
     battlePositionComponent->release();
     battlePositionComponent->updateRendererPosition();
-    
-    entity->setBattlePositionComponent(battlePositionComponent);
+
 }
 
 void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
@@ -177,8 +174,7 @@ void EntityComponentFactory::addBattleStateMachineComponent(GameEntity* entity)
     battleStateMachineComponent->init();
     entity->addComponent(battleStateMachineComponent);
     battleStateMachineComponent->release();
-    
-    entity->setBattleStateMachineComponent(battleStateMachineComponent);
+
 }
 
 void EntityComponentFactory::addAIComponent(GameEntity* entity)
@@ -196,13 +192,7 @@ void EntityComponentFactory::addAIComponent(GameEntity* entity)
 
 void EntityComponentFactory::addPositionComponent(GameEntity* entity)
 {
-    SimplePositionComponent* positionComponent=new SimplePositionComponent();
-    positionComponent->init();
-    
-    entity->addComponent(positionComponent);
-    positionComponent->updateRendererPosition();
-    
-    positionComponent->release();
+
 }
 
 void EntityComponentFactory::addMoveComponent(GameEntity* entity)
@@ -212,7 +202,7 @@ void EntityComponentFactory::addMoveComponent(GameEntity* entity)
     
     entity->addComponent(moveComponent);
     
-//    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
+    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, moveComponent, schedule_selector(MoveComponent::update),kMoveUpdate);
     
     moveComponent->release();
 }
@@ -223,7 +213,7 @@ void EntityComponentFactory::addSkillComponents(GameEntity* entity)
     BaseSqlDAO* skillGroupDAO=Game::getInstance()->getDataFactory()->getSkillGroupDAO();
     SkillDAO* skillDAO=Game::getInstance()->getDataFactory()->getSkillDAO();
     
-    UnitProperty* unitProperty=entity->getUnitProperty();
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
     
     int unitId=unitProperty->getUnitId();
     
@@ -276,6 +266,9 @@ void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)
     visibleMoveComponent->init();
     
     entity->addComponent(visibleMoveComponent);
+    
+//    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, visibleMoveComponent, schedule_selector(VisibleMoveComponent::update),kRendererMoveUpdate);
+    
     visibleMoveComponent->release();
 }
 
