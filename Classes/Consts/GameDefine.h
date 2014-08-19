@@ -77,6 +77,7 @@ enum ComponentUpdatePriority
     kSkillUpdate,
     kAIUpdate,
     kBuffUpdate,
+    kVisibleMoveUpdate,
 };
 
 NS_CC_GE_END

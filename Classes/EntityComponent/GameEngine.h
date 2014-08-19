@@ -7,6 +7,7 @@
 #include "EntityFactory.h"
 #include "Managers/BattleUpdateManager.h"
 #include "Managers/BattleManager.h"
+#include "Managers/SkillManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -63,6 +64,18 @@ public:
         return m_battleManager;
     }
     
+    inline void setSkillManager(SkillManager* skillManager)
+    {
+        CC_SAFE_RETAIN(skillManager);
+        CC_SAFE_RELEASE(m_skillManager);
+        m_skillManager = skillManager;
+    }
+    
+    inline SkillManager* getSkillManager()
+    {
+        return m_skillManager;
+    }
+    
 protected:
 
 	EntityFactory* m_entityFactory;
@@ -71,6 +84,8 @@ protected:
     
     //战斗管理
     BattleManager* m_battleManager;
+    
+    SkillManager* m_skillManager;
  
 };
 

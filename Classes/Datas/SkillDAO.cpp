@@ -28,7 +28,7 @@ yhge::Json::Value SkillDAO::getDataById(int aId)
 yhge::Json::Value SkillDAO::getSkillActions(int skillId)
 {
     std::string sql="SELECT * FROM ";
-    sql+=CCGE_TABLE_SKILL_ACTINS;
+    sql+=CCGE_TABLE_SKILL_ACTIONS;
     sql+=" WHERE action_id = ?";
     
     Json::Value params;

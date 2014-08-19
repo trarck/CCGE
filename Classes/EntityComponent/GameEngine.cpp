@@ -10,6 +10,7 @@ GameEngine::GameEngine()
 :m_entityFactory(NULL)
 ,m_battleUpdateManager(NULL)
 ,m_battleManager(NULL)
+,m_skillManager(NULL)
 {
     
 }
@@ -20,6 +21,7 @@ GameEngine::~GameEngine()
     CC_SAFE_RELEASE_NULL(m_entityFactory);
     CC_SAFE_RELEASE_NULL(m_battleUpdateManager);
     CC_SAFE_RELEASE_NULL(m_battleManager);
+    CC_SAFE_RELEASE_NULL(m_skillManager);
 }
 
 bool GameEngine::init()
@@ -51,6 +53,11 @@ void GameEngine::setupManagers()
     m_battleManager=new BattleManager();
     m_battleManager->init();
     m_battleManager->setEngine(this);
+    
+    m_skillManager=new SkillManager();
+    m_skillManager->init();
+    m_skillManager->setEngine(this);
+    
     
 }
 

@@ -10,6 +10,7 @@
 #include "EntityComponent/Properties/MoveProperty.h"
 #include "EntityComponent/Components/GameComponent.h"
 #include "SkillComponent.h"
+#include "EntityComponent/Managers/SkillManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -90,7 +91,9 @@ protected:
     
     MoveComponent* m_moveComponent;
     
-    float m_temp;
+    SkillManager* m_skillManager;
+    
+    
 
 };
 

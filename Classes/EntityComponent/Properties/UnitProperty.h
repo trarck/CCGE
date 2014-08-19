@@ -26,6 +26,7 @@ public:
     ,m_radius(0.0f)
     ,m_sizeMod(1.0f)
     ,m_attackRange(0)
+    ,m_alive(true)
     ,m_canCastManual(false)
     ,m_globalCd(0.0)
     {

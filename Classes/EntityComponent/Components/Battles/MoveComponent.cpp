@@ -75,8 +75,8 @@ void MoveComponent::update(float delta)
     
     //计算人物朝向
     int direction=0;
-    if (moveable && velocity.x!=0) {
-        direction = (int)velocity.x;
+    if (moveable && velocity.x !=0 ) {
+        direction = velocity.x>0?1:(velocity.x<0?-1:0);
     }else if (false){
         //check skill direction
     }

@@ -157,13 +157,13 @@ void RealtimeBattleController::loadBattleWorld()
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-    hero["id"]=2;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=3;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
+//    hero["id"]=2;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
+//    
+//    hero["id"]=3;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
 //
 //    hero["id"]=1;
 //    hero["position_x"]=-240;
@@ -184,13 +184,13 @@ void RealtimeBattleController::loadBattleWorld()
     enemy["camp"]=kCampEnemy;
     enemyList.push_back(enemy);
     
-    enemy["id"]=5;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
-    
-    enemy["id"]=4;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
+//    enemy["id"]=5;
+//    enemy["camp"]=kCampEnemy;
+//    enemyList.push_back(enemy);
+//    
+//    enemy["id"]=4;
+//    enemy["camp"]=kCampEnemy;
+//    enemyList.push_back(enemy);
     
 //    m_battleManager->enterStage(stageInfo, heroList, true);
     m_battleManager->enterArena(heroList, enemyList, false, false);
@@ -225,7 +225,7 @@ void RealtimeBattleController::loadEntities()
         for (GameEntityVector::iterator iter=campIter->second.begin(); iter!=campIter->second.end(); ++iter) {
             
             entity=*iter;
-            
+                        
             RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
             m_battleWorld->addChild(rendererComponent->getRenderer());
             

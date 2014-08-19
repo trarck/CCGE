@@ -5,7 +5,7 @@
  * table名称
  */
 #define CCGE_TABLE_SKILLS "skills"
-#define CCGE_TABLE_SKILL_ACTINS "skill_actins"
+#define CCGE_TABLE_SKILL_ACTIONS "skill_actions"
 #define CCGE_TABLE_UNITS "units"
 #define CCGE_TABLE_BUFFS "buffs"
 

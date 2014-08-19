@@ -303,7 +303,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     int baseSkillId=unitInfo[CCGE_UNIT_BASIC_SKILL].asInt();
     Json::Value skillProto=skillDAO->getDataById(baseSkillId);
     float attackRange=skillProto[CCGE_SKILL_MAX_RANGE].asDouble();
-    unitConfig[CCGE_UNIT_ATTACK_SPEED]=attackRange;
+    unitConfig[CCGE_UNIT_ATTACK_RANGE]=attackRange;
     
     entityFactory->getEntityPropertyFactory()->addUnitProperty(entity, unitConfig, unitInfo);
 

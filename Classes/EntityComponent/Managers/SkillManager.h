@@ -25,8 +25,8 @@ public:
     virtual ~SkillManager();
     
     inline SkillList& getEntitySkills(int entityId)
-    {
-        return m_skills.at(entityId);
+    {        
+        return m_skills[entityId];
     }
     
     void addSkillComponent(int entityId,SkillComponent* skillComponent);

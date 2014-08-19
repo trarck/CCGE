@@ -17,14 +17,8 @@ SkillManager::~SkillManager()
 }
 
 void SkillManager::addSkillComponent(int entityId,SkillComponent* skillComponent)
-{
-    EntitySkillMap::iterator iter=m_skills.find(entityId);
-    if (iter==m_skills.end()) {
-        SkillList emptyList;
-        m_skills.insert(std::make_pair(entityId,emptyList));
-    }
-    
-    m_skills.at(entityId).push_back(skillComponent);
+{    
+    m_skills[entityId].push_back(skillComponent);
 }
 
 NS_CC_GE_END

@@ -21,6 +21,8 @@
 #include "Components/Battles/SkillComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
 
+#include "Managers/SkillManager.h"
+
 
 #include "EntityFactory.h"
 
@@ -209,6 +211,8 @@ void EntityComponentFactory::addMoveComponent(GameEntity* entity)
 
 void EntityComponentFactory::addSkillComponents(GameEntity* entity)
 {
+    SkillManager* skillManager=m_entityFactory->getEngine()->getSkillManager();
+    
     //get skill data from table
     BaseSqlDAO* skillGroupDAO=Game::getInstance()->getDataFactory()->getSkillGroupDAO();
     SkillDAO* skillDAO=Game::getInstance()->getDataFactory()->getSkillDAO();
@@ -242,7 +246,7 @@ void EntityComponentFactory::addSkillComponents(GameEntity* entity)
         
         entity->addComponent(skillComponent);
         
-        entity->addSkillComponent(skillComponent, 0);
+        skillManager->addSkillComponent(entity->m_uID, skillComponent);
         
         m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, skillComponent, schedule_selector(SkillComponent::update),kSkillUpdate);
         

@@ -90,6 +90,8 @@ void VisibleMoveComponent::syncProperty()
     m_direction=m_moveProperty->getDirection();
     m_velocity=m_moveProperty->getVelocity();
     m_position=m_moveProperty->getPosition();
+    
+//    CCLOG("syncProperty[%p]:%f,%f",this,m_velocity.x,m_velocity.y);
 }
 
 void VisibleMoveComponent::startMove()
@@ -109,8 +111,9 @@ void VisibleMoveComponent::startMove()
         m_rendererComponent->getSpriteRenderer()->setFlipX(m_direction<0);
     
     if(!m_moving){
-        CCLOG("startMove[%p]",this);
-        Game::getInstance()->getEngine()->getUpdateManager()->addUpdater(this, schedule_selector(VisibleMoveComponent::update),kRendererMoveUpdate);
+        CCLOG("startMove[%p]:%f,%f",this,m_velocity.x,m_velocity.y);
+                
+        Game::getInstance()->getEngine()->getUpdateManager()->addUpdater(this, schedule_selector(VisibleMoveComponent::update),kVisibleMoveUpdate);
         m_moving=true;
     }
 }

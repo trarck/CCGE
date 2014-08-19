@@ -17,6 +17,7 @@ AIComponent::AIComponent()
 ,m_moveProperty(NULL)
 ,m_moveComponent(NULL)
 ,m_willCastManualSkill(true)
+,m_skillManager(NULL)
 {
     
 }
@@ -35,6 +36,8 @@ void AIComponent::setup()
     m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
     
     m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
+    
+    m_skillManager=Game::getInstance()->getEngine()->getSkillManager();
 
 }
 
@@ -99,8 +102,6 @@ void AIComponent::update(float delta)
 
 GameEntity* AIComponent::searchTarget()
 {
-    GameEntity* owner=static_cast<GameEntity*>(m_owner);
-    
     BattleManager* battleManager=Game::getInstance()->getEngine()->getBattleManager();
     
     std::map<int, GameEntityVector > aliveUnits=battleManager->getAliveUnits();
@@ -130,6 +131,7 @@ GameEntity* AIComponent::searchTarget()
             oppPos=moveProperty->getPosition();
             
             distanceSQ=ccpDistanceSQ(pos, oppPos);
+            
             if(minDistanSQ>distanceSQ){
                 minDistanSQ=distanceSQ;
                 target=entity;
@@ -142,19 +144,16 @@ GameEntity* AIComponent::searchTarget()
 
 SkillComponent* AIComponent::findSkillToCast()
 {
-    GameEntity* owner=static_cast<GameEntity*>(m_owner);
-    
-//    CCLOG("gcd:%f",owner->getBattleProperty()->getGlobalCd());
     //如果技能公用cd没结束，则不能施放技能
     if (m_unitProperty->getGlobalCd()>0) {
         return NULL;
     }
     
-    std::vector<SkillComponent*> skills=owner->getSkillComponents();
-    
+    yhge::List<SkillComponent*> skills=m_skillManager->getEntitySkills(m_owner->m_uID);
+        
     SkillComponent* skill=NULL;
     
-    for(std::vector<SkillComponent*>::iterator iter=skills.begin();iter!=skills.end();++iter){
+    for(yhge::List<SkillComponent*>::iterator iter=skills.begin();iter!=skills.end();++iter){
         skill=*iter;
         if (skill->isUpdate() && (m_willCastManualSkill || !skill->isManual())) {
             
