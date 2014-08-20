@@ -118,6 +118,7 @@
 #define CCGE_SKILL_PASSIVE_ATTR "passive_attr"
 #define CCGE_SKILL_PLUS_ATTR "plus_attr"
 #define CCGE_SKILL_PLUS_RATIO "plus_ratio"
+#define CCGE_SKILL_TRACK_TYPE "track_type"
 #define CCGE_SKILL_CHAIN_GAP "chain_gap"
 #define CCGE_SKILL_CHAIN_JUMPS "chain_jumps"
 #define CCGE_SKILL_TILE_GRAVITY "tile_gravity"
@@ -136,6 +137,7 @@
 #define CCGE_SKILL_POINT_EFFECT "point_effect"
 #define CCGE_SKILL_POINT_ZORDER "point_zorder"
 #define CCGE_SKILL_AOE_SHAPE "aoe_shape"
+#define CCGE_SKILL_AOE_ORIGIN "aoe_origin"
 #define CCGE_SKILL_SHAPE_ARG1 "shape_arg1"
 #define CCGE_SKILL_SHAPE_ARG2 "shape_arg2"
 #define CCGE_SKILL_SCRIPT_ARG1 "script_arg1"
@@ -145,6 +147,7 @@
 #define CCGE_SKILL_SCRIPT_ARG5 "script_arg5"
 #define CCGE_SKILL_SCRIPT_ARG6 "script_arg6"
 #define CCGE_SKILL_DESCRIPTION "description"
+#define CCGE_SKILL_NO_DODGE "no_dodge"
 
 //monster
 #define CCGE_MONSTER_ID "id"

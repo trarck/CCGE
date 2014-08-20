@@ -183,6 +183,16 @@ public:
         return m_canCastManual;
     }
     
+    inline void setManuallyCasting(bool manuallyCasting)
+    {
+        m_manuallyCasting = manuallyCasting;
+    }
+    
+    inline bool isManuallyCasting()
+    {
+        return m_manuallyCasting;
+    }
+    
     inline void setGlobalCd(float globalCd)
     {
         m_globalCd = globalCd;
@@ -218,6 +228,11 @@ public:
     {
         return m_info[CCGE_UNIT_PUPPET_ID].asInt();
     }
+    
+    inline std::string getPuppetFromInfo()
+    {
+        return m_info[CCGE_UNIT_PUPPET].asString();
+    }
 
 protected:
     //unitId
@@ -252,6 +267,9 @@ protected:
     
     //能否施放大招
     bool m_canCastManual;
+    //正在施放大招
+    bool m_manuallyCasting;
+    
     //技能公用cd
     float m_globalCd;
     

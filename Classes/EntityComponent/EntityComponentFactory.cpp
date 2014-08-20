@@ -232,7 +232,7 @@ void EntityComponentFactory::addSkillComponents(GameEntity* entity)
         SkillComponent* skillComponent=new SkillComponent();
         skillComponent->init();
         
-        skillComponent->setProto(skillInfo);
+        skillComponent->setInfo(skillInfo);
         
         if (!skillInfo[CCGE_SKILL_INIT_CD].isNull()) {
             skillComponent->setCdRemaining(skillInfo[CCGE_SKILL_INIT_CD].asDouble());

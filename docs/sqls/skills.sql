@@ -30,6 +30,8 @@ CREATE TABLE "skills" (
 	 "passive_attr" integer NOT NULL DEFAULT '0',--被动属性类型
 	 "plus_attr" integer NOT NULL DEFAULT '0',--附加属性类型
 	 "plus_ratio" real NOT NULL DEFAULT '0',  --附加属性比例
+	 
+	 "track_type" integer NOT NULL DEFAULT '0',--跟踪类型 0-无,1--子弹,2--链
 	 --链式技能 生命吸取等
 	 "chain_gap" real NOT NULL DEFAULT '0', --攻击链的持续时间
 	 "chain_jumps" integer NOT NULL DEFAULT '0',--攻击链跳跃次数
@@ -45,14 +47,16 @@ CREATE TABLE "skills" (
 	 "action_id" integer NOT NULL DEFAULT '0',--主角在施放技能执行的动画名称。通常只有一个动作，但有的会有多个，通过映射表来取
 	 
 	 --效果
-	 "x_shift" real NOT NULL DEFAULT '0',--技能效果播放的x轴偏移
 	 "launch_effect" text NOT NULL DEFAULT '',--起手动画
 	 "impact_effect" text NOT NULL DEFAULT '',--
 	 "impact_zorder" real NOT NULL DEFAULT '0',
 	 "point_effect" text NOT NULL DEFAULT '',
 	 "point_zorder" real NOT NULL DEFAULT '0',
 	 --范围攻击
+	 
 	 "aoe_shape" integer NOT NULL DEFAULT '0',--范围攻击类型 0-不是范围攻击 1-rectangle,2-circle,3-halfcircle,4-quartercircle
+	 "aoe_origin" integer NOT NULL DEFAULT '0',--范围攻击的中心 0-无,1-自己,2-目标
+	 "x_shift" real NOT NULL DEFAULT '0',--范围攻击中心的x方向偏移
 	 "shape_arg1" real NOT NULL DEFAULT '0',--
 	 "shape_arg2" real NOT NULL DEFAULT '0',--
 	 

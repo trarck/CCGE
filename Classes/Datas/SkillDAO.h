@@ -21,7 +21,7 @@ public:
     
     yhge::Json::Value getDataById(int aId);
     
-    yhge::Json::Value getSkillActions(int skillId);
+    yhge::Json::Value getSkillActions(int actionId);
     
 protected:
     

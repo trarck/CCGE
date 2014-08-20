@@ -80,6 +80,92 @@ enum ComponentUpdatePriority
     kVisibleMoveUpdate,
 };
 
+enum BattleAttributeType
+{
+    kBattleAttributeHP,
+    kBattleAttributeMP,
+    kBattleAttributeSTR,
+    kBattleAttributeAGI,
+    kBattleAttributeINT,
+    kBattleAttributeARM,
+    kBattleAttributeMR,
+    kBattleAttributeAD,
+    kBattleAttributeAP,
+    kBattleAttributeHAST,
+    kBattleAttributeCRIT,
+    kBattleAttributeMCRIT,
+    kBattleAttributeARMP,
+    kBattleAttributeMRI,
+    kBattleAttributeHIT,
+    kBattleAttributeDODG,
+    kBattleAttributeHPS,
+    kBattleAttributeMPS,
+    kBattleAttributeHPR,
+    kBattleAttributeMPR,
+    kBattleAttributeHEAL,
+    kBattleAttributeLFS,
+    kBattleAttributeCDR,
+    kBattleAttributePIMU,
+    kBattleAttributeMIMU,
+    kBattleAttributeSKL,
+    kBattleAttributeSILR,
+    kBattleAttributeMSPD,
+    kBattleAttributePDM,
+};
+
+enum SkillPhaseEventType
+{
+    kSkillPhaseEventNone,
+    kSkillPhaseEventAttack,
+};
+
+enum SkillDamageType
+{
+    kSkillDamageTypePhysical,
+    kSkillDamageTypeMagic,
+    kSkillDamageTypeHoly,
+    kSkillDamageTypeHeal,
+};
+
+enum SkillTargetType
+{
+    kSkillTargetTypeTarget,
+    kSkillTargetTypeSelf,
+    kSkillTargetTypeNearest,
+    kSkillTargetTypeFarthest,
+    kSkillTargetTypeRandom,
+    kSkillTargetTypeWeakest,
+    kSkillTargetTypeStrongest,
+    kSkillTargetTypeMaxMP,
+    kSkillTargetTypeMinMP,
+    kSkillTargetTypeMaxInt,
+    kSkillTargetTypeMinHP,
+    
+};
+
+enum SkillTrackType
+{
+    kSkillTrackTypeNone,
+    kSkillTrackTypeProjectile,
+    kSkillTrackTypeChain,
+};
+
+enum SkillAOEOrigin
+{
+    kSkillAOEOriginNone,
+    kSkillAOEOriginSelf,
+    kSkillAOEOriginTarget,
+};
+
+enum SkillAOEShape
+{
+    kSkillAOEShapeNone,
+    kSkillAOEShapeRectangle,
+    kSkillAOEShapeCircle,
+    kSkillAOEShapeHalfCircle,
+    kSkillAOEShapeQuarterCircle,
+};
+
 NS_CC_GE_END
 
 #endif // CCGE_CONSTS_GAMEDEFINE_H_

@@ -209,6 +209,21 @@ public:
         return m_aliveUnits;
     }
     
+    inline GameEntityVector& getAliveUnitsOfCamp(int camp)
+    {
+        return m_aliveUnits[camp];
+    }
+    
+    inline void setManaBonus(float manaBonus)
+    {
+        m_manaBonus = manaBonus;
+    }
+    
+    inline float getManaBonus()
+    {
+        return m_manaBonus;
+    }
+    
 protected:
     
     GameEntityVector m_units;
@@ -238,6 +253,8 @@ protected:
     
     //操作列表
     ManualOprationList m_oprationList;
+    //战斗过程的mp回复参数
+    float m_manaBonus;
     
 };
 

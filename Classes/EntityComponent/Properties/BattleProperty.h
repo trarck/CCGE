@@ -45,6 +45,8 @@ public:
         
     }
     
+    float getAttributeByType(int type);
+    
     inline void setHealth(float health)
     {
         m_health = health;

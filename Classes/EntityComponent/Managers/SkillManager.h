@@ -19,6 +19,7 @@ public:
     
     typedef yhge::List<SkillComponent*> SkillList;
     typedef std::map<int, SkillList> EntitySkillMap;
+    typedef std::map<int, SkillComponent*> CurrentSkillMap;
     
     SkillManager();
     
@@ -31,9 +32,22 @@ public:
     
     void addSkillComponent(int entityId,SkillComponent* skillComponent);
     
+    inline void setEntityCurrentSkill(int entityId,SkillComponent* skillComponent)
+    {
+        m_currentSkillMap[entityId]=skillComponent;
+    }
+    
+    inline SkillComponent* getEntityCurrentSkill(int entityId,SkillComponent* skillComponent)
+    {
+        return m_currentSkillMap[entityId];
+    }
+    
 protected:
     
     EntitySkillMap m_skills;
+    
+    //weak ref
+    CurrentSkillMap m_currentSkillMap;
 };
 
 

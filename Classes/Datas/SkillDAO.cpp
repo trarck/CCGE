@@ -21,18 +21,19 @@ yhge::Json::Value SkillDAO::getDataById(int aId)
 {
     Json::Value data=loadData(aId);
     
-    data[CCGE_SKILL_ACTIONS]=getSkillActions(aId);
+    data[CCGE_SKILL_ACTIONS]=getSkillActions(data[CCGE_SKILL_ACTION_ID].asInt());
+    
     return data;
 }
 
-yhge::Json::Value SkillDAO::getSkillActions(int skillId)
+yhge::Json::Value SkillDAO::getSkillActions(int actionId)
 {
     std::string sql="SELECT * FROM ";
     sql+=CCGE_TABLE_SKILL_ACTIONS;
     sql+=" WHERE action_id = ?";
     
     Json::Value params;
-    params.append(skillId);
+    params.append(actionId);
     return fetchAll(sql, params);
 }
 

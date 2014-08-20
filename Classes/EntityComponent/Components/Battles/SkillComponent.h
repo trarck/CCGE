@@ -11,6 +11,7 @@
 #include "EntityComponent/Properties/MoveProperty.h"
 
 #include "../GameComponent.h"
+#include "SkillPhase.h"
 
 NS_CC_GE_BEGIN
 
@@ -53,6 +54,32 @@ public:
     
     void start(GameEntity* target);
     
+    void finish();
+    
+    void onAttackFrame();
+    
+    void takeEffectAt(const CCPoint& location,GameEntity* source=NULL);
+    
+    void takeEffectOn(GameEntity* target,GameEntity* source=NULL);
+    
+    void onPhaseFinished();
+    
+protected:
+    
+    void rebuildPhaseList(const std::string& puppetName);
+    
+    void startPhase(int idx);
+    
+    int affectedCamp();
+    
+    int targetCamp();
+    
+    float getPower(GameEntity* source,GameEntity* target);
+    
+    float getDamage(GameEntity* target,float power,int damageType,int field,GameEntity* source,float critMod);
+    
+    static bool testPointInShape(const CCPoint& pos,int shape,float arg1,float arg2);
+    
 public:
     
     
@@ -93,14 +120,15 @@ public:
         return m_currentPhaseIdx;
     }
     
-    inline void setCurrentPhase(CCDictionary* currentPhase)
+    inline void setCurrentPhase(SkillPhase* skillPhase)
     {
-        CC_SAFE_RETAIN(currentPhase);
-        CC_SAFE_RELEASE(m_currentPhase);
-        m_currentPhase = currentPhase;
+        if(m_currentPhase!=skillPhase){
+            CC_SAFE_DELETE(m_currentPhase);
+            m_currentPhase=skillPhase;
+        }
     }
     
-    inline CCDictionary* getCurrentPhase()
+    inline const SkillPhase* getCurrentPhase()
     {
         return m_currentPhase;
     }
@@ -115,6 +143,21 @@ public:
         return m_currentPhaseElapsed;
     }
     
+    inline void setPhaseList(const std::vector<SkillPhase>& phaseList)
+    {
+        m_phaseList = phaseList;
+    }
+    
+    inline const std::vector<SkillPhase>& getPhaseList()
+    {
+        return m_phaseList;
+    }
+    
+    inline const SkillPhase& getSkillPhase(int index)
+    {
+        return m_phaseList[index];
+    }
+    
     inline void setNextEventIdx(int nextEventIdx)
     {
         m_nextEventIdx = nextEventIdx;
@@ -125,14 +168,15 @@ public:
         return m_nextEventIdx;
     }
     
-    inline void setNextEvent(CCDictionary* nextEvent)
+    inline void setNextEvent(SkillPhaseEvent* skillPhaseEvent)
     {
-        CC_SAFE_RETAIN(nextEvent);
-        CC_SAFE_RELEASE(m_nextEvent);
-        m_nextEvent = nextEvent;
+        if(m_nextEvent!=skillPhaseEvent){
+            CC_SAFE_DELETE(m_nextEvent);
+            m_nextEvent=skillPhaseEvent;
+        }
     }
     
-    inline CCDictionary* getNextEvent()
+    inline const SkillPhaseEvent* getNextEvent()
     {
         return m_nextEvent;
     }
@@ -177,16 +221,16 @@ public:
         return m_update;
     }
     
-    inline void setProto(const yhge::Json::Value& proto)
+    inline void setInfo(const yhge::Json::Value& info)
     {
-        m_proto = proto;
+        m_info = info;
     }
     
-    inline const yhge::Json::Value& getProto()
+    inline const yhge::Json::Value& getInfo()
     {
-        return m_proto;
+        return m_info;
     }
-    
+
 protected:
     
     //剩余时间
@@ -198,20 +242,22 @@ protected:
     //当前技能施放阶段编号
     int m_currentPhaseIdx;
     //当前技能施放阶段
-    CCDictionary* m_currentPhase;
+    SkillPhase* m_currentPhase;//TODO use smart pointer
     //当前技能施放阶段用时
     float m_currentPhaseElapsed;
+    
+    std::vector<SkillPhase> m_phaseList;
     //下个事件的编号
     int m_nextEventIdx;
     //下个事件
-    CCDictionary* m_nextEvent;
+    SkillPhaseEvent* m_nextEvent;//weak ref
     //攻击计数。当攻击到伤害帧，则计数加1.当计数不为0时，不能被打断。
     int m_attackCounter;
-    
+    //最大攻击距离的平方
     float m_maxRangeSq;
-    
+    //最小攻击距离的平方
     float m_minRangeSq;
-    
+    //是否在更新
     bool m_update;
     
     //在同一个帧内，判断技能能否施放，直接返回
@@ -219,7 +265,7 @@ protected:
     int m_canCastTick;
     
     
-    yhge::Json::Value m_proto;
+    yhge::Json::Value m_info;
     
     BattleUpdateManager* m_battleUpdateManager;
     

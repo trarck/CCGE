@@ -21,6 +21,7 @@ BattleManager::BattleManager()
 ,m_guildInstanceMode(false)
 ,m_replayMode(false)
 ,m_stageRect(CCRectMake(0, -120, 800, 240))
+,m_manaBonus(1.0f)
 {
     YHDEBUG("UpdateManager create");
 }
