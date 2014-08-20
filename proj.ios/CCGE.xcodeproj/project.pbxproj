@@ -195,6 +195,7 @@
 		573D9452199CA27700F47394 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9450199CA27700F47394 /* GameComponent.cpp */; };
 		573D945919A1A49D00F47394 /* SkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D945719A1A49D00F47394 /* SkillManager.cpp */; };
 		573D946119A1D4BE00F47394 /* MoveProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D945F19A1D4BE00F47394 /* MoveProperty.cpp */; };
+		573D946719A3289E00F47394 /* SkillPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D946519A3289E00F47394 /* SkillPhase.cpp */; };
 		5747632418D186800031E2E0 /* DieComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632218D186800031E2E0 /* DieComponent.cpp */; };
 		5747633018D1AB7A0031E2E0 /* HealthBarComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */; };
 		5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747633B18D68AFC0031E2E0 /* EntityState.cpp */; };
@@ -798,6 +799,8 @@
 		573D945819A1A49D00F47394 /* SkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillManager.h; sourceTree = "<group>"; };
 		573D945F19A1D4BE00F47394 /* MoveProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveProperty.cpp; sourceTree = "<group>"; };
 		573D946019A1D4BE00F47394 /* MoveProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveProperty.h; sourceTree = "<group>"; };
+		573D946519A3289E00F47394 /* SkillPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillPhase.cpp; sourceTree = "<group>"; };
+		573D946619A3289E00F47394 /* SkillPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillPhase.h; sourceTree = "<group>"; };
 		5747632218D186800031E2E0 /* DieComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DieComponent.cpp; sourceTree = "<group>"; };
 		5747632318D186800031E2E0 /* DieComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieComponent.h; sourceTree = "<group>"; };
 		5747632E18D1AB7A0031E2E0 /* HealthBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthBarComponent.cpp; sourceTree = "<group>"; };
@@ -1870,6 +1873,8 @@
 		574FF80A192DAAAA00DC1791 /* Battles */ = {
 			isa = PBXGroup;
 			children = (
+				573D946519A3289E00F47394 /* SkillPhase.cpp */,
+				573D946619A3289E00F47394 /* SkillPhase.h */,
 				574FF80B192DAAAA00DC1791 /* AIComponent.cpp */,
 				574FF80C192DAAAA00DC1791 /* AIComponent.h */,
 				574FF811192DD2BC00DC1791 /* BuffComponent.cpp */,
@@ -2807,6 +2812,7 @@
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				573D946119A1D4BE00F47394 /* MoveProperty.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,
+				573D946719A3289E00F47394 /* SkillPhase.cpp in Sources */,
 				15A3D9031682F7D5002FB0C5 /* b2Collision.cpp in Sources */,
 				57704FAE18CFFCF6006B8A62 /* BattleProperty.cpp in Sources */,
 				575643121977B36000AA1194 /* CCTween.cpp in Sources */,
