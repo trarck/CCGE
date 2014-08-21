@@ -324,6 +324,8 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
     m_entityComponentFactory->addAIComponent(entity);
     
     m_entityComponentFactory->addVisibleMoveComponent(entity);
+    
+    m_entityComponentFactory->addTipComponent(entity);
 }
 
 void EntityFactory::addRealtimeBattleComponents(GameEntity* entity,const yhge::Json::Value& config)
@@ -342,6 +344,8 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity,const yhge::J
     m_entityComponentFactory->addAIComponent(entity);
     
     m_entityComponentFactory->addVisibleMoveComponent(entity);
+    
+    m_entityComponentFactory->addTipComponent(entity);
 }
 
 

@@ -8,6 +8,7 @@
 #include "Consts/GameMessage.h"
 #include "Consts/AnimationDefine.h"
 #include "EntityComponent/Components/BattlePositionComponent.h"
+#include "EntityComponent/Components/Battles/TipComponent.h"
 #include "Services/ServiceFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Layers/DimetricCoordinateLayer.h"
@@ -44,6 +45,7 @@ RealtimeBattleController::RealtimeBattleController(void)
 ,m_timelineNodes(NULL)
 ,m_timelineLayer(NULL)
 ,m_battleManager(NULL)
+,m_tipLayer(NULL)
 {
     m_sName="RealtimeBattleController";
 }
@@ -55,6 +57,8 @@ RealtimeBattleController::~RealtimeBattleController(void)
     CC_SAFE_RELEASE_NULL(m_battleWorld);
     
     CC_SAFE_RELEASE_NULL(m_timelineNodes);
+    
+    CC_SAFE_RELEASE_NULL(m_tipLayer);
 }
 
 bool RealtimeBattleController::init()
@@ -143,6 +147,11 @@ void RealtimeBattleController::loadBattleWorld()
     m_battleWorld->setPosition(ccp(0,100));
     m_view->addChild(m_battleWorld);
     
+    m_tipLayer=new CCLayer();
+    m_tipLayer->CCNode::init();
+    m_tipLayer->setPosition(ccp(0,100));
+    m_view->addChild(m_tipLayer);
+    
 //    m_timelineLayer=CCLayerColor::create(ccc4(128, 128, 128, 200), kTimelineWidth, kTimelineHeight);
 //    m_timelineLayer->setPosition(ccp((contentSize.width-kTimelineWidth)/2,30));
 //    m_view->addChild(m_timelineLayer);
@@ -157,13 +166,13 @@ void RealtimeBattleController::loadBattleWorld()
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-//    hero["id"]=2;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
-//    
-//    hero["id"]=3;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
+    hero["id"]=2;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=3;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
 //
 //    hero["id"]=1;
 //    hero["position_x"]=-240;
@@ -184,13 +193,13 @@ void RealtimeBattleController::loadBattleWorld()
     enemy["camp"]=kCampEnemy;
     enemyList.push_back(enemy);
     
-//    enemy["id"]=5;
-//    enemy["camp"]=kCampEnemy;
-//    enemyList.push_back(enemy);
-//    
-//    enemy["id"]=4;
-//    enemy["camp"]=kCampEnemy;
-//    enemyList.push_back(enemy);
+    enemy["id"]=5;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
+    
+    enemy["id"]=4;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
     
 //    m_battleManager->enterStage(stageInfo, heroList, true);
     m_battleManager->enterArena(heroList, enemyList, false, false);
@@ -229,6 +238,10 @@ void RealtimeBattleController::loadEntities()
             RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
             m_battleWorld->addChild(rendererComponent->getRenderer());
             
+            TipComponent* tipComponent=static_cast<TipComponent*>(entity->getComponent("TipComponent"));
+            if (tipComponent) {
+                tipComponent->setContainer(m_tipLayer);
+            }
         }
     }    
 }

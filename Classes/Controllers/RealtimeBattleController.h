@@ -275,6 +275,8 @@ private:
     
     CCLayer* m_timelineLayer;
     
+    CCLayer* m_tipLayer;
+    
     //weak refrence;
     BattleManager* m_battleManager;
     

@@ -20,6 +20,7 @@
 #include "Components/Battles/MoveComponent.h"
 #include "Components/Battles/SkillComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
+#include "Components/Battles/TipComponent.h"
 
 #include "Managers/SkillManager.h"
 
@@ -274,6 +275,16 @@ void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)
 //    m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, visibleMoveComponent, schedule_selector(VisibleMoveComponent::update),kRendererMoveUpdate);
     
     visibleMoveComponent->release();
+}
+
+void EntityComponentFactory::addTipComponent(GameEntity* entity)
+{
+    TipComponent* tipComponent=new TipComponent();
+    tipComponent->init();
+    
+    entity->addComponent(tipComponent);
+    
+    tipComponent->release();
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

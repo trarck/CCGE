@@ -49,6 +49,8 @@ public:
     
     void addVisibleMoveComponent(GameEntity* entity);
     
+    void addTipComponent(GameEntity* entity);
+    
 public:
     inline void setEntityFactory(EntityFactory* entityFactory)
     {

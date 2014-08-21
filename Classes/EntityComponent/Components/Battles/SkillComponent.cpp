@@ -392,9 +392,12 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
             //TODO take heal
         }
     }
+    
     //TODO parse buff
     
     //TODO show impact effect
+    
+    this->getMessageManager()->dispatchMessage(kMSGAttackDamage, this, target, CCInteger::create((int)dmg));
 }
 
 void SkillComponent::onPhaseFinished()
