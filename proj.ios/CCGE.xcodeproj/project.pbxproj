@@ -315,6 +315,7 @@
 		575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9C18892DC100E37B69 /* GameEntity.cpp */; };
 		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
 		5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */; };
+		576BCDD019A587F6000D2A48 /* TipComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576BCDCE19A587F6000D2A48 /* TipComponent.cpp */; };
 		57704F9218CDAC29006B8A62 /* BuilderExternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F8E18CDAC29006B8A62 /* BuilderExternal.cpp */; };
 		57704F9318CDAC29006B8A62 /* GameSceneBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9018CDAC29006B8A62 /* GameSceneBuilder.cpp */; };
 		57704F9918CDACCB006B8A62 /* BaseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704F9718CDACCB006B8A62 /* BaseController.cpp */; };
@@ -1055,6 +1056,8 @@
 		575E3FA01889344600E37B69 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
 		5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAttackComponent.cpp; sourceTree = "<group>"; };
 		5768C14718A8DA0E005123C5 /* GameAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAttackComponent.h; sourceTree = "<group>"; };
+		576BCDCE19A587F6000D2A48 /* TipComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TipComponent.cpp; sourceTree = "<group>"; };
+		576BCDCF19A587F6000D2A48 /* TipComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipComponent.h; sourceTree = "<group>"; };
 		57704F8D18CDAC29006B8A62 /* BuilderDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderDefine.h; sourceTree = "<group>"; };
 		57704F8E18CDAC29006B8A62 /* BuilderExternal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuilderExternal.cpp; sourceTree = "<group>"; };
 		57704F8F18CDAC29006B8A62 /* BuilderExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderExternal.h; sourceTree = "<group>"; };
@@ -1873,8 +1876,6 @@
 		574FF80A192DAAAA00DC1791 /* Battles */ = {
 			isa = PBXGroup;
 			children = (
-				573D946519A3289E00F47394 /* SkillPhase.cpp */,
-				573D946619A3289E00F47394 /* SkillPhase.h */,
 				574FF80B192DAAAA00DC1791 /* AIComponent.cpp */,
 				574FF80C192DAAAA00DC1791 /* AIComponent.h */,
 				574FF811192DD2BC00DC1791 /* BuffComponent.cpp */,
@@ -1887,6 +1888,10 @@
 				574FF815192DE52E00DC1791 /* ProjectileComponent.h */,
 				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
+				573D946519A3289E00F47394 /* SkillPhase.cpp */,
+				573D946619A3289E00F47394 /* SkillPhase.h */,
+				576BCDCE19A587F6000D2A48 /* TipComponent.cpp */,
+				576BCDCF19A587F6000D2A48 /* TipComponent.h */,
 				57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */,
 				57E4662719931756001B2A6E /* VisibleMoveComponent.h */,
 			);
@@ -2866,6 +2871,7 @@
 				15A3D91B1682F7D5002FB0C5 /* b2ContactSolver.cpp in Sources */,
 				15A3D91C1682F7D5002FB0C5 /* b2EdgeAndCircleContact.cpp in Sources */,
 				15A3D91D1682F7D5002FB0C5 /* b2EdgeAndPolygonContact.cpp in Sources */,
+				576BCDD019A587F6000D2A48 /* TipComponent.cpp in Sources */,
 				57E2C2BF18F3A0A300124DF1 /* HurtComponent.cpp in Sources */,
 				5756430C1977B36000AA1194 /* CCActionTimelineCache.cpp in Sources */,
 				575643211977B36100AA1194 /* CCTweenFunction.cpp in Sources */,
