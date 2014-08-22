@@ -28,21 +28,10 @@ public:
     {
         return m_gameEntity;
     }
-    
-    inline void setType(int type)
-    {
-        m_type = type;
-    }
-    
-    inline int getType()
-    {
-        return m_type;
-    }
-    
+        
 protected:
     //对GameEntity的弱引用
     GameEntity* m_gameEntity;
-    int m_type;
     
 };
 

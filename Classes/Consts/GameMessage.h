@@ -25,6 +25,9 @@ enum GameMessage
     kMSGBattleMoveComplete,
     kMSGBattleMoveToTargetComplete,
     kMSGBattleMoveBackOriginComplete,
+    
+    //战斗提示
+    kMSGBattlePopup,
 
 };
 

@@ -82,6 +82,7 @@ enum ComponentUpdatePriority
 
 enum BattleAttributeType
 {
+    kBattleAttributeNone,
     kBattleAttributeHP,
     kBattleAttributeMP,
     kBattleAttributeSTR,
@@ -164,6 +165,14 @@ enum SkillAOEShape
     kSkillAOEShapeCircle,
     kSkillAOEShapeHalfCircle,
     kSkillAOEShapeQuarterCircle,
+};
+
+enum BattlePopupType
+{
+    kBattlePopupTypeDamage,
+    kBattlePopupTypeHeal,
+    kBattlePopupTypeGold,
+    kBattlePopupTypeText,
 };
 
 NS_CC_GE_END

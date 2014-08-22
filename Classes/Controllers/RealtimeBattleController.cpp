@@ -8,7 +8,7 @@
 #include "Consts/GameMessage.h"
 #include "Consts/AnimationDefine.h"
 #include "EntityComponent/Components/BattlePositionComponent.h"
-#include "EntityComponent/Components/Battles/TipComponent.h"
+#include "EntityComponent/Components/Battles/PopupComponent.h"
 #include "Services/ServiceFactory.h"
 #include "SceneDirector/GameSceneDirector.h"
 #include "Layers/DimetricCoordinateLayer.h"
@@ -166,13 +166,13 @@ void RealtimeBattleController::loadBattleWorld()
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-    hero["id"]=2;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
-    
-    hero["id"]=3;
-    hero["camp"]=kCampPlayer;
-    heroList.push_back(hero);
+//    hero["id"]=2;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
+//    
+//    hero["id"]=3;
+//    hero["camp"]=kCampPlayer;
+//    heroList.push_back(hero);
 //
 //    hero["id"]=1;
 //    hero["position_x"]=-240;
@@ -193,13 +193,13 @@ void RealtimeBattleController::loadBattleWorld()
     enemy["camp"]=kCampEnemy;
     enemyList.push_back(enemy);
     
-    enemy["id"]=5;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
-    
-    enemy["id"]=4;
-    enemy["camp"]=kCampEnemy;
-    enemyList.push_back(enemy);
+//    enemy["id"]=5;
+//    enemy["camp"]=kCampEnemy;
+//    enemyList.push_back(enemy);
+//    
+//    enemy["id"]=4;
+//    enemy["camp"]=kCampEnemy;
+//    enemyList.push_back(enemy);
     
 //    m_battleManager->enterStage(stageInfo, heroList, true);
     m_battleManager->enterArena(heroList, enemyList, false, false);
@@ -238,9 +238,9 @@ void RealtimeBattleController::loadEntities()
             RendererComponent* rendererComponent=static_cast<RendererComponent*>(entity->getComponent("RendererComponent"));
             m_battleWorld->addChild(rendererComponent->getRenderer());
             
-            TipComponent* tipComponent=static_cast<TipComponent*>(entity->getComponent("TipComponent"));
-            if (tipComponent) {
-                tipComponent->setContainer(m_tipLayer);
+            PopupComponent* popupComponent=static_cast<PopupComponent*>(entity->getComponent("PopupComponent"));
+            if (popupComponent) {
+                popupComponent->setContainer(m_tipLayer);
             }
         }
     }    

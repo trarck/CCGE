@@ -71,6 +71,7 @@
 #define CCGE_UNIT_MAX_STARS "max_stars"
 #define CCGE_UNIT_INITIAL_STARS "initial_stars"
 #define CCGE_UNIT_DPS_STATISTICS_RATIO "dps_statistics_ratio"
+#define CCGE_UNIT_MANA_GAIN_RATE "mana_gain_rate"
 #define CCGE_UNIT_SCRIPT "script"
 #define CCGE_UNIT_PUPPET "puppet"
 #define CCGE_UNIT_ART "art"

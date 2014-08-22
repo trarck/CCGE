@@ -25,6 +25,10 @@ public:
     
     CREATE_FUNC(GameEngine);
 
+    float rand();
+    
+    void srand(int seed);
+    
 public:
     
 	void setEntityFactory(EntityFactory* entityFactory)
@@ -76,6 +80,17 @@ public:
         return m_skillManager;
     }
     
+    
+    inline void setRandomSeed(int randomSeed)
+    {
+        m_randomSeed = randomSeed;
+    }
+    
+    inline int getRandomSeed()
+    {
+        return m_randomSeed;
+    }
+    
 protected:
 
 	EntityFactory* m_entityFactory;
@@ -87,6 +102,7 @@ protected:
     
     SkillManager* m_skillManager;
  
+    int m_randomSeed;
 };
 
 NS_CC_GE_END

@@ -6,11 +6,15 @@ USING_NS_CC_YHGE;
 
 NS_CC_GE_BEGIN
 
+static const unsigned int kRandomMultiplier=3125;
+static const unsigned long long kRandomModer=34359738337;
+
 GameEngine::GameEngine()
 :m_entityFactory(NULL)
 ,m_battleUpdateManager(NULL)
 ,m_battleManager(NULL)
 ,m_skillManager(NULL)
+,m_randomSeed(1)
 {
     
 }
@@ -58,7 +62,20 @@ void GameEngine::setupManagers()
     m_skillManager->init();
     m_skillManager->setEngine(this);
     
-    
+}
+
+float GameEngine::rand()
+{
+    int nextSeed=m_randomSeed * kRandomMultiplier % kRandomModer;
+    float ret= nextSeed /kRandomModer;
+    m_randomSeed=nextSeed;
+    return ret;
+}
+
+void GameEngine::srand(int seed)
+{
+    CCAssert(seed!=0, "GameEngine::srand seed is zero");
+    m_randomSeed=seed;
 }
 
 NS_CC_GE_END

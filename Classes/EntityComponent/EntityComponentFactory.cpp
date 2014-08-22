@@ -20,7 +20,7 @@
 #include "Components/Battles/MoveComponent.h"
 #include "Components/Battles/SkillComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
-#include "Components/Battles/TipComponent.h"
+#include "Components/Battles/PopupComponent.h"
 
 #include "Managers/SkillManager.h"
 
@@ -279,12 +279,12 @@ void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)
 
 void EntityComponentFactory::addTipComponent(GameEntity* entity)
 {
-    TipComponent* tipComponent=new TipComponent();
-    tipComponent->init();
+    PopupComponent* popupComponent=new PopupComponent();
+    popupComponent->init();
     
-    entity->addComponent(tipComponent);
+    entity->addComponent(popupComponent);
     
-    tipComponent->release();
+    popupComponent->release();
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

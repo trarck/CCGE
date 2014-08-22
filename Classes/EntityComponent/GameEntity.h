@@ -19,6 +19,9 @@ public:
     
     CREATE_FUNC(GameEntity);
 
+    
+public:
+    
     inline void setRendererComponent(yhge::RendererComponent* rendererComponent)
     {
         m_rendererComponent = rendererComponent;

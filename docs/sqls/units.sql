@@ -41,6 +41,7 @@ CREATE TABLE "units" (
 	 "max_stars" integer NOT NULL DEFAULT '0', --最大星级
 	 "initial_stars" integer NOT NULL DEFAULT '0', --初始星级
 	 "dps_statistics_ratio" real NOT NULL DEFAULT '1',  --伤害统计比率
+	 "mana_gain_rate" real NOT NULL DEFAULT '1',  --失去血量回复魔法比
 	 "script" text NOT NULL DEFAULT '',--英雄脚本
 	 "puppet" text NOT NULL DEFAULT '',--英雄动画
 	 "art" text NOT NULL DEFAULT '',--卡牌大图

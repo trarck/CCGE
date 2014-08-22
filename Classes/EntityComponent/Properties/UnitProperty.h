@@ -66,7 +66,11 @@ public:
     
     inline void setHealth(float health)
     {
-        m_health = health;
+        if (health<0) {
+            m_health=0;
+        }else{
+            m_health = health;
+        }
     }
     
     inline float getHealth()
@@ -74,14 +78,28 @@ public:
         return m_health;
     }
     
+    inline void addHealth(float health)
+    {
+        setHealth(m_health += health);
+    }
+    
     inline void setMana(float mana)
     {
-        m_mana = mana;
+        if(mana<0){
+            m_mana=0;
+        }else{
+            m_mana = mana;
+        }
     }
     
     inline float getMana()
     {
         return m_mana;
+    }
+    
+    inline void addMana(float mana)
+    {
+        setMana(m_mana+mana);
     }
 
     inline void setStars(int stars)
@@ -234,6 +252,11 @@ public:
         return m_info[CCGE_UNIT_PUPPET].asString();
     }
 
+    inline float getManaGainRateFromInfo()
+    {
+        return m_info[CCGE_UNIT_MANA_GAIN_RATE].asDouble();
+    }
+    
 protected:
     //unitId
     int m_unitId;
@@ -244,7 +267,7 @@ protected:
     //当前生命值 HP
     float m_health;
     //当前魔法值 MP
-    float m_mana;
+    float m_mana;    
     //当前星级
     int m_stars;
     //当前阶级

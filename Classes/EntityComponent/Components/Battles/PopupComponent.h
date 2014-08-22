@@ -1,5 +1,5 @@
-#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_TIPCOMPONENT_H_
-#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_TIPCOMPONENT_H_
+#ifndef CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_POPUPCOMPONENT_H_
+#define CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_POPUPCOMPONENT_H_
 
 #include "cocos2d.h"
 #include <yhge/yhge.h>
@@ -11,13 +11,13 @@ NS_CC_GE_BEGIN
  * 战斗提示组件
  * 伤害的数值，状态的提示
  */
-class TipComponent : public yhge::Component
+class PopupComponent : public yhge::Component
 {
 public:
     
-    TipComponent();
+    PopupComponent();
     
-    ~TipComponent();
+    ~PopupComponent();
     
     /**
      * 设置
@@ -33,7 +33,11 @@ public:
     
     virtual void cleanupMessages();
     
+    void showPopup(const std::string& text,const std::string& color,int style,bool crit=false);
+    
     void onAttackDamage(yhge::Message* message);
+    
+    void onBattlePopup(yhge::Message* message);
     
 public:
     
@@ -59,4 +63,4 @@ protected:
 
 NS_CC_GE_END
 
-#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_TIPCOMPONENT_H_
+#endif //CCGE_ENTITYCOMPONENT_COMPONENTS_BATTLES_POPUPCOMPONENT_H_

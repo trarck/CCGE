@@ -16,4 +16,5 @@ GameEntity::~GameEntity()
     CCLOG("GameEntity destroy[%d]",m_uID);
 }
 
+
 NS_CC_GE_END

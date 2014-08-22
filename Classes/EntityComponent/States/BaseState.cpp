@@ -7,7 +7,6 @@ NS_CC_GE_BEGIN
 
 BaseState::BaseState()
 :m_gameEntity(NULL)
-,m_type(0)
 {
     
 }
