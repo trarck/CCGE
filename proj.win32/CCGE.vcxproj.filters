@@ -138,12 +138,6 @@
     <ClCompile Include="..\Classes\Scenes\TestSqliteScene.cpp">
       <Filter>Classes\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Datas\AnimationData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\DataFactory.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\SceneDirector\GameSceneDirector.cpp">
       <Filter>Classes\SceneDirector</Filter>
     </ClCompile>
@@ -167,18 +161,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Controllers\StepGameWorldController.cpp">
       <Filter>Classes\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\BaseData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\MapData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\RemoteCacheData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\ZoneData.cpp">
-      <Filter>Classes\Datas</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\EntityComponent\Properties\BattleProperty.cpp">
       <Filter>Classes\EntityComponent\Properties</Filter>
@@ -231,15 +213,6 @@
     <ClCompile Include="..\Classes\Animations\FcaInfo.cpp">
       <Filter>Classes\Animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Datas\CharacterData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\MonsterData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Datas\UnitData.cpp">
-      <Filter>Classes\Datas</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntityComponent\EntityComponentFactory.cpp">
       <Filter>Classes\EntityComponent</Filter>
     </ClCompile>
@@ -291,11 +264,71 @@
     <ClCompile Include="..\Classes\Controllers\RealtimeBattleController.cpp">
       <Filter>Classes\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.cpp">
-      <Filter>Classes\EntityComponent\Components\Battles</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntityComponent\GameEngine.cpp">
       <Filter>Classes\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controllers\TestMsgController.cpp">
+      <Filter>Classes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\AnimationDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\BaseDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\BaseSqlDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\CharacterDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\CommonTableDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\DataFactory.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\MapDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\MonsterDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\RemoteCacheDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\SkillDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\UnitDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Datas\ZoneDAO.cpp">
+      <Filter>Classes\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scenes\TestMsgScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\PopupComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\SkillPhase.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\StateMachineComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Components\Battles\VisibleMoveComponent.cpp">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Properties\BuffProperty.cpp">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\Properties\MoveProperty.cpp">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EntityComponent\States\UnitState.cpp">
+      <Filter>Classes\EntityComponent\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -392,12 +425,6 @@
     <ClInclude Include="..\Classes\Scenes\TestSqliteScene.h">
       <Filter>Classes\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Datas\AnimationData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\DataFactory.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SceneDirector\GameSceneDirector.h">
       <Filter>Classes\SceneDirector</Filter>
     </ClInclude>
@@ -430,18 +457,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Controllers\StepGameWorldController.h">
       <Filter>Classes\Controllers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\BaseData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\MapData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\RemoteCacheData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\ZoneData.h">
-      <Filter>Classes\Datas</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\Properties\BattleProperty.h">
       <Filter>Classes\EntityComponent\Properties</Filter>
@@ -494,15 +509,6 @@
     <ClInclude Include="..\Classes\Animations\FcaInfo.h">
       <Filter>Classes\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Datas\CharacterData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\MonsterData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Datas\UnitData.h">
-      <Filter>Classes\Datas</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\EntityComponentFactory.h">
       <Filter>Classes\EntityComponent</Filter>
     </ClInclude>
@@ -554,11 +560,71 @@
     <ClInclude Include="..\Classes\Controllers\RealtimeBattleController.h">
       <Filter>Classes\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SimplePositionComponent.h">
-      <Filter>Classes\EntityComponent\Components\Battles</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\EntityComponent\GameEngine.h">
       <Filter>Classes\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controllers\TestMsgController.h">
+      <Filter>Classes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\AnimationDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\BaseDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\BaseSqlDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\CharacterDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\CommonTableDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\DataFactory.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\MapDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\MonsterDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\RemoteCacheDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\SkillDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\UnitDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Datas\ZoneDAO.h">
+      <Filter>Classes\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scenes\TestMsgScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\PopupComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\SkillPhase.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\StateMachineComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Components\Battles\VisibleMoveComponent.h">
+      <Filter>Classes\EntityComponent\Components\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Properties\BuffProperty.h">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\Properties\MoveProperty.h">
+      <Filter>Classes\EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EntityComponent\States\UnitState.h">
+      <Filter>Classes\EntityComponent\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
