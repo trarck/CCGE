@@ -46,13 +46,15 @@ void TestAnimationController::viewDidLoad()
     
     CCLOG("element size:%d,aciont count:%d",fcaInfo->getElements().size(),fcaInfo->getActions().size());
     CCLOG("first %s",fcaInfo->getActions().front().name.c_str());
-    showAction(fcaInfo, "Idle");
+    showAction(fcaInfo, "Damaged");
     
     
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(this, 0, false);
     
     
     createTestMenu();
+    
+    m_animationManager->update(1.0f/60);
     
 }
 
@@ -103,6 +105,8 @@ void TestAnimationController::showAction(FcaInfo* fcaInfo,const std::string& act
     
     for (std::vector<FcaElement>::iterator iter=fcaInfo->getElements().begin(); iter!=fcaInfo->getElements().end(); ++iter) {
         
+        CCLOG("%s,%s,%d",iter->name.c_str(),iter->textureKey.c_str(),iter->index);
+        
         Resource* res=new Resource();
         
         res->setId(iter->index);
@@ -133,7 +137,7 @@ void TestAnimationController::showAction(FcaInfo* fcaInfo,const std::string& act
         
         CCLOG("action.frames:%ld",action.frames.size());
         
-        float r=0.11;
+        float r=0.09;
         
         float rr=1/r;
         
@@ -201,7 +205,10 @@ void TestAnimationController::showAction(FcaInfo* fcaInfo,const std::string& act
                 
                 displayProperty->setTransform(transform);
                 
-                CCLOG("%d:%s:z=%d",eleIter->index,fcaElement.name.c_str(),zOrder);
+                CCLOG("%d:%s:z=%d    %f,%f,%f,%f,%f,%f"
+                      ,eleIter->index,fcaElement.name.c_str(),zOrder,
+                      transform.a*rr,transform.b*rr,transform.c*rr,transform.d*rr,transform.tx*rr,transform.ty*rr
+                      );
                 
                 displayProperty->setZOrder(zOrder++);
                 
