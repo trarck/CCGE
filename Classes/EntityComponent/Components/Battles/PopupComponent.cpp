@@ -65,35 +65,33 @@ void PopupComponent::showPopup(const std::string& text,const std::string& color,
     //TODO use queue
     
     
-    CCLabelBMFont* label=NULL;
+    CCNode* labelNode=NULL;
     
     //TODO use color font
     if (style==kBattlePopupTypeText) {
-        label=CCLabelBMFont::create(text.c_str(), "fonts/Red_36.fnt");
+        CCLabelTTF* label=CCLabelTTF::create(text.c_str(), "", 32);
+        labelNode=label;
     }else{
-        label=CCLabelBMFont::create(text.c_str(), "fonts/Red_36.fnt");
+        CCLabelBMFont* label=CCLabelBMFont::create(text.c_str(), "fonts/Red_36.fnt");
+        label->setAlignment(kCCTextAlignmentCenter);
+        labelNode=label;
     }
     
     CCSize size=m_rendererComponent->getSpriteRenderer()->getContentSize();
     CCPoint pos=m_rendererComponent->getRenderer()->getPosition();
     
-    //        CCLOG("size:%f,%f",size.width,size.height);
-    //        label->setPosition(ccp(pos.x,pos.y+size.height+50));
-    
     float scale=m_rendererComponent->getRenderer()->getScale();
     
-    label->setAlignment(kCCTextAlignmentCenter);
     
-    label->setPosition(ccp(pos.x+size.width/(2*scale)-18,pos.y+size.height*scale));
+    labelNode->setPosition(ccp(pos.x+size.width/(2*scale)-18,pos.y+size.height*scale));
     
     //action
     CCAction* effect=CCSequence::createWithTwoActions(CCMoveBy::create(0.4f, ccp(0,40.0f)), CCRemoveSelf::create());
     
     if (m_container) {
-        m_container->addChild(label);
+        m_container->addChild(labelNode);
     }
-    
-    label->runAction(effect);
+    labelNode->runAction(effect);
 }
 
 void PopupComponent::onAttackDamage(yhge::Message* message)

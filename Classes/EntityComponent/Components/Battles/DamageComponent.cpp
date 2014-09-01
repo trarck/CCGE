@@ -16,6 +16,7 @@ DamageComponent::DamageComponent()
 :GameComponent("DamageComponent")
 ,m_unitProperty(NULL)
 ,m_battleProperty(NULL)
+,m_popupComponent(NULL)
 {
     
 }
@@ -31,6 +32,8 @@ void DamageComponent::setup()
     
     m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
     m_battleProperty=static_cast<BattleProperty*>(m_owner->getProperty(CCGE_PROPERTY_BATTLE));
+    
+    m_popupComponent=static_cast<PopupComponent*>(m_owner->getComponent("PopupComponent"));
 }
 
 void DamageComponent::cleanup()
@@ -90,6 +93,7 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
     }
     
     float defence=0,dd=0,dc=0,crit=0;
+    
     int immunity=0;
     
     BattleProperty* sourceBattleProperty=static_cast<BattleProperty*>(source->getProperty(CCGE_PROPERTY_BATTLE));
@@ -135,7 +139,7 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
     
     if (immunity>100) {
         //TODO show immunity
-        
+        m_popupComponent->showPopup("immunity", "blue", kBattlePopupTypeText);
         return 0;
     }
     

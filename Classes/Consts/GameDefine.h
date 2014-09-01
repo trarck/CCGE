@@ -80,6 +80,17 @@ enum ComponentUpdatePriority
     kVisibleMoveUpdate,
 };
 
+enum UnitState
+{
+    kUnitStateIdle,
+    kUnitStateWalk,
+    kUnitStateAttack,
+    kUnitStateHurt,
+    kUnitStateDead,
+    kUnitStateBirth,
+    kUnitStateDying,
+};
+
 enum BattleAttributeType
 {
     kBattleAttributeNone,

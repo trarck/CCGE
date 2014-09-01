@@ -137,7 +137,7 @@ void TestAnimationController::showAction(FcaInfo* fcaInfo,const std::string& act
         
         CCLOG("action.frames:%ld",action.frames.size());
         
-        float r=0.09;
+        float r=0.111111;
         
         float rr=1/r;
         
@@ -223,6 +223,8 @@ void TestAnimationController::showAction(FcaInfo* fcaInfo,const std::string& act
                 
                 frameElement->release();
             }
+            
+            CCLOG("\n");
             
             animation->appendFrame(avatarFrame);
             

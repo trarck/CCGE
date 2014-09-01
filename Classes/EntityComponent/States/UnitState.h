@@ -7,6 +7,8 @@
 #include "CCGEMacros.h"
 #include "BaseState.h"
 
+#include "EntityComponent/Components/Battles/SkillComponent.h"
+
 NS_CC_GE_BEGIN
 
 class UnitState:public BaseState
@@ -24,9 +26,36 @@ public:
         kDyingState
     };
     
-//    virtual void enter();
-//    
-//    virtual void exit();
+    UnitState();
+    
+    ~UnitState();
+    
+    virtual void update(float delta);
+    
+public:
+    
+    void setTarget(GameEntity* target);
+    
+    inline GameEntity* getTarget()
+    {
+        return m_target;
+    }
+    
+protected:
+    
+    void setUnitAction(const std::string& action);
+    
+    GameEntity* searchTarget();
+    
+    SkillComponent* findSkillToCast();  
+    
+    void walkTo(GameEntity* dest);
+    
+    void walkTo(const CCPoint& dest);
+    
+protected:
+    
+    GameEntity* m_target;
     
 };
 
@@ -48,10 +77,7 @@ public:
 	virtual void update(float delta);
     virtual void onMessage(yhge::Message* message);
     virtual void onHurt(yhge::Message* message);
-    
-protected:
-    
-    void showIdleAnimation();
+
 };
 
 /**
@@ -68,10 +94,20 @@ public:
   
     virtual void enter();
     virtual void exit();
-	virtual void update(float delta);
+    
+    inline void setDest(const CCPoint& dest)
+    {
+        m_dest = dest;
+    }
+    
+    inline const CCPoint& getDest()
+    {
+        return m_dest;
+    }
     
 protected:
 
+    CCPoint m_dest;
 
 };
 
@@ -83,25 +119,37 @@ class UnitAttackState:public UnitState
 public:
     
     UnitAttackState()
+    :m_skill(NULL)
     {
         m_type=kAttackState;
+    }
+    
+    ~UnitAttackState()
+    {
+        CC_SAFE_RELEASE_NULL(m_skill);
     }
     
     virtual void enter();
     
     virtual void exit();
 
-    virtual void onAttackAnimationComplete(yhge::Message* message);
+public:
     
-    //是否可以被普通攻击.正在普通攻击中不能被攻击。
-    virtual bool isAttackable();
+    inline void setSkill(SkillComponent* skill)
+    {
+        CC_SAFE_RETAIN(skill);
+        CC_SAFE_RELEASE(m_skill);
+        m_skill = skill;
+    }
     
-    //是否被普通攻击伤害.攻击中不受伤害。
-    virtual bool isNormalDamageable();
+    inline SkillComponent* getSkill()
+    {
+        return m_skill;
+    }
     
 protected:
+    SkillComponent* m_skill;
     
-    void showAttackAnimation();
 };
 
 /**
@@ -119,11 +167,6 @@ public:
     virtual void enter();
     
     virtual void exit();
-    
-protected:
-    
-    void showHurtAnimation();
-
 };
 
 /**
@@ -136,6 +179,10 @@ public:
     {
         m_type=kDeadState;
     }
+    
+    virtual void enter();
+    
+    virtual void exit();
 };
 
 /**
@@ -149,6 +196,10 @@ public:
     {
         m_type=kBirthState;
     }
+    
+    virtual void enter();
+    
+    virtual void exit();
 };
 
 /**
@@ -162,6 +213,10 @@ public:
     {
         m_type=kDyingState;
     }
+    
+    virtual void enter();
+    
+    virtual void exit();
 };
 
 NS_CC_GE_END

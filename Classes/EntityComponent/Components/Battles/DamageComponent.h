@@ -8,6 +8,8 @@
 #include "EntityComponent/Properties/UnitProperty.h"
 #include "EntityComponent/Properties/BattleProperty.h"
 
+#include "PopupComponent.h"
+
 NS_CC_GE_BEGIN
 
 /**
@@ -47,6 +49,8 @@ protected:
     
     UnitProperty* m_unitProperty;
     BattleProperty* m_battleProperty;
+    
+    PopupComponent* m_popupComponent;
 };
 
 NS_CC_GE_END

@@ -8,8 +8,10 @@
 NS_CC_GE_BEGIN
 
 /**
- * 战斗状态组件
- * 实现一个状态管理器
+ * 状态机组件
+ * 实现一个状态管理器，而这个状态管理器其实就是AI.
+ * 每个状态其实就是一个AI的一部分，实现相应的逻辑。也就是说状态机组件和AI组件只能存在一个。
+ * AI组件使用state变量来控制游戏对象的行为，而状态机使用状态对象来控制游戏对象行为。
  */
 class StateMachineComponent : public yhge::Component
 {
