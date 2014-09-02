@@ -54,10 +54,16 @@ public:
     
     void addBattleProperties(GameEntity* entity,const yhge::Json::Value& params);
     
+    /**
+     * 战斗属性
+     * 基础+装备+被动技能+buff
+     */
+    void rebuildBattleProperty(GameEntity* entity);
+    
     void setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& info);
     
     void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo);
-    
+
     void setMovePropertyValue(MoveProperty* property,const yhge::Json::Value& config);
     
     void setSkillPropertyValue(SkillProperty* property,const yhge::Json::Value& value);

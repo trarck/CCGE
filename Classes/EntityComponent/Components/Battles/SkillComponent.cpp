@@ -6,6 +6,7 @@
 #include "Consts/PropertyDefine.h"
 #include "Consts/AnimationDefine.h"
 #include "EntityComponent/GameEntity.h"
+#include "DamageComponent.h"
 
 
 USING_NS_CC;
@@ -219,6 +220,16 @@ void SkillComponent::finish()
     
 }
 
+void SkillComponent::interrupt()
+{
+    if(m_attackCounter==0){
+        m_cdRemaining=m_info[CCGE_SKILL_CD].asDouble()*0.5;
+        m_unitProperty->setGlobalCd(m_info[CCGE_SKILL_GLOBAL_CD].asDouble()*0.5);
+    }
+    
+    finish();
+}
+
 void SkillComponent::onAttackFrame()
 {
     //TODO parse unfreeze manually skill
@@ -396,13 +407,11 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
     //TODO parse buff
     
     //TODO show impact effect
-    
-    this->getMessageManager()->dispatchMessage(kMSGAttackDamage, this, target, CCInteger::create((int)dmg));
 }
 
 void SkillComponent::onPhaseFinished()
 {
-    CCLOG("tt:%d,%d",m_currentPhaseIdx,m_phaseList.size());
+    CCLOG("tt:%d,%lu",m_currentPhaseIdx,m_phaseList.size());
     if (m_currentPhaseIdx<m_phaseList.size()-1) {
         startPhase(m_currentPhaseIdx+1);
     }else{
@@ -491,9 +500,9 @@ float SkillComponent::getPower(GameEntity* source,GameEntity* target)
 
 float SkillComponent::getDamage(GameEntity* target,float power,int damageType,int field,GameEntity* source,float critMod)
 {
-    //TODO calc
+    DamageComponent* targetDamageComponent=static_cast<DamageComponent*>(target->getComponent("DamageComponent"));
     
-    return 100;
+    return targetDamageComponent->takeDamage(power, damageType, field, source,critMod);
 }
 
 bool SkillComponent::testPointInShape(const CCPoint& pos,int shape,float arg1,float arg2)

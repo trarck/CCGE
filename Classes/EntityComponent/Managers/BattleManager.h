@@ -81,6 +81,8 @@ public:
      */
     void setupHeros();
     
+    void onUnitDie(GameEntity* unit,GameEntity* killer);
+    
 protected:
     
     HeroVector sortEntity(const HeroVector& entityList);

@@ -17,6 +17,7 @@ DamageComponent::DamageComponent()
 ,m_unitProperty(NULL)
 ,m_battleProperty(NULL)
 ,m_popupComponent(NULL)
+,m_stateComponent(NULL)
 {
     
 }
@@ -34,6 +35,7 @@ void DamageComponent::setup()
     m_battleProperty=static_cast<BattleProperty*>(m_owner->getProperty(CCGE_PROPERTY_BATTLE));
     
     m_popupComponent=static_cast<PopupComponent*>(m_owner->getComponent("PopupComponent"));
+    m_stateComponent=static_cast<StateComponent*>(m_owner->getComponent("StateComponent"));
 }
 
 void DamageComponent::cleanup()
@@ -125,6 +127,8 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
             break;
     }
     
+    CCLOG("%f,%f,%f,%f",amount,defence,dd,dc);
+    
     float critProb=crit /(100+dc)*critMod;
     
     bool isCrit=critProb > Game::getInstance()->getEngine()->rand();
@@ -158,12 +162,13 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
     if (field==kBattleAttributeHP) {
         m_unitProperty->addHealth(-lost);
         if (m_unitProperty->getHealth()<=0) {
-            //TODO change to die state
+            //change to die state
+            m_stateComponent->die(source);
         }else{
             //TODO other condition
             if (lost>m_battleProperty->getHealth()*0.08) {
-                //TODO change to hurt state
-                
+                //change to hurt state
+                m_stateComponent->hurt();
             }
         }
         
@@ -178,6 +183,7 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
     }
     
     //show lost tip
+    this->getMessageManager()->dispatchMessage(kMSGAttackDamage, this, m_owner, CCInteger::create((int)lost));
     
     return lost;
 }

@@ -166,13 +166,13 @@ void RealtimeBattleController::loadBattleWorld()
     hero["camp"]=kCampPlayer;
     heroList.push_back(hero);
     
-//    hero["id"]=2;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
-//    
-//    hero["id"]=3;
-//    hero["camp"]=kCampPlayer;
-//    heroList.push_back(hero);
+    hero["id"]=2;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
+    
+    hero["id"]=3;
+    hero["camp"]=kCampPlayer;
+    heroList.push_back(hero);
 //
 //    hero["id"]=1;
 //    hero["position_x"]=-240;
@@ -193,10 +193,10 @@ void RealtimeBattleController::loadBattleWorld()
     enemy["camp"]=kCampEnemy;
     enemyList.push_back(enemy);
     
-//    enemy["id"]=5;
-//    enemy["camp"]=kCampEnemy;
-//    enemyList.push_back(enemy);
-//    
+    enemy["id"]=5;
+    enemy["camp"]=kCampEnemy;
+    enemyList.push_back(enemy);
+//
 //    enemy["id"]=4;
 //    enemy["camp"]=kCampEnemy;
 //    enemyList.push_back(enemy);

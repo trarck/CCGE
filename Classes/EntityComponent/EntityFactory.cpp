@@ -317,7 +317,11 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity)
     //动画组件
     m_entityComponentFactory->addBattleAnimationComponent(entity);
     
+    m_entityComponentFactory->addStateComponent(entity);
+    
     m_entityComponentFactory->addMoveComponent(entity);
+    
+    m_entityComponentFactory->addDamageComponent(entity);
     
     m_entityComponentFactory->addSkillComponents(entity);
     
@@ -337,7 +341,11 @@ void EntityFactory::addRealtimeBattleComponents(GameEntity* entity,const yhge::J
     //动画组件
     m_entityComponentFactory->addBattleAnimationComponent(entity);
     
+    m_entityComponentFactory->addStateComponent(entity);
+    
     m_entityComponentFactory->addMoveComponent(entity);
+    
+    m_entityComponentFactory->addDamageComponent(entity);
     
     m_entityComponentFactory->addSkillComponents(entity);
     

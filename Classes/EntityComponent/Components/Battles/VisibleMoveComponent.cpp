@@ -39,6 +39,10 @@ void VisibleMoveComponent::setup()
 
 void VisibleMoveComponent::cleanup()
 {
+    if (m_moving) {
+        Game::getInstance()->getEngine()->getUpdateManager()->removeUpdater(this);
+    }
+    
     GameComponent::cleanup();
     m_rendererComponent=NULL;
 }

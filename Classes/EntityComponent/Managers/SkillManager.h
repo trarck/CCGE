@@ -37,7 +37,7 @@ public:
         m_currentSkillMap[entityId]=skillComponent;
     }
     
-    inline SkillComponent* getEntityCurrentSkill(int entityId,SkillComponent* skillComponent)
+    inline SkillComponent* getEntityCurrentSkill(int entityId)
     {
         return m_currentSkillMap[entityId];
     }

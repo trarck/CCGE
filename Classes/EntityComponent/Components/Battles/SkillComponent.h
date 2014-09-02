@@ -56,6 +56,8 @@ public:
     
     void finish();
     
+    void interrupt();
+    
     void onAttackFrame();
     
     void takeEffectAt(const CCPoint& location,GameEntity* source=NULL);

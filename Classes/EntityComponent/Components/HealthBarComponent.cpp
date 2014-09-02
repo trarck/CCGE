@@ -114,6 +114,5 @@ void HealthBarComponent::onHealthChange(yhge::Message* message)
     }
 }
 
-
 NS_CC_GE_END
 

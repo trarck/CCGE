@@ -5,6 +5,7 @@
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
 #include "Consts/DataDefine.h"
+#include "Consts/GameDefine.h"
 
 NS_CC_GE_BEGIN
 
@@ -188,7 +189,7 @@ public:
     
     inline bool isAlive()
     {
-        return m_alive;
+        return m_state!=kUnitStateDead && m_state!=kUnitStateDying;
     }
     
     inline void setCanCastManual(bool canCastManual)

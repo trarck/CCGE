@@ -47,6 +47,10 @@ public:
     
     void addSkillComponent(GameEntity* entity);
     
+    void addStateComponent(GameEntity* entity);
+    
+    void addDamageComponent(GameEntity* entity);
+    
     void addVisibleMoveComponent(GameEntity* entity);
     
     void addTipComponent(GameEntity* entity);

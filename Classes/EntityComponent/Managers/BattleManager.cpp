@@ -23,12 +23,12 @@ BattleManager::BattleManager()
 ,m_stageRect(CCRectMake(0, -120, 800, 240))
 ,m_manaBonus(1.0f)
 {
-    YHDEBUG("UpdateManager create");
+    YHDEBUG("BattleManager create");
 }
 
 BattleManager::~BattleManager()
 {
-    YHDEBUG("UpdateManager destroy");
+    YHDEBUG("BattleManager destroy");
 }
 
 bool BattleManager::init()
@@ -328,6 +328,34 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     entityFactory->addRealtimeBattleComponents(entity);
     
     return entity;
+}
+
+void BattleManager::onUnitDie(GameEntity* unit,GameEntity* killer)
+{
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(unit->getProperty(CCGE_PROPERTY_UNIT));
+    
+    int camp=unitProperty->getCamp();
+    
+    m_aliveUnits[camp].eraseObject(unit);
+    
+    if (camp==kCampPlayer) {
+        --m_aliveAllianceCount;
+        ++m_deadAllianceCount;
+    }else if (camp==kCampEnemy){
+        --m_aliveEnemyCount;
+        ++m_deadEnemyCount;
+    }
+    
+    
+    
+    RendererComponent* rendererComponent=static_cast<RendererComponent*>(unit->getComponent("RendererComponent"));
+    rendererComponent->getRenderer()->removeFromParent();
+
+    GameEngine* engine=static_cast<GameEngine*>(m_engine);
+    
+    engine->getBattleUpdateManager()->removeGroup(unit->m_uID);
+    
+    unit->cleanup();
 }
 
 NS_CC_GE_END

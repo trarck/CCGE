@@ -16,9 +16,11 @@
 #include "Components/BattlePositionComponent.h"
 #include "Components/BattleStateMachineComponent.h"
 
+#include "Components/Battles/StateComponent.h"
 #include "Components/Battles/AIComponent.h"
 #include "Components/Battles/MoveComponent.h"
 #include "Components/Battles/SkillComponent.h"
+#include "Components/Battles/DamageComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
 #include "Components/Battles/PopupComponent.h"
 
@@ -263,6 +265,24 @@ void EntityComponentFactory::addSkillComponent(GameEntity* entity)
     entity->addComponent(skillComponent);
     
     skillComponent->release();
+}
+
+void EntityComponentFactory::addStateComponent(GameEntity* entity)
+{
+    StateComponent* stateComponent=new StateComponent();
+    stateComponent->init();
+    
+    entity->addComponent(stateComponent);
+    stateComponent->release();
+}
+
+void EntityComponentFactory::addDamageComponent(GameEntity* entity)
+{
+    DamageComponent* damageComponent=new DamageComponent();
+    damageComponent->init();
+    
+    entity->addComponent(damageComponent);
+    damageComponent->release();
 }
 
 void EntityComponentFactory::addVisibleMoveComponent(GameEntity* entity)

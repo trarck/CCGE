@@ -80,7 +80,7 @@ enum ComponentUpdatePriority
     kVisibleMoveUpdate,
 };
 
-enum UnitState
+enum UnitStateType
 {
     kUnitStateIdle,
     kUnitStateWalk,

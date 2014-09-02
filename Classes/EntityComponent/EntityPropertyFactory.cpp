@@ -127,6 +127,15 @@ void EntityPropertyFactory::addBattleProperties(GameEntity* entity,const yhge::J
 
 }
 
+/**
+ * 战斗属性
+ * 基础+装备+被动技能+buff
+ */
+void EntityPropertyFactory::rebuildBattleProperty(GameEntity* entity)
+{
+    
+}
+
 void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& info)
 {    
     if (!config.isNull()) {
