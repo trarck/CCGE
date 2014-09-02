@@ -314,6 +314,7 @@
 		575D1523187CEFD2004E9958 /* libyhgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 575D1521187CEFB2004E9958 /* libyhgui.a */; };
 		575E3F9E18892DC100E37B69 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9C18892DC100E37B69 /* GameEntity.cpp */; };
 		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
+		57619DFB19B561F7003BB2E0 /* StateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57619DF919B561F7003BB2E0 /* StateComponent.cpp */; };
 		5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */; };
 		576BCDD019A587F6000D2A48 /* PopupComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576BCDCE19A587F6000D2A48 /* PopupComponent.cpp */; };
 		576BCDD319A58F81000D2A48 /* DamageComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576BCDD119A58F81000D2A48 /* DamageComponent.cpp */; };
@@ -328,7 +329,6 @@
 		5771057D1883E1B800FA1446 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771057B1883E1B800FA1446 /* MissionScene.cpp */; };
 		57823C5218A9BF11005ACB35 /* UnitProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57823C5018A9BF11005ACB35 /* UnitProperty.cpp */; };
 		57975AC2189632C5008A9F38 /* GameActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */; };
-		5798A9F619A6E8E700D0570D /* StateMachineComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5798A9F419A6E8E700D0570D /* StateMachineComponent.cpp */; };
 		5798A9F919A6EA0200D0570D /* UnitState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5798A9F719A6EA0200D0570D /* UnitState.cpp */; };
 		57B0CA65193D6A9F00098C22 /* TestAnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */; };
 		57B0CA83193DC61300098C22 /* FcaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA81193DC61300098C22 /* FcaInfo.cpp */; };
@@ -1057,6 +1057,8 @@
 		575E3F9D18892DC100E37B69 /* GameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEntity.h; sourceTree = "<group>"; };
 		575E3F9F1889344600E37B69 /* EntityFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityFactory.cpp; sourceTree = "<group>"; };
 		575E3FA01889344600E37B69 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
+		57619DF919B561F7003BB2E0 /* StateComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateComponent.cpp; sourceTree = "<group>"; };
+		57619DFA19B561F7003BB2E0 /* StateComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateComponent.h; sourceTree = "<group>"; };
 		5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAttackComponent.cpp; sourceTree = "<group>"; };
 		5768C14718A8DA0E005123C5 /* GameAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAttackComponent.h; sourceTree = "<group>"; };
 		576BCDCE19A587F6000D2A48 /* PopupComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PopupComponent.cpp; sourceTree = "<group>"; };
@@ -1090,8 +1092,6 @@
 		57823C5818A9C42C005ACB35 /* PropertyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyDefine.h; sourceTree = "<group>"; };
 		57975AC0189632C5008A9F38 /* GameActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameActiveSortLayer.cpp; sourceTree = "<group>"; };
 		57975AC1189632C5008A9F38 /* GameActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActiveSortLayer.h; sourceTree = "<group>"; };
-		5798A9F419A6E8E700D0570D /* StateMachineComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateMachineComponent.cpp; sourceTree = "<group>"; };
-		5798A9F519A6E8E700D0570D /* StateMachineComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateMachineComponent.h; sourceTree = "<group>"; };
 		5798A9F719A6EA0200D0570D /* UnitState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitState.cpp; sourceTree = "<group>"; };
 		5798A9F819A6EA0200D0570D /* UnitState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitState.h; sourceTree = "<group>"; };
 		57B0CA63193D6A9F00098C22 /* TestAnimationController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAnimationController.cpp; sourceTree = "<group>"; };
@@ -1905,8 +1905,8 @@
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
 				573D946519A3289E00F47394 /* SkillPhase.cpp */,
 				573D946619A3289E00F47394 /* SkillPhase.h */,
-				5798A9F419A6E8E700D0570D /* StateMachineComponent.cpp */,
-				5798A9F519A6E8E700D0570D /* StateMachineComponent.h */,
+				57619DF919B561F7003BB2E0 /* StateComponent.cpp */,
+				57619DFA19B561F7003BB2E0 /* StateComponent.h */,
 				57E4662619931756001B2A6E /* VisibleMoveComponent.cpp */,
 				57E4662719931756001B2A6E /* VisibleMoveComponent.h */,
 			);
@@ -2988,7 +2988,6 @@
 				57564160196B994800AA1194 /* BattleUpdateManager.cpp in Sources */,
 				57243ECC18B45B580070163A /* RemoteCache.cpp in Sources */,
 				57704FA218CDB7EA006B8A62 /* DimetricCoordinateLayer.cpp in Sources */,
-				5798A9F619A6E8E700D0570D /* StateMachineComponent.cpp in Sources */,
 				15A3DA3F1682F826002FB0C5 /* CCLayerLoader.cpp in Sources */,
 				57243EC818B3551C0070163A /* UserService.cpp in Sources */,
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
@@ -3060,6 +3059,7 @@
 				57243EC518B3551C0070163A /* BaseService.cpp in Sources */,
 				15A3DA5E1682F826002FB0C5 /* CCPhysicsDebugNode.cpp in Sources */,
 				575AD894187BC54B00AA0477 /* MainScene.cpp in Sources */,
+				57619DFB19B561F7003BB2E0 /* StateComponent.cpp in Sources */,
 				15A3DA5F1682F826002FB0C5 /* CCPhysicsSprite.cpp in Sources */,
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				5747633D18D68AFC0031E2E0 /* EntityState.cpp in Sources */,
