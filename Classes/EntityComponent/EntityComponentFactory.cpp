@@ -251,7 +251,14 @@ void EntityComponentFactory::addSkillComponents(GameEntity* entity)
         
         skillManager->addSkillComponent(entity->m_uID, skillComponent);
         
+        //set manual skill
+        if (skillInfo[CCGE_SKILL_MANUAL].asBool()){
+            m_entityFactory->getEngine()->getSkillManager()->setEntityManualSkill(entity->m_uID, skillComponent);
+        }
+        
         m_entityFactory->getEngine()->getBattleUpdateManager()->addUpdaterToGroup(entity->m_uID, skillComponent, schedule_selector(SkillComponent::update),kSkillUpdate);
+        
+  
         
         skillComponent->release();
     }

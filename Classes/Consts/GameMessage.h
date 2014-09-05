@@ -28,6 +28,8 @@ enum GameMessage
     
     //战斗提示
     kMSGBattlePopup,
+    
+    kMSGHitMiss,
 
 };
 

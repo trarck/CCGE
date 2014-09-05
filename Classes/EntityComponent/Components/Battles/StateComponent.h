@@ -11,6 +11,8 @@
 
 NS_CC_GE_BEGIN
 
+class SkillComponent;
+
 /**
  * 状态组件
  */
@@ -36,9 +38,19 @@ public:
 
     void idle();
     
+    void walk(const CCPoint& dest);
+    
+    void castSkill(SkillComponent* skill,GameEntity* target);
+    
+    void castManualSkill();
+    
     void die(GameEntity* killer);
     
     void hurt();
+    
+protected:
+    
+    void setAction(const std::string& name);
     
 protected:
     

@@ -4,6 +4,8 @@
 #include "Consts/PropertyDefine.h"
 #include "EntityComponent/GameEntity.h"
 
+#include "SkillComponent.h"
+
 USING_NS_CC;
 USING_NS_CC_YHGE;
 
@@ -18,6 +20,7 @@ AIComponent::AIComponent()
 ,m_moveComponent(NULL)
 ,m_willCastManualSkill(true)
 ,m_skillManager(NULL)
+,m_stateComponent(NULL)
 {
     
 }
@@ -36,6 +39,7 @@ void AIComponent::setup()
     m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
     
     m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
+    m_stateComponent=static_cast<StateComponent*>(m_owner->getComponent("StateComponent"));
     
     m_skillManager=Game::getInstance()->getEngine()->getSkillManager();
 
@@ -82,10 +86,12 @@ void AIComponent::update(float delta)
         
         SkillComponent* skill=findSkillToCast();
         if (skill) {
-            //TODO cast skill
-            walkStop();
+            //cast skill
+            if(skill->isManual() && Game::getInstance()->getEngine()->getBattleManager()->isArenaMode()){
             
-            skill->cast(target);
+            }else{
+                m_stateComponent->castSkill(skill, target);
+            }
             
         }else{
             //work to target
@@ -96,7 +102,7 @@ void AIComponent::update(float delta)
 //        walkTo(m_destination);
     }else{
         //idle
-        
+        m_stateComponent->idle();
     }
 }
 
@@ -183,19 +189,22 @@ void AIComponent::walkTo(const CCPoint& dest)
     float distanceSQ=(pos-dest).getLengthSq();
 //    CCLOG("dis[%d]:%f,%f,%f:%f,%f",m_uID,dest.x,pos.x,dest.x-pos.x,distanceSQ,attackRange*attackRange);
     if (distanceSQ<=attackRange*attackRange) {
-        //TODO idle state
-        walkStop();
+        //idle state
+        m_stateComponent->idle();
         return;
     }
     
-    m_moveComponent->moveTo(dest);
-    this->getMessageManager()->dispatchMessage(MSG_MOVE_TO, this, m_owner,CCPointValue::create(dest));
+    //walk state
+    m_stateComponent->walk(dest);
+    
+//    m_moveComponent->moveTo(dest);
+//    this->getMessageManager()->dispatchMessage(MSG_MOVE_TO, this, m_owner,CCPointValue::create(dest));
 }
 
 void AIComponent::walkStop()
 {
-    m_moveComponent->stopMove();
-    this->getMessageManager()->dispatchMessage(MSG_MOVE_STOP, this, m_owner);
+//    m_moveComponent->stopMove();
+//    this->getMessageManager()->dispatchMessage(MSG_MOVE_STOP, this, m_owner);
 }
 
 void AIComponent::setTarget(GameEntity* target)

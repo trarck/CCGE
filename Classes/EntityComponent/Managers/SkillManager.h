@@ -19,7 +19,10 @@ public:
     
     typedef yhge::List<SkillComponent*> SkillList;
     typedef std::map<int, SkillList> EntitySkillMap;
-    typedef std::map<int, SkillComponent*> CurrentSkillMap;
+    typedef std::map<int, SkillComponent*> WeakSkillMap;
+    
+    //the value is array
+    typedef std::map<int, yhge::Json::Value> SkillInfosMap;
     
     SkillManager();
     
@@ -42,12 +45,46 @@ public:
         return m_currentSkillMap[entityId];
     }
     
+    inline void setEntityManualSkill(int entityId,SkillComponent* skillComponent)
+    {
+        m_manualSkillMap[entityId]=skillComponent;
+    }
+    
+    inline SkillComponent* getEntityManualSkill(int entityId)
+    {
+        return m_manualSkillMap[entityId];
+    }
+    
+    void addEntityPassiveSkillInfo(int entityId,const yhge::Json::Value& skillInfo);
+    
+    yhge::Json::Value& getEntityPassiveSkillInfos(int entityId);
+    
+    void addEntityAuraSkillInfo(int entityId,const yhge::Json::Value& skillInfo);
+    
+    yhge::Json::Value& getEntityAuraSkillInfos(int entityId);
+    
+    void addEntityNegativeAuraSkillInfo(int entityId,const yhge::Json::Value& skillInfo);
+    
+    yhge::Json::Value& getEntityNegativeAuraSkillInfos(int entityId);
+    
 protected:
     
+    //active skill
     EntitySkillMap m_skills;
+    //manual skill is active skill
+    WeakSkillMap m_manualSkillMap;
+    //current active skill
+    WeakSkillMap m_currentSkillMap;
     
-    //weak ref
-    CurrentSkillMap m_currentSkillMap;
+    //passive skill
+    SkillInfosMap m_passiveSkillsMap;
+    
+    //aura skill
+    SkillInfosMap m_auraSkillsMap;
+    
+    //negative aura
+    SkillInfosMap m_negativeAuraSkillsMap;
+    
 };
 
 

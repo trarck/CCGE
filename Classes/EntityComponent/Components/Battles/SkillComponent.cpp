@@ -34,6 +34,7 @@ SkillComponent::SkillComponent()
 ,m_battleProperty(NULL)
 ,m_unitProperty(NULL)
 ,m_moveProperty(NULL)
+,m_popupComponent(NULL)
 {
     
 }
@@ -57,6 +58,8 @@ void SkillComponent::setup()
     m_battleProperty=static_cast<BattleProperty*>(m_owner->getProperty(CCGE_PROPERTY_BATTLE));
     m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
     m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
+    
+    m_popupComponent=static_cast<PopupComponent*>(m_owner->getComponent("PopupComponent"));
     
     rebuildPhaseList(m_unitProperty->getPuppetFromInfo());
 }
@@ -230,6 +233,16 @@ void SkillComponent::interrupt()
     finish();
 }
 
+bool SkillComponent::canTrigger()
+{
+    return false;
+}
+
+void SkillComponent::trigger()
+{
+    
+}
+
 void SkillComponent::onAttackFrame()
 {
     //TODO parse unfreeze manually skill
@@ -353,54 +366,53 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
     
     float dmg=0;
     
-    switch (damageType) {
-        case kSkillDamageTypeHeal:{
-            float heal=affectFieldType==kBattleAttributeHP?m_battleProperty->getHeal():0;
-            power=power*(1+heal/100);
-            
-            //TODO take heal
-            
-            break;
-        }
-        case kSkillDamageTypePhysical:{
-            
-            if (!m_info[CCGE_SKILL_NO_DODGE].asBool()) {
-                float dodg=MAX(0, targetBattleProperty->getDodg()-m_battleProperty->getHit());
-                float prob=dodg/(100+dodg);
-                
-                float dice=rand();
-                
-                bool hit=prob<=dice;
-                
-                if (!hit) {
-                    //TODO take hit miss
-                    
-                    //TODO show miss
-                    
-                    return;
-                }
-            }
-            
-            break;
-        }
-        default:
-            break;
-    }
-    
-    dmg=getDamage(target, power, damageType, affectFieldType, source, m_info[CCGE_SKILL_CRIT_RATIO].asDouble()/100);
-    
-    if (dmg==0) {
-        return;
-    }
-    
-    float ldr=m_info[CCGE_SKILL_LIFE_DRAIN_RATIO].asDouble();
-    
-    if (0<ldr) {
-        float lfs=m_battleProperty->getLifeDrain();
-        float heal=dmg*lfs/(100+lfs+targetUnitProperty->getLevel())*ldr*0.01;
+    if (damageType==kSkillDamageTypeHeal) {
+        float heal=affectFieldType==kBattleAttributeHP?m_battleProperty->getHeal():0;
+        power=power*(1+heal/100);
         
-        if (heal>1) {
-            //TODO take heal
+        DamageComponent* targetDamageComponent=static_cast<DamageComponent*>(target->getComponent("DamageComponent"));
+        
+        targetDamageComponent->takeHeal(power, affectFieldType, caster);
+        
+    }else {
+        
+        if (damageType==kSkillDamageTypePhysical && !m_info[CCGE_SKILL_NO_DODGE].asBool()) {
+            float dodg=MAX(0, targetBattleProperty->getDodg()-m_battleProperty->getHit());
+            float prob=dodg/(100+dodg);
+            
+            float dice=rand();
+            
+            bool hit=prob<=dice;
+            
+            if (!hit) {
+                //send hit miss message
+                getMessageManager()->dispatchMessage(kMSGHitMiss, this, target);
+                
+                //show miss tip
+                if(m_popupComponent){
+                    UnitProperty* targetUnitProperty=static_cast<UnitProperty*>(target->getProperty(CCGE_PROPERTY_UNIT));
+                    m_popupComponent->showPopup("dodge",targetUnitProperty->getCamp()==kCampEnemy?"red":"blue", kBattlePopupTypeText);
+                }
+                return;
+            }
+        }
+        
+        dmg=getDamage(target, power, damageType, affectFieldType, caster, m_info[CCGE_SKILL_CRIT_RATIO].asDouble()/100);
+        
+        if (dmg==0) {
+            return;
+        }
+        
+        //parse drain life
+        float ldr=m_info[CCGE_SKILL_LIFE_DRAIN_RATIO].asDouble();
+        
+        if (0<ldr) {
+            float lfs=m_battleProperty->getLifeDrain();
+            float heal=dmg*lfs/(100+lfs+targetUnitProperty->getLevel())*ldr*0.01;
+            
+            if (heal>1) {
+                //TODO take heal
+            }
         }
     }
     

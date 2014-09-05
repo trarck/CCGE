@@ -142,8 +142,9 @@ float DamageComponent::takeDamage(float amount,int damageType,int field,GameEnti
     damage *=critMultiplier*sourceBattleProperty->getPerDamageMod();
     
     if (immunity>100) {
-        //TODO show immunity
-        m_popupComponent->showPopup("immunity", "blue", kBattlePopupTypeText);
+        //show immunity
+        if(m_popupComponent)
+            m_popupComponent->showPopup("immunity", "blue", kBattlePopupTypeText);
         return 0;
     }
     

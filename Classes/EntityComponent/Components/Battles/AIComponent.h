@@ -4,13 +4,15 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 #include "CCGEMacros.h"
-#include "MoveComponent.h"
+
 #include "EntityComponent/Properties/BattleProperty.h"
 #include "EntityComponent/Properties/UnitProperty.h"
 #include "EntityComponent/Properties/MoveProperty.h"
 #include "EntityComponent/Components/GameComponent.h"
-#include "SkillComponent.h"
 #include "EntityComponent/Managers/SkillManager.h"
+
+#include "MoveComponent.h"
+#include "StateComponent.h"
 
 NS_CC_GE_BEGIN
 
@@ -90,10 +92,9 @@ protected:
     MoveProperty* m_moveProperty;
     
     MoveComponent* m_moveComponent;
+    StateComponent* m_stateComponent;
     
     SkillManager* m_skillManager;
-    
-    
 
 };
 

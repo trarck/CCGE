@@ -7,6 +7,10 @@
 #include "EntityComponent/GameEntity.h"
 #include "EntityComponent/States/UnitState.h"
 
+#include "MoveComponent.h"
+#include "SkillComponent.h"
+#include "AIComponent.h"
+
 USING_NS_CC;
 USING_NS_CC_YHGE;
 
@@ -62,15 +66,79 @@ void StateComponent::idle()
         return;
     }
     
+    m_unitProperty->setState(kUnitStateIdle);
+    
     m_moveProperty->setWalkVelocity(CCPointZero);
     
     //set action
-    CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create(CCGE_ANIMATION_IDLE), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    setAction(CCGE_ANIMATION_IDLE);
     
-    m_unitProperty->setState(kUnitStateIdle);
+    this->getMessageManager()->dispatchMessage(MSG_MOVE_STOP, this, m_owner);
+    
+}
+
+void StateComponent::walk(const CCPoint& dest)
+{
+    if(!m_unitProperty->isAlive()) return;
+    
+    if (m_unitProperty->getState()!=kUnitStateWalk) {
+        m_unitProperty->setState(kUnitStateWalk);
+        
+        //set action
+        setAction(CCGE_ANIMATION_MOVE);
+    }
+    
+    MoveComponent* moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
+    moveComponent->moveTo(dest);
+    
+    this->getMessageManager()->dispatchMessage(MSG_MOVE_TO, this, m_owner,CCPointValue::create(dest));
+    
+}
+
+void StateComponent::castSkill(SkillComponent* skill,GameEntity* target)
+{
+    if(!m_unitProperty->isAlive()) return;
+    
+    m_unitProperty->setState(kUnitStateAttack);
+    
+    m_moveProperty->setWalkVelocity(CCPointZero);
+    
+    skill->start(target);
+    
+    Game::getInstance()->getEngine()->getSkillManager()->setEntityCurrentSkill(m_owner->m_uID, skill);
+}
+
+void StateComponent::castManualSkill()
+{
+    if(!m_unitProperty->isAlive()) return;
+    
+    SkillComponent* manualSkill=Game::getInstance()->getEngine()->getSkillManager()->getEntityManualSkill(m_owner->m_uID);
+    
+    CCAssert(manualSkill!=NULL, "StateComponent::castManualSkill skill is null");
+    
+    if (manualSkill->canTrigger()) {
+        manualSkill->trigger();
+        return;
+    }
+    
+    AIComponent* aiComponent=static_cast<AIComponent*>(m_owner->getComponent("AIComponent"));
+    
+    if (!manualSkill->canCastWithTarget(aiComponent->getTarget())) {
+        return;
+    }
+    
+    SkillComponent* currentSkill=Game::getInstance()->getEngine()->getSkillManager()->getEntityCurrentSkill(m_owner->m_uID);
+    if (currentSkill) {
+        currentSkill->interrupt();
+    }
+    
+    castSkill(manualSkill, aiComponent->getTarget());
+    
+    m_unitProperty->setManuallyCasting(true);
+    
+    //TODO engine freeze
+    
+    //self unfreeze
 }
 
 void StateComponent::die(GameEntity* killer)
@@ -92,10 +160,7 @@ void StateComponent::die(GameEntity* killer)
     m_moveProperty->setWalkVelocity(CCPointZero);
     
     //TODO use die effect
-    CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create(CCGE_ANIMATION_DIE), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    setAction(CCGE_ANIMATION_DIE);
     
     Game::getInstance()->getEngine()->getBattleManager()->onUnitDie(static_cast<GameEntity*>(m_owner), killer);
 
@@ -113,15 +178,19 @@ void StateComponent::hurt()
     //TODO interruptSound
     
     //set action
-    CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create(CCGE_ANIMATION_BEATTACK), CCGE_ANIMATION_NAME);
-    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
-    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    setAction(CCGE_ANIMATION_BEATTACK);
     
     m_unitProperty->setState(kUnitStateHurt);
     
     m_moveProperty->setWalkVelocity(CCPointZero);
-    
+}
+
+void StateComponent::setAction(const std::string& name)
+{
+    CCDictionary* data=new CCDictionary();
+    data->setObject(CCString::create(name), CCGE_ANIMATION_NAME);
+    data->setObject(CCInteger::create(kEightDirctionRightBottom), CCGE_ANIMATION_DIRECTION);
+    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 }
 
 NS_CC_GE_END

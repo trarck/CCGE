@@ -11,6 +11,9 @@
 #include "EntityComponent/Properties/MoveProperty.h"
 
 #include "../GameComponent.h"
+
+#include "PopupComponent.h"
+
 #include "SkillPhase.h"
 
 NS_CC_GE_BEGIN
@@ -58,6 +61,10 @@ public:
     
     void interrupt();
     
+    bool canTrigger();
+    
+    void trigger();
+    
     void onAttackFrame();
     
     void takeEffectAt(const CCPoint& location,GameEntity* source=NULL);
@@ -65,6 +72,7 @@ public:
     void takeEffectOn(GameEntity* target,GameEntity* source=NULL);
     
     void onPhaseFinished();
+
     
 protected:
     
@@ -274,6 +282,8 @@ protected:
     BattleProperty* m_battleProperty;
     UnitProperty* m_unitProperty;
     MoveProperty* m_moveProperty;
+    
+    PopupComponent* m_popupComponent;
 };
 
 NS_CC_GE_END

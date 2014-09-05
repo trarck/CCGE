@@ -64,7 +64,6 @@ void PopupComponent::showPopup(const std::string& text,const std::string& color,
 {
     //TODO use queue
     
-    
     CCNode* labelNode=NULL;
     
     //TODO use color font
