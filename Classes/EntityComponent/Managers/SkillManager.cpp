@@ -8,12 +8,12 @@ NS_CC_GE_BEGIN
 
 SkillManager::SkillManager()
 {
-    YHDEBUG("UpdateManager create");
+    YHDEBUG("SkillManager create");
 }
 
 SkillManager::~SkillManager()
 {
-    YHDEBUG("UpdateManager destroy");
+    YHDEBUG("SkillManager destroy");
 }
 
 void SkillManager::addSkillComponent(int entityId,SkillComponent* skillComponent)

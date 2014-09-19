@@ -28,15 +28,17 @@ public:
     
     void addUnitProperty(GameEntity* entity);
     
-    void addUnitProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& info);
+    void addUnitProperty(GameEntity* entity,const yhge::Json::Value& info,const yhge::Json::Value& config);
     
     void addBattleProperty(GameEntity* entity);
     
     void addBattleProperty(GameEntity* entity,const yhge::Json::Value& value);
         
-    void addRealtimeBattleProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo);
+    void addRealtimeBattleProperty(GameEntity* entity,const yhge::Json::Value& unitInfo,const yhge::Json::Value& config);
     
     void addMoveProperty(GameEntity* entity,const yhge::Json::Value& config);
+    
+    void addBuffEffectsProperty(GameEntity* entity);
     
     /**
      * @brief 添加物体地图相关属性
@@ -54,15 +56,14 @@ public:
     
     void addBattleProperties(GameEntity* entity,const yhge::Json::Value& params);
     
+    void setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& info,const yhge::Json::Value& config);
+    
     /**
-     * 战斗属性
-     * 基础+装备+被动技能+buff
+     * @brief 设置基本战斗属性
      */
-    void rebuildBattleProperty(GameEntity* entity);
+    void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& unitInfo,const yhge::Json::Value& config);
     
-    void setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& info);
-    
-    void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo);
+    void setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& unitInfo,int level,int stars,int rank);
 
     void setMovePropertyValue(MoveProperty* property,const yhge::Json::Value& config);
     

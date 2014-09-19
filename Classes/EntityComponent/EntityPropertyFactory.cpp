@@ -5,6 +5,7 @@
 
 #include "Properties/UnitProperty.h"
 #include "Properties/BattleProperty.h"
+#include "Properties/BuffEffects.h"
 #include "EntityFactory.h"
 
 USING_NS_CC;
@@ -47,11 +48,11 @@ void EntityPropertyFactory::addUnitProperty(GameEntity* entity)
     unitProperty->release();
 }
 
-void EntityPropertyFactory::addUnitProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& info)
+void EntityPropertyFactory::addUnitProperty(GameEntity* entity,const yhge::Json::Value& info,const yhge::Json::Value& config)
 {
     UnitProperty* unitProperty=new UnitProperty();
     
-    setUnitPropertyValue(unitProperty, config,info);
+    setUnitPropertyValue(unitProperty,info,config);
     
     entity->addProperty(unitProperty, CCGE_PROPERTY_UNIT);
     unitProperty->release();
@@ -74,11 +75,11 @@ void EntityPropertyFactory::addBattleProperty(GameEntity* entity,const yhge::Jso
     battleProperty->release();
 }
 
-void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo)
+void EntityPropertyFactory::addRealtimeBattleProperty(GameEntity* entity,const yhge::Json::Value& unitInfo,const yhge::Json::Value& config)
 {
     BattleProperty* battleProperty=new BattleProperty();
     
-    setBattlePropertyValue(battleProperty, config,unitInfo);
+//    setBattlePropertyValue(battleProperty,unitInfo,config);
     
     entity->addProperty(battleProperty, CCGE_PROPERTY_BATTLE);
     battleProperty->release();
@@ -92,6 +93,14 @@ void EntityPropertyFactory::addMoveProperty(GameEntity* entity,const yhge::Json:
     
     entity->addProperty(moveProperty, CCGE_PROPERTY_MOVE);
     moveProperty->release();
+}
+
+void EntityPropertyFactory::addBuffEffectsProperty(GameEntity* entity)
+{
+    BuffEffects* buffEffects=new BuffEffects();
+    
+    entity->addProperty(buffEffects, CCGE_PROPERTY_BUFF_EFFECTS);
+    buffEffects->release();
 }
 
 /**
@@ -127,16 +136,7 @@ void EntityPropertyFactory::addBattleProperties(GameEntity* entity,const yhge::J
 
 }
 
-/**
- * 战斗属性
- * 基础+装备+被动技能+buff
- */
-void EntityPropertyFactory::rebuildBattleProperty(GameEntity* entity)
-{
-    
-}
-
-void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& info)
+void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yhge::Json::Value& info,const yhge::Json::Value& config)
 {    
     if (!config.isNull()) {
         
@@ -164,55 +164,61 @@ void EntityPropertyFactory::setUnitPropertyValue(UnitProperty* property,const yh
     }
 }
 
-void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& config,const yhge::Json::Value& unitInfo)
+void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& unitInfo,const yhge::Json::Value& config)
 {
-    if (!config.isNull()) {
-        
-        property->setHealth(unitInfo[CCGE_UNIT_HEALTH].asDouble());
-        property->setMana(unitInfo[CCGE_UNIT_MANA].asDouble());
-        property->setArmor(unitInfo[CCGE_UNIT_ARMOR].asDouble());
-        property->setMagicResistance(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE].asDouble());
-        property->setAttackDamage(unitInfo[CCGE_UNIT_ATTACK_DAMAGE].asDouble());
-        property->setAbilityPower(unitInfo[CCGE_UNIT_ABILITY_POWER].asDouble());
-        property->setAttackSpeed(unitInfo[CCGE_UNIT_ATTACK_SPEED].asDouble());
-        property->setCrit(unitInfo[CCGE_UNIT_CRIT].asDouble());
-        property->setMagicCrit(unitInfo[CCGE_UNIT_MAGIC_CRIT].asDouble());
-        property->setArmorPenetrate(unitInfo[CCGE_UNIT_ARMOR_PENETRATE].asDouble());
-        property->setMagicResistanceIgnore(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE_IGNORE].asDouble());
-        property->setHit(unitInfo[CCGE_UNIT_HIT].asDouble());
-        property->setDodg(unitInfo[CCGE_UNIT_DODG].asDouble());
-        property->setHealthRegenerate(unitInfo[CCGE_UNIT_HEALTH_REGENERATE].asDouble());
-        property->setManaRegenerate(unitInfo[CCGE_UNIT_MANA_REGENERATE].asDouble());
-        property->setHeal(unitInfo[CCGE_UNIT_HEAL].asDouble());
-        property->setLifeDrain(unitInfo[CCGE_UNIT_LIFE_DRAIN].asDouble());
-        property->setManaCostReduced(unitInfo[CCGE_UNIT_MANA_COST_REDUCED].asDouble());
+    int level=config[CCGE_COMMON_LEVEL].asInt();
+    int stars=config[CCGE_COMMON_STARS].asInt();
+    int rank=config[CCGE_COMMON_RANK].asInt();
 
-        int level=config[CCGE_COMMON_LEVEL].asInt();
-        int stars=config[CCGE_COMMON_STARS].asInt();
-        int rank=config[CCGE_COMMON_RANK].asInt();
-        
-        float baseValue;
-        float growValue;
-        
-        //str
-        baseValue=unitInfo[CCGE_UNIT_BASE_STRENGTH].asDouble();
-        growValue=unitInfo[CCGE_UNIT_GROW_STRENGTH].asDouble();
-        property->setStrength(baseValue+growValue*stars*level);
-        
-        //agi
-        baseValue=unitInfo[CCGE_UNIT_BASE_AGILITY].asDouble();
-        growValue=unitInfo[CCGE_UNIT_GROW_AGILITY].asDouble();
-        property->setAgility(baseValue+growValue*stars*level);
-        
-        //int
-        baseValue=unitInfo[CCGE_UNIT_BASE_INTELLECT].asDouble();
-        growValue=unitInfo[CCGE_UNIT_GROW_INTELLECT].asDouble();
-        property->setIntellect(baseValue+growValue*stars*level);
-        
-        //TODO add rank property
-        
-        //TODO add equip property
-    }
+    setBattlePropertyValue(property, unitInfo, level,stars,rank);
+}
+
+void EntityPropertyFactory::setBattlePropertyValue(BattleProperty* property,const yhge::Json::Value& unitInfo,int level,int stars,int rank)
+{
+    
+    CCAssert(!unitInfo.isNull(), "setBattlePropertyValue unit info is empty");
+    
+    property->setHealth(unitInfo[CCGE_UNIT_HEALTH].asDouble());
+    property->setMana(unitInfo[CCGE_UNIT_MANA].asDouble());
+    property->setArmor(unitInfo[CCGE_UNIT_ARMOR].asDouble());
+    property->setMagicResistance(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE].asDouble());
+    property->setAttackDamage(unitInfo[CCGE_UNIT_ATTACK_DAMAGE].asDouble());
+    property->setAbilityPower(unitInfo[CCGE_UNIT_ABILITY_POWER].asDouble());
+    property->setAttackSpeed(unitInfo[CCGE_UNIT_ATTACK_SPEED].asDouble());
+    property->setCrit(unitInfo[CCGE_UNIT_CRIT].asDouble());
+    property->setMagicCrit(unitInfo[CCGE_UNIT_MAGIC_CRIT].asDouble());
+    property->setArmorPenetrate(unitInfo[CCGE_UNIT_ARMOR_PENETRATE].asDouble());
+    property->setMagicResistanceIgnore(unitInfo[CCGE_UNIT_MAGIC_RESISTANCE_IGNORE].asDouble());
+    property->setHit(unitInfo[CCGE_UNIT_HIT].asDouble());
+    property->setDodg(unitInfo[CCGE_UNIT_DODG].asDouble());
+    property->setHealthRegenerate(unitInfo[CCGE_UNIT_HEALTH_REGENERATE].asDouble());
+    property->setManaRegenerate(unitInfo[CCGE_UNIT_MANA_REGENERATE].asDouble());
+    property->setHeal(unitInfo[CCGE_UNIT_HEAL].asDouble());
+    property->setLifeDrain(unitInfo[CCGE_UNIT_LIFE_DRAIN].asDouble());
+    property->setManaCostReduced(unitInfo[CCGE_UNIT_MANA_COST_REDUCED].asDouble());
+    
+
+    float baseValue;
+    float growValue;
+    
+    //str
+    baseValue=unitInfo[CCGE_UNIT_BASE_STRENGTH].asDouble();
+    growValue=unitInfo[CCGE_UNIT_GROW_STRENGTH].asDouble();
+    property->setStrength(baseValue+growValue*stars*level);
+    
+    //agi
+    baseValue=unitInfo[CCGE_UNIT_BASE_AGILITY].asDouble();
+    growValue=unitInfo[CCGE_UNIT_GROW_AGILITY].asDouble();
+    property->setAgility(baseValue+growValue*stars*level);
+    
+    //int
+    baseValue=unitInfo[CCGE_UNIT_BASE_INTELLECT].asDouble();
+    growValue=unitInfo[CCGE_UNIT_GROW_INTELLECT].asDouble();
+    property->setIntellect(baseValue+growValue*stars*level);
+    
+    //TODO add rank property
+    
+    //TODO add equip property
 }
 
 void EntityPropertyFactory::setMovePropertyValue(MoveProperty* property,const yhge::Json::Value& config)

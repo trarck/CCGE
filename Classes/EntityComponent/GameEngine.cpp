@@ -15,6 +15,7 @@ GameEngine::GameEngine()
 ,m_battleManager(NULL)
 ,m_skillManager(NULL)
 ,m_randomSeed(1)
+,m_buffManager(NULL)
 {
     
 }
@@ -26,6 +27,7 @@ GameEngine::~GameEngine()
     CC_SAFE_RELEASE_NULL(m_battleUpdateManager);
     CC_SAFE_RELEASE_NULL(m_battleManager);
     CC_SAFE_RELEASE_NULL(m_skillManager);
+    CC_SAFE_RELEASE_NULL(m_buffManager);
 }
 
 bool GameEngine::init()
@@ -61,6 +63,10 @@ void GameEngine::setupManagers()
     m_skillManager=new SkillManager();
     m_skillManager->init();
     m_skillManager->setEngine(this);
+    
+    m_buffManager=new BuffManager();
+    m_buffManager->init();
+    m_buffManager->setEngine(this);
     
 }
 

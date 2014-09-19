@@ -57,6 +57,9 @@ public:
     
     void addEntityPassiveSkillInfo(int entityId,const yhge::Json::Value& skillInfo);
     
+    /**
+     * @brief取得所有被动技能列表
+     */
     yhge::Json::Value& getEntityPassiveSkillInfos(int entityId);
     
     void addEntityAuraSkillInfo(int entityId,const yhge::Json::Value& skillInfo);

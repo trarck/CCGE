@@ -37,8 +37,27 @@ public:
     
     virtual void update(float delta);
     
+    void apply();
+    
+    void applyEffect(const std::string& effect);
+    
+    void applyEffect(int effectType);
+    
+public:
+    
+    inline void setInfo(const yhge::Json::Value& info)
+    {
+        m_info = info;
+    }
+    
+    inline const yhge::Json::Value& getInfo()
+    {
+        return m_info;
+    }
+    
 protected:
     
+    yhge::Json::Value m_info;
 };
 
 NS_CC_GE_END

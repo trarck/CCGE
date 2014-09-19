@@ -25,6 +25,8 @@ public:
     ,m_camp(0)
     ,m_foecamp(0)
     ,m_radius(0.0f)
+    ,m_healthMod(1.0f)
+    ,m_dpsMod(1.0f)
     ,m_sizeMod(1.0f)
     ,m_attackRange(0)
     ,m_alive(true)
@@ -162,6 +164,26 @@ public:
         return m_radius;
     }
     
+    inline void setHealthMod(float healthMod)
+    {
+        m_healthMod = healthMod;
+    }
+    
+    inline float getHealthMod()
+    {
+        return m_healthMod;
+    }
+    
+    inline void setDpsMod(float dpsMod)
+    {
+        m_dpsMod = dpsMod;
+    }
+    
+    inline float getDpsMod()
+    {
+        return m_dpsMod;
+    }
+    
     inline void setSizeMod(float sizeMod)
     {
         m_sizeMod = sizeMod;
@@ -281,7 +303,10 @@ protected:
     int m_foecamp;
     //半径
     float m_radius;
-    
+    //血量调整
+    float m_healthMod;
+    //攻击力调整
+    float m_dpsMod;
     //缩放大小
     float m_sizeMod;
     //攻击范围

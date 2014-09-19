@@ -8,6 +8,7 @@
 #include "Managers/BattleUpdateManager.h"
 #include "Managers/BattleManager.h"
 #include "Managers/SkillManager.h"
+#include "Managers/BuffManager.h"
 
 NS_CC_GE_BEGIN
 
@@ -91,6 +92,18 @@ public:
         return m_randomSeed;
     }
     
+    inline void setBuffManager(BuffManager* buffManager)
+    {
+        CC_SAFE_RETAIN(buffManager);
+        CC_SAFE_RELEASE(m_buffManager);
+        m_buffManager = buffManager;
+    }
+    
+    inline BuffManager* getBuffManager()
+    {
+        return m_buffManager;
+    }
+    
 protected:
 
 	EntityFactory* m_entityFactory;
@@ -101,6 +114,8 @@ protected:
     BattleManager* m_battleManager;
     
     SkillManager* m_skillManager;
+    
+    BuffManager* m_buffManager;
  
     int m_randomSeed;
 };

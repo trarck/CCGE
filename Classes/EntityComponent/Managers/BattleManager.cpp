@@ -4,6 +4,8 @@
 #include "Consts/PropertyDefine.h"
 #include "Game.h"
 #include "Services/ServiceFactory.h"
+#include "EntityComponent/Properties/BuffEffects.h"
+#include "EntityComponent/Components/Battles/StateComponent.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -11,7 +13,8 @@ USING_NS_CC_YHGE;
 NS_CC_GE_BEGIN
 
 BattleManager::BattleManager()
-:m_aliveAllianceCount(0)
+:m_enabled(true)
+,m_aliveAllianceCount(0)
 ,m_aliveEnemyCount(0)
 ,m_deadAllianceCount(0)
 ,m_deadEnemyCount(0)
@@ -306,7 +309,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     float attackRange=skillProto[CCGE_SKILL_MAX_RANGE].asDouble();
     unitConfig[CCGE_UNIT_ATTACK_RANGE]=attackRange;
     
-    entityFactory->getEntityPropertyFactory()->addUnitProperty(entity, unitConfig, unitInfo);
+    entityFactory->getEntityPropertyFactory()->addUnitProperty(entity, unitInfo, unitConfig);
 
     //设置战斗属性
     Json::Value battleConfig;
@@ -314,7 +317,7 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     battleConfig[CCGE_COMMON_RANK]=rank;
     battleConfig[CCGE_COMMON_STARS]=stars;
     
-    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,battleConfig,unitInfo);
+    entityFactory->getEntityPropertyFactory()->addRealtimeBattleProperty(entity,unitInfo,battleConfig);
     
     //设置移动属性
     Json::Value moveConfig;
@@ -324,10 +327,155 @@ GameEntity* BattleManager::createEntity(yhge::Json::Value& hero)
     
     entityFactory->getEntityPropertyFactory()->addMoveProperty(entity, moveConfig);
     
+    //add buff effects
+    entityFactory->getEntityPropertyFactory()->addBuffEffectsProperty(entity);
+    
+    
     //添加组件
     entityFactory->addRealtimeBattleComponents(entity);
     
+    //构建entity属性
+    rebuildEntity(entity);
+    
     return entity;
+}
+
+void BattleManager::rebuildEntity(GameEntity* entity)
+{
+    UnitProperty* unitProperty=static_cast<UnitProperty*>(entity->getProperty(CCGE_PROPERTY_UNIT));
+    BattleProperty* battleProperty=static_cast<BattleProperty*>(entity->getProperty(CCGE_PROPERTY_BATTLE));
+    
+    GameEngine* gameEngine=static_cast<GameEngine*>(m_engine);
+    
+    //base
+    gameEngine->getEntityFactory()
+                ->getEntityPropertyFactory()
+                    ->setBattlePropertyValue(battleProperty,
+                             unitProperty->getInfo(),
+                             unitProperty->getLevel(),unitProperty->getStars(),unitProperty->getRank());
+    
+    //TODO add equips attribute
+    
+    //被动技能加层//
+    SkillManager* skillManager=gameEngine->getSkillManager();
+    Json::Value& passiveSkillList=skillManager->getEntityPassiveSkillInfos(entity->m_uID);
+    if (!passiveSkillList.isNull()) {
+        int passiveAttr=0;
+        float baseNumber=0;
+        float val=0;
+        for (int i=0; i<passiveSkillList.size(); ++i) {
+            Json::Value& skillInfo=passiveSkillList[i];
+            passiveAttr=skillInfo[CCGE_SKILL_PASSIVE_ATTR].asInt();
+            baseNumber=skillInfo[CCGE_SKILL_BASIC_NUM].asDouble();
+            val=battleProperty->getAttributeByType(passiveAttr)+baseNumber;
+            battleProperty->setAttributeByType(passiveAttr, val);
+        }
+    }
+    
+    if (m_enabled) {
+        
+        int passiveAttr=0;
+        float baseNumber=0;
+        float val=0;
+        
+        //处理己方光环加层//
+        GameEntityVector& campUnits=m_aliveUnits[unitProperty->getCamp()];
+        for (GameEntityVector::iterator iter=campUnits.begin(); iter!=campUnits.end(); ++iter) {
+            Json::Value& auraSkillList=skillManager->getEntityAuraSkillInfos((*iter)->m_uID);
+            
+            for (int i=0; i<auraSkillList.size(); ++i) {
+                //TODO check hero tag
+                
+                Json::Value& skillInfo=auraSkillList[i];
+                passiveAttr=skillInfo[CCGE_SKILL_PASSIVE_ATTR].asInt();
+                baseNumber=skillInfo[CCGE_SKILL_BASIC_NUM].asDouble();
+                val=battleProperty->getAttributeByType(passiveAttr)+baseNumber;
+                battleProperty->setAttributeByType(passiveAttr, val);
+            }
+        }
+        
+        //处理敌方光环加层//
+        int camp= unitProperty->getCamp()==kCampPlayer?kCampEnemy:kCampPlayer;
+        GameEntityVector& enemyUnits=m_aliveUnits[camp];
+        
+        for (GameEntityVector::iterator iter=enemyUnits.begin(); iter!=enemyUnits.end(); ++iter) {
+            Json::Value& enemyAuraSkillList=skillManager->getEntityNegativeAuraSkillInfos((*iter)->m_uID);
+            
+            for (int i=0; i<enemyAuraSkillList.size(); ++i) {
+                //TODO check hero tag
+                
+                Json::Value& skillInfo=enemyAuraSkillList[i];
+                passiveAttr=skillInfo[CCGE_SKILL_PASSIVE_ATTR].asInt();
+                baseNumber=skillInfo[CCGE_SKILL_BASIC_NUM].asDouble();
+                val=battleProperty->getAttributeByType(passiveAttr)+baseNumber;
+                battleProperty->setAttributeByType(passiveAttr, val);
+            }
+        }
+    }
+    
+    //重置buff effects
+    BuffEffects* buffEffects=static_cast<BuffEffects*>(entity->getProperty(CCGE_PROPERTY_BUFF_EFFECTS));
+    buffEffects->reset();
+    
+    BuffManager* buffManager=gameEngine->getBuffManager();
+    
+    BuffManager::BuffList& buffList=buffManager->getEntityBuffs(entity->m_uID);
+    
+    for (BuffManager::BuffList::iterator iter=buffList.begin(); iter!=buffList.end(); ++iter) {
+        (*iter)->apply();
+    }
+    
+    //check state
+    StateComponent* stateComponent=static_cast<StateComponent*>(entity->getComponent("StateComponent"));
+    if (buffEffects->isImmoblilize() && unitProperty->getState()==kUnitStateWalk) {
+        stateComponent->idle();
+    }
+    
+    //check current skill
+    SkillComponent* currentSkill=skillManager->getEntityCurrentSkill(entity->m_uID);
+    if (buffEffects->isStun()) {
+        stateComponent->hurt();
+    }else if(currentSkill){
+        int damageType=currentSkill->getInfo()[CCGE_SKILL_DAMAGE_TYPE].asInt();
+        if ((damageType==kSkillDamageTypePhysical && buffEffects->isDisarm()) || (damageType==kSkillDamageTypeMagic && buffEffects->isSilence())) {
+            currentSkill->interrupt();
+        }
+    }
+    
+    //处理魅惑效果//
+    unitProperty->setFoecamp(buffEffects->isEnchanted()?unitProperty->getCamp():-unitProperty->getCamp());
+    
+    
+    //处理三维对属性的加层
+    //STR
+    battleProperty->setHeal(battleProperty->getHeal()+battleProperty->getStrength()*BattleProperty::StrengthToHealth);
+    battleProperty->setArmor(battleProperty->getArmor()+battleProperty->getStrength()*BattleProperty::StrengthToArmor);
+    //AGi
+    battleProperty->setAttackDamage(battleProperty->getAttackDamage()+battleProperty->getAgility()*BattleProperty::AgilityToAttackDamage);
+    battleProperty->setCrit(battleProperty->getCrit()+battleProperty->getAgility()*BattleProperty::AgilityToCrit);
+    battleProperty->setArmor(battleProperty->getArmor()+battleProperty->getAgility()*BattleProperty::AgilityToArmor);
+    //INT
+    battleProperty->setAbilityPower(battleProperty->getAbilityPower()+battleProperty->getIntellect()*BattleProperty::IntellectToAbilityPower);
+    battleProperty->setMagicResistance(battleProperty->getMagicResistance()+battleProperty->getIntellect()*BattleProperty::IntellectToMagicResistance);
+    
+    unitProperty->setHealth(unitProperty->getHealth()*unitProperty->getHealthMod());
+    
+    battleProperty->setPerDamageMod(unitProperty->getDpsMod());
+    
+    //处理主属性加层
+    int mainAttributeType=unitProperty->getInfo()[CCGE_UNIT_MAIN_ATTRIBUTE].asInt();
+    battleProperty->setAttackDamage(battleProperty->getAttackDamage()+battleProperty->getAttributeByType(mainAttributeType));
+    
+    //TODO 计算战斗力
+    
+    //检查血量和魔法值是否超出范围
+    if (unitProperty->getHealth()>battleProperty->getHealth()) {
+        unitProperty->setHealth(battleProperty->getHealth());
+    }
+    
+    if (unitProperty->getMana()>battleProperty->getMana()) {
+        unitProperty->setMana(battleProperty->getMana());
+    }
 }
 
 void BattleManager::onUnitDie(GameEntity* unit,GameEntity* killer)
@@ -345,8 +493,6 @@ void BattleManager::onUnitDie(GameEntity* unit,GameEntity* killer)
         --m_aliveEnemyCount;
         ++m_deadEnemyCount;
     }
-    
-    
     
     RendererComponent* rendererComponent=static_cast<RendererComponent*>(unit->getComponent("RendererComponent"));
     rendererComponent->getRenderer()->removeFromParent();

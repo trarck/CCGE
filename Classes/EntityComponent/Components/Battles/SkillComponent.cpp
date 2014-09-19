@@ -302,7 +302,8 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
     origin.x+=m_info[CCGE_SKILL_X_SHIFT].asDouble()* direction;
     
     if (aoeOrigin) {
-
+        //范围攻击
+        
         int aoeShape=m_info[CCGE_SKILL_AOE_SHAPE].asInt();
         float arg1=m_info[CCGE_SKILL_SHAPE_ARG1].asDouble();
         float arg2=m_info[CCGE_SKILL_SHAPE_ARG2].asDouble();
@@ -313,11 +314,11 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
         
         GameEntityVector unitList=battleManager->getAliveUnitsOfCamp(affectedCamp());
         
-    
         GameEntity* entity=NULL;
 
         CCPoint dis;
         
+        //依次攻击范围内的目标
         for (GameEntityVector::iterator iter=unitList.begin(); iter!=unitList.end(); ++iter) {
             
             entity=*iter;
@@ -338,6 +339,7 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
         }
         
     }else{
+        //单点攻击
         takeEffectOn(m_target,source);
     }
     
@@ -355,6 +357,7 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
     
     UnitProperty* sourceUnitProperty=source==m_owner?m_unitProperty:static_cast<UnitProperty*>(source->getProperty(CCGE_PROPERTY_UNIT));
     
+    //如果目标死或如果目标正在放大招则不能攻击，如果目标放大招可以治疗。
     if (!targetUnitProperty->isAlive() || (targetUnitProperty->isManuallyCasting() && targetUnitProperty->getCamp()!=sourceUnitProperty->getCamp())) {
         return;
     }
@@ -367,6 +370,7 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
     float dmg=0;
     
     if (damageType==kSkillDamageTypeHeal) {
+        //治疗
         float heal=affectFieldType==kBattleAttributeHP?m_battleProperty->getHeal():0;
         power=power*(1+heal/100);
         
@@ -375,8 +379,10 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
         targetDamageComponent->takeHeal(power, affectFieldType, caster);
         
     }else {
-        
+        //攻击//
         if (damageType==kSkillDamageTypePhysical && !m_info[CCGE_SKILL_NO_DODGE].asBool()) {
+            
+            //处理闪避
             float dodg=MAX(0, targetBattleProperty->getDodg()-m_battleProperty->getHit());
             float prob=dodg/(100+dodg);
             
@@ -385,6 +391,7 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
             bool hit=prob<=dice;
             
             if (!hit) {
+                //没有命中//
                 //send hit miss message
                 getMessageManager()->dispatchMessage(kMSGHitMiss, this, target);
                 
@@ -397,6 +404,7 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
             }
         }
         
+        //计算伤害值//
         dmg=getDamage(target, power, damageType, affectFieldType, caster, m_info[CCGE_SKILL_CRIT_RATIO].asDouble()/100);
         
         if (dmg==0) {

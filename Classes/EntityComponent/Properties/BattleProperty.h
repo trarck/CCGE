@@ -47,6 +47,10 @@ public:
     
     float getAttributeByType(int type);
     
+    void setAttributeByType(int type,float value);
+    
+    void setAttributeByType(int type,int value);
+    
     inline void setHealth(float health)
     {
         m_health = health;
@@ -336,6 +340,16 @@ public:
     {
         return m_perDamageMod;
     }
+public:
+    static float StrengthToHealth;
+    static float StrengthToArmor;
+    
+    static float AgilityToAttackDamage;
+    static float AgilityToCrit;
+    static float AgilityToArmor;
+
+    static float IntellectToAbilityPower;
+    static float IntellectToMagicResistance;
 protected:
     
     //当前生命值 HP

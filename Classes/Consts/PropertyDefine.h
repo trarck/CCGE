@@ -13,5 +13,7 @@
 
 #define CCGE_PROPERTY_MOVE "MoveProperty"
 
+#define CCGE_PROPERTY_BUFF_EFFECTS "BuffEffects"
+
 
 #endif /* defined(CCGE_CONSTS_PROPERTYDEFINE_H_) */

@@ -83,6 +83,12 @@ public:
     
     void onUnitDie(GameEntity* unit,GameEntity* killer);
     
+    /**
+     * @brief 构建英雄属性
+     * 基础+装备+被动技能+buff
+     */
+    void rebuildEntity(GameEntity* entity);
+    
 protected:
     
     HeroVector sortEntity(const HeroVector& entityList);
@@ -90,6 +96,16 @@ protected:
     GameEntity* createEntity(yhge::Json::Value& hero);
     
 public:
+    
+    inline void setEnabled(bool enabled)
+    {
+        m_enabled = enabled;
+    }
+    
+    inline bool isEnabled()
+    {
+        return m_enabled;
+    }
     
     inline void setAliveAllianceCount( int aliveAllianceCount)
     {
@@ -227,6 +243,8 @@ public:
     }
     
 protected:
+    
+    bool m_enabled;
     
     GameEntityVector m_units;
     

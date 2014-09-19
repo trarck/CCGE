@@ -186,6 +186,26 @@ enum BattlePopupType
     kBattlePopupTypeText,
 };
 
+enum BuffEffectType
+{
+    kBuffEffectUntargetable,
+    kBuffEffectUncontrollable,
+    kBuffEffectImmoblilize,
+    kBuffEffectSilence,
+    kBuffEffectDisarm,
+    kBuffEffectEnchanted,
+    kBuffEffectStun,
+    kBuffEffectInvulnerable,
+    kBuffEffectDisableAI,
+    kBuffEffectNoHPR,
+    kBuffEffectUnheal,
+    kBuffEffectStable,
+    kBuffEffectFrozen,
+    kBuffEffectBuilding,
+    kBuffEffectFix,
+    kBuffEffectImprisonment
+};
+
 NS_CC_GE_END
 
 #endif // CCGE_CONSTS_GAMEDEFINE_H_
