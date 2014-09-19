@@ -30,7 +30,8 @@ CREATE TABLE "buffs" (
 	 "life_drain" real NOT NULL DEFAULT '0',  --吸血等级 LFS
 	 "mana_cost_reduced" real NOT NULL DEFAULT '0',  --魔法消耗降低 CDR
 	 "model_speeder" real NOT NULL DEFAULT '0',  --模型速度 MSPD
-	 "control_effect" integer NOT NULL DEFAULT '0', --控制效果。数组。这里是映射id
+	 "resist_attribute" integer NOT NULL DEFAULT '0', --抗性属性
+	 "control_effect" integer NOT NULL DEFAULT '0', --作用效果。数组。这里是映射id。比如，沉默，石化，冰动
 	 "shader" text NOT NULL DEFAULT '', --效果用到的Shader
 	PRIMARY KEY("id")
 );
