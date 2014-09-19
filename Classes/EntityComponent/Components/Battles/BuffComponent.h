@@ -43,6 +43,8 @@ public:
     
     void applyEffect(int effectType);
     
+    static bool checkAddBuff(const yhge::Json::Value& buffInfo,int level,GameEntity* target);
+    
 public:
     
     inline void setInfo(const yhge::Json::Value& info)

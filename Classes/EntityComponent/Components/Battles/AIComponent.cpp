@@ -17,8 +17,9 @@ AIComponent::AIComponent()
 ,m_target(NULL)
 ,m_unitProperty(NULL)
 ,m_moveProperty(NULL)
+,m_buffEffects(NULL)
 ,m_moveComponent(NULL)
-,m_willCastManualSkill(true)
+,m_willCastManualSkill(false)
 ,m_skillManager(NULL)
 ,m_stateComponent(NULL)
 {
@@ -37,6 +38,7 @@ void AIComponent::setup()
     
     m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
     m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
+    m_buffEffects=static_cast<BuffEffects*>(m_owner->getProperty(CCGE_PROPERTY_BUFF_EFFECTS));
     
     m_moveComponent=static_cast<MoveComponent*>(m_owner->getComponent("MoveComponent"));
     m_stateComponent=static_cast<StateComponent*>(m_owner->getComponent("StateComponent"));
@@ -88,16 +90,20 @@ void AIComponent::update(float delta)
         if (skill) {
             //cast skill
             if(skill->isManual() && Game::getInstance()->getEngine()->getBattleManager()->isArenaMode()){
-            
+                m_stateComponent->castManualSkill();
             }else{
                 m_stateComponent->castSkill(skill, target);
             }
             
         }else{
-            //work to target
-            walkTo(target);
+            if (m_buffEffects->isBuilding()){
+                //idle
+                m_stateComponent->idle();
+            }else{
+                //work to target
+                walkTo(target);
+            }
         }
-        
 //    }else if(m_destination){
 //        walkTo(m_destination);
     }else{

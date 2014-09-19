@@ -150,6 +150,8 @@
 #define CCGE_SKILL_DESCRIPTION "description"
 #define CCGE_SKILL_NO_DODGE "no_dodge"
 
+#define CCGE_SKILL_BUFF_INFO "buff_info"
+
 //buff
 #define CCGE_BUFF_ID "id"
 #define CCGE_BUFF_NAME "name"

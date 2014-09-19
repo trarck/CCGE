@@ -9,6 +9,7 @@
 #include "EntityComponent/Properties/BattleProperty.h"
 #include "EntityComponent/Properties/UnitProperty.h"
 #include "EntityComponent/Properties/MoveProperty.h"
+#include "EntityComponent/Properties/BuffEffects.h"
 
 #include "../GameComponent.h"
 
@@ -87,6 +88,11 @@ protected:
     float getPower(GameEntity* source,GameEntity* target);
     
     float getDamage(GameEntity* target,float power,int damageType,int field,GameEntity* source,float critMod);
+    
+    /**
+     * 技能攻击选择目标
+     */
+    GameEntity* selectTarget(GameEntity* defaultTarget);
     
     static bool testPointInShape(const CCPoint& pos,int shape,float arg1,float arg2);
     
@@ -282,6 +288,7 @@ protected:
     BattleProperty* m_battleProperty;
     UnitProperty* m_unitProperty;
     MoveProperty* m_moveProperty;
+    BuffEffects* m_buffEffects;
     
     PopupComponent* m_popupComponent;
 };

@@ -87,18 +87,18 @@ void RealtimeBattleController::viewDidLoad()
     
     //create test button
     
-//    CCMenuItemLabel *skipBtn=CCMenuItemLabel::create(CCLabelTTF::create("skip", "Arial", 34),
-//                                                   this,
-//                                                   menu_selector(RealtimeBattleController::onSkip));
-//    
-//    CCMenuItemLabel *startBtn=CCMenuItemLabel::create(CCLabelTTF::create("start", "Arial", 34),
-//                                                     this,
-//                                                     menu_selector(RealtimeBattleController::onStart));
-//
-//    CCMenu* menu=CCMenu::create(skipBtn,startBtn,NULL);
-//    menu->alignItemsHorizontally();
-//    
-//    m_view->addChild(menu);
+    CCMenuItemLabel *btn1=CCMenuItemLabel::create(CCLabelTTF::create("skill1", "Arial", 34),
+                                                   this,
+                                                   menu_selector(RealtimeBattleController::onSkill1));
+    
+    CCMenuItemLabel *btn2=CCMenuItemLabel::create(CCLabelTTF::create("skill2", "Arial", 34),
+                                                     this,
+                                                     menu_selector(RealtimeBattleController::onSkill2));
+
+    CCMenu* menu=CCMenu::create(btn1,btn2,NULL);
+    menu->alignItemsHorizontally();
+    
+    m_view->addChild(menu);
     
 }
 
@@ -303,9 +303,45 @@ void RealtimeBattleController::doBattleEnd(bool win)
 
 void RealtimeBattleController::onEndTipCallback()
 {
-    
     GameSceneDirector::getInstance()->setSceneContext(CCInteger::create(ISOTileMapBuilder::BatchLayerType));
     GameSceneDirector::getInstance()->popScene();
+}
+
+void RealtimeBattleController::onSkill1(CCObject* sender)
+{
+    //get first alive entity
+    GameEntity* caster=m_battleManager->getUnits().front();
+    
+    if (static_cast<UnitProperty*>(caster->getProperty(CCGE_PROPERTY_UNIT))->isAlive()) {
+        GameEntityVector enemyList=m_battleManager->getAliveUnitsOfCamp(kCampEnemy);
+        GameEntity* target=enemyList.front();
+        
+        //TODO get skill by id
+        SkillManager::SkillList::iterator begin= Game::getInstance()->getEngine()->getSkillManager()->getEntitySkills(caster->m_uID).begin();
+        SkillComponent* aSkill=*(begin+1);
+        if(aSkill){
+            aSkill->cast(target);
+        }
+    }
+    
+
+}
+
+void RealtimeBattleController::onSkill2(CCObject* sender)
+{
+    GameEntity* caster=m_battleManager->getUnits().at(1);
+    if (static_cast<UnitProperty*>(caster->getProperty(CCGE_PROPERTY_UNIT))->isAlive()) {
+        GameEntityVector enemyList=m_battleManager->getAliveUnitsOfCamp(kCampEnemy);
+        GameEntity* target=enemyList.front();
+        
+        //TODO get skill by id
+        SkillManager::SkillList::iterator begin= Game::getInstance()->getEngine()->getSkillManager()->getEntitySkills(caster->m_uID).begin();
+        
+        SkillComponent* aSkill=*(begin+1);
+        if(aSkill){
+            aSkill->cast(target);
+        }
+    }
 }
 
 NS_CC_GE_END

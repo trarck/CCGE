@@ -23,6 +23,7 @@
 #include "Components/Battles/DamageComponent.h"
 #include "Components/Battles/VisibleMoveComponent.h"
 #include "Components/Battles/PopupComponent.h"
+#include "Components/Battles/BuffComponent.h"
 
 #include "Managers/SkillManager.h"
 
@@ -228,6 +229,8 @@ void EntityComponentFactory::addSkillComponents(GameEntity* entity)
     
     int skillCount=skillGroupInfo.size();
     
+    CCLOG("skill:%d=%d",entity->getEntityId(),skillCount);
+    
     for (int i=0; i<skillCount; ++i) {
         
         Json::Value skillInfo=skillDAO->getDataById(skillGroupInfo[i]["skill_id"].asInt());
@@ -312,6 +315,15 @@ void EntityComponentFactory::addTipComponent(GameEntity* entity)
     entity->addComponent(popupComponent);
     
     popupComponent->release();
+}
+
+void EntityComponentFactory::addBuffComponent(GameEntity* entity)
+{
+    BuffComponent* buffComponent=new BuffComponent();
+    buffComponent->init();
+    
+    entity->addComponent(buffComponent);
+    buffComponent->release();
 }
 
 CCArray* EntityComponentFactory::createEightAnimations(const yhge::Json::Value& configData)

@@ -185,5 +185,10 @@ void BuffComponent::applyEffect(int effectType)
     }
 }
 
+bool BuffComponent::checkAddBuff(const Json::Value& buffInfo,int level,GameEntity* target)
+{
+    return true;
+}
+
 NS_CC_GE_END
 

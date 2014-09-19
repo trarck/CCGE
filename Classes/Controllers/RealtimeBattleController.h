@@ -158,7 +158,11 @@ public:
     void doBattleEnd(bool win);
     
     void onEndTipCallback();
-        
+    
+    void onSkill1(CCObject* sender);
+    
+    void onSkill2(CCObject* sender);
+    
 public:
     
     inline void setZoneId(int zoneId)

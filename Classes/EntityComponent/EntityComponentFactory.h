@@ -55,6 +55,8 @@ public:
     
     void addTipComponent(GameEntity* entity);
     
+    void addBuffComponent(GameEntity* entity);
+    
 public:
     inline void setEntityFactory(EntityFactory* entityFactory)
     {

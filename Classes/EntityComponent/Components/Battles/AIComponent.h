@@ -8,6 +8,7 @@
 #include "EntityComponent/Properties/BattleProperty.h"
 #include "EntityComponent/Properties/UnitProperty.h"
 #include "EntityComponent/Properties/MoveProperty.h"
+#include "EntityComponent/Properties/BuffEffects.h"
 #include "EntityComponent/Components/GameComponent.h"
 #include "EntityComponent/Managers/SkillManager.h"
 
@@ -90,9 +91,11 @@ protected:
     
     UnitProperty* m_unitProperty;
     MoveProperty* m_moveProperty;
+    BuffEffects* m_buffEffects;
     
     MoveComponent* m_moveComponent;
     StateComponent* m_stateComponent;
+    
     
     SkillManager* m_skillManager;
 

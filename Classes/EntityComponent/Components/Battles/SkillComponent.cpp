@@ -34,6 +34,7 @@ SkillComponent::SkillComponent()
 ,m_battleProperty(NULL)
 ,m_unitProperty(NULL)
 ,m_moveProperty(NULL)
+,m_buffEffects(NULL)
 ,m_popupComponent(NULL)
 {
     
@@ -58,6 +59,7 @@ void SkillComponent::setup()
     m_battleProperty=static_cast<BattleProperty*>(m_owner->getProperty(CCGE_PROPERTY_BATTLE));
     m_unitProperty=static_cast<UnitProperty*>(m_owner->getProperty(CCGE_PROPERTY_UNIT));
     m_moveProperty=static_cast<MoveProperty*>(m_owner->getProperty(CCGE_PROPERTY_MOVE));
+    m_buffEffects=static_cast<BuffEffects*>(m_owner->getProperty(CCGE_PROPERTY_BUFF_EFFECTS));
     
     m_popupComponent=static_cast<PopupComponent*>(m_owner->getComponent("PopupComponent"));
     
@@ -146,7 +148,21 @@ bool SkillComponent::canCastWithTarget(GameEntity* target)
         return false;
     }
     
-    //TODO check buff
+    //check buff
+    
+    if (m_buffEffects->isStun()) {
+        return false;
+    }
+    
+    int damageType=m_info[CCGE_SKILL_DAMAGE_TYPE].asInt();
+    
+    if ((damageType==kSkillDamageTypePhysical && m_buffEffects->isDisarm()) || (damageType!=kSkillDamageTypePhysical && m_buffEffects->isSilence())) {
+        return  false;
+    }
+    
+    //TODO check target
+    
+    
     
     //check distance
     MoveProperty* targetMoveProperty=static_cast<MoveProperty*>(target->getProperty(CCGE_PROPERTY_MOVE));
@@ -246,7 +262,7 @@ void SkillComponent::trigger()
 void SkillComponent::onAttackFrame()
 {
     //TODO parse unfreeze manually skill
-    CCLOG("on Attack Frame");
+    CCLOG("on Attack Frame:%d",m_info[CCGE_SKILL_ID].asInt());
     ++m_attackCounter;
     
     if (m_info[CCGE_SKILL_TARGET_TYPE].asInt()==kSkillTargetTypeRandom || m_target==NULL ||
@@ -314,6 +330,8 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
         
         GameEntityVector unitList=battleManager->getAliveUnitsOfCamp(affectedCamp());
         
+        CCLOG("aoe:%d",unitList.size());
+        
         GameEntity* entity=NULL;
 
         CCPoint dis;
@@ -325,7 +343,9 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
             
             if ( (damageType==kSkillDamageTypePhysical || damageType==kSkillDamageTypeMagic) && entity==m_owner) {
                 //can't attack self
+                CCLOG("can't attack self");
             }else{
+                CCLOG("aoe attack");
                 MoveProperty* moveProperty=static_cast<MoveProperty*>(entity->getProperty(CCGE_PROPERTY_MOVE));
                 
                 dis=moveProperty->getPosition()-origin;
@@ -333,6 +353,7 @@ void SkillComponent::takeEffectAt(const CCPoint& location,GameEntity* source)
                 dis.x*=direction;
                 
                 if (testPointInShape(dis,aoeShape,arg1,arg2)) {
+                    CCLOG("aoe attack2");
                     takeEffectOn(entity);
                 }
             }
@@ -352,8 +373,8 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
     
     source=source==NULL?caster:source;
     
-    UnitProperty* targetUnitProperty=static_cast<UnitProperty*>(m_target->getProperty(CCGE_PROPERTY_UNIT));
-    BattleProperty* targetBattleProperty=static_cast<BattleProperty*>(m_target->getProperty(CCGE_PROPERTY_BATTLE));
+    UnitProperty* targetUnitProperty=static_cast<UnitProperty*>(target->getProperty(CCGE_PROPERTY_UNIT));
+    BattleProperty* targetBattleProperty=static_cast<BattleProperty*>(target->getProperty(CCGE_PROPERTY_BATTLE));
     
     UnitProperty* sourceUnitProperty=source==m_owner?m_unitProperty:static_cast<UnitProperty*>(source->getProperty(CCGE_PROPERTY_UNIT));
     
@@ -391,6 +412,7 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
             bool hit=prob<=dice;
             
             if (!hit) {
+                CCLOG("dodge");
                 //没有命中//
                 //send hit miss message
                 getMessageManager()->dispatchMessage(kMSGHitMiss, this, target);
@@ -406,6 +428,8 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
         
         //计算伤害值//
         dmg=getDamage(target, power, damageType, affectFieldType, caster, m_info[CCGE_SKILL_CRIT_RATIO].asDouble()/100);
+        
+        CCLOG("dmg:%f",dmg);
         
         if (dmg==0) {
             return;
@@ -424,7 +448,22 @@ void SkillComponent::takeEffectOn(GameEntity* target,GameEntity* source)
         }
     }
     
-    //TODO parse buff
+    //parse buff
+    bool buffMiss=false;
+    if (targetUnitProperty->isAlive() && m_info[CCGE_SKILL_BUFF_ID].asInt()>0) {
+        if (BuffComponent::checkAddBuff(m_info[CCGE_SKILL_BUFF_INFO], m_unitProperty->getLevel(), target)){
+            
+//            Game::getInstance()->getEngine()->getEntityFactory()->getEntityComponentFactory()->add
+        }else{
+            //show miss tip
+            if(m_popupComponent){
+                UnitProperty* targetUnitProperty=static_cast<UnitProperty*>(target->getProperty(CCGE_PROPERTY_UNIT));
+                m_popupComponent->showPopup("miss",targetUnitProperty->getCamp()==kCampEnemy?"red":"blue", kBattlePopupTypeText);
+            }
+            
+            buffMiss=true;
+        }
+    }
     
     //TODO show impact effect
 }
@@ -523,6 +562,12 @@ float SkillComponent::getDamage(GameEntity* target,float power,int damageType,in
     DamageComponent* targetDamageComponent=static_cast<DamageComponent*>(target->getComponent("DamageComponent"));
     
     return targetDamageComponent->takeDamage(power, damageType, field, source,critMod);
+}
+
+GameEntity* SkillComponent::selectTarget(GameEntity* defaultTarget)
+{
+    
+    return NULL;
 }
 
 bool SkillComponent::testPointInShape(const CCPoint& pos,int shape,float arg1,float arg2)
