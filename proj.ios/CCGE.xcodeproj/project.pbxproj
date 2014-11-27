@@ -316,7 +316,6 @@
 		575E3FA11889344600E37B69 /* EntityFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 575E3F9F1889344600E37B69 /* EntityFactory.cpp */; };
 		57619DFB19B561F7003BB2E0 /* StateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57619DF919B561F7003BB2E0 /* StateComponent.cpp */; };
 		57680E2519C9795C001EC74B /* BuffManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57680E2319C9795C001EC74B /* BuffManager.cpp */; };
-		57680E2819CC14ED001EC74B /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57680E2619CC14ED001EC74B /* Skill.cpp */; };
 		5768C14818A8DA0E005123C5 /* GameAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */; };
 		576BCDD019A587F6000D2A48 /* PopupComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576BCDCE19A587F6000D2A48 /* PopupComponent.cpp */; };
 		576BCDD319A58F81000D2A48 /* DamageComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576BCDD119A58F81000D2A48 /* DamageComponent.cpp */; };
@@ -1063,8 +1062,6 @@
 		57619DFA19B561F7003BB2E0 /* StateComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateComponent.h; sourceTree = "<group>"; };
 		57680E2319C9795C001EC74B /* BuffManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuffManager.cpp; sourceTree = "<group>"; };
 		57680E2419C9795C001EC74B /* BuffManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuffManager.h; sourceTree = "<group>"; };
-		57680E2619CC14ED001EC74B /* Skill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skill.cpp; sourceTree = "<group>"; };
-		57680E2719CC14ED001EC74B /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
 		5768C14618A8DA0E005123C5 /* GameAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAttackComponent.cpp; sourceTree = "<group>"; };
 		5768C14718A8DA0E005123C5 /* GameAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAttackComponent.h; sourceTree = "<group>"; };
 		576BCDCE19A587F6000D2A48 /* PopupComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PopupComponent.cpp; sourceTree = "<group>"; };
@@ -1907,8 +1904,6 @@
 				576BCDCF19A587F6000D2A48 /* PopupComponent.h */,
 				574FF814192DE52E00DC1791 /* ProjectileComponent.cpp */,
 				574FF815192DE52E00DC1791 /* ProjectileComponent.h */,
-				57680E2619CC14ED001EC74B /* Skill.cpp */,
-				57680E2719CC14ED001EC74B /* Skill.h */,
 				574FF81A192DE7BA00DC1791 /* SkillComponent.cpp */,
 				574FF81B192DE7BA00DC1791 /* SkillComponent.h */,
 				573D946519A3289E00F47394 /* SkillPhase.cpp */,
@@ -3055,7 +3050,6 @@
 				57F0133C18FF87E500CB32E9 /* AttackSpeedFormula.cpp in Sources */,
 				573D9447199B6CE500F47394 /* MapDAO.cpp in Sources */,
 				15A3DA5A1682F826002FB0C5 /* CCSorting.cpp in Sources */,
-				57680E2819CC14ED001EC74B /* Skill.cpp in Sources */,
 				575643101977B36000AA1194 /* CCArmatureAnimation.cpp in Sources */,
 				15A3DA5B1682F826002FB0C5 /* CCTableView.cpp in Sources */,
 				575643391977B36100AA1194 /* UIRichText.cpp in Sources */,
